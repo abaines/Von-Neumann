@@ -1,0 +1,11 @@
+{
+    "name": "vonNeumann",
+    "version": "0.0.1",
+    "title": "Von Neumann",
+    "author": "Kizrak",
+    "contact": "",
+    "homepage": "",
+    "factorio_version": "0.17",
+    "dependencies": ["base >= 0.17"],
+    "description": "Von Neumann Mod! Who wants to be a sack of blood and bones when you can be an hyper-intelligent self-replicating robot!"
+}
