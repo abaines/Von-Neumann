@@ -20,20 +20,26 @@ function newPlayer(event)
 	end
 
 	for i, entity in pairs(game.surfaces[1].find_entities_filtered{}) do -- iterate through entities
-		if entity.type == "character" then -- it's an inserter, do something to it
-			--kprint("T::"..entity.type)
-			--kprint("E::"..serpent.block(entity))
+		if entity.type == "character" then
 			entity.destroy()
 		end
 	end
 
-	--[[playerCharacter.destroy()
-	local characters = game.surfaces[1].find_entities_filtered{type= "character"}
-	kprint("CS::" .. serpent.block(characters))
-	for character in pairs(characters) do
-		kprint("C::" .. serpent.block(character))
-		character.destory()
-	end]]--
+
+	local electricEnergyInterface = game.surfaces[1].create_entity{
+		name="electric-energy-interface",
+		position={0,0},
+		force="player"
+	}
+
+	electricEnergyInterface.destructible = false
+	electricEnergyInterface.minable = false
+	electricEnergyInterface.rotatable = false
+	electricEnergyInterface.operable = false
+
+	electricEnergyInterface.power_production ="15000"
+	electricEnergyInterface.electric_buffer_size  ="100000000"
+
 
 	local numberPlayers = #game.players
 	local msg = "newPlayer complete: " .. numberPlayers
