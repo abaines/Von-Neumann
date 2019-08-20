@@ -1,3 +1,17 @@
+# Ignore EVERYTHING!!
+/**
+
+# Unignore .git stuff
+!/.gitignore
+!/.gitattributes
+
+# Unignore our read me file
+!/README.md
+
+# Unignore our mod
+!/vonNeumann_*
+
+
 # Compiled Lua sources
 luac.out
 
