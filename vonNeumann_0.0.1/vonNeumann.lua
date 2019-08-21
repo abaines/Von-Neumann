@@ -23,9 +23,9 @@ end
 
 function createEntity(options)
 	if type(options.name)~="string" then
-		error("no name")
+		error("no name: "..type(options.name))
 	elseif type(options.position)~="table" then
-		error("no position")
+		error("no position: "..type(options.position))
 	end
 
 	local entity = game.surfaces[options.surface or "nauvis"].create_entity{
@@ -42,8 +42,9 @@ function createEntity(options)
 	return entity
 end
 
-function createSiteChest(name,position,itemsTable)
-	local entity = createEntity{name=name,position=position}
+
+function createSiteChest(options,itemsTable)
+	local entity = createEntity(options)
 
 	for k, v in pairs (itemsTable) do
 		entity.insert({name = k, count = v})
@@ -73,12 +74,35 @@ function newPlayer(event)
 	local crashSiteLab = createEntity{name="crash-site-lab-repaired",position={0,4}}
 
 	local crashSiteAssemblingMachine1 = createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
-	local crashSiteAssemblingMachine2 = createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4},inoperable=true}
+	local crashSiteAssemblingMachine2 = createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4}}
 
-	local items = {locomotive=2,coal=150}
-	local crashSiteChest1 = createSiteChest("crash-site-chest-1",{8,7},items)
+	local items1 = {
+		coal=1,
+		['small-electric-pole']=1,
+		['burner-mining-drill']=1,
+		['stone-furnace']=1,
+		['firearm-magazine']=10,
+		['gun-turret']=1,
+		['burner-inserter']=1,
+		['compilatron-chest']=1,
+		--['crash-site-chest-1']=1,
+		--['crash-site-chest-2']=1,
+		['assembling-machine-1']=1,
+	}
+	local crashSiteChest1 = createSiteChest({name="crash-site-chest-1",position={8,7}},items1)
 
-	local crashSiteChest2 = createEntity{name="crash-site-chest-2",position={-3,-3}}
+	local items2 = {
+		roboport=1,
+		['construction-robot']=1,
+		['logistic-robot']=1,
+		['flying-robot-frame']=1,
+		['logistic-chest-active-provider']=1,
+		['logistic-chest-buffer']=1,
+		['logistic-chest-passive-provider']=1,
+		['logistic-chest-requester']=1,
+		['logistic-chest-storage']=1,
+	}
+	local crashSiteChest2 = createSiteChest({name="crash-site-chest-2",position={-3,-3}},items2)
 
 	-- crash-site-electric-pole
 	-- substation
