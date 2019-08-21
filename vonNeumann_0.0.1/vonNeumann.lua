@@ -42,6 +42,16 @@ function createEntity(options)
 	return entity
 end
 
+function createSiteChest(name,position,itemsTable)
+	local entity = createEntity{name=name,position=position}
+
+	for k, v in pairs (itemsTable) do
+		entity.insert({name = k, count = v})
+	end
+
+	return entity
+end
+
 
 function newPlayer(event)
 	kprint("newPlayer: "..serpent.block(event.player_index),{r=255,g=255})
@@ -65,7 +75,9 @@ function newPlayer(event)
 	local crashSiteAssemblingMachine1 = createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
 	local crashSiteAssemblingMachine2 = createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4},inoperable=true}
 
-	local crashSiteChest1 = createEntity{name="crash-site-chest-1",position={8,7}}
+	local items = {locomotive=2,coal=150}
+	local crashSiteChest1 = createSiteChest("crash-site-chest-1",{8,7},items)
+
 	local crashSiteChest2 = createEntity{name="crash-site-chest-2",position={-3,-3}}
 
 	-- crash-site-electric-pole
