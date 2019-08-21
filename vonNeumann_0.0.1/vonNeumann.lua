@@ -11,6 +11,38 @@ function kprint(msg)
 end
 
 
+function createCrashSiteGenerator(position)
+	local electricEnergyInterface = createEntity{name="crash-site-generator",position=position,inoperable=true}
+
+	electricEnergyInterface.power_production = "15000"
+	electricEnergyInterface.electric_buffer_size  = "100000000"
+
+	return electricEnergyInterface
+end
+
+
+function createEntity(options)
+	if type(options.name)~="string" then
+		error("no name")
+	elseif type(options.position)~="table" then
+		error("no position")
+	end
+
+	local entity = game.surfaces[options.surface or "nauvis"].create_entity{
+		name=options.name,
+		position=options.position,
+		force=options.force or "player"
+	}
+
+	entity.destructible = options.destructible or false
+	entity.minable = options.minable or false
+	entity.rotatable = options.rotatable or false
+	entity.operable = not (options.inoperable or false)
+
+	return entity
+end
+
+
 function newPlayer(event)
 	kprint("newPlayer: "..serpent.block(event.player_index),{r=255,g=255})
 
@@ -26,20 +58,18 @@ function newPlayer(event)
 	end
 
 
-	local electricEnergyInterface = game.surfaces[1].create_entity{
-		name="crash-site-generator",
-		position={0,0},
-		force="player"
-	}
+	local electricEnergyInterface = createCrashSiteGenerator({0,0})
 
-	electricEnergyInterface.destructible = false
-	electricEnergyInterface.minable = false
-	electricEnergyInterface.rotatable = false
-	electricEnergyInterface.operable = false
+	local crashSiteLab = createEntity{name="crash-site-lab-repaired",position={0,4}}
 
-	electricEnergyInterface.power_production = "15000"
-	electricEnergyInterface.electric_buffer_size  = "100000000"
+	local crashSiteAssemblingMachine1 = createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
+	local crashSiteAssemblingMachine2 = createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4},inoperable=true}
 
+	local crashSiteChest1 = createEntity{name="crash-site-chest-1",position={8,7}}
+	local crashSiteChest2 = createEntity{name="crash-site-chest-2",position={-3,-3}}
+
+	-- crash-site-electric-pole
+	-- substation
 
 	local numberPlayers = #game.players
 	local msg = "newPlayer complete: " .. numberPlayers
