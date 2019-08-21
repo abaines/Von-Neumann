@@ -27,7 +27,7 @@ function newPlayer(event)
 
 
 	local electricEnergyInterface = game.surfaces[1].create_entity{
-		name="electric-energy-interface",
+		name="crash-site-generator",
 		position={0,0},
 		force="player"
 	}
@@ -37,8 +37,8 @@ function newPlayer(event)
 	electricEnergyInterface.rotatable = false
 	electricEnergyInterface.operable = false
 
-	electricEnergyInterface.power_production ="15000"
-	electricEnergyInterface.electric_buffer_size  ="100000000"
+	electricEnergyInterface.power_production = "15000"
+	electricEnergyInterface.electric_buffer_size  = "100000000"
 
 
 	local numberPlayers = #game.players
