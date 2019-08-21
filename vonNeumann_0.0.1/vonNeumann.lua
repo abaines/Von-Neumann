@@ -78,29 +78,28 @@ function newPlayer(event)
 
 	local items1 = {
 		coal=1,
-		['small-electric-pole']=1,
-		['burner-mining-drill']=1,
-		['stone-furnace']=1,
+		['small-electric-pole']=4,
+		['burner-mining-drill']=3,
+		['stone-furnace']=2,
 		['firearm-magazine']=10,
 		['gun-turret']=1,
-		['burner-inserter']=1,
+		['burner-inserter']=2,
+		['inserter']=2,
 		['compilatron-chest']=1,
-		--['crash-site-chest-1']=1,
-		--['crash-site-chest-2']=1,
-		['assembling-machine-1']=1,
+		['assembling-machine-1']=2,
 	}
 	local crashSiteChest1 = createSiteChest({name="crash-site-chest-1",position={8,7}},items1)
 
 	local items2 = {
-		roboport=1,
-		['construction-robot']=1,
-		['logistic-robot']=1,
-		['flying-robot-frame']=1,
-		['logistic-chest-active-provider']=1,
-		['logistic-chest-buffer']=1,
-		['logistic-chest-passive-provider']=1,
-		['logistic-chest-requester']=1,
-		['logistic-chest-storage']=1,
+		roboport=3,
+		['construction-robot']=100,
+		['logistic-robot']=100,
+		['flying-robot-frame']=100,
+		['logistic-chest-active-provider']=10,
+		['logistic-chest-buffer']=2,
+		['logistic-chest-passive-provider']=2,
+		['logistic-chest-requester']=2,
+		['logistic-chest-storage']=10,
 	}
 	local crashSiteChest2 = createSiteChest({name="crash-site-chest-2",position={-3,-3}},items2)
 
