@@ -11,6 +11,8 @@
 # Unignore our mod
 !/vonNeumann_*
 
+!/vonNeumann_*/*
+
 
 # Compiled Lua sources
 luac.out
