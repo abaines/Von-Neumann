@@ -122,3 +122,18 @@ defines.events.on_player_removed,
 defines.events.on_pre_player_left_game,
 },newPlayer)
 
+
+-- TODOs
+-- Make this a softmod !!
+-- give full inventory for storing blueprints/deconstruction/upgrade planners
+-- auto-drop non-blueprint/deconstruction/upgrade planners, also allow fuels (coal and wood)
+-- remove tutorial chests, replace with logic storage
+-- spread out tutorial buildings
+-- fix bug with new players making extra buildings
+-- put same items in both chests
+-- disable crafting
+-- disable building/de-building buildings
+-- disable mining
+-- place roboport, assemblers, etc
+--
+
