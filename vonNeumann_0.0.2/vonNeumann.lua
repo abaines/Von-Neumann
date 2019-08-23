@@ -130,6 +130,16 @@ end
 
 script.on_event(defines.events.on_pre_player_crafted_item, craftEvent)
 
+function onUpdate(event)
+	for i, player in pairs(game.players) do
+		if player.connected and player.mining_state.mining then
+			player.mining_state = {mining = false}
+			kprint("Player tried to mine: " .. player.name)
+		end
+	end
+end
+
+script.on_event(defines.events.on_tick,onUpdate)
 
 script.on_event({
 defines.events.on_player_joined_game,
