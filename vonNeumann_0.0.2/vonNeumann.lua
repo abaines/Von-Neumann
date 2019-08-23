@@ -141,6 +141,30 @@ end
 
 script.on_event(defines.events.on_tick,onUpdate)
 
+
+function stopBuilding(event)
+	local created_entity = event.created_entity
+	local player_index = event.player_index
+	local stack = event.stack
+	local item = event.item
+
+	local player=game.players[player_index]
+	--kprint("Player tried to build: " .. player.name)
+
+	--kprint("created_entity: "..created_entity.name)
+	--kprint("stack: "..stack.name)
+	if item then
+		kprint(player.name .. " tried to build "..item.name)
+		created_entity.destroy()
+		local inventory = player.get_inventory(defines.inventory.god_main)
+		inventory.insert({name=item.name})
+	else
+		kprint(player.name .. " does not want to build")
+	end
+end
+
+script.on_event(defines.events.on_built_entity,stopBuilding)
+
 script.on_event({
 defines.events.on_player_joined_game,
 defines.events.on_player_created,
