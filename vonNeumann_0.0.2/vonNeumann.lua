@@ -59,7 +59,9 @@ function newPlayer(event)
 
 	for i, player in pairs(game.players) do
 		local playerCharacter = player.character
-		player.character = nil
+		if player.connected then
+			player.character = nil
+		end
 	end
 
 	for i, entity in pairs(game.surfaces[1].find_entities_filtered{}) do -- iterate through entities
