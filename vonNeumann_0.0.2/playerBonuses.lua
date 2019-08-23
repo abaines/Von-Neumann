@@ -8,6 +8,7 @@ function apply_bonuses()
 	game.forces.player.character_reach_distance_bonus = 125
 	game.forces.player.character_resource_reach_distance_bonus = 7
 	game.forces.player.character_item_pickup_distance_bonus = 7
+	game.forces.player.character_inventory_slots_bonus = 80
 
 	if false then
 		game.player.force.technologies['engine'].researched=true
