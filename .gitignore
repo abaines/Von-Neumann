@@ -13,6 +13,9 @@
 
 !/vonNeumann_*/*
 
+# the license
+!/license.md
+
 
 # Compiled Lua sources
 luac.out
