@@ -101,7 +101,6 @@ function newPlayer(event)
 	kprint("newPlayer: ".. player.name,{r=255,g=255})
 
 	for i, player in pairs(game.players) do
-		local playerCharacter = player.character
 		if player.connected and player.character then
 			player.character.destroy()
 			player.character = nil
@@ -113,6 +112,23 @@ function newPlayer(event)
 	kprint(msg)
 end
 
+
+function craftEvent(event)
+	local player_index = event.player_index
+	local recipe = event.recipe
+	local items = event.items
+
+	local player=game.players[player_index]
+	kprint("Player tried to craft: " .. player.name)
+
+	local player=game.players[player_index]
+
+	while player.crafting_queue do
+		player.cancel_crafting{index=1, count=player.crafting_queue[1].count}
+	end
+end
+
+script.on_event(defines.events.on_pre_player_crafted_item, craftEvent)
 
 
 script.on_event({
