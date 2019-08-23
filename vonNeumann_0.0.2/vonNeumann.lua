@@ -12,7 +12,7 @@ end
 
 
 function createCrashSiteGenerator(position)
-	local electricEnergyInterface = createEntity{name="crash-site-generator",position=position,inoperable=true}
+	local electricEnergyInterface = createEntity{name="crash-site-generator",position=position,inoperable=true,unminable=true}
 
 	electricEnergyInterface.power_production = "15000"
 	electricEnergyInterface.electric_buffer_size  = "100000000"
@@ -35,7 +35,7 @@ function createEntity(options)
 	}
 
 	entity.destructible = options.destructible or false
-	entity.minable = options.minable or false
+	entity.minable = not (options.unminable or false)
 	entity.rotatable = options.rotatable or false
 	entity.operable = not (options.inoperable or false)
 
@@ -54,22 +54,11 @@ function createSiteChest(options,itemsTable)
 end
 
 
-function newPlayer(event)
-	kprint("newPlayer: "..serpent.block(event.player_index),{r=255,g=255})
-
-	for i, player in pairs(game.players) do
-		local playerCharacter = player.character
-		if player.connected then
-			player.character = nil
-		end
+function spawnCrashSite()
+	if global.donecrashsite then
+		return
 	end
-
-	for i, entity in pairs(game.surfaces[1].find_entities_filtered{}) do -- iterate through entities
-		if entity.type == "character" then
-			entity.destroy()
-		end
-	end
-
+	global.donecrashsite=true
 
 	local electricEnergyInterface = createCrashSiteGenerator({0,0})
 
@@ -78,7 +67,7 @@ function newPlayer(event)
 	local crashSiteAssemblingMachine1 = createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
 	local crashSiteAssemblingMachine2 = createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4}}
 
-	local items1 = {
+	local items = {
 		coal=1,
 		['small-electric-pole']=4,
 		['burner-mining-drill']=3,
@@ -89,10 +78,6 @@ function newPlayer(event)
 		['inserter']=2,
 		['compilatron-chest']=1,
 		['assembling-machine-1']=2,
-	}
-	local crashSiteChest1 = createSiteChest({name="crash-site-chest-1",position={8,7}},items1)
-
-	local items2 = {
 		roboport=3,
 		['construction-robot']=100,
 		['logistic-robot']=100,
@@ -103,10 +88,25 @@ function newPlayer(event)
 		['logistic-chest-requester']=2,
 		['logistic-chest-storage']=10,
 	}
-	local crashSiteChest2 = createSiteChest({name="crash-site-chest-2",position={-3,-3}},items2)
-
 	-- crash-site-electric-pole
 	-- substation
+	local crashSiteChest1 = createSiteChest({name="crash-site-chest-1",position={8,7}},items)
+	local crashSiteChest2 = createSiteChest({name="crash-site-chest-2",position={-3,-3}},items)
+end
+
+
+function newPlayer(event)
+	local player_index=event.player_index
+	local player=game.players[player_index]
+	kprint("newPlayer: ".. player.name,{r=255,g=255})
+
+	for i, player in pairs(game.players) do
+		local playerCharacter = player.character
+		if player.connected and player.character then
+			player.character.destroy()
+			player.character = nil
+		end
+	end
 
 	local numberPlayers = #game.players
 	local msg = "newPlayer complete: " .. numberPlayers
@@ -124,6 +124,8 @@ defines.events.on_player_removed,
 defines.events.on_pre_player_left_game,
 },newPlayer)
 
+
+script.on_init(spawnCrashSite)
 
 -- TODOs
 -- Make this a softmod !!
