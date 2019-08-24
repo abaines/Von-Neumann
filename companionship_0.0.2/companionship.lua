@@ -35,10 +35,10 @@ local function companionship(event)
 	local eventName = eventNameMapping[event.name]
 	local numberConnectedPlayers = #game.connected_players
 
+	game.speed = getNewGameSpeed(numberConnectedPlayers,min_companions,slow_speed_companion)
+
 	local msg = "Companionship: "..numberConnectedPlayers .. " / " .. min_companions .. "  =  " .. game.speed .. "    [" .. eventName .."]"
 	log(msg)
-
-	game.speed = getNewGameSpeed(numberConnectedPlayers,min_companions,slow_speed_companion)
 
 	if eventName ~= "on_player_created" then
 		game.print(msg,{r=255,g=255})
