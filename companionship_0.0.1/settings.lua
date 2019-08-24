@@ -4,7 +4,7 @@ data:extend({
 		name = "minimum_number_of_companions",
 		default_value = 2,
 		minimum_value = 1,
-		maximum_value = 12,
+		maximum_value = 42, -- Answer to the Ultimate Question of Life, the Universe, and Everything
 		setting_type = "startup",
 	},
 	{
