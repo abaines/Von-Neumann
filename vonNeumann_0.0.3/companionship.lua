@@ -5,7 +5,7 @@
 
 function companionship(event)
 	if not global.companionshipLimit then
-		global.companionshipLimit = 1
+		global.companionshipLimit = 2
 	end
 
 	local numberConnectedPlayers = #game.connected_players
