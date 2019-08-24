@@ -168,10 +168,7 @@ script.on_event(defines.events.on_built_entity,stopBuilding)
 script.on_event({
 defines.events.on_player_joined_game,
 defines.events.on_player_created,
-defines.events.on_player_left_game,
-defines.events.on_player_changed_force,
-defines.events.on_player_removed,
-defines.events.on_pre_player_left_game,
+defines.events.on_player_respawned,
 },newPlayer)
 
 
@@ -193,4 +190,7 @@ script.on_init(spawnCrashSite)
 -- /togglehardmode
 -- /c __warptorio2__ warptorio.warpout()
 -- changelog.txt
+-- ...\Steam\steamapps\common\Factorio\data\*.lua
+-- local var/methods
+-- use a vonn = {} to encapsulate code
 

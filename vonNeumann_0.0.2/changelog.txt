@@ -1,0 +1,6 @@
+
+Version: 0.0.3
+Date: 2019.08.24
+	Changes:
+		- Start of changelog.txt
+		- Going back to softmod compatible
