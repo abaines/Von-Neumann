@@ -189,5 +189,8 @@ script.on_init(spawnCrashSite)
 -- disable building/de-building buildings
 -- disable mining
 -- place roboport, assemblers, etc
---
+
+-- /togglehardmode
+-- /c __warptorio2__ warptorio.warpout()
+-- changelog.txt
 
