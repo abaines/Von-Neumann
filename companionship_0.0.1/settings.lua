@@ -12,7 +12,7 @@ data:extend({
 		name = "speed_when_below_minimum_number_of_companions",
 		default_value = 1/6, -- 10 Updates Per Second
 		minimum_value = 0.05,
-		maximum_value = 10,
+		maximum_value = 9001, -- It's Over 9000!
 		setting_type = "startup",
 	},
 	{
@@ -20,7 +20,7 @@ data:extend({
 		name = "player_desired_speed",
 		default_value = 1,
 		minimum_value = 0.05,
-		maximum_value = 10,
+		maximum_value = 9001, -- It's Over 9000!
 		setting_type = "runtime-per-user",
 	},
 })
