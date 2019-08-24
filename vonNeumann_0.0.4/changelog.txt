@@ -1,4 +1,9 @@
 
+Version: 0.0.4
+Date: 2019.08.24
+	Changes:
+		- Remove Companionship into separate hardmod
+
 Version: 0.0.3
 Date: 2019.08.24
 	Changes:
