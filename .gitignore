@@ -10,10 +10,10 @@
 
 # Unignore our mods
 !/vonNeumann_*
-!/vonNeumann_*/*
+!/vonNeumann_*/**
 
 !/companionship_*
-!/companionship_*/*
+!/companionship_*/**
 
 # the license
 !/license.md
