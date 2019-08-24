@@ -187,7 +187,7 @@ script.on_init(spawnCrashSite)
 -- disable mining
 -- place roboport, assemblers, etc
 
--- /togglehardmode
+-- /toggle-heavy-mode
 -- /c __warptorio2__ warptorio.warpout()
 -- changelog.txt
 -- ...\Steam\steamapps\common\Factorio\data\*.lua

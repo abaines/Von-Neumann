@@ -8,10 +8,12 @@
 # Unignore our read me file
 !/README.md
 
-# Unignore our mod
+# Unignore our mods
 !/vonNeumann_*
-
 !/vonNeumann_*/*
+
+!/companionship_*
+!/companionship_*/*
 
 # the license
 !/license.md
