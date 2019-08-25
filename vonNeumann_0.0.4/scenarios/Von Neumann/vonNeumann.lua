@@ -16,8 +16,9 @@ end
 function vonn.createCrashSiteGenerator(position)
 	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position,inoperable=true}
 
-	electricEnergyInterface.power_production = "15000"
-	electricEnergyInterface.electric_buffer_size  = "100000000"
+	electricEnergyInterface.power_production = 15000
+	electricEnergyInterface.electric_buffer_size  = 2*100000000
+	electricEnergyInterface.energy  = 2*100000000
 
 	return electricEnergyInterface
 end
@@ -79,32 +80,35 @@ function vonn.spawnCrashSite()
 	local crashSiteAssemblingMachine2 = vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4}}
 
 	local items = {
-		coal=1,
-		['small-electric-pole']=4,
-		['burner-mining-drill']=3,
-		['stone-furnace']=2,
+		coal=5,
+		['burner-mining-drill']=4,
+		['stone-furnace']=4,
+
+		['burner-inserter']=4,
+		['inserter']=4,
+		['transport-belt']=10,
+
 		['firearm-magazine']=10,
 		['gun-turret']=1,
-		['burner-inserter']=2,
-		['inserter']=2,
-		['compilatron-chest']=1,
-		['assembling-machine-1']=2,
-		roboport=3,
-		['construction-robot']=50,
-		['logistic-robot']=100,
-		['flying-robot-frame']=50,
-		['logistic-chest-active-provider']=10,
-		['logistic-chest-buffer']=2,
-		['logistic-chest-passive-provider']=2,
-		['logistic-chest-requester']=2,
-		['logistic-chest-storage']=10,
-		['big-electric-pole']=10,
+
+		['assembling-machine-1']=4,
 		['substation']=1,
+		['big-electric-pole']=12,
+
+		roboport=10,
+		['construction-robot']=50,
+		['logistic-robot']=50,
+
+		['logistic-chest-active-provider']=100,
+		['logistic-chest-passive-provider']=10,
+		['logistic-chest-storage']=30,
+		['logistic-chest-buffer']=25,
+		['logistic-chest-requester']=20,
 	}
 	-- crash-site-electric-pole
 	-- substation
-	local crashSiteChest1 = vonn.createSiteChest({name="crash-site-chest-1",position={8,7}},{})
-	local crashSiteChest2 = vonn.createSiteChest({name="crash-site-chest-2",position={-3,-3}},{})
+	local crashSiteChest1 = vonn.createSiteChest({name="crash-site-chest-1",position={8,7}},{['flying-robot-frame']=250})
+	local crashSiteChest2 = vonn.createSiteChest({name="crash-site-chest-2",position={-3,-3}},{['compilatron-chest']=1})
 
 	-- logistic-chest-storage
 	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-8}},items)
@@ -114,6 +118,7 @@ function vonn.spawnCrashSite()
 		['logistic-robot']=150,
 		['repair-pack']=150,
 	})
+	robo1.energy = 100000000
 end
 
 
