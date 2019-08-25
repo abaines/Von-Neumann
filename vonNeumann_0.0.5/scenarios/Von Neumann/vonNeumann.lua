@@ -86,6 +86,7 @@ function vonn.spawnCrashSite()
 
 		['burner-inserter']=4,
 		['inserter']=4,
+		['long-handed-inserter']=1,
 		['transport-belt']=10,
 
 		['firearm-magazine']=10,
@@ -94,6 +95,9 @@ function vonn.spawnCrashSite()
 		['assembling-machine-1']=4,
 		['substation']=1,
 		['big-electric-pole']=12,
+
+		['electronic-circuit']=5,
+		['radar']=5,
 
 		roboport=10,
 		['construction-robot']=50,
@@ -121,6 +125,8 @@ function vonn.spawnCrashSite()
 	robo1.energy = 100000000
 end
 
+script.on_init(vonn.spawnCrashSite)
+
 
 function vonn.newPlayer(event)
 	local player_index=event.player_index
@@ -138,6 +144,12 @@ function vonn.newPlayer(event)
 	local msg = "newPlayer complete: " .. numberPlayers
 	vonn.kprint(msg)
 end
+
+script.on_event({
+defines.events.on_player_joined_game,
+defines.events.on_player_created,
+defines.events.on_player_respawned,
+},vonn.newPlayer)
 
 
 function vonn.craftEvent(event)
@@ -199,37 +211,45 @@ function vonn.stopBuilding(event)
 	end
 end
 
-
 script.on_event(defines.events.on_built_entity,vonn.stopBuilding)
 
 
+function vonn.on_player_inventory_changed(event)
+	local badItems = 0
+	for i, player in pairs(game.connected_players) do
+		vonn.kprint(player.name)
+		local inventory = player.get_inventory(defines.inventory.god_main)
+		-- TODO: count bad inventory items
+	end
+
+	local existing_entities = game.surfaces["nauvis"].find_entities({{-1, -1}, {1, 1}})
+	vonn.kprint(#existing_entities)
+	for i, entity in pairs(existing_entities) do
+		vonn.kprint(entity.name)
+	end
+end
+
 script.on_event({
-defines.events.on_player_joined_game,
-defines.events.on_player_created,
-defines.events.on_player_respawned,
-},vonn.newPlayer)
+defines.events.on_player_ammo_inventory_changed,
+defines.events.on_player_armor_inventory_changed,
+defines.events.on_player_gun_inventory_changed,
+defines.events.on_player_main_inventory_changed,
+defines.events.on_player_trash_inventory_changed,
+},vonn.on_player_inventory_changed)
 
 
-script.on_init(vonn.spawnCrashSite)
+
 
 
 -- TODOs
--- Make this a softmod !!
 -- give full inventory for storing blueprints/deconstruction/upgrade planners
 -- auto-drop non-blueprint/deconstruction/upgrade planners, also allow fuels (coal and wood)
--- remove tutorial chests, replace with logic storage
 -- spread out tutorial buildings
--- fix bug with new players making extra buildings
--- put same items in both chests
--- disable crafting
--- disable building/de-building buildings
--- disable mining
 -- place roboport, assemblers, etc
 
 -- /toggle-heavy-mode
 -- /c __warptorio2__ warptorio.warpout()
 -- changelog.txt
+-- https://forums.factorio.com/viewtopic.php?f=25&t=67140
 -- ...\Steam\steamapps\common\Factorio\data\*.lua
--- local var/methods
--- use a vonn = {} to encapsulate code
 
