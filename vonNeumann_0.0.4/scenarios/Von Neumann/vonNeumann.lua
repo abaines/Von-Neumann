@@ -61,6 +61,7 @@ function spawnCrashSite()
 	global.donecrashsite=true
 
 	local electricEnergyInterface = createCrashSiteGenerator({0,0})
+	local crashSiteLab = createEntity{name="substation",position={0,0}}
 
 	local crashSiteLab = createEntity{name="crash-site-lab-repaired",position={0,4}}
 
@@ -87,11 +88,17 @@ function spawnCrashSite()
 		['logistic-chest-passive-provider']=2,
 		['logistic-chest-requester']=2,
 		['logistic-chest-storage']=10,
+		['big-electric-pole']=10,
 	}
 	-- crash-site-electric-pole
 	-- substation
-	local crashSiteChest1 = createSiteChest({name="crash-site-chest-1",position={8,7}},items)
-	local crashSiteChest2 = createSiteChest({name="crash-site-chest-2",position={-3,-3}},items)
+	local crashSiteChest1 = createSiteChest({name="crash-site-chest-1",position={8,7}},{})
+	local crashSiteChest2 = createSiteChest({name="crash-site-chest-2",position={-3,-3}},{})
+
+	-- logistic-chest-storage
+	local chest1 = createSiteChest({name="logistic-chest-storage",position={-2,-8}},items)
+
+	local robo1 = createEntity({name="roboport",position={-2,-8}})
 end
 
 
@@ -154,10 +161,15 @@ function stopBuilding(event)
 	--kprint("created_entity: "..created_entity.name)
 	--kprint("stack: "..stack.name)
 	if item then
-		kprint(player.name .. " tried to build "..item.name)
-		created_entity.destroy()
-		local inventory = player.get_inventory(defines.inventory.god_main)
-		inventory.insert({name=item.name})
+		if created_entity.type == "entity-ghost" then
+			-- allow ghosts
+		else
+			kprint(player.name .. " tried to build "..item.name .. "   " ..created_entity.type)
+			-- return item
+			local inventory = player.get_inventory(defines.inventory.god_main)
+			inventory.insert({name=item.name})
+			created_entity.destroy()
+		end
 	else
 		kprint(player.name .. " does not want to build")
 	end
