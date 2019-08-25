@@ -219,19 +219,17 @@ vonn.acceptable_inventory = {
 	["blueprint-book"] = true,
 	["deconstruction-planner"] = true,
 	["upgrade-planner"] = true,
+	-- TODO: decide to add coal|wood to list?
 }
 
 function vonn.countContentForBadItems(contents)
 	local badItems = 0
-
-	--vonn.kprint(serpent.block(vonn.acceptable_inventory))
 
 	for item, count in pairs (contents) do
 		if vonn.acceptable_inventory[item] then
 			-- ignore acceptable inventory item
 		else
 			badItems = count + badItems
-			--vonn.kprint("  " .. item .. " " .. count)
 		end
 	end
 
@@ -241,20 +239,16 @@ end
 function vonn.on_player_inventory_changed(event)
 	local badItems = 0
 	for i, player in pairs(game.connected_players) do
-		--vonn.kprint(player.name)
 		local inventory = player.get_inventory(defines.inventory.god_main)
-		-- TODO: count bad inventory items
 		local contents = inventory.get_contents()
-		log(serpent.block(contents))
 		badItems = vonn.countContentForBadItems(contents)
 	end
 
 	vonn.kprint("badItems: " .. badItems)
 
 	local existing_entities = game.surfaces["nauvis"].find_entities({{-1, -1}, {1, 1}})
-	--vonn.kprint(#existing_entities)
 	for i, entity in pairs(existing_entities) do
-		--vonn.kprint(entity.name)
+		--TODO: drain power for each bad item &| transport items to crash-site
 	end
 end
 
