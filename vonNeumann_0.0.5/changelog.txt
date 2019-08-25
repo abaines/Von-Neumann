@@ -1,16 +1,22 @@
-
+---------------------------------------------------------------------------------------------------
+Version: 0.0.6
+Date: 2019.08.25
+  Changes:
+    - Experimenting with a campaign.
+    - Attempt at a working changelog.txt file.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.5
 Date: 2019.08.24
-	Changes:
-		- Converted into Scenario!
-
+  Changes:
+    - Converted into Scenario!
+---------------------------------------------------------------------------------------------------
 Version: 0.0.4
 Date: 2019.08.24
-	Changes:
-		- Remove Companionship into separate hardmod
-
+  Changes:
+    - Remove Companionship into separate hardmod
+---------------------------------------------------------------------------------------------------
 Version: 0.0.3
 Date: 2019.08.24
-	Changes:
-		- Start of changelog.txt
-		- Going back to softmod compatible
+  Changes:
+    - Start of changelog.txt
+    - Going back to softmod compatible
