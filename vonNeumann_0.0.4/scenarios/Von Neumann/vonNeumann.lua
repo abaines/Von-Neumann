@@ -14,7 +14,7 @@ end
 
 
 function vonn.createCrashSiteGenerator(position)
-	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position,inoperable=true,unminable=true}
+	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position,inoperable=true}
 
 	electricEnergyInterface.power_production = "15000"
 	electricEnergyInterface.electric_buffer_size  = "100000000"
@@ -37,7 +37,7 @@ function vonn.createEntity(options)
 	}
 
 	entity.destructible = options.destructible or false
-	entity.minable = not (options.unminable or false)
+	entity.minable = options.minable or false
 	entity.rotatable = options.rotatable or false
 	entity.operable = not (options.inoperable or false)
 
@@ -62,6 +62,14 @@ function vonn.spawnCrashSite()
 	end
 	global.donecrashsite=true
 
+
+	local existing_entities = game.surfaces["nauvis"].find_entities({{-7, -13}, {12, 12}})
+	log("existing_entities " .. #existing_entities)
+	for i, entity in pairs(existing_entities) do
+		log(entity.name)
+		entity.order_deconstruction("player")
+	end
+
 	local electricEnergyInterface = vonn.createCrashSiteGenerator({0,0})
 	local crashSiteLab = vonn.createEntity{name="substation",position={0,0}}
 
@@ -82,16 +90,16 @@ function vonn.spawnCrashSite()
 		['compilatron-chest']=1,
 		['assembling-machine-1']=2,
 		roboport=3,
-		['construction-robot']=100,
+		['construction-robot']=50,
 		['logistic-robot']=100,
-		['flying-robot-frame']=100,
+		['flying-robot-frame']=50,
 		['logistic-chest-active-provider']=10,
 		['logistic-chest-buffer']=2,
 		['logistic-chest-passive-provider']=2,
 		['logistic-chest-requester']=2,
 		['logistic-chest-storage']=10,
 		['big-electric-pole']=10,
-		['substation']=10,
+		['substation']=1,
 	}
 	-- crash-site-electric-pole
 	-- substation
@@ -101,7 +109,11 @@ function vonn.spawnCrashSite()
 	-- logistic-chest-storage
 	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-8}},items)
 
-	local robo1 = vonn.createEntity({name="roboport",position={-2,-8}})
+	local robo1 = vonn.createSiteChest({name="roboport",position={-2,-8}},{
+		['construction-robot']=150,
+		['logistic-robot']=150,
+		['repair-pack']=150,
+	})
 end
 
 
@@ -178,7 +190,7 @@ function vonn.stopBuilding(event)
 			created_entity.destroy()
 		end
 	else
-		vonn.kprint(player.name .. " does not want to build")
+		log(player.name .. " does not want to build (item=nil)")
 	end
 end
 
