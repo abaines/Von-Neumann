@@ -2,7 +2,9 @@
 
 --- needs "hijack"
 
-function kprint(msg)
+vonn = {}
+
+function vonn.kprint(msg)
 	print(msg)
 	log(msg)
 	if not game.is_multiplayer() then
@@ -11,8 +13,8 @@ function kprint(msg)
 end
 
 
-function createCrashSiteGenerator(position)
-	local electricEnergyInterface = createEntity{name="crash-site-generator",position=position,inoperable=true,unminable=true}
+function vonn.createCrashSiteGenerator(position)
+	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position,inoperable=true,unminable=true}
 
 	electricEnergyInterface.power_production = "15000"
 	electricEnergyInterface.electric_buffer_size  = "100000000"
@@ -21,7 +23,7 @@ function createCrashSiteGenerator(position)
 end
 
 
-function createEntity(options)
+function vonn.createEntity(options)
 	if type(options.name)~="string" then
 		error("no name: "..type(options.name))
 	elseif type(options.position)~="table" then
@@ -43,8 +45,8 @@ function createEntity(options)
 end
 
 
-function createSiteChest(options,itemsTable)
-	local entity = createEntity(options)
+function vonn.createSiteChest(options,itemsTable)
+	local entity = vonn.createEntity(options)
 
 	for k, v in pairs (itemsTable) do
 		entity.insert({name = k, count = v})
@@ -54,19 +56,19 @@ function createSiteChest(options,itemsTable)
 end
 
 
-function spawnCrashSite()
+function vonn.spawnCrashSite()
 	if global.donecrashsite then
 		return
 	end
 	global.donecrashsite=true
 
-	local electricEnergyInterface = createCrashSiteGenerator({0,0})
-	local crashSiteLab = createEntity{name="substation",position={0,0}}
+	local electricEnergyInterface = vonn.createCrashSiteGenerator({0,0})
+	local crashSiteLab = vonn.createEntity{name="substation",position={0,0}}
 
-	local crashSiteLab = createEntity{name="crash-site-lab-repaired",position={0,4}}
+	local crashSiteLab = vonn.createEntity{name="crash-site-lab-repaired",position={0,4}}
 
-	local crashSiteAssemblingMachine1 = createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
-	local crashSiteAssemblingMachine2 = createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4}}
+	local crashSiteAssemblingMachine1 = vonn.createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
+	local crashSiteAssemblingMachine2 = vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4}}
 
 	local items = {
 		coal=1,
@@ -89,23 +91,24 @@ function spawnCrashSite()
 		['logistic-chest-requester']=2,
 		['logistic-chest-storage']=10,
 		['big-electric-pole']=10,
+		['substation']=10,
 	}
 	-- crash-site-electric-pole
 	-- substation
-	local crashSiteChest1 = createSiteChest({name="crash-site-chest-1",position={8,7}},{})
-	local crashSiteChest2 = createSiteChest({name="crash-site-chest-2",position={-3,-3}},{})
+	local crashSiteChest1 = vonn.createSiteChest({name="crash-site-chest-1",position={8,7}},{})
+	local crashSiteChest2 = vonn.createSiteChest({name="crash-site-chest-2",position={-3,-3}},{})
 
 	-- logistic-chest-storage
-	local chest1 = createSiteChest({name="logistic-chest-storage",position={-2,-8}},items)
+	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-8}},items)
 
-	local robo1 = createEntity({name="roboport",position={-2,-8}})
+	local robo1 = vonn.createEntity({name="roboport",position={-2,-8}})
 end
 
 
-function newPlayer(event)
+function vonn.newPlayer(event)
 	local player_index=event.player_index
 	local player=game.players[player_index]
-	kprint("newPlayer: ".. player.name,{r=255,g=255})
+	vonn.kprint("newPlayer: ".. player.name,{r=255,g=255})
 
 	for i, player in pairs(game.players) do
 		if player.connected and player.character then
@@ -116,11 +119,11 @@ function newPlayer(event)
 
 	local numberPlayers = #game.players
 	local msg = "newPlayer complete: " .. numberPlayers
-	kprint(msg)
+	vonn.kprint(msg)
 end
 
 
-function craftEvent(event)
+function vonn.craftEvent(event)
 	local player_index = event.player_index
 	local recipe = event.recipe
 	local items = event.items
@@ -135,56 +138,63 @@ function craftEvent(event)
 	end
 end
 
-script.on_event(defines.events.on_pre_player_crafted_item, craftEvent)
+script.on_event(defines.events.on_pre_player_crafted_item, vonn.craftEvent)
 
-function onUpdate(event)
+
+function vonn.onUpdate(event)
 	for i, player in pairs(game.players) do
 		if player.connected and player.mining_state.mining then
-			player.mining_state = {mining = false}
-			kprint("Player tried to mine: " .. player.name)
+			if player.selected and player.selected.type == "entity-ghost" then
+				-- allow "mining" entity-ghost
+				log(player.selected)
+			else
+				player.mining_state = {mining = false}
+				vonn.kprint("Player tried to mine: " .. player.name .. "   " .. player.selected.type)
+			end
 		end
 	end
 end
 
-script.on_event(defines.events.on_tick,onUpdate)
+script.on_event(defines.events.on_tick,vonn.onUpdate)
 
 
-function stopBuilding(event)
+function vonn.stopBuilding(event)
 	local created_entity = event.created_entity
 	local player_index = event.player_index
 	local stack = event.stack
 	local item = event.item
 
 	local player=game.players[player_index]
-	--kprint("Player tried to build: " .. player.name)
 
-	--kprint("created_entity: "..created_entity.name)
-	--kprint("stack: "..stack.name)
 	if item then
 		if created_entity.type == "entity-ghost" then
 			-- allow ghosts
+			log(player.name .. " tried to build "..item.name .. "   " ..created_entity.type)
 		else
-			kprint(player.name .. " tried to build "..item.name .. "   " ..created_entity.type)
+			vonn.kprint(player.name .. " tried to build "..item.name .. "   " ..created_entity.type)
 			-- return item
 			local inventory = player.get_inventory(defines.inventory.god_main)
 			inventory.insert({name=item.name})
 			created_entity.destroy()
 		end
 	else
-		kprint(player.name .. " does not want to build")
+		vonn.kprint(player.name .. " does not want to build")
 	end
 end
 
-script.on_event(defines.events.on_built_entity,stopBuilding)
+
+script.on_event(defines.events.on_built_entity,vonn.stopBuilding)
+
 
 script.on_event({
 defines.events.on_player_joined_game,
 defines.events.on_player_created,
 defines.events.on_player_respawned,
-},newPlayer)
+},vonn.newPlayer)
 
 
-script.on_init(spawnCrashSite)
+script.on_init(vonn.spawnCrashSite)
+
 
 -- TODOs
 -- Make this a softmod !!
