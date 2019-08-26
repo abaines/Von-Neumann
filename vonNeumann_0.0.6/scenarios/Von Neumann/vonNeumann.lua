@@ -176,7 +176,7 @@ function vonn.onUpdate(event)
 			if player.selected and player.selected.type == "entity-ghost" then
 				-- allow "mining" entity-ghost
 				log(player.selected)
-			elseif
+			elseif player.selected then
 				player.mining_state = {mining = false}
 				vonn.kprint("Player tried to mine: " .. player.name .. "   " .. player.selected.type)
 			else

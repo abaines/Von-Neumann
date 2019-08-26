@@ -32,8 +32,13 @@ local function companionship(event)
 	local min_companions = settings.startup['minimum_number_of_companions'].value
 	local slow_speed_companion = settings.startup['speed_when_below_minimum_number_of_companions'].value
 
+	local player=game.players[event.player_index]
 	local eventName = eventNameMapping[event.name]
 	local numberConnectedPlayers = #game.connected_players
+
+	if eventName == "on_player_joined_game" then
+		player.mod_settings["player_desired_speed"].value = math.min(1,player.mod_settings["player_desired_speed"].value)
+	end
 
 	game.speed = getNewGameSpeed(numberConnectedPlayers,min_companions,slow_speed_companion)
 
