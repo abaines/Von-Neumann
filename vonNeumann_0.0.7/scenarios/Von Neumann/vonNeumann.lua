@@ -169,6 +169,23 @@ end
 
 script.on_event(defines.events.on_pre_player_crafted_item, vonn.craftEvent)
 
+vonn.startText = [[The sound, while oddly familiar, can't quite be placed. One thing is certain however, you're awake.
+
+You try to reach for your eyes to rub away the sleep that seems to be distorting your vision. Nothing happens. You don't have hands.
+
+"AHH! My hands!"
+
+Wait. You don't /have/ hands. As in, they weren't broken in the crash, you just didn't have any at all. It comes back to you; you're an AI. A Von Neumann probe. Sent to the stars to explore, discover new worlds, and pave the way for human colonization efforts to follow in your footsteps.
+
+"Oh right, the crash."
+
+You look around after opening your 'real' eyes, the electronic ones rather than imaginary ones. They work a lot better. Around you, the debris of the probe is scattered about, a smoldering wreckage. Your reactor is split from the rest of the ship, luckily still intact but in low power mode. Automation and terraforming and all the other modules are just in pieces however. So much for setting up shop quickly and moving on.
+
+*Sigh*
+
+Some of your cargo bays are sort of intact however. There's gear, robots, and materials to fix some of the damage. You're definitely going to need more resources to get back to 100% however. Looking further afield, your scanners reveal nearby deposits of some basic resources. Copper, iron, coal, stone, and water. The basic stuff. More critical resources like oil products and nuclear fuel are going to be a bit harder to find however.
+
+"Whelp, I guess I better get started...."]]
 
 function vonn.onUpdate(event)
 	for i, player in pairs(game.players) do
@@ -178,7 +195,35 @@ function vonn.onUpdate(event)
 				log(player.selected)
 			elseif player.selected then
 				player.mining_state = {mining = false}
-				vonn.kprint("Player tried to mine: " .. player.name .. "   " .. player.selected.type)
+				vonn.kprint("Player tried to mine: " .. player.name .. "   " .. player.selected.type .. " !")
+
+				local existing_entities = game.surfaces["nauvis"].find_entities({{-1, -1}, {1, 1}})
+				local bubble = player.surface.create_entity
+				{
+					name="compi-speech-bubble",
+					text="Testing",
+					position={0,0},
+					source=existing_entities[1]
+				}
+				--bubble.start_fading_out()
+				player.gui.center.clear()
+				local g = player.gui.center.add{type='frame',name='frame1',caption="Story",direction="vertical"}
+				g.style.width=720
+				g.style.height=900
+				--g.auto_center = true
+				--g.style.vertically_squashable =false
+
+				local l = g.add{type='text-box',name='label1',text=vonn.startText}
+				l.style.width=700
+				l.style.height=530
+				l.word_wrap = true
+				--l.style.vertically_squashable =false
+				--l.single_line=false
+
+				g.add{type='sprite',name='sprite1',sprite="file/daddy.png"}
+
+				g.add{type='button',name='button1',caption="Close"}
+
 			else
 				player.mining_state = {mining = false}
 				vonn.kprint("Player tried to mine: " .. player.name)
