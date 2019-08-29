@@ -279,3 +279,7 @@ defines.events.on_player_trash_inventory_changed,
 -- https://forums.factorio.com/viewtopic.php?f=25&t=67140
 -- ...\Steam\steamapps\common\Factorio\data\*.lua
 
+-- biters drop computers because they are competing AIs
+-- can we make invisible players?
+-- can god players see through fog-of-war? Can I control fog-of-war?
+
