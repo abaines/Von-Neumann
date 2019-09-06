@@ -362,3 +362,7 @@ defines.events.on_player_trash_inventory_changed,
 -- LuaPlayer: spectator, cursor_stack, cursor_ghost, opened, teleport, disable_recipe_groups, disable_recipe_subgroups
 -- LuaPlayer: add_alert, add_custom_alert, play_sound, afk_time, online_time, last_online, display_resolution, display_scale, rendor_mode
 
+-- /c game.player.spectator = true
+-- data.raw["utility-constants"].zoom_to_world_effect_strength = 0
+-- data.raw["utility-constants"].zoom_to_world_darkness_multiplier = 0.5
+
