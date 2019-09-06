@@ -358,3 +358,7 @@ defines.events.on_player_trash_inventory_changed,
 -- can we make invisible players?
 -- can god players see through fog-of-war? Can I control fog-of-war?
 
+-- request API for night vision and map film-grain (Mengmoshu)
+-- LuaPlayer: spectator, cursor_stack, cursor_ghost, opened, teleport, disable_recipe_groups, disable_recipe_subgroups
+-- LuaPlayer: add_alert, add_custom_alert, play_sound, afk_time, online_time, last_online, display_resolution, display_scale, rendor_mode
+
