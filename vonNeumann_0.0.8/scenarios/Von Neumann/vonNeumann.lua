@@ -233,7 +233,7 @@ function vonn.craftEvent(event)
 	local items = event.items
 
 	local player=game.players[player_index]
-	kprint("Player tried to craft: " .. player.name)
+	vonn.kprint("Player tried to craft: " .. player.name)
 
 	local player=game.players[player_index]
 
