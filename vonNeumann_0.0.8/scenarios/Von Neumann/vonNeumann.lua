@@ -147,7 +147,11 @@ function vonn.displayStoryText(player)
 	player.gui.center.clear()
 	local frame = player.gui.center.add{type='frame',name='vonn_story_frame',caption="Von Neumann Story",direction="vertical"}
 	frame.style.width=720
-	frame.style.height=600
+	frame.style.height=320
+	frame.style.vertically_stretchable = true
+	frame.style.horizontally_stretchable = true
+	frame.style.horizontally_squashable = true
+	frame.style.vertically_squashable = true
 
 	local text_box = frame.add{type='text-box',name='vonn_story_label',text = vonn.storyText1}
 	text_box.style.width=700
