@@ -1,3 +1,0 @@
--- Kizrak
-require("companionship")
-

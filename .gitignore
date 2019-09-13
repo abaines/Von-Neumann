@@ -1,5 +1,5 @@
-# Ignore EVERYTHING!!
-/**
+###### Ignore EVERYTHING!!
+###### /**
 
 # Unignore .git stuff
 !/.gitignore
@@ -8,12 +8,6 @@
 # Unignore our read me file
 !/README.md
 
-# Unignore our mods
-!/vonNeumann_*
-!/vonNeumann_*/**
-
-!/companionship_*
-!/companionship_*/**
 
 # the license
 !/license.md
