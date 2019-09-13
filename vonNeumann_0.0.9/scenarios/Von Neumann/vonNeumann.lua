@@ -370,15 +370,26 @@ function vonn.removeBadItemsFromPlayer(player)
 	return itemsRemoved
 end
 
+
+function vonn.insertItemIntoEntityInventory(entity, item, count)
+	-- defines.inventory.* always give a number between 1 and 8
+	for inventoryIndex=1,8 do
+		local inventory = entity.get_inventory(inventoryIndex)
+		if inventory ~= nil and inventory.valid and count > 0then
+			local inserted = inventory.insert({name=item, count=count})
+			count = count - inserted
+		end
+	end
+
+	return count
+end
+
 function vonn.restoreRemovedItemsToOpenEntity(player,itemsRemoved)
 	local uninsertableItems = {}
-
 	local entity = player.opened
-	local chest_inventory = entity.get_inventory(defines.inventory.chest)
 
 	for item,count in pairs(itemsRemoved) do
-		local inserted = chest_inventory.insert({name=item, count=count})
-		local uninsertableCount = count - inserted
+		local uninsertableCount = vonn.insertItemIntoEntityInventory(entity, item, count)
 		if uninsertableCount>0 then
 			if not uninsertableItems[item] then
 				uninsertableItems[item] = 0
