@@ -329,13 +329,7 @@ function vonn.countContentForBadItems(badItems,contents)
 	end
 end
 
-function vonn.on_player_inventory_changed(event)
-	local player_index = event.player_index
-	local player = game.players[player_index]
-
-	local eventName = eventNameMapping[event.name]
-	--vonn.kprint(eventName)
-
+function vonn.getBadItemsForPlayer(player)
 	local inventory = player.get_inventory(defines.inventory.god_main)
 	local contents = inventory.get_contents()
 
@@ -348,7 +342,6 @@ function vonn.on_player_inventory_changed(event)
 		local item = cursor_stack.name
 		if not vonn.acceptable_inventory[item] then
 			local count = cursor_stack.count
-			--vonn.kprint("cursor_stack: " .. item .. "  " .. count)
 			if not badItems[item] then
 				badItems[item] = 0
 			end
@@ -356,13 +349,17 @@ function vonn.on_player_inventory_changed(event)
 		end
 	end
 
-	--vonn.kprint("badItems: " .. serpent.block(badItems))
+	--vonn.kprint("badItems: " .. serpent.block(badItems) .. "  " .. vonn.tableSize(badItems))
+	return badItems
+end
+
+function vonn.removeBadItemsFromPlayer(player)
+	local badItems = vonn.getBadItemsForPlayer(player)
 
 	local itemsRemoved = {}
 
 	for item,count in pairs(badItems) do
 		local removedCount = player.remove_item({name=item, count=count})
-		--vonn.kprint(item .. "  " .. count.. "  " .. removedCount)
 		if not itemsRemoved[item] then
 			itemsRemoved[item] = 0
 		end
@@ -370,35 +367,48 @@ function vonn.on_player_inventory_changed(event)
 	end
 
 	--vonn.kprint("itemsRemoved: " .. serpent.block(itemsRemoved) .. "  " .. vonn.tableSize(itemsRemoved))
+	return itemsRemoved
+end
+
+function vonn.restoreRemovedItemsToOpenEntity(player,itemsRemoved)
+	local uninsertableItems = {}
+
+	local entity = player.opened
+	local chest_inventory = entity.get_inventory(defines.inventory.chest)
+
+	for item,count in pairs(itemsRemoved) do
+		local inserted = chest_inventory.insert({name=item, count=count})
+		local uninsertableCount = count - inserted
+		if uninsertableCount>0 then
+			if not uninsertableItems[item] then
+				uninsertableItems[item] = 0
+			end
+			uninsertableItems[item] = uninsertableCount + uninsertableItems[item]
+		end
+	end
+
+	return uninsertableItems
+end
+
+function vonn.on_player_inventory_changed(event)
+	local player_index = event.player_index
+	local player = game.players[player_index]
+	local eventName = eventNameMapping[event.name]
+
+	local itemsRemoved = vonn.removeBadItemsFromPlayer(player)
 
 	if vonn.tableSize(itemsRemoved) > 0 then
 		vonn.kprint(player.name .. " tried to pick up an item!")
 	end
 
 	if player.opened and player.opened.valid and defines.gui_type.entity == player.opened_gui_type then
-		local uninsertableItems = {}
-
-		local entity = player.opened
-		--vonn.kprint("entity: " .. entity.name)
-		local chest_inventory = entity.get_inventory(defines.inventory.chest)
-		--vonn.kprint(chest_inventory)
-
-		for item,count in pairs(itemsRemoved) do
-			local inserted = chest_inventory.insert({name=item, count=count})
-			local uninsertableCount = count - inserted
-			--vonn.kprint("inserted: " .. item .. "  " .. count .. "  ".. inserted .. "   " .. uninsertableCount)
-			if uninsertableCount>0 then
-				if not uninsertableItems[item] then
-					uninsertableItems[item] = 0
-				end
-				uninsertableItems[item] = uninsertableCount + uninsertableItems[item]
-			end
-		end
+		local uninsertableItems = vonn.restoreRemovedItemsToOpenEntity(player,itemsRemoved)
 
 		if vonn.tableSize(uninsertableItems) > 0 then
 			vonn.kprint("uninsertableItems: " .. serpent.block(uninsertableItems))
 		end
-	else
+
+	elseif vonn.tableSize(itemsRemoved) > 0 then
 		vonn.kprint("Unable to find open entity to return lost items for " .. player.name)
 	end
 
