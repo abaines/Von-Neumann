@@ -148,29 +148,30 @@ vonn.storyText1 = [[The sound, while oddly familiar, can't quite be placed. One 
 You try to reach for your eyes to rub away the sleep that seems to be distorting your vision. Nothing happens. You don't have hands.]]
 vonn.storyButton1 = "AHH! My hands!"
 
-vonn.storyText2 = [[Wait. You don't /have/ hands. As in, they weren't broken in the crash, you just didn't have any at all. It comes back to you; you're an AI. A Von Neumann probe. Sent to the stars to explore, discover new worlds, and pave the way for human colonization efforts to follow in your footsteps.
+vonn.storyText2 = [[Wait. You don't /have/ hands. As in, they weren't broken in the crash, you just didn't have any at all. It comes back to you; you're an AI. A Von Neumann probe. Sent to the stars to explore, discover new worlds, and pave the way for human colonization efforts to follow in your footsteps.]]
+vonn.storyButton2 = "Oh right, the crash."
 
-"Oh right, the crash."
+vonn.storyText3 = [[You look around after opening your 'real' eyes, the electronic ones rather than imaginary ones. They work a lot better. Around you, the debris of the probe is scattered about, a smoldering wreckage. Your reactor is split from the rest of the ship, luckily still intact but in low power mode. Automation and terraforming and all the other modules are just in pieces however. So much for setting up shop quickly and moving on.]]
+vonn.storyButton3 = "*Sigh*"
 
-You look around after opening your 'real' eyes, the electronic ones rather than imaginary ones. They work a lot better. Around you, the debris of the probe is scattered about, a smoldering wreckage. Your reactor is split from the rest of the ship, luckily still intact but in low power mode. Automation and terraforming and all the other modules are just in pieces however. So much for setting up shop quickly and moving on.]]
-vonn.storyButton2 = "*Sigh*"
-
-vonn.storyText3 = [[Some of your cargo bays are sort of intact however. There's gear, robots, and materials to fix some of the damage. You're definitely going to need more resources to get back to 100% however. Looking further afield, your scanners reveal nearby deposits of some basic resources. Copper, iron, coal, stone, and water. The basic stuff. More critical resources like oil products and nuclear fuel are going to be a bit harder to find however.]]
-vonn.storyButton3 = "Whelp, I guess I better get started...."
+vonn.storyText4 = [[Some of your cargo bays are sort of intact however. There's gear, robots, and materials to fix some of the damage. You're definitely going to need more resources to get back to 100% however. Looking further afield, your scanners reveal nearby deposits of some basic resources. Copper, iron, coal, stone, and water. The basic stuff. More critical resources like oil products and nuclear fuel are going to be a bit harder to find however.]]
+vonn.storyButton4 = "Whelp, I guess I better get started...."
 
 function vonn.displayStoryText(player)
+	local width = 450
+	local height = 250
 	player.gui.center.clear()
 	local frame = player.gui.center.add{type='frame',name='vonn_story_frame',caption="Von Neumann Story",direction="vertical"}
-	frame.style.width=720
-	frame.style.height=320
+	frame.style.width=width
+	frame.style.height=height
 	frame.style.vertically_stretchable = true
 	frame.style.horizontally_stretchable = true
 	frame.style.horizontally_squashable = true
 	frame.style.vertically_squashable = true
 
 	local text_box = frame.add{type='text-box',name='vonn_story_label',text = vonn.storyText1}
-	text_box.style.width=700
-	text_box.style.height=240
+	text_box.style.width=width-20
+	text_box.style.height=height-80
 	text_box.word_wrap = true
 	text_box.read_only = true
 	text_box.style.vertically_stretchable = true
@@ -205,6 +206,10 @@ function vonn.on_gui_click(event)
 			button.caption = vonn.storyButton3
 
 		elseif text_box.text == vonn.storyText3 then
+			text_box.text = vonn.storyText4
+			button.caption = vonn.storyButton4
+
+		elseif text_box.text == vonn.storyText4 then
 			event.element.parent.destroy()
 		end
 	else
