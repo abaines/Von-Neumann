@@ -484,5 +484,6 @@ defines.events.on_player_cursor_stack_changed,
 -- data.raw["utility-constants"].zoom_to_world_darkness_multiplier = 0.5
 
 -- spill starting items on ground around crash site
+-- search starting chunks and add ground-spawn-spill items on iron/coal/copper/stone (include newly chunks too?) on_chunk_generated
 -- move Mods to individual git repos
 
