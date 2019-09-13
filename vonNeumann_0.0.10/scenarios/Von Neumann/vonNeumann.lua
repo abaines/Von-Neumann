@@ -406,6 +406,19 @@ function vonn.restoreRemovedItemsToOpenEntity(player,itemsRemoved)
 	return uninsertableItems
 end
 
+function vonn.spillPlayerItems(player,surface,uninsertableItems)
+	local position = player.opened.position
+	local surface = game.surfaces[surface]
+	local sum = 0
+
+	for item,count in pairs(uninsertableItems) do
+		surface.spill_item_stack(position,{name=item, count=count},false,player.force,false)
+		sum = count + sum
+	end
+
+	return sum
+end
+
 function vonn.on_player_inventory_changed(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
@@ -421,7 +434,8 @@ function vonn.on_player_inventory_changed(event)
 		local uninsertableItems = vonn.restoreRemovedItemsToOpenEntity(player,itemsRemoved)
 
 		if vonn.tableSize(uninsertableItems) > 0 then
-			vonn.kprint("uninsertableItems: " .. serpent.block(uninsertableItems))
+			local sum = vonn.spillPlayerItems(player,"nauvis",uninsertableItems)
+			vonn.kprint("spilled items: " .. sum)
 		end
 
 	elseif vonn.tableSize(itemsRemoved) > 0 then
