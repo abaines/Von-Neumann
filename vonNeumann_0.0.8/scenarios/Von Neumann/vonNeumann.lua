@@ -2,6 +2,11 @@
 
 --- needs "hijack"
 
+local eventNameMapping = {}
+for eventName,eventId in pairs(defines.events) do
+	eventNameMapping[eventId] = eventName
+end
+
 vonn = {}
 
 function vonn.kprint(msg)
@@ -10,6 +15,16 @@ function vonn.kprint(msg)
 	if not game.is_multiplayer() then
 		game.print(msg,{r=255,g=255})
 	end
+end
+
+
+
+function vonn.tableSize(someTable)
+	local count = 0
+	for _,_ in pairs(someTable) do
+		count = 1 + count
+	end
+	return count
 end
 
 
@@ -211,6 +226,7 @@ function vonn.newPlayer(event)
 		if player.connected and player.character then
 			player.character.destroy()
 			player.character = nil
+			player.spectator = true
 			vonn.displayStoryText(player)
 		end
 	end
@@ -300,29 +316,93 @@ vonn.acceptable_inventory = {
 	-- TODO: decide to add coal|wood to list?
 }
 
-function vonn.countContentForBadItems(contents)
-	local badItems = 0
-
+function vonn.countContentForBadItems(badItems,contents)
 	for item, count in pairs (contents) do
 		if vonn.acceptable_inventory[item] then
 			-- ignore acceptable inventory item
 		else
-			badItems = count + badItems
+			if not badItems[item] then
+				badItems[item] = 0
+			end
+			badItems[item] = count + badItems[item]
 		end
 	end
-
-	return badItems
 end
 
 function vonn.on_player_inventory_changed(event)
-	local badItems = 0
-	for i, player in pairs(game.connected_players) do
-		local inventory = player.get_inventory(defines.inventory.god_main)
-		local contents = inventory.get_contents()
-		badItems = vonn.countContentForBadItems(contents)
+	local player_index = event.player_index
+	local player = game.players[player_index]
+
+	local eventName = eventNameMapping[event.name]
+	--vonn.kprint(eventName)
+
+	local inventory = player.get_inventory(defines.inventory.god_main)
+	local contents = inventory.get_contents()
+
+	local badItems = {}
+
+	vonn.countContentForBadItems(badItems,contents)
+
+	if player.cursor_stack.valid and player.cursor_stack.valid_for_read then
+		local cursor_stack = player.cursor_stack
+		local item = cursor_stack.name
+		if not vonn.acceptable_inventory[item] then
+			local count = cursor_stack.count
+			--vonn.kprint("cursor_stack: " .. item .. "  " .. count)
+			if not badItems[item] then
+				badItems[item] = 0
+			end
+			badItems[item] = count + badItems[item]
+		end
 	end
 
-	vonn.kprint("badItems: " .. badItems)
+	--vonn.kprint("badItems: " .. serpent.block(badItems))
+
+	local itemsRemoved = {}
+
+	for item,count in pairs(badItems) do
+		local removedCount = player.remove_item({name=item, count=count})
+		--vonn.kprint(item .. "  " .. count.. "  " .. removedCount)
+		if not itemsRemoved[item] then
+			itemsRemoved[item] = 0
+		end
+		itemsRemoved[item] = removedCount + itemsRemoved[item]
+	end
+
+	--vonn.kprint("itemsRemoved: " .. serpent.block(itemsRemoved) .. "  " .. vonn.tableSize(itemsRemoved))
+
+	if vonn.tableSize(itemsRemoved) > 0 then
+		vonn.kprint(player.name .. " tried to pick up an item!")
+	end
+
+	if player.opened and player.opened.valid and defines.gui_type.entity == player.opened_gui_type then
+		local uninsertableItems = {}
+
+		local entity = player.opened
+		--vonn.kprint("entity: " .. entity.name)
+		local chest_inventory = entity.get_inventory(defines.inventory.chest)
+		--vonn.kprint(chest_inventory)
+
+		for item,count in pairs(itemsRemoved) do
+			local inserted = chest_inventory.insert({name=item, count=count})
+			local uninsertableCount = count - inserted
+			--vonn.kprint("inserted: " .. item .. "  " .. count .. "  ".. inserted .. "   " .. uninsertableCount)
+			if uninsertableCount>0 then
+				if not uninsertableItems[item] then
+					uninsertableItems[item] = 0
+				end
+				uninsertableItems[item] = uninsertableCount + uninsertableItems[item]
+			end
+		end
+
+		if vonn.tableSize(uninsertableItems) > 0 then
+			vonn.kprint("uninsertableItems: " .. serpent.block(uninsertableItems))
+		end
+	else
+		vonn.kprint("Unable to find open entity to return lost items for " .. player.name)
+	end
+
+
 
 	local existing_entities = game.surfaces["nauvis"].find_entities({{-1, -1}, {1, 1}})
 	for i, entity in pairs(existing_entities) do
@@ -336,6 +416,7 @@ defines.events.on_player_armor_inventory_changed,
 defines.events.on_player_gun_inventory_changed,
 defines.events.on_player_main_inventory_changed,
 defines.events.on_player_trash_inventory_changed,
+defines.events.on_player_cursor_stack_changed,
 },vonn.on_player_inventory_changed)
 
 
