@@ -464,14 +464,11 @@ defines.events.on_player_cursor_stack_changed,
 
 
 -- TODOs
--- give full inventory for storing blueprints/deconstruction/upgrade planners
--- auto-drop non-blueprint/deconstruction/upgrade planners, also allow fuels (coal and wood)
 -- spread out tutorial buildings
 -- place roboport, assemblers, etc
 
 -- /toggle-heavy-mode
 -- /c __warptorio2__ warptorio.warpout()
--- changelog.txt
 -- https://forums.factorio.com/viewtopic.php?f=25&t=67140
 -- ...\Steam\steamapps\common\Factorio\data\*.lua
 
@@ -480,10 +477,12 @@ defines.events.on_player_cursor_stack_changed,
 -- can god players see through fog-of-war? Can I control fog-of-war?
 
 -- request API for night vision and map film-grain (Mengmoshu)
--- LuaPlayer: spectator, cursor_stack, cursor_ghost, opened, teleport, disable_recipe_groups, disable_recipe_subgroups
+-- LuaPlayer: cursor_ghost, teleport, disable_recipe_groups, disable_recipe_subgroups
 -- LuaPlayer: add_alert, add_custom_alert, play_sound, afk_time, online_time, last_online, display_resolution, display_scale, rendor_mode
 
--- /c game.player.spectator = true
 -- data.raw["utility-constants"].zoom_to_world_effect_strength = 0
 -- data.raw["utility-constants"].zoom_to_world_darkness_multiplier = 0.5
+
+-- spill starting items on ground around crash site
+-- move Mods to individual git repos
 
