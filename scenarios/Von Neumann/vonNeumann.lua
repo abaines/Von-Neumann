@@ -400,6 +400,9 @@ vonn.acceptable_inventory = {
 	["upgrade-planner"] = true,
 	["copy-paste-tool"] = true,
 	["cut-paste-tool"] = true,
+	["copper-cable"] = true,
+	["green-wire"] = true,
+	["red-wire"] = true,
 	-- TODO: decide to add coal|wood to list?
 }
 
