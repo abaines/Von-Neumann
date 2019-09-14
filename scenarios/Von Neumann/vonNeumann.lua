@@ -176,7 +176,7 @@ function vonn.spawnCrashSite()
 	global.donecrashsite=true
 
 	vonn.clearStartingArea(game.surfaces["nauvis"],{{-9, -9}, {9, 9}})
-	local clearSize = 4
+	local clearSize = 2.5
 	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{-19,-19},clearSize)
 	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{19,-19},clearSize)
 	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{-19,19},clearSize)
