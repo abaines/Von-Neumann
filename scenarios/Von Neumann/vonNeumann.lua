@@ -123,7 +123,8 @@ function vonn.spillItemsRandomly(surface)
 		["green-wire"] = 10,
 		["red-wire"] = 10,
 
-		["accumulator"] = 2,
+		["accumulator"] = 3,
+		["solar-panel"] = 2,
 	}
 
 	while vonn.tableSize(items)>0 do
