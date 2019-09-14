@@ -392,14 +392,13 @@ function vonn.updatePlayerZoom(player)
 		local toFix = {}
 		for player,tick in pairs(global.playersNeedZoom) do
 			if player.valid and game.tick > tick then
-				player.zoom = 0.2
 				table.insert(toFix,player)
 			end
 		end
 		for _,player in pairs(toFix) do
 			global.playersNeedZoom[player] = nil
 			vonn.kprint("hiya! ".. player.name .. " " .. game.tick)
-			player.zoom = 0.2
+			player.zoom = 0.276
 		end
 	end
 end
