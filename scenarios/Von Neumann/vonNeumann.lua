@@ -29,7 +29,7 @@ end
 
 
 function vonn.createCrashSiteGenerator(position)
-	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position,inoperable=true}
+	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position}
 
 	electricEnergyInterface.power_production = 15000
 	electricEnergyInterface.electric_buffer_size  = 2*100000000
@@ -52,10 +52,10 @@ function vonn.createEntity(options)
 		force=options.force or "player"
 	}
 
-	entity.destructible = options.destructible or false
-	entity.minable = options.minable or false
-	entity.rotatable = options.rotatable or false
-	entity.operable = not (options.inoperable or false)
+	entity.minable = false
+	entity.destructible = true
+	entity.rotatable = true
+	entity.operable = true
 
 	return entity
 end
@@ -118,6 +118,12 @@ function vonn.spillItemsRandomly(surface)
 		['logistic-chest-storage']=30,
 		['logistic-chest-buffer']=25,
 		['logistic-chest-requester']=20,
+
+		["copper-cable"] = 10,
+		["green-wire"] = 10,
+		["red-wire"] = 10,
+
+		["accumulator"] = 2,
 	}
 
 	while vonn.tableSize(items)>0 do
