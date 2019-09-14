@@ -131,7 +131,6 @@ function vonn.spillItemsRandomly(surface)
 
 	while vonn.tableSize(items)>0 do
 		local item = vonn.randomTableElement(items)
-		log("item: " .. item)
 		items[item] = items[item] - 1
 		if items[item]<=0 then
 			log("removing: " .. item)
@@ -151,19 +150,37 @@ function vonn.spawnRobo(position)
 	return rebo
 end
 
+function vonn.clearStartingArea(surface,boundingBox)
+	local existing_entities = surface.find_entities(boundingBox)
+	log("existing_entities " .. #existing_entities)
+	for i, entity in pairs(existing_entities) do
+		entity.order_deconstruction("player")
+		log(entity.type)
+		if entity.type=="resource" then
+			log(entity.name)
+			entity.destroy()
+		end
+	end
+end
+
+function vonn.clearStartingAreaPosition(surface,position,size)
+	local a = position[1]
+	local b = position[2]
+	vonn.clearStartingArea(surface,{{a-size,b-size},{a+size,b+size}})
+end
+
 function vonn.spawnCrashSite()
 	if global.donecrashsite then
 		return
 	end
 	global.donecrashsite=true
 
-
-	local existing_entities = game.surfaces["nauvis"].find_entities({{-23, -23}, {23, 23}})
-	log("existing_entities " .. #existing_entities)
-	for i, entity in pairs(existing_entities) do
-		--log(entity.name)
-		entity.order_deconstruction("player")
-	end
+	vonn.clearStartingArea(game.surfaces["nauvis"],{{-9, -9}, {9, 9}})
+	local clearSize = 4
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{-19,-19},clearSize)
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{19,-19},clearSize)
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{-19,19},clearSize)
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{19,19},clearSize)
 
 	local electricEnergyInterface = vonn.createCrashSiteGenerator({0,0})
 	vonn.createEntity{name="substation",position={-9,-9}}
@@ -171,13 +188,13 @@ function vonn.spawnCrashSite()
 	vonn.createEntity{name="substation",position={-9,9}}
 	vonn.createEntity{name="substation",position={9,-9}}
 
-	local crashSiteLab = vonn.createEntity{name="crash-site-lab-repaired",position={0,4}}
+	local crashSiteLab = vonn.createEntity{name="crash-site-lab-repaired",position={0,5}}
 
-	local crashSiteAssemblingMachine1 = vonn.createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
-	local crashSiteAssemblingMachine2 = vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4}}
+	local crashSiteAssemblingMachine1 = vonn.createEntity{name="crash-site-assembling-machine-1-repaired",position={4,-6}}
+	local crashSiteAssemblingMachine2 = vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={-4,-6}}
 
-	local crashSiteChest1 = vonn.createSiteChest({name="crash-site-chest-1",position={8,7}},{['flying-robot-frame']=250})
-	local crashSiteChest2 = vonn.createSiteChest({name="crash-site-chest-2",position={-3,-3}},{['compilatron-chest']=1})
+	local crashSiteChest1 = vonn.createSiteChest({name="crash-site-chest-1",position={-7,0}},{['flying-robot-frame']=250})
+	local crashSiteChest2 = vonn.createSiteChest({name="crash-site-chest-2",position={7,-1}},{['compilatron-chest']=1})
 
 	local chest1items = {
 		['burner-mining-drill']=1,
@@ -197,6 +214,14 @@ function vonn.spawnCrashSite()
 	-- logistic-chest-storage
 	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-1}},chest1items)
 	local chest2 = vonn.createSiteChest({name="logistic-chest-active-provider",position={-2,0}},{})
+	local chest3 = vonn.createSiteChest({name="logistic-chest-storage",position={1,-1}},{})
+	local chest4 = vonn.createSiteChest({name="logistic-chest-storage",position={1,0}},{
+		['coal']=1,
+		['stone']=1,
+		['wood']=1,
+		['iron-ore']=1,
+		['copper-ore']=1,
+	})
 
 	vonn.spawnRobo({-19,-19})
 	vonn.spawnRobo({19,-19})
