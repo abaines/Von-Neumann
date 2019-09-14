@@ -101,8 +101,8 @@ function vonn.spillItemsRandomly(surface)
 		['long-handed-inserter']=1,
 		['transport-belt']=10,
 
-		['firearm-magazine']=10,
-		['gun-turret']=1,
+		['firearm-magazine']=15,
+		['gun-turret']=2,
 		['laser-turret']=1,
 
 		['assembling-machine-1']=4,
