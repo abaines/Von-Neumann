@@ -139,6 +139,16 @@ function vonn.spillItemsRandomly(surface)
 	end
 end
 
+function vonn.spawnRobo(position)
+	local robo = vonn.createSiteChest({name="roboport",position=position},{
+		['construction-robot']=50,
+		['logistic-robot']=50,
+		['repair-pack']=50,
+	})
+	robo.energy = 100000000
+	return rebo
+end
+
 function vonn.spawnCrashSite()
 	if global.donecrashsite then
 		return
@@ -154,7 +164,10 @@ function vonn.spawnCrashSite()
 	end
 
 	local electricEnergyInterface = vonn.createCrashSiteGenerator({0,0})
-	local crashSiteLab = vonn.createEntity{name="substation",position={0,0}}
+	vonn.createEntity{name="substation",position={-9,-9}}
+	vonn.createEntity{name="substation",position={9,9}}
+	vonn.createEntity{name="substation",position={-9,9}}
+	vonn.createEntity{name="substation",position={9,-9}}
 
 	local crashSiteLab = vonn.createEntity{name="crash-site-lab-repaired",position={0,4}}
 
@@ -180,14 +193,13 @@ function vonn.spawnCrashSite()
 	}
 
 	-- logistic-chest-storage
-	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-8}},chest1items)
+	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-1}},chest1items)
+	local chest2 = vonn.createSiteChest({name="logistic-chest-active-provider",position={-2,0}},{})
 
-	local robo1 = vonn.createSiteChest({name="roboport",position={-2,-8}},{
-		['construction-robot']=150,
-		['logistic-robot']=150,
-		['repair-pack']=150,
-	})
-	robo1.energy = 100000000
+	vonn.spawnRobo({-19,-19})
+	vonn.spawnRobo({19,-19})
+	vonn.spawnRobo({-19,19})
+	vonn.spawnRobo({19,19})
 
 	vonn.spillItemsRandomly(game.surfaces["nauvis"])
 end
