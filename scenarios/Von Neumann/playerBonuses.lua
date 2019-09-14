@@ -12,14 +12,38 @@ function apply_bonuses()
 	end
 	game.forces.player.character_inventory_slots_bonus = 80
 
-	if false then
-		game.player.force.technologies['engine'].researched=true
-		game.player.force.technologies['railway'].researched=true
-		game.player.force.technologies['automated-rail-transportation'].researched=true
-	end
-
 	for i, player in pairs(game.players) do
 		player.game_view_settings.show_rail_block_visualisation = true
+
+		if true then
+			player.force.technologies['engine'].researched=true
+			player.force.technologies['railway'].researched=true
+			player.force.technologies['automated-rail-transportation'].researched=true
+			player.force.technologies['logistic-system'].researched=true
+			player.force.technologies['logistic-robotics'].researched=true
+			player.force.technologies['construction-robotics'].researched=true
+
+			player.force.technologies['heavy-armor'].enabled = false
+			player.force.technologies['heavy-armor'].visible_when_disabled = true
+
+			player.force.technologies['stronger-explosives-1'].enabled = false
+			player.force.technologies['stronger-explosives-1'].visible_when_disabled = true
+
+			player.force.technologies['combat-robotics'].enabled = false
+			player.force.technologies['combat-robotics'].visible_when_disabled = true
+
+			player.force.technologies['steel-axe'].enabled = false
+			player.force.technologies['steel-axe'].visible_when_disabled = true
+		end
+
+		for _,recipe in pairs(player.force.recipes) do
+			player.force.set_hand_crafting_disabled_for_recipe(recipe,true)
+		end
+
+		player.force.zoom_to_world_ghost_building_enabled = true
+		player.force.zoom_to_world_blueprint_enabled = true
+		player.force.zoom_to_world_deconstruction_planner_enabled = true
+		player.force.zoom_to_world_selection_tool_enabled = true
 	end
 
 	local numberPlayers = #game.players

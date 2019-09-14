@@ -143,6 +143,37 @@ end
 script.on_init(vonn.spawnCrashSite)
 
 
+function vonn.forResourceOnNewChunk(surface,resource)
+	if resource.name == "crude-oil" then
+		return
+	end
+
+	--surface.spill_item_stack(resource.position,{name=resource.name, count=1},false,"player",false)
+	surface.spill_item_stack(resource.position,{name=resource.name, count=1},false,nil,false)
+end
+
+function vonn.on_chunk_generated(event)
+	local area = event.area
+	local surface = event.surface
+
+	--vonn.kprint(serpent.block(area))
+	--vonn.kprint(surface)
+
+	local arrayOfLuaEntity = surface.find_entities_filtered{area=area,type = "resource"}
+	local size = vonn.tableSize(arrayOfLuaEntity)
+	if size>0 then
+		--vonn.kprint(size)
+		for _,entity in pairs(arrayOfLuaEntity) do
+			vonn.forResourceOnNewChunk(surface,entity)
+		end
+	end
+end
+
+script.on_event({
+	defines.events.on_chunk_generated,
+},vonn.on_chunk_generated)
+
+
 vonn.storyText1 = [[The sound, while oddly familiar, can't quite be placed. One thing is certain however, you're awake.
 
 You try to reach for your eyes to rub away the sleep that seems to be distorting your vision. Nothing happens. You don't have hands.]]
@@ -486,4 +517,6 @@ defines.events.on_player_cursor_stack_changed,
 -- spill starting items on ground around crash site
 -- search starting chunks and add ground-spawn-spill items on iron/coal/copper/stone (include newly chunks too?) on_chunk_generated
 -- move Mods to individual git repos
+
+-- LuaForce.html#LuaForce.manual_mining_speed_modifier
 
