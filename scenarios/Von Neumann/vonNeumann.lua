@@ -495,6 +495,12 @@ function vonn.spillPlayerItems(player,surface,uninsertableItems)
 	return sum
 end
 
+function vonn.spillPlayerItemsAtPlayer(player,itemsRemoved)
+	for item,count in pairs(itemsRemoved) do
+		player.surface.spill_item_stack(player.position,{name=item, count=count},false,player.force,false)
+	end
+end
+
 function vonn.on_player_inventory_changed(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
@@ -515,7 +521,7 @@ function vonn.on_player_inventory_changed(event)
 		end
 
 	elseif vonn.tableSize(itemsRemoved) > 0 then
-		vonn.kprint("Unable to find open entity to return lost items for " .. player.name)
+		vonn.spillPlayerItemsAtPlayer(player,itemsRemoved)
 	end
 
 
