@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.12
+Date: 2019.09.14
+  Changes:
+    - Give away some technologies, and lock others.
+    - Allow zoom-to-world ghosting/blueprinting/deconstructing/selecting
+    - New chunk resources come with free ground items
+    - Randomly spill crash-site items on ground (instead of everything neatly in a chest)
+    - Drop items at player's feet if we cannot find entity
+---------------------------------------------------------------------------------------------------
 Version: 0.0.11
 Date: 2019.09.13
   Changes:
