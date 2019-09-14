@@ -28,12 +28,14 @@ function vonn.tableSize(someTable)
 end
 
 
+local default_accumulator_buffer = 5000000 -- accumulator is 5 MJ
 function vonn.createCrashSiteGenerator(position)
 	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position}
+	local energy = default_accumulator_buffer*600 -- 3 GJ
 
-	electricEnergyInterface.power_production = 15000
-	electricEnergyInterface.electric_buffer_size  = 2*100000000
-	electricEnergyInterface.energy  = 2*100000000
+	electricEnergyInterface.power_production = 15000 -- 900kW
+	electricEnergyInterface.electric_buffer_size  = energy
+	electricEnergyInterface.energy  = energy
 
 	return electricEnergyInterface
 end
@@ -156,7 +158,7 @@ function vonn.spawnCrashSite()
 	global.donecrashsite=true
 
 
-	local existing_entities = game.surfaces["nauvis"].find_entities({{-7, -13}, {12, 12}})
+	local existing_entities = game.surfaces["nauvis"].find_entities({{-23, -23}, {23, 23}})
 	log("existing_entities " .. #existing_entities)
 	for i, entity in pairs(existing_entities) do
 		--log(entity.name)
@@ -324,7 +326,7 @@ function vonn.addPlayerNeedsZoom(player)
 		global.playersNeedZoom = {}
 	end
 	global.playersNeedZoom[player] = game.tick
-	vonn.kprint("player needs zoom" .. " " .. global.playersNeedZoom[player])
+	--vonn.kprint("player needs zoom" .. " " .. global.playersNeedZoom[player])
 end
 
 function vonn.newPlayer(event)
@@ -397,7 +399,7 @@ function vonn.updatePlayerZoom(player)
 		end
 		for _,player in pairs(toFix) do
 			global.playersNeedZoom[player] = nil
-			vonn.kprint("hiya! ".. player.name .. " " .. game.tick)
+			--vonn.kprint("hiya! ".. player.name .. " " .. game.tick)
 			player.zoom = 0.276
 		end
 	end
