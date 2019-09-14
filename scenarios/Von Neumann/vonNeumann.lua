@@ -298,7 +298,6 @@ function vonn.on_gui_click(event)
 		if text_box.text == vonn.storyText1 then
 			text_box.text = vonn.storyText2
 			button.caption = vonn.storyButton2
-			player.zoom = 0.2
 
 		elseif text_box.text == vonn.storyText2 then
 			text_box.text = vonn.storyText3
@@ -320,6 +319,13 @@ script.on_event({
 	defines.events.on_gui_click,
 },vonn.on_gui_click)
 
+function vonn.addPlayerNeedsZoom(player)
+	if not global.playersNeedZoom then
+		global.playersNeedZoom = {}
+	end
+	global.playersNeedZoom[player] = game.tick
+	vonn.kprint("player needs zoom" .. " " .. global.playersNeedZoom[player])
+end
 
 function vonn.newPlayer(event)
 	local player_index=event.player_index
@@ -332,6 +338,7 @@ function vonn.newPlayer(event)
 			player.character = nil
 			player.spectator = true
 			vonn.displayStoryText(player)
+			vonn.addPlayerNeedsZoom(player)
 		end
 	end
 
@@ -365,19 +372,43 @@ end
 script.on_event(defines.events.on_pre_player_crafted_item, vonn.craftEvent)
 
 
+function vonn.disableMining(player)
+	if player.mining_state.mining then
+		if player.selected and player.selected.type == "entity-ghost" then
+			-- allow "mining" entity-ghost
+			log(player.selected)
+		elseif player.selected then
+			player.mining_state = {mining = false}
+			vonn.kprint("Player tried to mine: " .. player.name .. "   " .. player.selected.type .. " !")
+		else
+			player.mining_state = {mining = false}
+			vonn.kprint("Player tried to mine: " .. player.name)
+		end
+	end
+end
+
+function vonn.updatePlayerZoom(player)
+	if global.playersNeedZoom then
+		local toFix = {}
+		for player,tick in pairs(global.playersNeedZoom) do
+			if player.valid and game.tick > tick then
+				player.zoom = 0.2
+				table.insert(toFix,player)
+			end
+		end
+		for _,player in pairs(toFix) do
+			global.playersNeedZoom[player] = nil
+			vonn.kprint("hiya! ".. player.name .. " " .. game.tick)
+			player.zoom = 0.2
+		end
+	end
+end
+
 function vonn.onUpdate(event)
 	for i, player in pairs(game.players) do
-		if player.connected and player.mining_state.mining then
-			if player.selected and player.selected.type == "entity-ghost" then
-				-- allow "mining" entity-ghost
-				log(player.selected)
-			elseif player.selected then
-				player.mining_state = {mining = false}
-				vonn.kprint("Player tried to mine: " .. player.name .. "   " .. player.selected.type .. " !")
-			else
-				player.mining_state = {mining = false}
-				vonn.kprint("Player tried to mine: " .. player.name)
-			end
+		if player.connected then
+			vonn.disableMining(player)
+			vonn.updatePlayerZoom(player)
 		end
 	end
 end
