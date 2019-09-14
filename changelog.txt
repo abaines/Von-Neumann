@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.13
+Date: 2019.09.14
+  Changes:
+    - Start zoomed out
+    - Allow copy|cut tools
+    - Allow player to carry red|green|copper wires
+    - Major overhaul for starting buildings/resources/items/layout/area/etc
+---------------------------------------------------------------------------------------------------
 Version: 0.0.12
 Date: 2019.09.14
   Changes:
