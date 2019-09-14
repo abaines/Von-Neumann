@@ -267,7 +267,10 @@ function vonn.displayStoryText(player)
 end
 
 function vonn.on_gui_click(event)
+	local player_index=event.player_index
+	local player=game.players[player_index]
 	local elementName = event.element.name
+
 	if elementName == "vonn_story_button" then
 		local text_box = event.element.parent.children[1] -- TODO: check children names, then use that index
 		local button = event.element.parent.children[2] -- TODO: check children names, then use that index
@@ -276,6 +279,7 @@ function vonn.on_gui_click(event)
 		if text_box.text == vonn.storyText1 then
 			text_box.text = vonn.storyText2
 			button.caption = vonn.storyButton2
+			player.zoom = 0.2
 
 		elseif text_box.text == vonn.storyText2 then
 			text_box.text = vonn.storyText3
@@ -394,6 +398,8 @@ vonn.acceptable_inventory = {
 	["blueprint-book"] = true,
 	["deconstruction-planner"] = true,
 	["upgrade-planner"] = true,
+	["copy-paste-tool"] = true,
+	["cut-paste-tool"] = true,
 	-- TODO: decide to add coal|wood to list?
 }
 
@@ -508,8 +514,12 @@ function vonn.on_player_inventory_changed(event)
 
 	local itemsRemoved = vonn.removeBadItemsFromPlayer(player)
 
-	if vonn.tableSize(itemsRemoved) > 0 then
-		vonn.kprint(player.name .. " tried to pick up an item!")
+	if vonn.tableSize(itemsRemoved) == 1 then
+		for item,count in pairs(itemsRemoved) do
+			vonn.kprint(player.name .. " tried to pick up " .. item .. "!")
+		end
+	elseif vonn.tableSize(itemsRemoved) > 0 then
+		vonn.kprint(player.name .. " tried to pick up items!")
 	end
 
 	if player.opened and player.opened.valid and defines.gui_type.entity == player.opened_gui_type then
