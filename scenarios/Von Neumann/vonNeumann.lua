@@ -71,6 +71,66 @@ function vonn.createSiteChest(options,itemsTable)
 	return entity
 end
 
+function vonn.randomTableElement(someTable)
+	local keys = {}
+	for key in pairs(someTable) do
+		table.insert(keys,key)
+	end
+	return keys[ math.random( #keys ) ]
+end
+
+function vonn.randomCircleSpill(surface,item)
+	local theta = math.random() * 2 * math.pi
+	local r = math.sqrt(math.random(9*9,18*18))
+	local x = r * math.cos(theta)
+	local y = r * math.sin(theta)
+
+	surface.spill_item_stack({x,y},{name=item, count=1},false,nil,false)
+end
+
+function vonn.spillItemsRandomly(surface)
+	local items = {
+		coal=5,
+		['burner-mining-drill']=4,
+		['stone-furnace']=4,
+
+		['burner-inserter']=4,
+		['inserter']=4,
+		['long-handed-inserter']=1,
+		['transport-belt']=10,
+
+		['firearm-magazine']=10,
+		['gun-turret']=1,
+
+		['assembling-machine-1']=4,
+		['substation']=1,
+		['big-electric-pole']=12,
+
+		['electronic-circuit']=5,
+		['radar']=1,
+
+		roboport=10,
+		['construction-robot']=50,
+		['logistic-robot']=50,
+
+		['logistic-chest-active-provider']=100,
+		['logistic-chest-passive-provider']=10,
+		['logistic-chest-storage']=30,
+		['logistic-chest-buffer']=25,
+		['logistic-chest-requester']=20,
+	}
+
+	while vonn.tableSize(items)>0 do
+		local item = vonn.randomTableElement(items)
+		log("item: " .. item)
+		items[item] = items[item] - 1
+		if items[item]<=0 then
+			log("removing: " .. item)
+			items[item] = nil
+		end
+		vonn.randomCircleSpill(surface,item)
+	end
+end
 
 function vonn.spawnCrashSite()
 	if global.donecrashsite then
@@ -94,43 +154,26 @@ function vonn.spawnCrashSite()
 	local crashSiteAssemblingMachine1 = vonn.createEntity{name="crash-site-assembling-machine-1-repaired",position={5,0}}
 	local crashSiteAssemblingMachine2 = vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={6,4}}
 
-	local items = {
-		coal=5,
-		['burner-mining-drill']=4,
-		['stone-furnace']=4,
-
-		['burner-inserter']=4,
-		['inserter']=4,
-		['long-handed-inserter']=1,
-		['transport-belt']=10,
-
-		['firearm-magazine']=10,
-		['gun-turret']=1,
-
-		['assembling-machine-1']=4,
-		['substation']=1,
-		['big-electric-pole']=12,
-
-		['electronic-circuit']=5,
-		['radar']=5,
-
-		roboport=10,
-		['construction-robot']=50,
-		['logistic-robot']=50,
-
-		['logistic-chest-active-provider']=100,
-		['logistic-chest-passive-provider']=10,
-		['logistic-chest-storage']=30,
-		['logistic-chest-buffer']=25,
-		['logistic-chest-requester']=20,
-	}
-	-- crash-site-electric-pole
-	-- substation
 	local crashSiteChest1 = vonn.createSiteChest({name="crash-site-chest-1",position={8,7}},{['flying-robot-frame']=250})
 	local crashSiteChest2 = vonn.createSiteChest({name="crash-site-chest-2",position={-3,-3}},{['compilatron-chest']=1})
 
+	local chest1items = {
+		['burner-mining-drill']=1,
+		['stone-furnace']=1,
+		['burner-inserter']=1,
+		['inserter']=1,
+		['assembling-machine-1']=1,
+		['big-electric-pole']=1,
+		roboport=1,
+		['logistic-chest-active-provider']=1,
+		['logistic-chest-passive-provider']=1,
+		['logistic-chest-storage']=1,
+		['logistic-chest-buffer']=1,
+		['logistic-chest-requester']=1,
+	}
+
 	-- logistic-chest-storage
-	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-8}},items)
+	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-8}},chest1items)
 
 	local robo1 = vonn.createSiteChest({name="roboport",position={-2,-8}},{
 		['construction-robot']=150,
@@ -138,6 +181,8 @@ function vonn.spawnCrashSite()
 		['repair-pack']=150,
 	})
 	robo1.energy = 100000000
+
+	vonn.spillItemsRandomly(game.surfaces["nauvis"])
 end
 
 script.on_init(vonn.spawnCrashSite)
