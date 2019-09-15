@@ -480,6 +480,7 @@ vonn.acceptable_inventory = {
 	["copper-cable"] = true,
 	["green-wire"] = true,
 	["red-wire"] = true,
+	["artillery-targeting-remote"] = true,
 	-- TODO: decide to add coal|wood to list?
 }
 
