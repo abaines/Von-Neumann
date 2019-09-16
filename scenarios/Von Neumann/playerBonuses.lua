@@ -10,7 +10,6 @@ function disableGodResearches()
 	local researchesToDisable = {
 		["atomic-bomb"] = true,
 		["auto-character-logistic-trash-slots"] = true,
-		["automobilism"] = true,
 		["battery-equipment"] = true,
 		["battery-mk2-equipment"] = true,
 		["belt-immunity-equipment"] = true,
@@ -42,9 +41,6 @@ function disableGodResearches()
 		["follower-robot-count-7"] = true,
 		["fusion-reactor-equipment"] = true,
 		["heavy-armor"] = true,
-		["military"] = true,
-		["military-3"] = true,
-		["military-4"] = true,
 		["modular-armor"] = true,
 		["night-vision-equipment"] = true,
 		["personal-laser-defense-equipment"] = true,
@@ -55,8 +51,6 @@ function disableGodResearches()
 		["rocketry"] = true,
 		["solar-panel-equipment"] = true,
 		["steel-axe"] = true,
-		["stronger-explosives-1"] = true,
-		["tanks"] = true,
 		["toolbelt"] = true,
 		["weapon-shooting-speed-1"] = true,
 		["weapon-shooting-speed-2"] = true,
@@ -68,7 +62,7 @@ function disableGodResearches()
 
 	for research,visible_when_disabled in pairs(researchesToDisable) do
 		playerForce.technologies[research].enabled = false
-		playerForce.technologies[research].visible_when_disabled = false
+		playerForce.technologies[research].visible_when_disabled = true
 	end
 end
 
