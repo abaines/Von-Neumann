@@ -62,7 +62,7 @@ function disableGodResearches()
 
 	for research,visible_when_disabled in pairs(researchesToDisable) do
 		playerForce.technologies[research].enabled = false
-		playerForce.technologies[research].visible_when_disabled = true
+		playerForce.technologies[research].visible_when_disabled = false
 	end
 end
 
