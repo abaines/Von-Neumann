@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.15
+Date: 2019.09.16
+  Changes:
+    - Disable a bunch of research
+    - Allow artillery-targeting-remote
+    - Trying to craft gives ghost
+    - Trying to pick gives ghost
+    - Trying to mine marks for decon
+    - Picking up spills instead
+---------------------------------------------------------------------------------------------------
 Version: 0.0.14
 Date: 2019.09.14
   Changes:
