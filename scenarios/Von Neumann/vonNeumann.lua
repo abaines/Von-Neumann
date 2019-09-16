@@ -667,4 +667,5 @@ defines.events.on_player_cursor_stack_changed,
 -- give error messages to players making error
 -- when trying to craft, give ghost version on cursor
 -- each research gives more robot frames?
+-- disabled research prevents future research?
 
