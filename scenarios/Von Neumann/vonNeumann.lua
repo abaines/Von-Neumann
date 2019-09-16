@@ -662,3 +662,6 @@ defines.events.on_player_cursor_stack_changed,
 
 -- LuaForce.html#LuaForce.manual_mining_speed_modifier
 
+-- mark for deconstruction when trying to mine something
+-- ghost finger something when trying to pick from chest
+
