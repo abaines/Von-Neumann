@@ -664,4 +664,7 @@ defines.events.on_player_cursor_stack_changed,
 
 -- mark for deconstruction when trying to mine something
 -- ghost finger something when trying to pick from chest
+-- give error messages to players making error
+-- when trying to craft, give ghost version on cursor
+-- each research gives more robot frames?
 
