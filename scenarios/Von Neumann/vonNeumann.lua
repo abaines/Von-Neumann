@@ -392,12 +392,33 @@ function vonn.craftEvent(event)
 
 	local player=game.players[player_index]
 
+	local lastItem = nil
 	while player.crafting_queue do
-		player.cancel_crafting{index=1, count=player.crafting_queue[1].count}
+		lastItem = player.crafting_queue[1]
+		player.cancel_crafting{index=1, count=lastItem.count}
 	end
+
+	player.cursor_ghost = lastItem.item
 end
 
 script.on_event(defines.events.on_pre_player_crafted_item, vonn.craftEvent)
+
+
+function vonn.on_picked_up_item(event)
+	local player_index = event.player_index
+	local player=game.players[player_index]
+	local item_stack  = event.item_stack
+
+	local name = item_stack.name
+	local count = item_stack.count
+
+	--vonn.kprint(game.tick .. " on_picked_up_item " .. name .. " " .. count)
+	vonn.spillPlayerItemsAtPlayer(player, {[name]=count} )
+end
+
+script.on_event({
+	defines.events.on_picked_up_item,
+},vonn.on_picked_up_item)
 
 
 function vonn.disableMining(player)
@@ -408,6 +429,7 @@ function vonn.disableMining(player)
 		elseif player.selected then
 			player.mining_state = {mining = false}
 			vonn.kprint("Player tried to mine: " .. player.name .. "   " .. player.selected.type .. " !")
+			player.selected.order_deconstruction(player.force,player)
 		else
 			player.mining_state = {mining = false}
 			vonn.kprint("Player tried to mine: " .. player.name)
@@ -514,6 +536,8 @@ function vonn.getBadItemsForPlayer(player)
 				badItems[item] = 0
 			end
 			badItems[item] = count + badItems[item]
+
+			player.cursor_ghost = item
 		end
 	end
 
@@ -611,8 +635,16 @@ function vonn.on_player_inventory_changed(event)
 			vonn.kprint("spilled items: " .. sum)
 		end
 
+	elseif vonn.tableSize(itemsRemoved) == 1 then
+		-- assume player cheat_mode crafted an item, so ghost it
+		for item,count in pairs(itemsRemoved) do
+			player.cursor_ghost = item
+		end
+
 	elseif vonn.tableSize(itemsRemoved) > 0 then
-		vonn.spillPlayerItemsAtPlayer(player,itemsRemoved)
+		-- not sure this should happen (except picking items off ground), and if so, probably exploit
+		-- vonn.spillPlayerItemsAtPlayer(player,itemsRemoved)
+		log("vonn.tableSize(itemsRemoved) > 0" .. serpent.block(itemsRemoved))
 	end
 
 
@@ -662,10 +694,7 @@ defines.events.on_player_cursor_stack_changed,
 
 -- LuaForce.html#LuaForce.manual_mining_speed_modifier
 
--- mark for deconstruction when trying to mine something
--- ghost finger something when trying to pick from chest
 -- give error messages to players making error
--- when trying to craft, give ghost version on cursor
 -- each research gives more robot frames?
 -- disabled research prevents future research?
 

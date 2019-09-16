@@ -92,9 +92,7 @@ function apply_bonuses()
 		player.force.technologies['logistic-robotics'].researched=true
 		player.force.technologies['construction-robotics'].researched=true
 
-		for _,recipe in pairs(player.force.recipes) do
-			player.force.set_hand_crafting_disabled_for_recipe(recipe,true)
-		end
+		player.cheat_mode = true
 
 		player.force.zoom_to_world_ghost_building_enabled = true
 		player.force.zoom_to_world_blueprint_enabled = true
