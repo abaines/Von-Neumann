@@ -33,7 +33,7 @@ function vonn.createCrashSiteGenerator(position)
 	local electricEnergyInterface = vonn.createEntity{name="crash-site-generator",position=position}
 	local energy = default_accumulator_buffer*600 -- 3 GJ
 
-	electricEnergyInterface.power_production = 15000 -- 900kW
+	electricEnergyInterface.power_production = 2*15000 -- 2*900kW
 	electricEnergyInterface.electric_buffer_size  = energy
 	electricEnergyInterface.energy  = energy
 
@@ -697,4 +697,6 @@ defines.events.on_player_cursor_stack_changed,
 -- give error messages to players making error
 -- each research gives more robot frames?
 -- disabled research prevents future research?
+
+-- dup bug -- q while gui open
 
