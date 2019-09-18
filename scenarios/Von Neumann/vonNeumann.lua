@@ -665,6 +665,22 @@ defines.events.on_player_cursor_stack_changed,
 },vonn.on_player_inventory_changed)
 
 
+function vonn.on_player_pipette(event)
+	local player_index = event.player_index
+	local player = game.players[player_index]
+	local eventName = eventNameMapping[event.name]
+	local item  = event.item
+	local used_cheat_mode  = event.used_cheat_mode
+
+	--vonn.kprint(item.name .. "  " .. tostring(used_cheat_mode))
+	--vonn.kprint(player.cursor_stack.name .. "   " .. player.cursor_stack.count)
+	player.cursor_ghost = player.cursor_stack.name
+	player.cursor_stack.count = 0
+end
+
+script.on_event({
+	defines.events.on_player_pipette
+},vonn.on_player_pipette)
 
 
 
