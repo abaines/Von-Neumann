@@ -14,3 +14,7 @@ Mod To-Do:
 
 Interesting notes:
 -Once a roboport is placed, robots will try to service the area even before it has power (e.g. pick up decon marked items)
+
+
+-Give players 1 roboport and 5 logic&construction robots with each research, they could just be spilled on ground
+

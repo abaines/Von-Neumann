@@ -716,3 +716,6 @@ script.on_event({
 
 -- dup bug -- q while gui open
 
+
+-- /c game.surfaces["nauvis"].spill_item_stack({0,0},{name="roboport", count=21},false,"player",false)
+-- /silent-command game.surfaces["nauvis"].spill_item_stack({0,0},{name="construction-robot", count=250},false,"player",false)
