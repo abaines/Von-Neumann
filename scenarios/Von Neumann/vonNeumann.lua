@@ -415,7 +415,44 @@ function vonn.craftEvent(event)
 	player.cursor_ghost = lastItem.item
 end
 
-script.on_event(defines.events.on_pre_player_crafted_item, vonn.craftEvent)
+script.on_event({
+	defines.events.on_pre_player_crafted_item,
+},vonn.craftEvent)
+
+
+function vonn.on_player_crafted_item(event)
+	local player_index = event.player_index
+	local player=game.players[player_index]
+	local recipe = event.recipe
+	local items = event.items
+	local eventName = vonn.eventNameMapping[event.name]
+	local item_stack = event.item_stack
+	local recipe = event.recipe
+
+	local name = item_stack.name
+	vonn.kprint("Player crafted: " .. player.name .. "   `" .. name .. "`   " .. item_stack.count)
+
+	local banned = {
+		["copper-cable"] = true,
+		["effectivity-module"] = true,
+		["effectivity-module-2"] = true,
+		["effectivity-module-3"] = true,
+		["productivity-module"] = true,
+		["productivity-module-1"] = true,
+		["productivity-module-2"] = true,
+		["speed-module"] = true,
+		["speed-module-2"] = true,
+		["speed-module-3"] = true,
+	}
+
+	if banned[name] then
+		player.remove_item({name=name, count=2000})
+	end
+end
+
+script.on_event({
+	defines.events.on_player_crafted_item,
+},vonn.on_player_crafted_item)
 
 
 function vonn.on_picked_up_item(event)
