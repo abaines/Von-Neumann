@@ -69,6 +69,8 @@ railbot.addGui = function(player)
 end
 
 railbot.command = function(player,command)
+	local compilatron = railbot.findRailbot(player)
+
 	if command==nil then
 		player.print("need a command: follow, home, stay")
 
@@ -79,10 +81,12 @@ railbot.command = function(player,command)
 	elseif string.find(command, "home") then
 		log("railbot home " .. player.name)
 		game.print("Railbot is going home")
+		compilatron.set_command{type = defines.command.go_to_location, destination = {0,0}}
 
 	elseif string.find(command, "stay") then
 		log("railbot stay " .. player.name)
 		game.print("Railbot is staying here")
+		compilatron.set_command{type = defines.command.go_to_location, destination = compilatron.position}
 
 	end
 end
@@ -97,6 +101,16 @@ railbot.on_gui_click = function(event)
 	local elementName = event.element.name
 
 	vonn.kprint(elementName)
+	if elementName == "railbot_gui_follow" then
+		railbot.command(player,"follow")
+
+	elseif elementName == "railbot_gui_stay" then
+		railbot.command(player,"stay")
+
+	elseif elementName == "railbot_gui_home" then
+		railbot.command(player,"home")
+
+	end
 end
 
 script.on_event({
@@ -112,8 +126,6 @@ railbot.commandLine = function(param)
 	local parameter  = param.parameter
 
 	railbot.addGui(player)
-
-	local compilatron = railbot.findRailbot(player)
 
 	if parameter==nil then
 		player.print("need a command: follow, home, stay")
