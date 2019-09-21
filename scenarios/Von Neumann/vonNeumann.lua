@@ -2,12 +2,13 @@
 
 --- needs "hijack"
 
-local eventNameMapping = {}
-for eventName,eventId in pairs(defines.events) do
-	eventNameMapping[eventId] = eventName
-end
 
 vonn = {}
+
+vonn.eventNameMapping = {}
+for eventName,eventId in pairs(defines.events) do
+	vonn.eventNameMapping[eventId] = eventName
+end
 
 function vonn.kprint(msg)
 	print(msg)
@@ -625,7 +626,7 @@ end
 function vonn.on_player_inventory_changed(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
-	local eventName = eventNameMapping[event.name]
+	local eventName = vonn.eventNameMapping[event.name]
 
 	local itemsRemoved = vonn.removeBadItemsFromPlayer(player)
 
@@ -678,7 +679,7 @@ defines.events.on_player_cursor_stack_changed,
 function vonn.on_player_pipette(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
-	local eventName = eventNameMapping[event.name]
+	local eventName = vonn.eventNameMapping[event.name]
 	local item  = event.item
 	local used_cheat_mode  = event.used_cheat_mode
 
