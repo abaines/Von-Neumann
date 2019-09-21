@@ -73,7 +73,9 @@ railbot.ghostBehavior = function(event)
 			return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
 		end)
 
-		local itemsAvailable = railbot.bufferChestAvailableItems(compilatron.surface)
+		local surface = compilatron.surface
+
+		local itemsAvailable = railbot.bufferChestAvailableItems(surface)
 
 		for index,ghost in pairs(ghosts) do
 			local ghost_name = ghost.ghost_name
@@ -82,11 +84,18 @@ railbot.ghostBehavior = function(event)
 			end
 
 			if itemsAvailable[ghost_name] then
+				local position = ghost.position
 				-- replace ghost with item
 				ghost.revive()
-				-- TODO: delete item from buffer
-				railbot.removeFromBuffers(compilatron.surface,ghost_name)
+				-- delete item from buffer
+				railbot.removeFromBuffers(surface,ghost_name)
 				-- TODO: lasers!
+				surface.create_entity{
+					name="laser-beam",
+					source=compilatron,
+					target_position=position,
+					position={0,0},duration=60*4.5
+				}
 				return
 
 			else
@@ -124,7 +133,7 @@ railbot.on_tick = function(event)
 	railbot.ghostBehavior(event)
 end
 
-script.on_nth_tick(90*4,railbot.on_tick)
+script.on_nth_tick(8,railbot.on_tick)
 
 
 railbot.spawnBeam = function(surface,target_position,compilatron)
