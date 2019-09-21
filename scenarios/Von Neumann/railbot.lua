@@ -48,6 +48,23 @@ railbot.getBuffers = function(surface)
 	return buffers
 end
 
+railbot.removeFromBuffers = function(surface,item,count)
+	local count = count or 1
+	local buffers = railbot.getBuffers(surface)
+
+	vonn.kprint(item.." " .. #buffers.." " .. count)
+	for index,buffer in pairs(buffers) do
+		local inventory = buffer.get_inventory(defines.inventory.chest)
+		local removed = inventory.remove({name=item, count=count})
+
+		if removed>=count then
+			return
+		else
+			count = count - removed
+		end
+	end
+end
+
 railbot.ghostBehavior = function(event)
 	local ghosts, compilatron = railbot.searchGhost()
 
@@ -56,7 +73,7 @@ railbot.ghostBehavior = function(event)
 			return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
 		end)
 
-		local itemsAvailable = railbot.bufferChestAvailableItems(game.surfaces["nauvis"])
+		local itemsAvailable = railbot.bufferChestAvailableItems(compilatron.surface)
 
 		for index,ghost in pairs(ghosts) do
 			local ghost_name = ghost.ghost_name
@@ -65,15 +82,15 @@ railbot.ghostBehavior = function(event)
 			end
 
 			if itemsAvailable[ghost_name] then
-				vonn.kprint(game.tick .. " " .. ghost_name)
 				-- replace ghost with item
 				ghost.revive()
 				-- TODO: delete item from buffer
+				railbot.removeFromBuffers(compilatron.surface,ghost_name)
 				-- TODO: lasers!
 				return
 
 			else
-				vonn.kprint(game.tick .. " " .. ghost_name)
+				--vonn.kprint(game.tick .. " " .. ghost_name)
 
 			end
 		end
@@ -85,7 +102,7 @@ railbot.bufferChestAvailableItems = function(surface)
 
 	local dictionary = {}
 
-	vonn.kprint(#buffers)
+	--vonn.kprint(#buffers)
 	for index,buffer in pairs(buffers) do
 		local inventory = buffer.get_inventory(defines.inventory.chest)
 		local contents = inventory.get_contents()
