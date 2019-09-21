@@ -64,6 +64,41 @@ function disableGodResearches()
 		playerForce.technologies[research].enabled = false
 		playerForce.technologies[research].visible_when_disabled = false
 	end
+
+	local researchedToEnable = {
+		["automobilism"] = true,
+		["military"] = true,
+		["military-4"] = true,
+		["stronger-explosives-1"] = true,
+		["tanks"] = true,
+	}
+
+	for research,visible_when_disabled in pairs(researchedToEnable) do
+		playerForce.technologies[research].enabled = true
+		playerForce.technologies[research].researched = true
+		playerForce.technologies[research].visible_when_disabled = false
+	end
+
+	local recipesToDisable = {
+		["car"] = true,
+		["tank"] = true,
+		["pistol"] = true,
+		["combat-shotgun"] = true,
+		["shotgun"] = true,
+		["shotgun-shell"] = true,
+		["piercing-shotgun-shell"] = true,
+		["cluster-grenade"] = true,
+		["submachine-gun"] = true,
+		["light-armor"] = true,
+		["explosive-cannon-shell"] = true,
+		["cannon-shell"] = true,
+	}
+
+	for recipe_name,_ in pairs(recipesToDisable) do
+		local recipe = playerForce.recipes[recipe_name]
+		recipe.enabled  = false
+	end
+
 end
 
 
