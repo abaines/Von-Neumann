@@ -24,17 +24,30 @@ railbot.searchGhost = function()
 
 	local ghosts = compilatron.surface.find_entities_filtered{
 		position=compilatron.position,
-		radius=20,
+		radius=60,
 		ghost_name=railbot.allowedGhostNames
 	}
 
-	if #ghosts>0 then
-		vonn.kprint(compilatron.position.x .." ".. compilatron.position.y .." ".. #ghosts)
-		for i,g in pairs(ghosts) do
-			if g.type=="entity-ghost" then
-				vonn.kprint(g.ghost_name)
-				--vonn.kprint(g.ghost_type)
-			end
+	return ghosts, compilatron
+end
+
+railbot.manhattanDistanceEntities = function(entityA, entityB)
+	return railbot.manhattanDistance(entityA.position,entityB.position)
+end
+
+railbot.manhattanDistance = function(positionA, positionB)
+	return math.abs(positionA.x - positionB.x) + math.abs(positionA.y - positionB.y)
+end
+
+railbot.ghostBehavior = function(event)
+	local ghosts, compilatron = railbot.searchGhost()
+
+	if ghosts and #ghosts>0 and compilatron and compilatron.valid then
+		table.sort(ghosts,function(a,b)
+			return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
+		end)
+		for index,ghost in pairs(ghosts) do
+			vonn.kprint(game.tick .. " " .. ghost.ghost_name)
 		end
 	end
 end
@@ -42,7 +55,7 @@ end
 railbot.on_tick = function(event)
 	local eventName = vonn.eventNameMapping[event.name]
 
-	railbot.searchGhost()
+	railbot.ghostBehavior(event)
 end
 
 script.on_nth_tick(90*4,railbot.on_tick)
