@@ -46,10 +46,39 @@ railbot.ghostBehavior = function(event)
 		table.sort(ghosts,function(a,b)
 			return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
 		end)
+
+		local itemsAvailable = railbot.bufferChestAvailableItems(game.surfaces["nauvis"])
+		vonn.kprint(serpent.block(itemsAvailable))
+
 		for index,ghost in pairs(ghosts) do
 			vonn.kprint(game.tick .. " " .. ghost.ghost_name)
 		end
 	end
+end
+
+railbot.bufferChestAvailableItems = function(surface)
+	local buffers = surface.find_entities_filtered{
+		position={0,0},
+		radius=9,
+		name="logistic-chest-buffer"
+	}
+
+	local dictionary = {}
+
+	vonn.kprint(#buffers)
+	for index,buffer in pairs(buffers) do
+		local inventory = buffer.get_inventory(defines.inventory.chest)
+		local contents = inventory.get_contents()
+		--vonn.kprint(serpent.block(inventory.get_contents()))
+		for item,count in pairs(contents) do
+			if not dictionary[item] then
+				dictionary[item] = 0
+			end
+			dictionary[item] = count + dictionary[item]
+		end
+	end
+
+	return dictionary
 end
 
 railbot.on_tick = function(event)
