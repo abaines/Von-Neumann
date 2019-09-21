@@ -27,3 +27,5 @@ Interesting notes:
 -Each research gives more robot/ports
 -Disabled research prevents future research?
 
+-Make railbot construction cost energy
+
