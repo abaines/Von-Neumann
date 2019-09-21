@@ -39,6 +39,15 @@ railbot.manhattanDistance = function(positionA, positionB)
 	return math.abs(positionA.x - positionB.x) + math.abs(positionA.y - positionB.y)
 end
 
+railbot.getBuffers = function(surface)
+	local buffers = surface.find_entities_filtered{
+		position={0,0},
+		radius=9,
+		name="logistic-chest-buffer"
+	}
+	return buffers
+end
+
 railbot.ghostBehavior = function(event)
 	local ghosts, compilatron = railbot.searchGhost()
 
@@ -48,20 +57,31 @@ railbot.ghostBehavior = function(event)
 		end)
 
 		local itemsAvailable = railbot.bufferChestAvailableItems(game.surfaces["nauvis"])
-		vonn.kprint(serpent.block(itemsAvailable))
 
 		for index,ghost in pairs(ghosts) do
-			vonn.kprint(game.tick .. " " .. ghost.ghost_name)
+			local ghost_name = ghost.ghost_name
+			if ghost_name == "curved-rail" or ghost_name == "straight-rail" then
+				ghost_name = "rail"
+			end
+
+			if itemsAvailable[ghost_name] then
+				vonn.kprint(game.tick .. " " .. ghost_name)
+				-- replace ghost with item
+				ghost.revive()
+				-- TODO: delete item from buffer
+				-- TODO: lasers!
+				return
+
+			else
+				vonn.kprint(game.tick .. " " .. ghost_name)
+
+			end
 		end
 	end
 end
 
 railbot.bufferChestAvailableItems = function(surface)
-	local buffers = surface.find_entities_filtered{
-		position={0,0},
-		radius=9,
-		name="logistic-chest-buffer"
-	}
+	local buffers = railbot.getBuffers(surface)
 
 	local dictionary = {}
 
