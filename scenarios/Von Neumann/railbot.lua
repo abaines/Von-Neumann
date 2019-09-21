@@ -4,13 +4,14 @@
 
 railbot = {}
 
+
 railbot.on_tick = function(event)
 	local eventName = vonn.eventNameMapping[event.name]
 	--vonn.kprint(eventName)
 end
 
-
 script.on_event(defines.events.on_tick,railbot.on_tick)
+
 
 railbot.spawnBeam = function(surface,target_position,compilatron)
 	return surface.create_entity{
@@ -51,14 +52,59 @@ railbot.findRailbot = function(player)
 
 end
 
+
 railbot.addGui = function(player)
-	local gui = player.gui.top
-	gui.enabled = true
-	gui.add{type="frame", name="greeting", caption="Hi"}
+	local gui = player.gui.left
+	for index,name in pairs(gui.children_names) do
+		if name == "railbot_gui" then
+			return
+		end
+	end
+
+	local railbot_gui = gui.add{type="frame", name="railbot_gui", caption="Railbot"}
+
+	local railbot_gui_follow = railbot_gui.add{type="button",name="railbot_gui_follow",caption="Follow"}
+	local railbot_gui_stay = railbot_gui.add{type="button",name="railbot_gui_stay",caption="Stay"}
+	local railbot_gui_home = railbot_gui.add{type="button",name="railbot_gui_home",caption="Home"}
+end
+
+railbot.command = function(player,command)
+	if command==nil then
+		player.print("need a command: follow, home, stay")
+
+	elseif string.find(command, "follow") then
+		game.print("Railbot is following " .. player.name)
+		compilatron.set_command{type = defines.command.go_to_location, destination = player.position}
+
+	elseif string.find(command, "home") then
+		log("railbot home " .. player.name)
+		game.print("Railbot is going home")
+
+	elseif string.find(command, "stay") then
+		log("railbot stay " .. player.name)
+		game.print("Railbot is staying here")
+
+	end
 end
 
 
-railbot.command = function(param)
+railbot.on_gui_click = function(event)
+	local player_index=event.player_index
+	local player=game.players[player_index]
+
+	if not event.element.valid then return end
+
+	local elementName = event.element.name
+
+	vonn.kprint(elementName)
+end
+
+script.on_event({
+	defines.events.on_gui_click,
+},railbot.on_gui_click)
+
+
+railbot.commandLine = function(param)
 	local player_index=param.player_index
 	local player=game.players[player_index]
 	local name = param.name
@@ -72,21 +118,12 @@ railbot.command = function(param)
 	if parameter==nil then
 		player.print("need a command: follow, home, stay")
 
-	elseif string.find(parameter, "follow") then
-		game.print("Railbot is following " .. player.name)
-		compilatron.set_command{type = defines.command.go_to_location, destination = player.position}
-
-	elseif string.find(parameter, "home") then
-		log("railbot home " .. player.name)
-		game.print("Railbot is going home")
-
-	elseif string.find(parameter, "stay") then
-		log("railbot stay " .. player.name)
-		game.print("Railbot is staying here")
+	else
+		railbot.command(player,parameter)
 
 	end
 end
 
 
-commands.add_command("railbot", "railbot", railbot.command)
+commands.add_command("railbot", "railbot", railbot.commandLine)
 
