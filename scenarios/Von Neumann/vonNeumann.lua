@@ -502,6 +502,16 @@ vonn.acceptable_inventory = {
 	["copper-cable"] = true,
 	["green-wire"] = true,
 	["red-wire"] = true,
+	["rail"] = true,
+	["effectivity-module"] = true,
+	["effectivity-module-2"] = true,
+	["effectivity-module-3"] = true,
+	["productivity-module"] = true,
+	["productivity-module-1"] = true,
+	["productivity-module-2"] = true,
+	["speed-module"] = true,
+	["speed-module-2"] = true,
+	["speed-module-3"] = true,
 	["artillery-targeting-remote"] = true,
 	-- TODO: decide to add coal|wood to list?
 }
@@ -719,3 +729,5 @@ script.on_event({
 
 -- /c game.surfaces["nauvis"].spill_item_stack({0,0},{name="roboport", count=21},false,"player",false)
 -- /silent-command game.surfaces["nauvis"].spill_item_stack({0,0},{name="construction-robot", count=250},false,"player",false)
+-- /silent-command game.surfaces["nauvis"].spill_item_stack({0,0},{name="logistic-robot", count=0},false,"player",false)
+
