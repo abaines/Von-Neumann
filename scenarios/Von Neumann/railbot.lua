@@ -178,7 +178,7 @@ railbot.findRailbot = function(player)
 	end
 	local compilatrons = surface.find_entities_filtered({force = "player", name="compilatron"})
 
-	log("#compilatrons" .. #compilatrons)
+	--log("#compilatrons" .. #compilatrons)
 
 	if #compilatrons>=1 then
 		-- TODO deal with bonus compilatrons?
