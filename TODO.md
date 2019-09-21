@@ -18,3 +18,12 @@ Interesting notes:
 
 -Give players 1 roboport and 5 logic&construction robots with each research, they could just be spilled on ground
 
+-Spread out tutorial buildings
+-Biters drop computers because they are competing AIs
+-Can we make invisible players?
+-Can god players see through fog-of-war? Can I control fog-of-war?
+
+-Give error messages to players making error
+-Each research gives more robot/ports
+-Disabled research prevents future research?
+

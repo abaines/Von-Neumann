@@ -694,18 +694,12 @@ script.on_event({
 
 
 
--- TODOs
--- spread out tutorial buildings
--- place roboport, assemblers, etc
+-- Lua API TODOs
 
 -- /toggle-heavy-mode
 -- /c __warptorio2__ warptorio.warpout()
 -- https://forums.factorio.com/viewtopic.php?f=25&t=67140
 -- ...\Steam\steamapps\common\Factorio\data\*.lua
-
--- biters drop computers because they are competing AIs
--- can we make invisible players?
--- can god players see through fog-of-war? Can I control fog-of-war?
 
 -- request API for night vision and map film-grain (Mengmoshu)
 -- LuaPlayer: cursor_ghost, teleport, disable_recipe_groups, disable_recipe_subgroups
@@ -714,20 +708,13 @@ script.on_event({
 -- data.raw["utility-constants"].zoom_to_world_effect_strength = 0
 -- data.raw["utility-constants"].zoom_to_world_darkness_multiplier = 0.5
 
--- spill starting items on ground around crash site
--- search starting chunks and add ground-spawn-spill items on iron/coal/copper/stone (include newly chunks too?) on_chunk_generated
--- move Mods to individual git repos
-
 -- LuaForce.html#LuaForce.manual_mining_speed_modifier
-
--- give error messages to players making error
--- each research gives more robot frames?
--- disabled research prevents future research?
-
--- dup bug -- q while gui open
-
 
 -- /c game.surfaces["nauvis"].spill_item_stack({0,0},{name="roboport", count=21},false,"player",false)
 -- /silent-command game.surfaces["nauvis"].spill_item_stack({0,0},{name="construction-robot", count=250},false,"player",false)
 -- /silent-command game.surfaces["nauvis"].spill_item_stack({0,0},{name="logistic-robot", count=0},false,"player",false)
+
+-- game.create_profiler()
+-- data.raw["map-gen-presets"].default["pvp-ribbonworld"]
+-- defines.command.go_to_location
 
