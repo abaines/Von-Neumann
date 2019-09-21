@@ -5,12 +5,47 @@
 railbot = {}
 
 
-railbot.on_tick = function(event)
-	local eventName = vonn.eventNameMapping[event.name]
-	--vonn.kprint(eventName)
+railbot.allowedGhostNames = {
+	"curved-rail",
+	"straight-rail",
+	"train-stop",
+	"rail-chain-signal",
+	"rail-signal",
+
+	"big-electric-pole",
+	"roboport",
+	"inserter",
+	"logistic-chest-storage",
+}
+
+railbot.searchGhost = function()
+	local compilatron = railbot.findRailbot()
+	if not ( compilatron and compilatron.valid ) then return end
+
+	local ghosts = compilatron.surface.find_entities_filtered{
+		position=compilatron.position,
+		radius=20,
+		ghost_name=railbot.allowedGhostNames
+	}
+
+	if #ghosts>0 then
+		vonn.kprint(compilatron.position.x .." ".. compilatron.position.y .." ".. #ghosts)
+		for i,g in pairs(ghosts) do
+			if g.type=="entity-ghost" then
+				vonn.kprint(g.ghost_name)
+				--vonn.kprint(g.ghost_type)
+			end
+		end
+	end
 end
 
-script.on_event(defines.events.on_tick,railbot.on_tick)
+railbot.on_tick = function(event)
+	local eventName = vonn.eventNameMapping[event.name]
+
+	railbot.searchGhost()
+end
+
+script.on_nth_tick(90*4,railbot.on_tick)
 
 
 railbot.spawnBeam = function(surface,target_position,compilatron)
@@ -24,19 +59,35 @@ end
 
 railbot.spawnRailbot = function(player)
 	-- TODO: consume energy/science? to make railbot
-	local surface = player.surface
-	local compilatron = surface.create_entity{name="compilatron",position={0,1.1},force=player.force}
+	local surface = game.surfaces["nauvis"]
+	local force = "player"
+	if player and player.valid then
+		surface = player.surface
+		force = player.force
+	end
+	local compilatron = surface.create_entity{name="compilatron",position={0,1.1},force=force}
 
 	railbot.spawnBeam(surface,{-19,-19},compilatron)
 	railbot.spawnBeam(surface,{ 19,-19},compilatron)
 	railbot.spawnBeam(surface,{-19, 19},compilatron)
 	railbot.spawnBeam(surface,{ 19, 19},compilatron)
 
+	surface.create_trivial_smoke{name="fire-smoke",position=compilatron.position}
+	surface.create_trivial_smoke{name="artillery-smoke",position=compilatron.position}
+	surface.create_trivial_smoke{name="nuclear-smoke",position=compilatron.position}
+	surface.create_trivial_smoke{name="smoke-explosion-particle",position=compilatron.position}
+	surface.create_trivial_smoke{name="smoke-fast",position=compilatron.position}
+	surface.create_trivial_smoke{name="tank-smoke",position=compilatron.position}
+	surface.create_trivial_smoke{name="turbine-smoke",position=compilatron.position}
+
 	return compilatron
 end
 
 railbot.findRailbot = function(player)
-	local surface = player.surface
+	local surface = game.surfaces["nauvis"]
+	if player and player.valid then
+		surface = player.surface
+	end
 	local compilatrons = surface.find_entities_filtered({force = "player", name="compilatron"})
 
 	log("#compilatrons" .. #compilatrons)
@@ -45,7 +96,7 @@ railbot.findRailbot = function(player)
 		-- TODO deal with bonus compilatrons?
 		return compilatrons[1]
 
-	elseif #compilatrons<1 then
+	elseif #compilatrons<1 and player and player.valid then
 		return railbot.spawnRailbot(player)
 
 	end
@@ -100,7 +151,7 @@ railbot.on_gui_click = function(event)
 
 	local elementName = event.element.name
 
-	vonn.kprint(elementName)
+	--vonn.kprint(elementName)
 	if elementName == "railbot_gui_follow" then
 		railbot.command(player,"follow")
 
@@ -109,6 +160,9 @@ railbot.on_gui_click = function(event)
 
 	elseif elementName == "railbot_gui_home" then
 		railbot.command(player,"home")
+
+	else
+		railbot.addGui(player)
 
 	end
 end

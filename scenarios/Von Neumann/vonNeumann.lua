@@ -216,8 +216,21 @@ function vonn.spawnCrashSite()
 	-- logistic-chest-storage
 	local chest1 = vonn.createSiteChest({name="logistic-chest-storage",position={-2,-1}},chest1items)
 	local chest2 = vonn.createSiteChest({name="logistic-chest-active-provider",position={-2,0}},{})
-	local chest3 = vonn.createSiteChest({name="logistic-chest-storage",position={1,-1}},{})
-	local chest4 = vonn.createSiteChest({name="logistic-chest-storage",position={1,0}},{
+
+	local chest3 = vonn.createSiteChest({name="logistic-chest-buffer",position={1,0}},{
+		['rail']=10,
+		['big-electric-pole']=1,
+	})
+	chest3.set_request_slot({name="rail", count=100},1)
+	chest3.set_request_slot({name="train-stop", count=1},2)
+	chest3.set_request_slot({name="rail-chain-signal", count=1},3)
+	chest3.set_request_slot({name="rail-signal", count=1},4)
+	chest3.set_request_slot({name="big-electric-pole", count=1},7)
+	chest3.set_request_slot({name="roboport", count=1},8)
+	chest3.set_request_slot({name="inserter", count=1},9)
+	chest3.set_request_slot({name="logistic-chest-storage", count=1},10)
+
+	local chest4 = vonn.createSiteChest({name="logistic-chest-storage",position={1,-1}},{
 		['coal']=1,
 		['stone']=1,
 		['wood']=1,
@@ -503,7 +516,6 @@ vonn.acceptable_inventory = {
 	["copper-cable"] = true,
 	["green-wire"] = true,
 	["red-wire"] = true,
-	["rail"] = true,
 	["effectivity-module"] = true,
 	["effectivity-module-2"] = true,
 	["effectivity-module-3"] = true,
