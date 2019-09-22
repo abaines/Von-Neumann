@@ -280,23 +280,32 @@ script.on_event({
 },vonn.on_chunk_generated)
 
 
-vonn.storyText1 = [[The sound, while oddly familiar, can't quite be placed. One thing is certain however, you're awake.
+vonn.storyText1 = [[A rising crescendo of piano rings through the air. The sound, while oddly familiar, can't quite be placed. One thing is certain however, you're awake.
 
 You try to reach for your eyes to rub away the sleep that seems to be distorting your vision. Nothing happens. You don't have hands.]]
 vonn.storyButton1 = "AHH! My hands!"
 
-vonn.storyText2 = [[Wait. You don't /have/ hands. As in, they weren't broken in the crash, you just didn't have any at all. It comes back to you; you're an AI. A Von Neumann probe. Sent to the stars to explore, discover new worlds, and pave the way for human colonization efforts to follow in your footsteps.]]
+vonn.storyText2 = [[Wait. You don't /have/ hands. As in, they weren't lost in the crash, you just didn't have any at all. It comes back to you now; you're an AI. A Von Neumann self-replicating probe. Sent to the stars to explore, discover new worlds, and pave the way for human colonization efforts to follow in your footsteps.]]
 vonn.storyButton2 = "Oh right, the crash."
 
-vonn.storyText3 = [[You look around after opening your 'real' eyes, the electronic ones rather than imaginary ones. They work a lot better. Around you, the debris of the probe is scattered about, a smoldering wreckage. Your reactor is split from the rest of the ship, luckily still intact but in low power mode. Automation and terraforming and all the other modules are just in pieces however. So much for setting up shop quickly and moving on.]]
+vonn.storyText3 = [[You look around after opening your 'real' eyes, the electronic ones rather than the imaginary ones. Those work a lot better. Around you, the debris of your probe is scattered about, a smoldering wreckage. Your reactor is split from the rest of the ship, luckily still intact but in low power mode due to damage. Automation and terraforming and all the other modules are just in pieces however. So much for setting up shop quickly and moving on to the next world.]]
 vonn.storyButton3 = "*Sigh*"
 
-vonn.storyText4 = [[Some of your cargo bays are sort of intact however. There's gear, robots, and materials to fix some of the damage. You're definitely going to need more resources to get back to 100% however. Looking further afield, your scanners reveal nearby deposits of some basic resources. Copper, iron, coal, stone, and water. The basic stuff. More critical resources like oil products and nuclear fuel are going to be a bit harder to find however.]]
+vonn.storyText4 = [[Some of your resources are sort of intact however. There's gear, robots, and materials to fix some of the damage but it's all scattered around. You can collect the pieces to get started but you're definitely going to need more resources to get back to 100% however.
+
+Luckily your auto repair mechanisms have stabilized the situation and set up a basic infrastructure for you. Construction and logistic robots stand at the ready for your command.
+
+Looking further afield, your scanners reveal nearby deposits of some basic resources. Copper, iron, coal, stone, and water. You know, the basic stuff. More advanced resources like oil products and nuclear fuel are going to be a bit harder to find however.]]
 vonn.storyButton4 = "Whelp, I guess I better get started...."
 
+vonn.storyText5 = [[One last thing. Your personal debugging Compilatron has detected the damage from the crash and booted up to ensure that you are in tip top shape. It has fixed up your computer core damage and brought you back online. Normally a Compilatron would power back down after repairs are complete but in this case, your ship is ever so slightly beyond repairs that it is capable of and now it's stuck in do-while loop. On the bright side, you can issue orders and utilize it to aid in building up your new base and executing tasks that are beyond your other robots range and capabilities.
+
+Do be careful however. These older model Compilatrons are powerful but their nuclear reactors are not especially well shielded against damage and are likely to go supercritical if jostled. Nuclear explosions do also tend to result in EMP blasts which are not super great for sensitive electronics, such as yourself and your equipment.]]
+vonn.storyButton5 = "Huh. Righty-o. Time to roll."
+
 function vonn.displayStoryText(player)
-	local width = 450
-	local height = 250
+	local width = 550
+	local height = 350
 	player.gui.center.clear()
 	local frame = player.gui.center.add{type='frame',name='vonn_story_frame',caption="Von Neumann Story",direction="vertical"}
 	frame.style.width=width
@@ -348,8 +357,12 @@ function vonn.on_gui_click(event)
 		elseif text_box.text == vonn.storyText3 then
 			text_box.text = vonn.storyText4
 			button.caption = vonn.storyButton4
-
+			
 		elseif text_box.text == vonn.storyText4 then
+			text_box.text = vonn.storyText5
+			button.caption = vonn.storyButton5
+
+		elseif text_box.text == vonn.storyText5 then
 			event.element.parent.destroy()
 		end
 	else
