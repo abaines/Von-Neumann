@@ -153,6 +153,21 @@ railbot.spawnRailbot = function(player)
 		surface = player.surface
 		force = player.force
 	end
+
+	local crashSiteGenerators = surface.find_entities_filtered{name="crash-site-generator"}
+	local neededEnergy = 5000000*600*0.999
+	vonn.kprint("#crashSiteGenerators "..#crashSiteGenerators)
+	for _,crashSiteGenerator in pairs(crashSiteGenerators) do
+		local energy = crashSiteGenerator.energy
+		vonn.kprint(energy)
+
+		if energy<neededEnergy then
+			local ratio = energy/neededEnergy*100
+			player.print("Not enough energy to create Railbot: " .. tonumber(string.format("%.3f", ratio)) .. " %")
+			return
+		end
+	end
+
 	local compilatron = surface.create_entity{name="compilatron",position={0,1.1},force=force}
 
 	railbot.spawnBeam(surface,{-19,-19},compilatron)
@@ -167,6 +182,10 @@ railbot.spawnRailbot = function(player)
 	surface.create_trivial_smoke{name="smoke-fast",position=compilatron.position}
 	surface.create_trivial_smoke{name="tank-smoke",position=compilatron.position}
 	surface.create_trivial_smoke{name="turbine-smoke",position=compilatron.position}
+
+	for _,crashSiteGenerator in pairs(crashSiteGenerators) do
+		crashSiteGenerator.energy=crashSiteGenerator.energy-neededEnergy
+	end
 
 	return compilatron
 end
@@ -209,6 +228,7 @@ end
 
 railbot.command = function(player,command)
 	local compilatron = railbot.findRailbot(player)
+	if not ( compilatron and compilatron.valid ) then return end
 
 	if command==nil then
 		player.print("need a command: follow, home, stay")
