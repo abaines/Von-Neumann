@@ -29,9 +29,7 @@ Interesting notes:
 
 -Make railbot construction cost energy
 
--Give Railbot self-destruct
 -Give way to locate Railbot
--Prevent Railbot from attacking
--Respawn cost for Railbot
 -Disable recipes
+-Allow Railbot to deconstruct stuff
 

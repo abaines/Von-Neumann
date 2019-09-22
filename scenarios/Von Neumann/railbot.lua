@@ -247,6 +247,12 @@ railbot.command = function(player,command)
 		log("railbot home " .. player.name)
 		game.print("Railbot is going home")
 		compilatron.set_command{type = defines.command.go_to_location, destination = {0,0}}
+		compilatron.surface.create_entity{
+			name="laser-beam",
+			source=compilatron,
+			target_position={0,0},
+			position={0,0},duration=6
+		}
 
 	elseif string.find(command, "stay") then
 		log("railbot stay " .. player.name)
