@@ -163,7 +163,7 @@ railbot.spawnRailbot = function(player)
 
 		if energy<neededEnergy then
 			local ratio = energy/neededEnergy*100
-			player.print("Not enough energy to create Railbot: " .. tonumber(string.format("%.3f", ratio)) .. " %")
+			player.print("Not enough energy in main reactor core (3GJ) to create Railbot: " .. tonumber(string.format("%.3f", ratio)) .. " %")
 			return
 		end
 	end
