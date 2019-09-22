@@ -216,6 +216,12 @@ railbot.command = function(player,command)
 	elseif string.find(command, "follow") then
 		game.print("Railbot is following " .. player.name)
 		compilatron.set_command{type = defines.command.go_to_location, destination = player.position}
+		compilatron.surface.create_entity{
+			name="laser-beam",
+			source=compilatron,
+			target_position=player.position,
+			position={0,0},duration=6
+		}
 
 	elseif string.find(command, "home") then
 		log("railbot home " .. player.name)
@@ -277,6 +283,30 @@ railbot.commandLine = function(param)
 
 	end
 end
+
+
+railbot.on_entity_died = function(event)
+	local cause = event.cause
+	local entity = event.entity
+
+	if cause and cause.valid and cause.name == "compilatron" and entity.valid and entity.force.name=="enemy" then
+		local surface = cause.surface
+		cause.surface.create_entity{name="atomic-rocket",position=cause.position,target=cause,speed=0.01,max_range=2000}
+		cause.die()
+
+		local crashSiteGenerators = surface.find_entities_filtered{name="crash-site-generator"}
+		vonn.kprint(#crashSiteGenerators)
+		for index,crashSiteGenerator in pairs(crashSiteGenerators) do
+			crashSiteGenerator.energy=0
+		end
+		local playerForce = game.forces["player"]
+		playerForce.print("Railbot exploded causing an EMP wiping out much of the energy storage!")
+	end
+end
+
+script.on_event({
+	defines.events.on_entity_died,
+},railbot.on_entity_died)
 
 
 commands.add_command("railbot", "railbot", railbot.commandLine)
