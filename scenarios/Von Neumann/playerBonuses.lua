@@ -99,7 +99,72 @@ function disableGodResearches()
 		recipe.enabled  = false
 	end
 
+
+	-- "steel-processing"
+	local recipesBasedOnSteel = {
+		["rail"] = true,
+		["train-stop"] = true,
+		["locomotive"] = true,
+		["cargo-wagon"] = true,
+		["engine-unit"] = true,
+	}
+
+	local steelProcessingResearched = playerForce.technologies["steel-processing"].researched
+
+	for recipe_name in pairs(recipesBasedOnSteel) do
+		local recipe = playerForce.recipes[recipe_name]
+		recipe.enabled  = steelProcessingResearched
+	end
+
+
+	--[[
+	local recipesBasedOnAdvancedElectronics = {
+		["logistic-robot"] = true,
+		["logistic-chest-active-provider"] = true,
+		["logistic-chest-buffer"] = true,
+		["logistic-chest-passive-provider"] = true,
+		["logistic-chest-requester"] = true,
+		["logistic-chest-storage"] = true,
+		["roboport"] = true,
+	}
+
+	local advancedElectronicsResearched = playerForce.technologies["advanced-electronics"].researched
+
+	for recipe_name in pairs(recipesBasedOnAdvancedElectronics) do
+		local recipe = playerForce.recipes[recipe_name]
+		recipe.enabled  = advancedElectronicsResearched
+	end
+	]]--
+
+
+	-- "logistic-science-pack"
+	local recipesWaitingForLogisticSciencePack = {
+		["logistic-robot"] = true,
+		["construction-robot"] = true,
+		["wooden-chest"] = true,
+		["iron-chest"] = true,
+		["pipe"] = true,
+		["pipe-to-ground"] = true,
+		["stone-brick"] = true,
+		["repair-pack"] = true,
+		["boiler"] = true,
+		["steam-engine"] = true,
+		["offshore-pump"] = true,
+		["lab"] = true,
+		["radar"] = true,
+	}
+
+	local logisticSciencePackResearched = playerForce.technologies["logistic-science-pack"].researched
+
+	for recipe_name in pairs(recipesWaitingForLogisticSciencePack) do
+		local recipe = playerForce.recipes[recipe_name]
+		recipe.enabled  = logisticSciencePackResearched
+	end
 end
+
+script.on_event({
+	defines.events.on_research_finished,
+},disableGodResearches)
 
 
 function apply_bonuses()
