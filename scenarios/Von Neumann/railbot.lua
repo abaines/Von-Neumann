@@ -65,41 +65,7 @@ railbot.removeFromBuffers = function(surface,item,count)
 	end
 end
 
-railbot.findTreesMarkedForDecon = function(compilatron)
-	if not ( compilatron and compilatron.valid ) then return {} end
 
-	local trees = compilatron.surface.find_entities_filtered{
-		position=compilatron.position,
-		radius=60,
-		type="tree"
-	}
-
-	local deconTrees = {}
-
-	for index,tree in pairs(trees) do
-		if tree.to_be_deconstructed(compilatron.force) then
-			table.insert(deconTrees, tree)
-		end
-	end
-
-	function sortTrees(a,b)
-		return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
-	end
-
-	table.sort(deconTrees,sortTrees)
-
-	return deconTrees
-end
-
-railbot.burnTrees = function(compilatron)
-	if not ( compilatron and compilatron.valid ) then return end
-
-	local trees = railbot.findTreesMarkedForDecon(compilatron)
-
-	for index,tree in pairs(trees) do
-		--vonn.kprint(game.tick .. "  " .. railbot.manhattanDistanceEntities(compilatron,tree))
-	end
-end
 
 railbot.ghostBehavior = function(event)
 	local ghosts, compilatron = railbot.searchGhost()
@@ -140,8 +106,6 @@ railbot.ghostBehavior = function(event)
 			end
 		end
 	end
-
-	railbot.burnTrees(compilatron)
 end
 
 railbot.bufferChestAvailableItems = function(surface)
@@ -172,6 +136,64 @@ railbot.on_tick = function(event)
 end
 
 script.on_nth_tick(8,railbot.on_tick)
+
+
+railbot.findTreesMarkedForDecon = function(compilatron)
+	if not ( compilatron and compilatron.valid ) then return {} end
+
+	local trees = compilatron.surface.find_entities_filtered{
+		position=compilatron.position,
+		radius=60,
+		type="tree"
+	}
+
+	local deconTrees = {}
+
+	for index,tree in pairs(trees) do
+		if tree.to_be_deconstructed(compilatron.force) then
+			table.insert(deconTrees, tree)
+		end
+	end
+
+	function sortTrees(a,b)
+		return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
+	end
+
+	table.sort(deconTrees,sortTrees)
+
+	return deconTrees
+end
+
+railbot.burnTrees = function(compilatron)
+	if not ( compilatron and compilatron.valid ) then return end
+
+	local trees = railbot.findTreesMarkedForDecon(compilatron)
+
+	for index,tree in pairs(trees) do
+		compilatron.surface.create_entity{
+			name="fire-flame",
+			position=tree.position,
+			initial_ground_flame_count=12
+		}
+		compilatron.surface.create_entity{
+			name="laser-beam",
+			source=compilatron,
+			target_position=tree.position,
+			position={0,0},duration=20
+		}
+		tree.damage(1,compilatron.force,"laser")
+		return
+	end
+end
+
+railbot.burnTreeBehavior = function(event)
+	local compilatron = railbot.findRailbot()
+	if not ( compilatron and compilatron.valid ) then return end
+
+	railbot.burnTrees(compilatron)
+end
+
+script.on_nth_tick(20,railbot.burnTreeBehavior)
 
 
 railbot.spawnBeam = function(surface,target_position,compilatron)
