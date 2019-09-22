@@ -320,7 +320,7 @@ railbot.on_entity_died = function(event)
 			crashSiteGenerator.energy=0
 		end
 		local playerForce = game.forces["player"]
-		playerForce.print("Railbot exploded causing an EMP wiping out much of the energy storage!")
+		playerForce.print("Railbot suffered critical reactor damage and exploded, resulting in an EMP that has wiped out the main reactor's energy storage!")
 	end
 end
 
