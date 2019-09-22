@@ -31,5 +31,4 @@ Interesting notes:
 
 -Give way to locate Railbot
 -Disable recipes
--Allow Railbot to deconstruct stuff
 
