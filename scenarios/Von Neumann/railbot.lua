@@ -65,6 +65,42 @@ railbot.removeFromBuffers = function(surface,item,count)
 	end
 end
 
+railbot.findTreesMarkedForDecon = function(compilatron)
+	if not ( compilatron and compilatron.valid ) then return {} end
+
+	local trees = compilatron.surface.find_entities_filtered{
+		position=compilatron.position,
+		radius=60,
+		type="tree"
+	}
+
+	local deconTrees = {}
+
+	for index,tree in pairs(trees) do
+		if tree.to_be_deconstructed(compilatron.force) then
+			table.insert(deconTrees, tree)
+		end
+	end
+
+	function sortTrees(a,b)
+		return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
+	end
+
+	table.sort(deconTrees,sortTrees)
+
+	return deconTrees
+end
+
+railbot.burnTrees = function(compilatron)
+	if not ( compilatron and compilatron.valid ) then return end
+
+	local trees = railbot.findTreesMarkedForDecon(compilatron)
+
+	for index,tree in pairs(trees) do
+		--vonn.kprint(game.tick .. "  " .. railbot.manhattanDistanceEntities(compilatron,tree))
+	end
+end
+
 railbot.ghostBehavior = function(event)
 	local ghosts, compilatron = railbot.searchGhost()
 
@@ -104,6 +140,8 @@ railbot.ghostBehavior = function(event)
 			end
 		end
 	end
+
+	railbot.burnTrees(compilatron)
 end
 
 railbot.bufferChestAvailableItems = function(surface)
