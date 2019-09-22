@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.19
+Date: 2019.09.21
+  Changes:
+    - Update the intro dialogues
+    - Railbot can burn trees marked for deconstruction
+    - Adjust English in few places
+    - Require energy to spawn Railbot
+    - Self-destructing Railbot
+    - Hopefully make early game a like more clear -- less overwhelming
+---------------------------------------------------------------------------------------------------
 Version: 0.1.18
 Date: 2019.09.21
   Changes:
