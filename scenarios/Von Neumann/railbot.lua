@@ -173,15 +173,15 @@ railbot.burnTrees = function(compilatron)
 		compilatron.surface.create_entity{
 			name="fire-flame",
 			position=tree.position,
-			initial_ground_flame_count=12
+			initial_ground_flame_count=254
 		}
 		compilatron.surface.create_entity{
 			name="laser-beam",
 			source=compilatron,
 			target_position=tree.position,
-			position={0,0},duration=20
+			position={0,0},duration=60
 		}
-		tree.damage(1,compilatron.force,"laser")
+		tree.damage(15,compilatron.force,"laser")
 		return
 	end
 end
@@ -193,7 +193,7 @@ railbot.burnTreeBehavior = function(event)
 	railbot.burnTrees(compilatron)
 end
 
-script.on_nth_tick(20,railbot.burnTreeBehavior)
+script.on_nth_tick(60,railbot.burnTreeBehavior)
 
 
 railbot.spawnBeam = function(surface,target_position,compilatron)
