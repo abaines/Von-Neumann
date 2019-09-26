@@ -38,8 +38,12 @@ for i=1,#animations do
 	for j=1,#animations[i].running_with_gun.layers do
 		animations[i].running_with_gun.layers[j].frame_count=1
 		animations[i].running_with_gun.layers[j].hr_version.frame_count=1
+		log(animations[i].running_with_gun.layers[j].hr_version.scale)
+		log(animations[i].running_with_gun.layers[j].hr_version.filename)
 	end
 end
+
+log("--------------------------------------------------------------------------------")
 
 --layers[1].frame_count = 1
 --layers[2].frame_count = 1
