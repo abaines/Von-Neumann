@@ -171,3 +171,10 @@ animations[1].running_sound_animation_positions = {1}
 		}
 	}
 ]]--
+
+
+local railbot = table.deepcopy(data.raw["unit"]["compilatron"])
+railbot.name = "railbot"
+data:extend{railbot}
+log(serpent.block(railbot))
+
