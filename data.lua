@@ -5,12 +5,37 @@ log(serpent.block(defender.in_motion))
 
 local character = data.raw["character"]["character"]
 
-local animations = character.animations
-log(serpent.block(animations))
+log(serpent.block(character.animations))
+local animations = {{}}
+character.animations = animations
 
 animations[1].idle = defender.idle
 animations[1].idle_with_gun = defender.idle
 animations[1].mining_with_tool = defender.idle
+animations[1].running = defender.in_motion
+
+animations[1].running_with_gun = { layers = { running_gun = {} } }
+
+local running_gun = animations[1].running_with_gun.layers.running_gun
+
+running_gun.direction_count = 18
+running_gun.height = 33--59
+running_gun.width = 32--56
+running_gun.frame_count = 1
+running_gun.stripes =
+    {
+      {
+        filename = "__base__/graphics/entity/defender-robot/defender-robot.png",
+        width_in_frames = 16,
+        height_in_frames = 1
+      },
+      {
+        filename = "__base__/graphics/entity/defender-robot/defender-robot.png",
+        width_in_frames = 16,
+        height_in_frames = 1
+      }
+    }
+
 
 --[[
 3 north
@@ -29,10 +54,11 @@ animations[1].running_with_gun.direction_count = 18
 ]]--
 
 
-local layers = animations[1].running_with_gun.layers
-log("--------------------------------------------------------------------------------")
-log(serpent.block(layers))
-log("--------------------------------------------------------------------------------")
+--local layers = animations[1].running_with_gun.layers
+--log("--------------------------------------------------------------------------------")
+--log(#layers)
+--log(serpent.block(layers))
+--log("--------------------------------------------------------------------------------")
 
 for i=1,#animations do
 	for j=1,#animations[i].running_with_gun.layers do
@@ -57,6 +83,7 @@ log("---------------------------------------------------------------------------
 --layers[4].hr_version.frame_count = 1
 --layers[5].hr_version.frame_count = 1
 
+--[[
 local hr_version = layers[1].hr_version
 log("--------------------------------------------------------------------------------")
 log(serpent.block(hr_version))
@@ -160,7 +187,7 @@ animations[1].running_with_gun = {
 }
 ]]--
 
-animations[1].running_sound_animation_positions = {1}
+--animations[1].running_sound_animation_positions = {1}
 
 --[[
 	data.raw["character"]["character"].animations = { {
@@ -171,6 +198,12 @@ animations[1].running_sound_animation_positions = {1}
 		}
 	}
 ]]--
+
+--]]--
+
+log("--------------------------------------------------------------------------------")
+log(serpent.block(character.animations))
+log("--------------------------------------------------------------------------------")
 
 
 local railbot = table.deepcopy(data.raw["unit"]["compilatron"])
