@@ -1,11 +1,19 @@
 data.raw["character"]["character"].collision_box = { { 0, 0 }, { 0, 0 } }
 
 local defender = table.deepcopy(data.raw["combat-robot"]["defender"])
+log("--------------------------------------------------------------------------------")
+log("serpent.block(defender.in_motion)")
 log(serpent.block(defender.in_motion))
+log("--------------------------------------------------------------------------------")
+local defender_for_logging = table.deepcopy(defender.in_motion)
+defender_for_logging.layers[1].hr_version = nil
+defender_for_logging.layers[2].hr_version = nil
+log(serpent.block(defender_for_logging))
+log("--------------------------------------------------------------------------------")
 
 local character = data.raw["character"]["character"]
 
-log(serpent.block(character.animations))
+--log(serpent.block(character.animations))
 local animations = {{}}
 character.animations = animations
 
@@ -13,8 +21,8 @@ animations[1].idle = defender.idle
 animations[1].idle_with_gun = defender.idle
 animations[1].mining_with_tool = defender.idle
 animations[1].running = defender.in_motion
-
 animations[1].running_with_gun = { layers = { running_gun = {} } }
+
 
 local running_gun = animations[1].running_with_gun.layers.running_gun
 
@@ -22,19 +30,13 @@ running_gun.direction_count = 18
 running_gun.height = 33--59
 running_gun.width = 32--56
 running_gun.frame_count = 1
-running_gun.stripes =
-    {
-      {
-        filename = "__base__/graphics/entity/defender-robot/defender-robot.png",
-        width_in_frames = 16,
-        height_in_frames = 1
-      },
-      {
-        filename = "__base__/graphics/entity/defender-robot/defender-robot.png",
-        width_in_frames = 16,
-        height_in_frames = 1
-      }
-    }
+--running_gun.stripes = util.multiplystripes(2,
+--	{{
+--		filename = "__base__/graphics/entity/defender-robot/defender-robot.png",
+--		width_in_frames = 16,
+--		height_in_frames = 1
+--	}}
+--)
 
 
 --[[
