@@ -1,15 +1,16 @@
 data.raw["character"]["character"].collision_box = { { 0, 0 }, { 0, 0 } }
 
 local defender = table.deepcopy(data.raw["combat-robot"]["defender"])
-log("--------------------------------------------------------------------------------")
-log("serpent.block(defender.in_motion)")
-log(serpent.block(defender.in_motion))
-log("--------------------------------------------------------------------------------")
+log("------------------------------ defender.idle ------------------------------")
+local defender_for_logging = table.deepcopy(defender.idle)
+defender_for_logging.layers[1].hr_version = nil
+defender_for_logging.layers[2].hr_version = nil
+log(serpent.block(defender_for_logging))
+log("------------------------------ defender.in_motion ------------------------------")
 local defender_for_logging = table.deepcopy(defender.in_motion)
 defender_for_logging.layers[1].hr_version = nil
 defender_for_logging.layers[2].hr_version = nil
 log(serpent.block(defender_for_logging))
-log("--------------------------------------------------------------------------------")
 
 local character = data.raw["character"]["character"]
 
@@ -20,16 +21,47 @@ character.animations = animations
 animations[1].idle = defender.idle
 animations[1].idle_with_gun = defender.idle
 animations[1].mining_with_tool = defender.idle
-animations[1].running = defender.in_motion
-animations[1].running_with_gun = { layers = { running_gun = {} } }
+animations[1].running = table.deepcopy(defender.in_motion)
+animations[1].running_with_gun = table.deepcopy(defender.in_motion)
 
 
-local running_gun = animations[1].running_with_gun.layers.running_gun
+log("------------------------------ animations[1].running_with_gun.layers ------------------------------")
+local layers = animations[1].running_with_gun.layers
+for _,layer in pairs(layers) do
+	layer.direction_count = 18
+	layer.hr_version = nil
+	layer.y = nil
+	layer.line_length = nil
+	layer.scale = 0.5
+	layer.animation_speed = 60
 
-running_gun.direction_count = 18
-running_gun.height = 33--59
-running_gun.width = 32--56
-running_gun.frame_count = 1
+	local filename = tostring(layer.filename)
+
+	if string.find(filename,"defender-robot.png",0,true) then
+		layer.filename = "__vonNeumann__/graphics/hr_character_running_gun.png"
+		layer.height = 59
+		layer.width = 56
+
+	elseif string.find(filename,"defender-robot-mask.png",0,true) then
+		layer.filename = "__vonNeumann__/graphics/hr_character_running_gun_mask.png"
+		layer.height = 21
+		layer.width = 28
+
+	else
+		log(filename)
+		error(filename)
+	end
+
+	log(serpent.block(layer))
+end
+
+
+-- 21 by 28
+
+--running_gun.direction_count = 18
+--running_gun.height = 33--59
+--running_gun.width = 32--56
+--running_gun.frame_count = 1
 --running_gun.stripes = util.multiplystripes(2,
 --	{{
 --		filename = "__base__/graphics/entity/defender-robot/defender-robot.png",
@@ -62,6 +94,7 @@ animations[1].running_with_gun.direction_count = 18
 --log(serpent.block(layers))
 --log("--------------------------------------------------------------------------------")
 
+--[[
 for i=1,#animations do
 	for j=1,#animations[i].running_with_gun.layers do
 		animations[i].running_with_gun.layers[j].frame_count=1
@@ -70,8 +103,9 @@ for i=1,#animations do
 		log(animations[i].running_with_gun.layers[j].hr_version.filename)
 	end
 end
+]]--
 
-log("--------------------------------------------------------------------------------")
+--log("--------------------------------------------------------------------------------")
 
 --layers[1].frame_count = 1
 --layers[2].frame_count = 1
@@ -203,13 +237,13 @@ animations[1].running_with_gun = {
 
 --]]--
 
-log("--------------------------------------------------------------------------------")
-log(serpent.block(character.animations))
-log("--------------------------------------------------------------------------------")
+--log("--------------------------------------------------------------------------------")
+--log(serpent.block(character.animations))
+--log("--------------------------------------------------------------------------------")
 
 
 local railbot = table.deepcopy(data.raw["unit"]["compilatron"])
 railbot.name = "railbot"
 data:extend{railbot}
-log(serpent.block(railbot))
+--log(serpent.block(railbot))
 
