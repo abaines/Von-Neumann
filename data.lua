@@ -77,6 +77,14 @@ end
 data:extend{character}
 
 
+log(serpent.block( data.raw["utility-constants"].default.zoom_to_world_can_use_nightvision ))
+log(serpent.block( data.raw["utility-constants"].default.zoom_to_world_effect_strength ))
+log(serpent.block( data.raw["utility-constants"].default.zoom_to_world_darkness_multiplier ))
+
+data.raw["utility-constants"].default.zoom_to_world_can_use_nightvision = true
+data.raw["utility-constants"].default.zoom_to_world_effect_strength = 0.05
+data.raw["utility-constants"].default.zoom_to_world_darkness_multiplier = 0.5
+
 
 -- railbot !
 local railbot = table.deepcopy(data.raw["unit"]["compilatron"])
