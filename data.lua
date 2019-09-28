@@ -221,7 +221,8 @@ local vonnMapPreset = {
 		height = 800, -- like ribbon-world [25*32]
 		terrain_segmentation = 0.5, -- like rail-world
 		water = 1.5, -- like rail-world
-		autoplace_controls = rail_world_autoplace_controls -- like rail-world
+		autoplace_controls = rail_world_autoplace_controls, -- like rail-world
+		seed = 1687102566,
 	},
 	order = 'v',
 	advanced_settings = {
@@ -235,6 +236,7 @@ local vonnMapPreset = {
 			max_expansion_cooldown = 40 * 3600, -- 60*3600
 		}
 	},
+	seed = 1687102566,
 }
 
 mapGenPresetsDefault["Vonn"] = vonnMapPreset
