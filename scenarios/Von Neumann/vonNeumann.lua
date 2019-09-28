@@ -389,19 +389,21 @@ function vonn.newPlayer(event)
 
 	for i, player in pairs(game.players) do
 		if player.connected and player.character then
+			local vonnCharacter = player.surface.create_entity{name="vonn",position=player.character.position,force=player.force}
+			vonnCharacter.destructible = false
 			player.character.destroy()
-			player.character = nil
+			player.character = vonnCharacter
 			player.spectator = true
 			vonn.displayStoryText(player)
 			vonn.addPlayerNeedsZoom(player)
 			rendering.draw_light{
 				sprite="utility/light_medium",
-				target={35,0},
+				target=player.character,
 				surface=player.surface,
 				forces={player.force},
 				scale = 30,
-				intensity = 100,
-				--color = "orange",
+				intensity = 1,
+				color = {r=1,g=0.4},
 				players = {player},
 			}
 		end
