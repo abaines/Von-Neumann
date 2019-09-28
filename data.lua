@@ -223,6 +223,12 @@ local mapGenPresetsDefault = data.raw["map-gen-presets"].default
 
 local rail_world_autoplace_controls = table.deepcopy( mapGenPresetsDefault["rail-world"].basic_settings.autoplace_controls )
 
+rail_world_autoplace_controls.trees = {
+	frequency = 1,
+	richness = 1,
+	size = 2
+}
+
 local vonnMapPreset = {
 	basic_settings = {
 		height = 800, -- like ribbon-world [25*32]

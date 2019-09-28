@@ -177,6 +177,7 @@ function vonn.spawnCrashSite()
 	end
 	global.donecrashsite=true
 
+	log(serpent.block( game.surfaces["nauvis"].map_gen_settings ))
 	log("map_gen_settings.seed: " .. game.surfaces["nauvis"].map_gen_settings.seed)
 
 	vonn.clearStartingArea(game.surfaces["nauvis"],{{-9, -9}, {9, 9}})
