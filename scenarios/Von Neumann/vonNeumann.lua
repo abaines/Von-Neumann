@@ -307,9 +307,9 @@ Luckily your auto repair mechanisms have stabilized the situation and set up a b
 Looking further afield, your scanners reveal nearby deposits of some basic resources. Copper, iron, coal, stone, and water. You know, the basic stuff. More advanced resources like oil products and nuclear fuel are going to be a bit harder to find however.]]
 vonn.storyButton4 = "Whelp, I guess I better get started...."
 
-vonn.storyText5 = [[One last thing. Your personal debugging Compilatron has detected the damage from the crash and booted up to ensure that you are in tip top shape. It has fixed up your computer core damage and brought you back online. Normally a Compilatron would power back down after repairs are complete but in this case, your ship is ever so slightly beyond repairs that it is capable of and now it's stuck in do-while loop. On the bright side, you can issue orders and utilize it to aid in building up your new base and executing tasks that are beyond your other robots range and capabilities.
+vonn.storyText5 = [[One last thing. Your personal debugging Railbot has detected the damage from the crash and booted up to ensure that you are in tip top shape. It has fixed up your computer core damage and brought you back online. Normally a Railbot would power back down after repairs are complete but in this case, your ship is ever so slightly beyond repairs that it is capable of and now it's stuck in do-while loop. On the bright side, you can issue orders and utilize it to aid in building up your new base and executing tasks that are beyond your other robots range and capabilities.
 
-Do be careful however. These older model Compilatrons are powerful but their nuclear reactors are not especially well shielded against damage and are likely to go supercritical if jostled. Nuclear explosions do also tend to result in EMP blasts which are not super great for sensitive electronics, such as yourself and your equipment.]]
+Do be careful however. These older model Railbots are powerful but their nuclear reactors are not especially well shielded against damage and are likely to go supercritical if jostled. Nuclear explosions do also tend to result in EMP blasts which are not super great for sensitive electronics, such as yourself and your equipment.]]
 vonn.storyButton5 = "Huh. Righty-o. Time to roll."
 
 function vonn.displayStoryText(player)

@@ -19,16 +19,16 @@ railbot.allowedGhostNames = {
 }
 
 railbot.searchGhost = function()
-	local compilatron = railbot.findRailbot()
-	if not ( compilatron and compilatron.valid ) then return end
+	local railbotUnit = railbot.findRailbot()
+	if not ( railbotUnit and railbotUnit.valid ) then return end
 
-	local ghosts = compilatron.surface.find_entities_filtered{
-		position=compilatron.position,
+	local ghosts = railbotUnit.surface.find_entities_filtered{
+		position=railbotUnit.position,
 		radius=60,
 		ghost_name=railbot.allowedGhostNames
 	}
 
-	return ghosts, compilatron
+	return ghosts, railbotUnit
 end
 
 railbot.manhattanDistanceEntities = function(entityA, entityB)
@@ -68,14 +68,14 @@ end
 
 
 railbot.ghostBehavior = function(event)
-	local ghosts, compilatron = railbot.searchGhost()
+	local ghosts, railbotUnit = railbot.searchGhost()
 
-	if ghosts and #ghosts>0 and compilatron and compilatron.valid then
+	if ghosts and #ghosts>0 and railbotUnit and railbotUnit.valid then
 		table.sort(ghosts,function(a,b)
-			return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
+			return railbot.manhattanDistanceEntities(railbotUnit,a)<railbot.manhattanDistanceEntities(railbotUnit,b)
 		end)
 
-		local surface = compilatron.surface
+		local surface = railbotUnit.surface
 
 		local itemsAvailable = railbot.bufferChestAvailableItems(surface)
 
@@ -94,7 +94,7 @@ railbot.ghostBehavior = function(event)
 				-- TODO: lasers!
 				surface.create_entity{
 					name="laser-beam",
-					source=compilatron,
+					source=railbotUnit,
 					target_position=position,
 					position={0,0},duration=60*4.5
 				}
@@ -138,11 +138,11 @@ end
 script.on_nth_tick(8,railbot.on_tick)
 
 
-railbot.findTreesMarkedForDecon = function(compilatron)
-	if not ( compilatron and compilatron.valid ) then return {} end
+railbot.findTreesMarkedForDecon = function(railbotUnit)
+	if not ( railbotUnit and railbotUnit.valid ) then return {} end
 
-	local trees = compilatron.surface.find_entities_filtered{
-		position=compilatron.position,
+	local trees = railbotUnit.surface.find_entities_filtered{
+		position=railbotUnit.position,
 		radius=60,
 		type="tree"
 	}
@@ -150,13 +150,13 @@ railbot.findTreesMarkedForDecon = function(compilatron)
 	local deconTrees = {}
 
 	for index,tree in pairs(trees) do
-		if tree.to_be_deconstructed(compilatron.force) then
+		if tree.to_be_deconstructed(railbotUnit.force) then
 			table.insert(deconTrees, tree)
 		end
 	end
 
 	function sortTrees(a,b)
-		return railbot.manhattanDistanceEntities(compilatron,a)<railbot.manhattanDistanceEntities(compilatron,b)
+		return railbot.manhattanDistanceEntities(railbotUnit,a)<railbot.manhattanDistanceEntities(railbotUnit,b)
 	end
 
 	table.sort(deconTrees,sortTrees)
@@ -164,42 +164,42 @@ railbot.findTreesMarkedForDecon = function(compilatron)
 	return deconTrees
 end
 
-railbot.burnTrees = function(compilatron)
-	if not ( compilatron and compilatron.valid ) then return end
+railbot.burnTrees = function(railbotUnit)
+	if not ( railbotUnit and railbotUnit.valid ) then return end
 
-	local trees = railbot.findTreesMarkedForDecon(compilatron)
+	local trees = railbot.findTreesMarkedForDecon(railbotUnit)
 
 	for index,tree in pairs(trees) do
-		compilatron.surface.create_entity{
+		railbotUnit.surface.create_entity{
 			name="fire-flame",
 			position=tree.position,
 			initial_ground_flame_count=85
 		}
-		compilatron.surface.create_entity{
+		railbotUnit.surface.create_entity{
 			name="laser-beam",
-			source=compilatron,
+			source=railbotUnit,
 			target_position=tree.position,
 			position={0,0},duration=20
 		}
-		tree.damage(5,compilatron.force,"explosion")
+		tree.damage(5,railbotUnit.force,"explosion")
 		return
 	end
 end
 
 railbot.burnTreeBehavior = function(event)
-	local compilatron = railbot.findRailbot()
-	if not ( compilatron and compilatron.valid ) then return end
+	local railbotUnit = railbot.findRailbot()
+	if not ( railbotUnit and railbotUnit.valid ) then return end
 
-	railbot.burnTrees(compilatron)
+	railbot.burnTrees(railbotUnit)
 end
 
 script.on_nth_tick(20,railbot.burnTreeBehavior)
 
 
-railbot.spawnBeam = function(surface,target_position,compilatron)
+railbot.spawnBeam = function(surface,target_position,railbotUnit)
 	return surface.create_entity{
 		name="electric-beam",
-		source=compilatron,
+		source=railbotUnit,
 		target_position=target_position,
 		position={0,0},duration=60*4.5
 	}
@@ -228,26 +228,35 @@ railbot.spawnRailbot = function(player)
 		end
 	end
 
-	local compilatron = surface.create_entity{name="railbot",position={0,1.1},force=force}
+	local railbotUnit = surface.create_entity{name="railbot",position={0,1.1},force=force}
 
-	railbot.spawnBeam(surface,{-19,-19},compilatron)
-	railbot.spawnBeam(surface,{ 19,-19},compilatron)
-	railbot.spawnBeam(surface,{-19, 19},compilatron)
-	railbot.spawnBeam(surface,{ 19, 19},compilatron)
+	rendering.draw_light{
+		sprite="utility/light_medium",
+		target=railbotUnit,
+		surface=railbotUnit.surface,
+		forces={railbotUnit.force},
+		scale = 40,
+		color = {r=0.8,g=0.8,b=1},
+	}
 
-	surface.create_trivial_smoke{name="fire-smoke",position=compilatron.position}
-	surface.create_trivial_smoke{name="artillery-smoke",position=compilatron.position}
-	surface.create_trivial_smoke{name="nuclear-smoke",position=compilatron.position}
-	surface.create_trivial_smoke{name="smoke-explosion-particle",position=compilatron.position}
-	surface.create_trivial_smoke{name="smoke-fast",position=compilatron.position}
-	surface.create_trivial_smoke{name="tank-smoke",position=compilatron.position}
-	surface.create_trivial_smoke{name="turbine-smoke",position=compilatron.position}
+	railbot.spawnBeam(surface,{-19,-19},railbotUnit)
+	railbot.spawnBeam(surface,{ 19,-19},railbotUnit)
+	railbot.spawnBeam(surface,{-19, 19},railbotUnit)
+	railbot.spawnBeam(surface,{ 19, 19},railbotUnit)
+
+	surface.create_trivial_smoke{name="fire-smoke",position=railbotUnit.position}
+	surface.create_trivial_smoke{name="artillery-smoke",position=railbotUnit.position}
+	surface.create_trivial_smoke{name="nuclear-smoke",position=railbotUnit.position}
+	surface.create_trivial_smoke{name="smoke-explosion-particle",position=railbotUnit.position}
+	surface.create_trivial_smoke{name="smoke-fast",position=railbotUnit.position}
+	surface.create_trivial_smoke{name="tank-smoke",position=railbotUnit.position}
+	surface.create_trivial_smoke{name="turbine-smoke",position=railbotUnit.position}
 
 	for _,crashSiteGenerator in pairs(crashSiteGenerators) do
 		crashSiteGenerator.energy=crashSiteGenerator.energy-neededEnergy
 	end
 
-	return compilatron
+	return railbotUnit
 end
 
 railbot.findRailbot = function(player)
@@ -255,15 +264,15 @@ railbot.findRailbot = function(player)
 	if player and player.valid then
 		surface = player.surface
 	end
-	local compilatrons = surface.find_entities_filtered({force = "player", name="compilatron"})
+	local railbotUnits = surface.find_entities_filtered({force = "player", name="railbot"})
 
-	--log("#compilatrons" .. #compilatrons)
+	--log("#railbotUnits" .. #railbotUnits)
 
-	if #compilatrons>=1 then
-		-- TODO deal with bonus compilatrons?
-		return compilatrons[1]
+	if #railbotUnits>=1 then
+		-- TODO deal with bonus railbotUnits?
+		return railbotUnits[1]
 
-	elseif #compilatrons<1 and player and player.valid then
+	elseif #railbotUnits<1 and player and player.valid then
 		return railbot.spawnRailbot(player)
 
 	end
@@ -287,18 +296,18 @@ railbot.addGui = function(player)
 end
 
 railbot.command = function(player,command)
-	local compilatron = railbot.findRailbot(player)
-	if not ( compilatron and compilatron.valid ) then return end
+	local railbotUnit = railbot.findRailbot(player)
+	if not ( railbotUnit and railbotUnit.valid ) then return end
 
 	if command==nil then
 		player.print("need a command: follow, home, stay")
 
 	elseif string.find(command, "follow") then
 		game.print("Railbot is following " .. player.name)
-		compilatron.set_command{type = defines.command.go_to_location, destination = player.position}
-		compilatron.surface.create_entity{
+		railbotUnit.set_command{type = defines.command.go_to_location, destination = player.position}
+		railbotUnit.surface.create_entity{
 			name="laser-beam",
-			source=compilatron,
+			source=railbotUnit,
 			target_position=player.position,
 			position={0,0},duration=6
 		}
@@ -306,10 +315,10 @@ railbot.command = function(player,command)
 	elseif string.find(command, "home") then
 		log("railbot home " .. player.name)
 		game.print("Railbot is going home")
-		compilatron.set_command{type = defines.command.go_to_location, destination = {0,0}}
-		compilatron.surface.create_entity{
+		railbotUnit.set_command{type = defines.command.go_to_location, destination = {0,0}}
+		railbotUnit.surface.create_entity{
 			name="laser-beam",
-			source=compilatron,
+			source=railbotUnit,
 			target_position={0,0},
 			position={0,0},duration=6
 		}
@@ -317,7 +326,7 @@ railbot.command = function(player,command)
 	elseif string.find(command, "stay") then
 		log("railbot stay " .. player.name)
 		game.print("Railbot is staying here")
-		compilatron.set_command{type = defines.command.go_to_location, destination = compilatron.position}
+		railbotUnit.set_command{type = defines.command.go_to_location, destination = railbotUnit.position}
 
 	end
 end
@@ -375,7 +384,7 @@ railbot.on_entity_died = function(event)
 	local cause = event.cause
 	local entity = event.entity
 
-	if cause and cause.valid and cause.name == "compilatron" and entity.valid and entity.force.name=="enemy" then
+	if cause and cause.valid and cause.name == "railbot" and entity.valid and entity.force.name=="enemy" then
 		local surface = cause.surface
 		cause.surface.create_entity{name="atomic-rocket",position=cause.position,target=cause,speed=0.01,max_range=2000}
 		cause.die()
