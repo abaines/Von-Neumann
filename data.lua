@@ -88,7 +88,7 @@ end
 ---------------------------------------------------------------------------------------------------
 
 
-log(serpent.block(character.light))
+--log(serpent.block(character.light))
 
 for _,light in pairs(character.light) do
 	light.intensity = 1-((1 - light.intensity)/2)
@@ -119,7 +119,7 @@ character.light = {
 	size = 300,
 }
 
-log(serpent.block(character.light))
+--log(serpent.block(character.light))
 
 
 ---------------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ data:extend{vonnCorpse}
 local logCharacter = table.deepcopy(character)
 logCharacter.animations = nil
 logCharacter.footstep_particle_triggers = nil
-log(serpent.block(logCharacter))
+--log(serpent.block(logCharacter))
 
 
 ---------------------------------------------------------------------------------------------------

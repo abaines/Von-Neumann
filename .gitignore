@@ -12,6 +12,7 @@
 # the license
 !/license.md
 
+/scenarios/Von Neumann/new *.txt
 
 # Compiled Lua sources
 luac.out
