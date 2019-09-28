@@ -155,6 +155,10 @@ function disableGodResearches()
 	}
 
 	local logisticSciencePackResearched = playerForce.technologies["logistic-science-pack"].researched
+	or playerForce.technologies["automation"].researched
+	or playerForce.technologies["logistics"].researched
+	or playerForce.technologies["steel-processing"].researched
+	or playerForce.technologies["electronics"].researched
 
 	for recipe_name in pairs(recipesWaitingForLogisticSciencePack) do
 		local recipe = playerForce.recipes[recipe_name]

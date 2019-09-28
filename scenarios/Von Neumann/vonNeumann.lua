@@ -97,8 +97,8 @@ function vonn.spillItemsRandomly(surface)
 		['burner-mining-drill']=4,
 		['stone-furnace']=4,
 
-		['burner-inserter']=4,
-		['inserter']=4,
+		['burner-inserter']=8,
+		['inserter']=8,
 		['long-handed-inserter']=1,
 		['transport-belt']=10,
 
