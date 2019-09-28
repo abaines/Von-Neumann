@@ -216,20 +216,24 @@ local mapGenPresetsDefault = data.raw["map-gen-presets"].default
 
 local vonnMapPreset = {
 	basic_settings = {
-		height = 800
+		height = 800, -- like ribbon-world
+		terrain_segmentation = 0.5, -- like rail-world
+		water = 1.5, -- like rail-world
 	},
 	order = 'v',
 	advanced_settings = {
 		difficulty_settings  = { research_queue_setting  = "always" },
 		enemy_evolution = {
-			time_factor = 0.000002,
-			pollution_factor = 0.0000012,
+			time_factor = 0.000002, -- like rail-world
+			pollution_factor = 0.0000012, -- like death-world
 		},
+		enemy_expansion = {
+			min_expansion_cooldown = 30 * 3600, -- 4*3600
+			max_expansion_cooldown = 40 * 3600, -- 60*3600
+		}
 	},
 }
 
 mapGenPresetsDefault["Vonn"] = vonnMapPreset
-
-
-log(serpent.block(mapGenPresetsDefault))
+log(serpent.block( mapGenPresetsDefault["Vonn"] ))
 
