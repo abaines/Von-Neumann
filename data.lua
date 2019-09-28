@@ -23,6 +23,7 @@ character.icon = "__base__/graphics/icons/defender.png"
 character.running_speed = 0.7
 character.distance_per_frame = 0.7
 character.tool_attack_result = {type="direct"}
+character.character_corpse = "vonn-corpse"
 
 
 -- flying (no collision box)
@@ -92,6 +93,27 @@ end
 ]]--
 data:extend{character}
 
+
+-- vonn corpse !
+local vonnCorpse = table.deepcopy(data.raw["character-corpse"]["character-corpse"])
+vonnCorpse.name = "vonn-corpse"
+vonnCorpse.picture = nil
+vonnCorpse.pictures = nil
+vonnCorpse.pictures = {
+	{
+		filename = "__base__/graphics/entity/remnants/hr-medium-remnants.png",
+		width=236,
+		height=246,
+	}
+}
+vonnCorpse.armor_picture_mapping = {}
+vonnCorpse.icon = "__base__/graphics/icons/defender.png"
+vonnCorpse.selection_box = {{-3, -3}, {3, 3}}
+data:extend{vonnCorpse}
+--log(serpent.block(data.raw["character-corpse"]["character-corpse"]))
+
+
+
 local logCharacter = table.deepcopy(character)
 logCharacter.animations = nil
 logCharacter.footstep_particle_triggers = nil
@@ -107,5 +129,24 @@ log(serpent.block(logCharacter))
 -- railbot !
 local railbot = table.deepcopy(data.raw["unit"]["compilatron"])
 railbot.name = "railbot"
+railbot.max_health = 250
+railbot.healing_per_tick = 1.0/60.0
+railbot.map_color.a = 0.5
+railbot.collision_box = { { -0.01, -0.01 }, { 0.01, 0.01 } }
+railbot.attack_parameters = {
+	type="projectile",
+	range=0,
+	cooldown=600,
+	ammo_category = "melee",
+	ammo_type = {
+		category = "melee",
+	},
+	animation = railbot.attack_parameters.animation
+}
+railbot.corpse = "big-remnants"
 data:extend{railbot}
+--log(serpent.block(railbot))
+
+
+
 
