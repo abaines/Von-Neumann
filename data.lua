@@ -8,6 +8,18 @@ character.name = "vonn"
 -- combat-robot defender copy reference
 local defender = table.deepcopy(data.raw["combat-robot"]["defender"])
 
+-- character adjustments
+character.selection_box = {{-0.4, -0.4}, {0.4, 0.2}}
+character.mining_categories = nil
+character.crafting_categories = nil
+character.build_distance = 0
+character.item_pickup_distance = 0
+character.reach_distance = 0
+character.loot_pickup_distance = 0
+character.reach_resource_distance = 0
+character.damage_hit_tint = {r = 1, g = 1, b = 1, a = 0}
+character.mining_speed = 0.000001
+character.icon = "__base__/graphics/icons/defender.png"
 
 -- flying (no collision box)
 character.collision_box = { { 0, 0 }, { 0, 0 } }
@@ -76,14 +88,16 @@ end
 ]]--
 data:extend{character}
 
+local logCharacter = table.deepcopy(character)
+logCharacter.animations = nil
+logCharacter.footstep_particle_triggers = nil
+log(serpent.block(logCharacter))
 
-log(serpent.block( data.raw["utility-constants"].default.zoom_to_world_can_use_nightvision ))
-log(serpent.block( data.raw["utility-constants"].default.zoom_to_world_effect_strength ))
-log(serpent.block( data.raw["utility-constants"].default.zoom_to_world_darkness_multiplier ))
 
-data.raw["utility-constants"].default.zoom_to_world_can_use_nightvision = true
-data.raw["utility-constants"].default.zoom_to_world_effect_strength = 0.05
-data.raw["utility-constants"].default.zoom_to_world_darkness_multiplier = 0.5
+--data.raw["utility-constants"].default.zoom_to_world_can_use_nightvision = true
+--data.raw["utility-constants"].default.zoom_to_world_effect_strength = 0.0
+--data.raw["utility-constants"].default.zoom_to_world_darkness_multiplier = 0.0
+
 
 
 -- railbot !
