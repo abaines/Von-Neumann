@@ -236,7 +236,7 @@ railbot.spawnRailbot = function(player)
 		surface=railbotUnit.surface,
 		forces={railbotUnit.force},
 		scale = 40,
-		color = {r=0.8,g=0.8,b=1},
+		color = {r=0.1,g=0.1,b=1},
 	}
 
 	railbot.spawnBeam(surface,{-19,-19},railbotUnit)

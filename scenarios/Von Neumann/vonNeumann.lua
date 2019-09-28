@@ -251,7 +251,7 @@ function vonn.spawnCrashSite()
 		surface=electricEnergyInterface.surface,
 		forces={electricEnergyInterface.force},
 		scale = 40,
-		color = {r=0.8,g=1,b=0.8},
+		color = {r=1,g=1,b=0.1},
 	}
 end
 
@@ -555,7 +555,8 @@ function vonn.stopBuilding(event)
 		else
 			vonn.kprint(player.name .. " tried to build "..item.name .. "   " ..created_entity.type)
 			-- return item
-			local inventory = player.get_inventory(defines.inventory.god_main)
+			-- TODO: iterate over all 8 inventories
+			local inventory = player.get_inventory(defines.inventory.character_main)
 			inventory.insert({name=item.name})
 			created_entity.destroy()
 		end
@@ -604,7 +605,8 @@ function vonn.countContentForBadItems(badItems,contents)
 end
 
 function vonn.getBadItemsForPlayer(player)
-	local inventory = player.get_inventory(defines.inventory.god_main)
+	-- TODO: iterate over all 8 inventories
+	local inventory = player.get_inventory(defines.inventory.character_main)
 	local contents = inventory.get_contents()
 
 	local badItems = {}
