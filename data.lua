@@ -20,6 +20,10 @@ character.reach_resource_distance = 0
 character.damage_hit_tint = {r = 1, g = 1, b = 1, a = 0}
 character.mining_speed = 0.000001
 character.icon = "__base__/graphics/icons/defender.png"
+character.running_speed = 0.7
+character.distance_per_frame = 0.7
+character.tool_attack_result = {type="direct"}
+
 
 -- flying (no collision box)
 character.collision_box = { { 0, 0 }, { 0, 0 } }
