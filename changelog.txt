@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.20
+Date: 2019.09.28
+  Changes:
+    - Real Railbot!
+    - Players have visual body/skin now!
+    - Corpses for Railbot and player
+    - Railbot is very weak (fighting)
+    - Give player, main base, and Railbot light sources
+---------------------------------------------------------------------------------------------------
 Version: 0.1.19
 Date: 2019.09.21
   Changes:
