@@ -177,6 +177,8 @@ function vonn.spawnCrashSite()
 	end
 	global.donecrashsite=true
 
+	log(serpent.block( game.surfaces["nauvis"].map_gen_settings.seed ))
+
 	vonn.clearStartingArea(game.surfaces["nauvis"],{{-9, -9}, {9, 9}})
 	local clearSize = 2.5
 	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{-19,-19},clearSize)
@@ -353,6 +355,11 @@ function vonn.on_gui_click(event)
 	if elementName == "vonn_story_button" then
 		local text_box = event.element.parent.children[1] -- TODO: check children names, then use that index
 		local button = event.element.parent.children[2] -- TODO: check children names, then use that index
+
+		if event.alt or event.control or event.shift then
+			event.element.parent.destroy()
+			return
+		end
 
 		-- case switch
 		if text_box.text == vonn.storyText1 then
