@@ -97,8 +97,6 @@ data:extend{character}
 -- vonn corpse !
 local vonnCorpse = table.deepcopy(data.raw["character-corpse"]["character-corpse"])
 vonnCorpse.name = "vonn-corpse"
-vonnCorpse.picture = nil
-vonnCorpse.pictures = nil
 vonnCorpse.pictures = {
 	{
 		filename = "__base__/graphics/entity/remnants/hr-medium-remnants.png",
@@ -110,7 +108,6 @@ vonnCorpse.armor_picture_mapping = {}
 vonnCorpse.icon = "__base__/graphics/icons/defender.png"
 vonnCorpse.selection_box = {{-3, -3}, {3, 3}}
 data:extend{vonnCorpse}
---log(serpent.block(data.raw["character-corpse"]["character-corpse"]))
 
 
 
@@ -131,22 +128,32 @@ local railbot = table.deepcopy(data.raw["unit"]["compilatron"])
 railbot.name = "railbot"
 railbot.max_health = 250
 railbot.healing_per_tick = 1.0/60.0
-railbot.map_color.a = 0.5
+railbot.map_color.a = 1
 railbot.collision_box = { { -0.01, -0.01 }, { 0.01, 0.01 } }
 railbot.attack_parameters = {
 	type="projectile",
 	range=0,
-	cooldown=600,
+	cooldown=120,
 	ammo_category = "melee",
 	ammo_type = {
 		category = "melee",
+		target_type = "entity",
+		action = {
+			type = "direct",
+			action_delivery = {
+				type = "instant",
+				target_effects = {
+					type = "damage",
+					damage = {
+						amount = 6,
+						type = "physical",
+					}
+				}
+			}
+		}
 	},
 	animation = railbot.attack_parameters.animation
 }
 railbot.corpse = "big-remnants"
 data:extend{railbot}
---log(serpent.block(railbot))
-
-
-
 
