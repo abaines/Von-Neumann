@@ -84,6 +84,47 @@ for _,layer in pairs(layers) do
 	end
 end
 
+
+---------------------------------------------------------------------------------------------------
+
+
+log(serpent.block(character.light))
+
+for _,light in pairs(character.light) do
+	light.intensity = 1-((1 - light.intensity)/2)
+	light.minimum_darkness = 0.0
+	light.size = 2 * light.size
+end
+
+character.light = {
+	{
+		intensity = 1,
+		size = 5,
+		picture = {
+			filename = "__core__/graphics/light-cone.png",
+			flags = { "light" },
+			height = 200,
+			priority = "extra-high",
+			scale = 2,
+			width = 200
+		},
+		type = "oriented",
+		minimum_darkness = 0.0,
+		shift = { 0, -30 },
+	}
+}
+
+character.light = {
+	intensity = 1,
+	size = 300,
+}
+
+log(serpent.block(character.light))
+
+
+---------------------------------------------------------------------------------------------------
+
+
 --[[
 	3 north
 	4 northeast
@@ -92,6 +133,9 @@ end
 	3 south
 ]]--
 data:extend{character}
+
+
+---------------------------------------------------------------------------------------------------
 
 
 -- vonn corpse !
@@ -110,6 +154,8 @@ vonnCorpse.selection_box = {{-3, -3}, {3, 3}}
 data:extend{vonnCorpse}
 
 
+---------------------------------------------------------------------------------------------------
+
 
 local logCharacter = table.deepcopy(character)
 logCharacter.animations = nil
@@ -117,10 +163,15 @@ logCharacter.footstep_particle_triggers = nil
 log(serpent.block(logCharacter))
 
 
+---------------------------------------------------------------------------------------------------
+
+
 --data.raw["utility-constants"].default.zoom_to_world_can_use_nightvision = true
 --data.raw["utility-constants"].default.zoom_to_world_effect_strength = 0.0
 --data.raw["utility-constants"].default.zoom_to_world_darkness_multiplier = 0.0
 
+
+---------------------------------------------------------------------------------------------------
 
 
 -- railbot !
