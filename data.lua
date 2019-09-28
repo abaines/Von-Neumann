@@ -14,7 +14,7 @@ character.mining_categories = nil
 character.crafting_categories = nil
 character.build_distance = 0
 character.item_pickup_distance = 0
-character.reach_distance = 0
+character.reach_distance = 200000000
 character.loot_pickup_distance = 0
 character.reach_resource_distance = 0
 character.damage_hit_tint = {r = 1, g = 1, b = 1, a = 0}
@@ -204,6 +204,13 @@ railbot.attack_parameters = {
 		}
 	},
 	animation = railbot.attack_parameters.animation
+}
+railbot.resistances = {
+	{
+		type = "fire",
+		decrease = 3,
+		percent = 80,
+	},
 }
 railbot.corpse = "big-remnants"
 data:extend{railbot}

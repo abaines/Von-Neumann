@@ -190,6 +190,16 @@ railbot.burnTreeBehavior = function(event)
 	local railbotUnit = railbot.findRailbot()
 	if not ( railbotUnit and railbotUnit.valid ) then return end
 
+	local robots = railbotUnit.surface.find_entities_filtered{
+		position=railbotUnit.position,
+		radius=60,
+		type = {"construction-robot", "logistic-robot" }
+	}
+
+	if #robots>1 then
+		return
+	end
+
 	railbot.burnTrees(railbotUnit)
 end
 
