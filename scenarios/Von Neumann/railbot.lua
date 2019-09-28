@@ -228,7 +228,7 @@ railbot.spawnRailbot = function(player)
 		end
 	end
 
-	local compilatron = surface.create_entity{name="compilatron",position={0,1.1},force=force}
+	local compilatron = surface.create_entity{name="railbot",position={0,1.1},force=force}
 
 	railbot.spawnBeam(surface,{-19,-19},compilatron)
 	railbot.spawnBeam(surface,{ 19,-19},compilatron)

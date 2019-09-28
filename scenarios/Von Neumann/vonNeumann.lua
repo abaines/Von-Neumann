@@ -357,7 +357,7 @@ function vonn.on_gui_click(event)
 		elseif text_box.text == vonn.storyText3 then
 			text_box.text = vonn.storyText4
 			button.caption = vonn.storyButton4
-			
+
 		elseif text_box.text == vonn.storyText4 then
 			text_box.text = vonn.storyText5
 			button.caption = vonn.storyButton5
@@ -394,6 +394,16 @@ function vonn.newPlayer(event)
 			player.spectator = true
 			vonn.displayStoryText(player)
 			vonn.addPlayerNeedsZoom(player)
+			rendering.draw_light{
+				sprite="utility/light_medium",
+				target={35,0},
+				surface=player.surface,
+				forces={player.force},
+				scale = 30,
+				intensity = 100,
+				--color = "orange",
+				players = {player},
+			}
 		end
 	end
 
