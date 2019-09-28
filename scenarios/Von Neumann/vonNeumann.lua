@@ -244,6 +244,15 @@ function vonn.spawnCrashSite()
 	vonn.spawnRobo({19,19})
 
 	vonn.spillItemsRandomly(game.surfaces["nauvis"])
+
+	rendering.draw_light{
+		sprite="utility/light_medium",
+		target=electricEnergyInterface,
+		surface=electricEnergyInterface.surface,
+		forces={electricEnergyInterface.force},
+		scale = 40,
+		color = {r=0.8,g=1,b=0.8},
+	}
 end
 
 script.on_init(vonn.spawnCrashSite)
@@ -396,16 +405,6 @@ function vonn.newPlayer(event)
 			player.spectator = true
 			vonn.displayStoryText(player)
 			vonn.addPlayerNeedsZoom(player)
-			rendering.draw_light{
-				sprite="utility/light_medium",
-				target=player.character,
-				surface=player.surface,
-				forces={player.force},
-				scale = 30,
-				intensity = 1,
-				color = {r=1,g=0.4},
-				players = {player},
-			}
 		end
 	end
 
