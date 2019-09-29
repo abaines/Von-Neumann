@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.21
+Date: 2019.09.28
+  Changes:
+    - Add Free Play map generation preset
+    - Smoother start (more items and earlier unlocks)
+    - Give Railbot fire resistance
+    - Add mod dependency
+---------------------------------------------------------------------------------------------------
 Version: 0.2.20
 Date: 2019.09.28
   Changes:
