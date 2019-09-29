@@ -95,22 +95,22 @@ function vonn.spillItemsRandomly(surface)
 	local items = {
 		coal=5,
 		['burner-mining-drill']=4,
-		['stone-furnace']=4,
+		['stone-furnace']=8,
 
-		['burner-inserter']=8,
+		['burner-inserter']=20,
 		['inserter']=8,
-		['long-handed-inserter']=1,
-		['transport-belt']=10,
+		['long-handed-inserter']=3,
+		['transport-belt']=60,
 
-		['firearm-magazine']=15,
-		['gun-turret']=2,
-		['laser-turret']=1,
+		['firearm-magazine']=25,
+		['gun-turret']=3,
+		['laser-turret']=2,
 
-		['assembling-machine-1']=4,
+		['assembling-machine-1']=8,
 		['substation']=1,
 		['big-electric-pole']=12,
 
-		['electronic-circuit']=5,
+		['electronic-circuit']=15,
 		['radar']=1,
 
 		roboport=10,
@@ -118,10 +118,10 @@ function vonn.spillItemsRandomly(surface)
 		['logistic-robot']=50,
 
 		['logistic-chest-active-provider']=100,
-		['logistic-chest-passive-provider']=10,
-		['logistic-chest-storage']=30,
-		['logistic-chest-buffer']=25,
-		['logistic-chest-requester']=20,
+		['logistic-chest-passive-provider']=30,
+		['logistic-chest-storage']=40,
+		['logistic-chest-buffer']=45,
+		['logistic-chest-requester']=40,
 
 		["copper-cable"] = 10,
 		["green-wire"] = 10,
