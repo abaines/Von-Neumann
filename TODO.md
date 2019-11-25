@@ -32,3 +32,12 @@ Interesting notes:
 -Give way to locate Railbot
 -Disable recipes
 
+0.17.75:
+- Added filtering support for several common Lua events.
+
+0.17.69:
+- Added LuaStyle::rich_text_setting read/write for labels, text boxes, and text fields.
+- Added LuaPlayer::request_translation().
+
+
+grey belts
