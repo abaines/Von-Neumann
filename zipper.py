@@ -15,8 +15,8 @@ import tempfile
 import sys
 import traceback
 
-root = os.path.dirname(os.path.abspath(__file__))
-print( root )
+rootx = os.path.dirname(os.path.abspath(__file__))
+print( rootx )
 
 
 
@@ -40,13 +40,17 @@ whitelist=[
 "\\scenarios\\Von Neumann\\vonNeumann.lua",
 "\\thumbnail.png",
 #"\\zipper.py",
+"\\companionship.lua",
+"\\control.lua",
+"\\settings.lua",
+"\\locale\\en\\config.cfg",
 ]
 
 
 
 def getAllFiles(directory):
    returns = []
-   for path, subdirs, files in os.walk(root):
+   for path, subdirs, files in os.walk(directory):
       for name in files:
          f = os.path.join(path, name)
          returns.append(f)
@@ -73,10 +77,18 @@ def collectWhiteListFiles(root,whitelist):
 
    return returns, ignored
 
-print("")
-r,i = collectWhiteListFiles(root,whitelist)
-for f in i:
-   print(f)
-print("")
-for f in r:
-   print(f)
+
+def printWhiteListFiles(root):
+   print("")
+   print(root)
+   print("ignored")
+   r,i = collectWhiteListFiles(root,whitelist)
+   for f in i:
+      print(f)
+   print("whitelist")
+   for f in r:
+      print(f)
+
+printWhiteListFiles("..\\vonNeumann_0.2.22")
+printWhiteListFiles("..\\lightArtillery_0.1.4")
+printWhiteListFiles("..\\companionship_0.0.6")
