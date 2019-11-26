@@ -18,6 +18,20 @@ import traceback
 rootx = os.path.dirname(os.path.abspath(__file__))
 print( rootx )
 
+baseFolder = rootx[:rootx.rindex('\\')+1]
+print( baseFolder )
+
+rootName = rootx[rootx.rindex('\\')+1:]
+print( rootName )
+
+zipPath = os.path.join(baseFolder,rootName+".zip")
+print( zipPath )
+
+if os.path.exists(zipPath):
+   os.remove(zipPath)
+   print("Zip Removed:",zipPath)
+
+
 whitelistextensions=[
 ".cfg",
 ".lua",
@@ -104,8 +118,11 @@ printWhiteListFiles("..\\companionship_0.0.6")
 
 print ('{:+^80}'.format(' zip '))
 r,i = collectWhiteListFiles(rootx,whitelist,whitelistextensions,whitelistextensionsinsidefolders)
-with zipfile.ZipFile("..\\test.zip", 'w') as zout:
+with zipfile.ZipFile(zipPath, 'w') as zout:
    for f in r:
-      print(f)
+      arcname=rootName+f
+      filename="."+f
+      print(arcname,filename)
+      zout.write(filename,arcname=arcname)
 
 
