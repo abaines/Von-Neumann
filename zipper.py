@@ -26,11 +26,8 @@ whitelistextensions=[
 whitelist=[
 "\\README.md",
 "\\changelog.txt",
-#"\\graphics\\hr_character_running_gun.png",
-#"\\graphics\\hr_character_running_gun_mask.png",
 "\\info.json",
 "\\license.md",
-#"\\scenarios\\Von Neumann\\daddy.png",
 "\\thumbnail.png",
 ]
 
