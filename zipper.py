@@ -110,10 +110,8 @@ def printWhiteListFiles(root):
    print(setExtensions(r))
    print("")
 
-printWhiteListFiles("..\\vonNeumann_0.2.22")
-printWhiteListFiles("..\\lightArtillery_0.1.4")
-printWhiteListFiles("..\\companionship_0.0.6")
 
+printWhiteListFiles(rootx)
 
 
 print ('{:+^80}'.format(' zip '))
@@ -122,7 +120,7 @@ with zipfile.ZipFile(zipPath, 'w') as zout:
    for f in r:
       arcname=rootName+f
       filename="."+f
-      print(arcname,filename)
+      print(filename)
       zout.write(filename,arcname=arcname)
 
-
+input("Press Enter to continue...")
