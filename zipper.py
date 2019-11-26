@@ -18,7 +18,10 @@ import traceback
 rootx = os.path.dirname(os.path.abspath(__file__))
 print( rootx )
 
-
+whitelistextensions=[
+".cfg",
+".lua",
+]
 
 whitelist=[
 "\\README.md",
