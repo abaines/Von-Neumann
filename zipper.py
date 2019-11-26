@@ -26,12 +26,16 @@ whitelistextensions=[
 whitelist=[
 "\\README.md",
 "\\changelog.txt",
-"\\graphics\\hr_character_running_gun.png",
-"\\graphics\\hr_character_running_gun_mask.png",
+#"\\graphics\\hr_character_running_gun.png",
+#"\\graphics\\hr_character_running_gun_mask.png",
 "\\info.json",
 "\\license.md",
-"\\scenarios\\Von Neumann\\daddy.png",
+#"\\scenarios\\Von Neumann\\daddy.png",
 "\\thumbnail.png",
+]
+
+whitelistextensionsinsidefolders=[
+".png",
 ]
 
 
@@ -50,15 +54,18 @@ def endsWithAny(text,collection):
          return c
    return False
 
-def collectWhiteListFiles(root,whitelist,whitelistextensions):
+def collectWhiteListFiles(root,whitelist,whitelistextensions,whitelistextensionsinsidefolders):
    returns = []
    ignored = []
 
    for file in getAllFiles(root):
       shortname = file[len(root):]
+      c = shortname.count('\\')
       if endsWithAny(file,whitelist):
          returns.append(shortname)
       elif endsWithAny(file,whitelistextensions):
+         returns.append(shortname)
+      elif c >= 2 and endsWithAny(file,whitelistextensionsinsidefolders):
          returns.append(shortname)
       elif '\\.git\\' in file:
          pass
@@ -78,7 +85,7 @@ def setExtensions(listFiles):
 def printWhiteListFiles(root):
    print("")
    print(root)
-   r,i = collectWhiteListFiles(root,whitelist,whitelistextensions)
+   r,i = collectWhiteListFiles(root,whitelist,whitelistextensions,whitelistextensionsinsidefolders)
    
    if len(i)>0:
       print ('{:-^80}'.format('ignored'))
