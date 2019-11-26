@@ -85,16 +85,27 @@ def printWhiteListFiles(root):
    r,i = collectWhiteListFiles(root,whitelist,whitelistextensions,whitelistextensionsinsidefolders)
    
    if len(i)>0:
-      print ('{:-^80}'.format('ignored'))
+      print ('{:-^80}'.format(' ignored '))
       for f in i:
          print(f)
       print(setExtensions(i))
       
-   print ('{:=^80}'.format('white'))
+   print ('{:=^80}'.format(' white '))
    for f in r:
       print(f)
    print(setExtensions(r))
+   print("")
 
 printWhiteListFiles("..\\vonNeumann_0.2.22")
 printWhiteListFiles("..\\lightArtillery_0.1.4")
 printWhiteListFiles("..\\companionship_0.0.6")
+
+
+
+print ('{:+^80}'.format(' zip '))
+r,i = collectWhiteListFiles(rootx,whitelist,whitelistextensions,whitelistextensionsinsidefolders)
+with zipfile.ZipFile("..\\test.zip", 'w') as zout:
+   for f in r:
+      print(f)
+
+
