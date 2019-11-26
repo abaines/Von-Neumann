@@ -26,25 +26,12 @@ whitelistextensions=[
 whitelist=[
 "\\README.md",
 "\\changelog.txt",
-"\\data.lua",
 "\\graphics\\hr_character_running_gun.png",
 "\\graphics\\hr_character_running_gun_mask.png",
 "\\info.json",
 "\\license.md",
-"\\locale\\en\\locale.cfg",
-"\\scenarios\\Von Neumann\\control.lua",
 "\\scenarios\\Von Neumann\\daddy.png",
-"\\scenarios\\Von Neumann\\hijack.lua",
-"\\scenarios\\Von Neumann\\locale\\en\\freeplay.cfg",
-"\\scenarios\\Von Neumann\\locale\\en\\vonNeumann.cfg",
-"\\scenarios\\Von Neumann\\playerBonuses.lua",
-"\\scenarios\\Von Neumann\\railbot.lua",
-"\\scenarios\\Von Neumann\\vonNeumann.lua",
 "\\thumbnail.png",
-"\\companionship.lua",
-"\\control.lua",
-"\\settings.lua",
-"\\locale\\en\\config.cfg",
 ]
 
 
@@ -63,13 +50,15 @@ def endsWithAny(text,collection):
          return c
    return False
 
-def collectWhiteListFiles(root,whitelist):
+def collectWhiteListFiles(root,whitelist,whitelistextensions):
    returns = []
    ignored = []
 
    for file in getAllFiles(root):
       shortname = file[len(root):]
       if endsWithAny(file,whitelist):
+         returns.append(shortname)
+      elif endsWithAny(file,whitelistextensions):
          returns.append(shortname)
       elif '\\.git\\' in file:
          pass
@@ -89,7 +78,7 @@ def setExtensions(listFiles):
 def printWhiteListFiles(root):
    print("")
    print(root)
-   r,i = collectWhiteListFiles(root,whitelist)
+   r,i = collectWhiteListFiles(root,whitelist,whitelistextensions)
    
    if len(i)>0:
       print ('{:-^80}'.format('ignored'))
