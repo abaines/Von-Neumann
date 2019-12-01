@@ -41,3 +41,11 @@ Interesting notes:
 
 
 grey belts
+
+
+/c rendering.draw_circle{target={32,0},surface="nauvis",radius=0.1,color={0,1,0},width=1,filled=false,draw_on_ground=false}
+
+/c rendering.draw_polygon{vertices={{target={32,0}},{target={0,32}},{target={32,32}}},surface="nauvis",color={0,0,1}}
+
+/c rendering.draw_line{from={0,0},to={32,32},surface="nauvis",color={0,0,1},width=1}
+
