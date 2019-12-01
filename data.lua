@@ -252,5 +252,5 @@ local vonnMapPreset = {
 }
 
 mapGenPresetsDefault["Vonn"] = vonnMapPreset
-log(serpent.block( mapGenPresetsDefault["Vonn"] ))
+--log(serpent.block( mapGenPresetsDefault["Vonn"] ))
 

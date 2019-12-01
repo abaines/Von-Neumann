@@ -49,3 +49,10 @@ grey belts
 
 /c rendering.draw_line{from={0,0},to={32,32},surface="nauvis",color={0,0,1},width=1}
 
+
+Angels Petrochem Incompatibility.
+https://mods.factorio.com/mod/vonNeumann/discussion/5de1b62f082e2b000b9923c8
+
+
+data.raw["character-corpse"]["character-corpse"].time_to_live
+
