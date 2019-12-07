@@ -5,9 +5,9 @@
 -- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --
 ---------------------------------------------------------------------------------------------------
 
--- replace __base__ path with __lightArtillery__
+-- replace __base__ path with __vonNeumann__
 local function pathReplace(base)
-	return string.gsub(base,"__base__","__lightArtillery__")
+	return string.gsub(base,"__base__","__vonNeumann__")
 end
 
 
