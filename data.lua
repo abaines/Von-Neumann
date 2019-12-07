@@ -254,3 +254,6 @@ local vonnMapPreset = {
 mapGenPresetsDefault["Vonn"] = vonnMapPreset
 --log(serpent.block( mapGenPresetsDefault["Vonn"] ))
 
+
+require("prototypes.damaged-belt")
+
