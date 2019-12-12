@@ -34,9 +34,21 @@ mining_drill.input_fluid_patch_window_base_sprites = nil
 mining_drill.input_fluid_patch_sprites = nil
 mining_drill.input_fluid_patch_shadow_sprites = nil
 mining_drill.input_fluid_patch_shadow_animations = nil
+mining_drill.input_fluid_box = nil
+
 mining_drill.pipe_picture = nil
 mining_drill.pipe_covers = nil
-mining_drill.input_fluid_box = nil
+
+
+mining_drill.resource_searching_radius = 1.49
+mining_drill.energy_source = {
+	emissions_per_minute = 10*2,
+	type = "electric",
+	usage_priority = "secondary-input"
+}
+mining_drill.energy_usage = "180kW"
+mining_drill.mining_speed = 0.5 / 2
+mining_drill.module_specification = nil
 
 
 data:extend{ mining_drill }
