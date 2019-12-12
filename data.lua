@@ -14,4 +14,5 @@ require("prototypes.railbot")
 require("prototypes.map-gen-preset")
 require("prototypes.damaged-belt")
 require("prototypes.chests")
+require("prototypes.substation")
 

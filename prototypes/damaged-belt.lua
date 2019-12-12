@@ -16,8 +16,8 @@ grey_belt_item.name = "vn-transport-belt"
 grey_belt_item.place_result = "vn-transport-belt"
 grey_belt_item.icon = pathReplace(grey_belt_item.icon)
 
-log( "grey_belt_item" )
-log(serpent.block( grey_belt_item ))
+--log( "grey_belt_item" )
+--log(serpent.block( grey_belt_item ))
 
 
 
@@ -39,8 +39,8 @@ animation_set.hr_version.filename = pathReplace(animation_set.hr_version.filenam
 
 -- TODO: corpse
 
-log ( "grey_belt_entity" )
-log(serpent.block( grey_belt_entity ))
+--log ( "grey_belt_entity" )
+--log(serpent.block( grey_belt_entity ))
 
 
 
