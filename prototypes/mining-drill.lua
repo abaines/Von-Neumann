@@ -1,6 +1,6 @@
 -- Kizrak
 
-if true then
+if false then
 	log("keys in data.raw[mining-drill]")
 	for k, v in pairs( data.raw["mining-drill"] ) do
 		log("   " .. k)
@@ -16,7 +16,7 @@ mining_drill_item.name = "vn-electric-mining-drill"
 mining_drill_item.place_result = "vn-electric-mining-drill"
 
 data:extend{ mining_drill_item }
-log(serpent.block( mining_drill_item ))
+--log(serpent.block( mining_drill_item ))
 
 
 
@@ -42,7 +42,7 @@ mining_drill.pipe_covers = nil
 
 mining_drill.resource_searching_radius = 1.49
 mining_drill.energy_source = {
-	emissions_per_minute = 10*2,
+	emissions_per_minute = 10*3,
 	type = "electric",
 	usage_priority = "secondary-input"
 }
@@ -52,5 +52,5 @@ mining_drill.module_specification = nil
 
 
 data:extend{ mining_drill }
-log(serpent.block( mining_drill ))
+--log(serpent.block( mining_drill ))
 
