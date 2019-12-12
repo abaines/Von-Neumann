@@ -18,19 +18,20 @@ end
 local roboport = table.deepcopy( data.raw["roboport"]["roboport"] )
 roboport.name = "vn-roboport"
 roboport.order = "c[signal]-a[roboport]"
-roboport.charging_energy = "1000kW"
-roboport.construction_radius = 55
+roboport.construction_radius = 55*3
 roboport.dying_explosion = "massive-explosion"
 roboport.energy_usage = "0kW"
+roboport.charging_energy = "100000kW"
+roboport.recharge_minimum = "400MJ"
 roboport.energy_source = {
-	buffer_capacity = "100MJ",
-	input_flow_limit = "5MW",
+	buffer_capacity = "10000MJ",
+	input_flow_limit = "500MW",
 	type = "electric",
 	usage_priority = "secondary-input"
 }
-roboport.material_slots_count = 30
-roboport.robot_slots_count = 30
-roboport.recharge_minimum = "40MJ"
+roboport.material_slots_count = 20
+roboport.robot_slots_count = 20
+
 
 data:extend{roboport}
 log(serpent.block( roboport ))
