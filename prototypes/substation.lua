@@ -22,5 +22,5 @@ substation.supply_area_distance = 16
 substation.maximum_wire_distance = 64
 
 data:extend{substation}
-log(serpent.block( substation ))
+--log(serpent.block( substation ))
 
