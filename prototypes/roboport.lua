@@ -34,5 +34,5 @@ roboport.robot_slots_count = 20
 
 
 data:extend{roboport}
-log(serpent.block( roboport ))
+--log(serpent.block( roboport ))
 
