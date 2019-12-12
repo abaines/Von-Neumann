@@ -12,8 +12,8 @@ end
 
 
 local grey_belt_item = table.deepcopy(data.raw.item["transport-belt"])
-grey_belt_item.name = "crash-transport-belt-item"
-grey_belt_item.place_result = "crash-transport-belt-entity"
+grey_belt_item.name = "vn-transport-belt"
+grey_belt_item.place_result = "vn-transport-belt"
 grey_belt_item.icon = pathReplace(grey_belt_item.icon)
 
 log( "grey_belt_item" )
@@ -22,9 +22,9 @@ log(serpent.block( grey_belt_item ))
 
 
 local grey_belt_entity = table.deepcopy(data.raw["transport-belt"]["transport-belt"])
-grey_belt_entity.name = "crash-transport-belt-entity"
+grey_belt_entity.name = "vn-transport-belt"
 grey_belt_entity.speed = 7.5 / 480 -- 7.5 items per second
-grey_belt_entity.minable.result = "crash-transport-belt-item"
+grey_belt_entity.minable.result = "vn-transport-belt"
 grey_belt_entity.next_upgrade = "transport-belt"
 grey_belt_entity.max_health = 100
 
