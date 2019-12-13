@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.24
+Date: 2019.12.12
+  Changes:
+    - Lots of data.lua (hard-mod) entities!
+    - New "damaged" belts, requester chests, and mining drills
+    - New "core" substations, roboports, and storage chests
+    - Greatly reduce logistic robot start (still very heavy construction robot start)
+---------------------------------------------------------------------------------------------------
 Version: 0.2.23
 Date: 2019.12.11
   Changes:
