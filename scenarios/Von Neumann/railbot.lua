@@ -15,6 +15,7 @@ railbot.allowedGhostNames = {
 	"big-electric-pole",
 	"roboport",
 	"inserter",
+	"vn-inserter",
 	"logistic-chest-storage",
 }
 

@@ -99,8 +99,7 @@ function vonn.spillItemsRandomly(surface)
 		['stone-furnace']=8,
 
 		['burner-inserter']=20,
-		['inserter']=8,
-		['long-handed-inserter']=3,
+		['vn-inserter']=30,
 		['vn-transport-belt']=400,
 
 		['firearm-magazine']=25,
@@ -198,7 +197,9 @@ function vonn.spawnCrashSite()
 		["vn-electric-mining-drill"]=3,
 		['stone-furnace']=1,
 		['burner-inserter']=1,
+		['vn-inserter']=1,
 		['inserter']=1,
+		['vn-transport-belt']=300,
 		['assembling-machine-1']=1,
 		['big-electric-pole']=1,
 		roboport=1,
@@ -220,7 +221,8 @@ function vonn.spawnCrashSite()
 	chest3.set_request_slot({name="big-electric-pole", count=1},7)
 	chest3.set_request_slot({name="roboport", count=1},8)
 	chest3.set_request_slot({name="inserter", count=1},9)
-	chest3.set_request_slot({name="logistic-chest-storage", count=1},10)
+	chest3.set_request_slot({name="vn-inserter", count=1},10)
+	chest3.set_request_slot({name="logistic-chest-storage", count=1},11)
 
 	local chest4 = vonn.createSiteChest({name="vn-logistic-chest-storage",position={1,-1}},{
 		['coal']=1,
