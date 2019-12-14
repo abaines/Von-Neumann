@@ -8,7 +8,7 @@ if false then
 end
 
 
-log(serpent.block( data.raw["mining-drill"]["burner-mining-drill"] ))
+--log(serpent.block( data.raw["mining-drill"]["burner-mining-drill"] ))
 
 
 local mining_drill_item = table.deepcopy( data.raw.item["electric-mining-drill"] )

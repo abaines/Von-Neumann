@@ -252,12 +252,13 @@ script.on_init(vonn.spawnCrashSite)
 
 
 function vonn.forResourceOnNewChunk(surface,resource)
-	if resource.name == "crude-oil" then
-		return
-	end
+	local products = game.entity_prototypes[resource.name].mineable_properties.products
 
-	--surface.spill_item_stack(resource.position,{name=resource.name, count=1},false,"player",false)
-	surface.spill_item_stack(resource.position,{name=resource.name, count=1},false,nil,false)
+	for _,product in pairs(products) do
+		if product.type=="item" then
+			surface.spill_item_stack(resource.position,{name=product.name, count=1},false,nil,false)
+		end
+	end
 end
 
 function vonn.on_chunk_generated(event)
