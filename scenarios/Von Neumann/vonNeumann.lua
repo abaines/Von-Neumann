@@ -168,7 +168,7 @@ function vonn.spawnCrashSite()
 	end
 	global.donecrashsite=true
 
-	log(serpent.block( game.surfaces["nauvis"].map_gen_settings ))
+	--log(serpent.block( game.surfaces["nauvis"].map_gen_settings ))
 	log("map_gen_settings.seed: " .. game.surfaces["nauvis"].map_gen_settings.seed)
 
 	vonn.clearStartingArea(game.surfaces["nauvis"],{{-9, -9}, {9, 9}})
@@ -248,6 +248,9 @@ function vonn.spawnCrashSite()
 		scale = 40,
 		color = {r=1,g=1,b=0.1},
 	}
+
+	local surface = game.surfaces["nauvis"]
+	surface.request_to_generate_chunks({0,0},13+7)
 end
 
 script.on_init(vonn.spawnCrashSite)
@@ -267,13 +270,9 @@ function vonn.on_chunk_generated(event)
 	local area = event.area
 	local surface = event.surface
 
-	--vonn.kprint(serpent.block(area))
-	--vonn.kprint(surface)
-
 	local arrayOfLuaEntity = surface.find_entities_filtered{area=area,type = "resource"}
 	local size = vonn.tableSize(arrayOfLuaEntity)
 	if size>0 then
-		--vonn.kprint(size)
 		for _,entity in pairs(arrayOfLuaEntity) do
 			vonn.forResourceOnNewChunk(surface,entity)
 		end
