@@ -16,4 +16,5 @@ require("prototypes.chests")
 require("prototypes.substation")
 require("prototypes.roboport")
 require("prototypes.mining-drill")
+require("prototypes.inserter")
 
