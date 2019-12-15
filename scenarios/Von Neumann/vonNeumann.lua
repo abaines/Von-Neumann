@@ -20,14 +20,6 @@ end
 
 
 
-function vonn.tableSize(someTable)
-	local count = 0
-	for _,_ in pairs(someTable) do
-		count = 1 + count
-	end
-	return count
-end
-
 
 local default_accumulator_buffer = 5000000 -- accumulator is 5 MJ
 function vonn.createCrashSiteGenerator(position)
@@ -126,7 +118,7 @@ function vonn.spillItemsRandomly(surface)
 		["solar-panel"] = 2,
 	}
 
-	while vonn.tableSize(items)>0 do
+	while table_size(items)>0 do
 		local item = vonn.randomTableElement(items)
 		items[item] = items[item] - 1
 		if items[item]<=0 then
@@ -250,7 +242,9 @@ function vonn.spawnCrashSite()
 	}
 
 	local surface = game.surfaces["nauvis"]
-	surface.request_to_generate_chunks({0,0},13+7)
+	for r=0,20 do
+		surface.request_to_generate_chunks({0,0},r)
+	end
 end
 
 script.on_init(vonn.spawnCrashSite)
@@ -271,7 +265,7 @@ function vonn.on_chunk_generated(event)
 	local surface = event.surface
 
 	local arrayOfLuaEntity = surface.find_entities_filtered{area=area,type = "resource"}
-	local size = vonn.tableSize(arrayOfLuaEntity)
+	local size = table_size(arrayOfLuaEntity)
 	if size>0 then
 		for _,entity in pairs(arrayOfLuaEntity) do
 			vonn.forResourceOnNewChunk(surface,entity)
@@ -628,7 +622,7 @@ function vonn.getBadItemsForPlayer(player)
 		end
 	end
 
-	--vonn.kprint("badItems: " .. serpent.block(badItems) .. "  " .. vonn.tableSize(badItems))
+	--vonn.kprint("badItems: " .. serpent.block(badItems) .. "  " .. table_size(badItems))
 	return badItems
 end
 
@@ -645,7 +639,7 @@ function vonn.removeBadItemsFromPlayer(player)
 		itemsRemoved[item] = removedCount + itemsRemoved[item]
 	end
 
-	--vonn.kprint("itemsRemoved: " .. serpent.block(itemsRemoved) .. "  " .. vonn.tableSize(itemsRemoved))
+	--vonn.kprint("itemsRemoved: " .. serpent.block(itemsRemoved) .. "  " .. table_size(itemsRemoved))
 	return itemsRemoved
 end
 
@@ -706,32 +700,32 @@ function vonn.on_player_inventory_changed(event)
 
 	local itemsRemoved = vonn.removeBadItemsFromPlayer(player)
 
-	if vonn.tableSize(itemsRemoved) == 1 then
+	if table_size(itemsRemoved) == 1 then
 		for item,count in pairs(itemsRemoved) do
 			vonn.kprint(player.name .. " tried to pick up " .. item .. "!")
 		end
-	elseif vonn.tableSize(itemsRemoved) > 0 then
+	elseif table_size(itemsRemoved) > 0 then
 		vonn.kprint(player.name .. " tried to pick up items!")
 	end
 
 	if player.opened and player.opened.valid and defines.gui_type.entity == player.opened_gui_type then
 		local uninsertableItems = vonn.restoreRemovedItemsToOpenEntity(player,itemsRemoved)
 
-		if vonn.tableSize(uninsertableItems) > 0 then
+		if table_size(uninsertableItems) > 0 then
 			local sum = vonn.spillPlayerItems(player,"nauvis",uninsertableItems)
 			vonn.kprint("spilled items: " .. sum)
 		end
 
-	elseif vonn.tableSize(itemsRemoved) == 1 then
+	elseif table_size(itemsRemoved) == 1 then
 		-- assume player cheat_mode crafted an item, so ghost it
 		for item,count in pairs(itemsRemoved) do
 			player.cursor_ghost = item
 		end
 
-	elseif vonn.tableSize(itemsRemoved) > 0 then
+	elseif table_size(itemsRemoved) > 0 then
 		-- not sure this should happen (except picking items off ground), and if so, probably exploit
 		-- vonn.spillPlayerItemsAtPlayer(player,itemsRemoved)
-		log("vonn.tableSize(itemsRemoved) > 0" .. serpent.block(itemsRemoved))
+		log("table_size(itemsRemoved) > 0" .. serpent.block(itemsRemoved))
 	end
 
 
