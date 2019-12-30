@@ -18,6 +18,7 @@ end
 local substation = table.deepcopy( data.raw["electric-pole"]["substation"] )
 substation.name = "vn-substation"
 substation.order = "a[energy]-d[substation]"
+substation.subgroup = "logistic-network"
 substation.supply_area_distance = 16
 substation.maximum_wire_distance = 64
 

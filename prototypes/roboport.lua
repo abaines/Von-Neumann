@@ -18,6 +18,7 @@ end
 local roboport = table.deepcopy( data.raw["roboport"]["roboport"] )
 roboport.name = "vn-roboport"
 roboport.order = "c[signal]-a[roboport]"
+roboport.subgroup = "logistic-network"
 
 roboport.construction_radius = 55*3
 roboport.dying_explosion = "massive-explosion"
