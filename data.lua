@@ -9,12 +9,17 @@
 
 ---------------------------------------------------------------------------------------------------
 
+if true then
+	require("prototypes.debug")
+end
+
 require("prototypes.character")
 require("prototypes.railbot")
-require("prototypes.damaged-belt")
+require("prototypes.belt")
 require("prototypes.chests")
 require("prototypes.substation")
 require("prototypes.roboport")
 require("prototypes.mining-drill")
 require("prototypes.inserter")
+require("prototypes.assembling-machine")
 
