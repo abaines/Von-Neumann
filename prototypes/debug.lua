@@ -62,11 +62,15 @@ log(compactLog("keys in `data.raw."..rawType.."`:",rawTypeList,6))
 
 local recipeCategoryMap = {}
 for k, v in pairs(data.raw.recipe) do
-	local category = v.category or "NIL"
+	-- https://wiki.factorio.com/Prototype/Recipe#category Default: "crafting"
+	local category = v.category or "crafting"
 	if not recipeCategoryMap[category] then
 		recipeCategoryMap[category] = {}
 	end
 	table.insert(recipeCategoryMap[category],k)
 end
-log(sb( recipeCategoryMap ))
+log("data.raw.recipe:")
+for k, v in pairs(recipeCategoryMap) do
+	log(compactLog("keys in `"..k.."`:",v,6))
+end
 
