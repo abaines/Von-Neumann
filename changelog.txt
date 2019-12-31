@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.4.26
+Date: 2019.12.31
+  Changes:
+    - Damaged inserters
+    - Updated Core Roboport
+    - Damaged assembling machine
+    - Update icon for inserter
+    - Order for most items
+    - Update starting items to include new items
+    - Diagnostic tools
+---------------------------------------------------------------------------------------------------
 Version: 0.3.25
 Date: 2019.12.13
   Changes:
