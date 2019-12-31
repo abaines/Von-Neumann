@@ -44,21 +44,19 @@ end
 local a = "abcdefghijklmnopqrstuvwxyz"
 s={}
 a:gsub(".",function(c) table.insert(s,""..c) end)
---log(sb(s))
-log(compactLog("s",s,1))
-log(compactLog("s",s,2))
-log(compactLog("s",s,3))
-log(compactLog("s",s,4))
-log(compactLog("s",s,5))
-log(compactLog("s",s,6))
-log(compactLog("s",s,7))
-log(compactLog("s",s,8))
-log(compactLog("s",s,9))
-log(compactLog("s",s,10))
-log(compactLog("s",s,11))
-log(compactLog("s",s,12))
-log(compactLog("s",s,14))
-log(compactLog("s",s,15))
+log(compactLog("s:",s,2))
+log(compactLog("s:",s,3))
+log(compactLog("s:",s,4))
+log(compactLog("s:",s,5))
+log(compactLog("s:",s,6))
+log(compactLog("s:",s,7))
+log(compactLog("s:",s,8))
+log(compactLog("s:",s,9))
+log(compactLog("s:",s,10))
+log(compactLog("s:",s,11))
+log(compactLog("s:",s,12))
+log(compactLog("s:",s,14))
+log(compactLog("s:",s,15))
 
 
 
@@ -66,8 +64,7 @@ local dataRawTypeList = {}
 for k, v in pairs(data.raw) do
 	table.insert(dataRawTypeList,k)
 end
-log("types in `data.raw`\n"..table.concat(dataRawTypeList, ", "))
-log(compactLog("types in `data.raw`",dataRawTypeList,7))
+log(compactLog("types in `data.raw`:",dataRawTypeList,6))
 
 
 
@@ -76,8 +73,7 @@ local rawTypeList = {}
 for k, v in pairs(data.raw[rawType]) do
 	table.insert(rawTypeList,k)
 end
-log("keys in `data.raw."..rawType.."`\n"..table.concat(rawTypeList, ", "))
-log(compactLog("keys in `data.raw."..rawType.."`",rawTypeList,7))
+log(compactLog("keys in `data.raw."..rawType.."`:",rawTypeList,6))
 
 
 
