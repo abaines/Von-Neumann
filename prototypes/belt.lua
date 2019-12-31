@@ -15,6 +15,7 @@ local grey_belt_item = table.deepcopy(data.raw.item["transport-belt"])
 grey_belt_item.name = "vn-transport-belt"
 grey_belt_item.place_result = "vn-transport-belt"
 grey_belt_item.icon = pathReplace(grey_belt_item.icon)
+grey_belt_item.order = "a[transport-belt]-Z[transport-belt]"
 
 --log( "grey_belt_item" )
 --log(serpent.block( grey_belt_item ))

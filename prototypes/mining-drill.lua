@@ -14,6 +14,7 @@ end
 local mining_drill_item = table.deepcopy( data.raw.item["electric-mining-drill"] )
 mining_drill_item.name = "vn-electric-mining-drill"
 mining_drill_item.place_result = "vn-electric-mining-drill"
+mining_drill_item.order = "a[items]-Z[burner-mining-drill]"
 
 data:extend{ mining_drill_item }
 --log(serpent.block( mining_drill_item ))
