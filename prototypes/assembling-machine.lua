@@ -70,7 +70,7 @@ recipe.ingredients = {
 	{"iron-gear-wheel", 5},
 	{"copper-cable", 8},
 }
-recipe.energy_required = 20
+recipe.energy_required = 5.5
 
 data:extend{recipe}
 
