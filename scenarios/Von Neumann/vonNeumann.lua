@@ -164,11 +164,6 @@ function vonn.spawnCrashSite()
 	log("map_gen_settings.seed: " .. game.surfaces["nauvis"].map_gen_settings.seed)
 
 	vonn.clearStartingArea(game.surfaces["nauvis"],{{-9, -9}, {9, 9}})
-	local clearSize = 2.5
-	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{-19,-19},clearSize)
-	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{19,-19},clearSize)
-	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{-19,19},clearSize)
-	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{19,19},clearSize)
 
 	local electricEnergyInterface = vonn.createCrashSiteGenerator({0,0})
 	vonn.createEntity{name="vn-substation",position={-16,-16}}
@@ -253,9 +248,15 @@ function vonn.spawnCrashSite()
 
 	local roboRadius = 25
 	vonn.spawnRobo({-1*roboRadius,-1*roboRadius})
-	vonn.spawnRobo({roboRadius,-1*roboRadius})
-	vonn.spawnRobo({-1*roboRadius,roboRadius})
-	vonn.spawnRobo({roboRadius,roboRadius})
+	vonn.spawnRobo({roboRadius   ,-1*roboRadius})
+	vonn.spawnRobo({-1*roboRadius,roboRadius   })
+	vonn.spawnRobo({roboRadius   ,roboRadius   })
+
+	local clearSize = 3.0
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"], {-1*roboRadius,-1*roboRadius}, clearSize)
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"], {roboRadius   ,-1*roboRadius}, clearSize)
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"], {-1*roboRadius,roboRadius   }, clearSize)
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"], {roboRadius   ,roboRadius   }, clearSize)
 
 	vonn.spillItemsRandomly(game.surfaces["nauvis"])
 
