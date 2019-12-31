@@ -69,6 +69,7 @@ local recipe = table.deepcopy(data.raw.recipe["assembling-machine-1"])
 recipe.name = "damaged-assembling-machine"
 recipe.result = "damaged-assembling-machine"
 recipe.order = "a[assembling-machine--0]"
+recipe.enabled = true
 
 recipe.ingredients = {
 	{"iron-plate", 9},
