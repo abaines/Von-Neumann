@@ -61,7 +61,7 @@ debugObj.working_sound = nil
 debugObj.vehicle_impact_sound = nil
 debugObj.close_sound = nil
 debugObj.open_sound = nil
-log(sb( debugObj ))
+--log(sb( debugObj ))
 
 
 
