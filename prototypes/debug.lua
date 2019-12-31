@@ -41,28 +41,11 @@ end
 
 
 
-local a = "abcdefghijklmnopqrstuvwxyz"
-s={}
-a:gsub(".",function(c) table.insert(s,""..c) end)
-log(compactLog("s:",s,2))
-log(compactLog("s:",s,3))
-log(compactLog("s:",s,4))
-log(compactLog("s:",s,5))
-log(compactLog("s:",s,6))
-log(compactLog("s:",s,7))
-log(compactLog("s:",s,8))
-log(compactLog("s:",s,9))
-log(compactLog("s:",s,10))
-log(compactLog("s:",s,11))
-log(compactLog("s:",s,12))
-log(compactLog("s:",s,14))
-log(compactLog("s:",s,15))
-
-
-
 local dataRawTypeList = {}
 for k, v in pairs(data.raw) do
-	table.insert(dataRawTypeList,k)
+	if not string.find(k, "achievement") then
+		table.insert(dataRawTypeList,k)
+	end
 end
 log(compactLog("types in `data.raw`:",dataRawTypeList,6))
 
@@ -87,5 +70,5 @@ for k, v in pairs(data.raw.recipe) do
 		table.insert(recipeCategoryMap[category],k)
 	end
 end
---log(sb( recipeCategoryMap ))
+log(sb( recipeCategoryMap ))
 
