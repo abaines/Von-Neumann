@@ -59,3 +59,18 @@ debugObj.close_sound = nil
 debugObj.open_sound = nil
 log(sb( debugObj ))
 
+
+
+local recipe = table.deepcopy(data.raw.recipe["assembling-machine-1"])
+recipe.name = "damaged-assembling-machine"
+recipe.result = "damaged-assembling-machine"
+
+recipe.ingredients = {
+	{"iron-plate", 9},
+	{"iron-gear-wheel", 5},
+	{"copper-cable", 8},
+}
+recipe.energy_required = 20
+
+data:extend{recipe}
+
