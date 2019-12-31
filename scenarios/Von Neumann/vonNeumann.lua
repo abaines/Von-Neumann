@@ -404,6 +404,29 @@ script.on_event({
 	defines.events.on_gui_click,
 },vonn.on_gui_click)
 
+
+
+function vonn.setupQuickBar(player)
+	for index=1,10 do
+		if player.get_quick_bar_slot(index) then
+			 -- ignore because player already has buttons
+			return
+		end
+	end
+
+	player.set_quick_bar_slot( 1,"vn-transport-belt")
+	player.set_quick_bar_slot( 2,"vn-inserter")
+	player.set_quick_bar_slot( 3,"burner-inserter")
+	player.set_quick_bar_slot( 4,"burner-mining-drill")
+	player.set_quick_bar_slot( 5,"vn-electric-mining-drill")
+	player.set_quick_bar_slot( 6,"stone-furnace")
+	player.set_quick_bar_slot( 7,"radar")
+	player.set_quick_bar_slot( 8,"damaged-assembling-machine")
+	player.set_quick_bar_slot( 9,"big-electric-pole")
+	player.set_quick_bar_slot(10,"roboport")
+end
+
+
 function vonn.addPlayerNeedsZoom(player)
 	if not global.playersNeedZoom then
 		global.playersNeedZoom = {}
@@ -428,6 +451,8 @@ function vonn.newPlayer(event)
 			vonn.addPlayerNeedsZoom(player)
 		end
 	end
+
+	vonn.setupQuickBar(player)
 
 	local numberPlayers = #game.players
 	local msg = "newPlayer complete: " .. numberPlayers
