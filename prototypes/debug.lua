@@ -8,39 +8,31 @@ local sb = serpent.block
 local function compactLog(preamble,list,max_size)
 	-- full|total size of input list
 	local size = #list
-	log(size)
 
 	-- return result
 	local r = preamble
 
 	-- max number of rows (lines) for displaying list
 	local max_rows = math.ceil(size/max_size)
-	log(max_rows)
 
 	-- math desired number of items per line|row (should always be <= max_size)
 	local columns = math.ceil(size/max_rows)
-	log(columns)
 
 	-- number of rows that contain columns-1 number of items
 	local shortRows = math.ceil(size/columns)*columns-size
-	log(shortRows)
 
 
-	local s = 0
 	--log(string.rep("=",80))
-	for var=1,max_rows-shortRows do
-		local sublist = {table.unpack(list, s+1,s+columns)}
-		s = columns + s
-		--log(var.."\t"..s)
-		--log(sb(sublist))
-		r = r .. "\n   " .. table.concat(sublist,", ")
+	local i = 1
+	for row=1,max_rows-shortRows do
+		local sublist = {table.unpack(list, i, i+columns-1)}
+		i = columns + i
+		r = r .. "\n   " .. table.concat(sublist,", ")..","
 	end
-	for var=1+max_rows-shortRows,max_rows do
-		local sublist = {table.unpack(list, s+1,s+columns-1)}
-		s = columns + s - 1
-		--log(var.."\t"..s)
-		--log(sb(sublist))
-		r = r .. "\n   " .. table.concat(sublist,", ")
+	for row=1+max_rows-shortRows,max_rows do
+		local sublist = {table.unpack(list, i, i+columns-1-1)}
+		i = columns + i - 1
+		r = r .. "\n   " .. table.concat(sublist,", ")..","
 	end
 	--log(string.rep("-",80))
 
@@ -53,7 +45,20 @@ local a = "abcdefghijklmnopqrstuvwxyz"
 s={}
 a:gsub(".",function(c) table.insert(s,""..c) end)
 --log(sb(s))
+log(compactLog("s",s,1))
+log(compactLog("s",s,2))
+log(compactLog("s",s,3))
+log(compactLog("s",s,4))
 log(compactLog("s",s,5))
+log(compactLog("s",s,6))
+log(compactLog("s",s,7))
+log(compactLog("s",s,8))
+log(compactLog("s",s,9))
+log(compactLog("s",s,10))
+log(compactLog("s",s,11))
+log(compactLog("s",s,12))
+log(compactLog("s",s,14))
+log(compactLog("s",s,15))
 
 
 
