@@ -61,17 +61,30 @@ local dataRawTypeList = {}
 for k, v in pairs(data.raw) do
 	table.insert(dataRawTypeList,k)
 end
+log("types in `data.raw`\n"..table.concat(dataRawTypeList, ", "))
+log(compactLog("types in `data.raw`",dataRawTypeList,7))
 
-log("types in `data.raw`")
-log( table.concat(dataRawTypeList, ", ") )
 
 
 local rawType = "assembling-machine"
-
-log("keys in `data.raw."..rawType.."`")
+local rawTypeList = {}
 for k, v in pairs(data.raw[rawType]) do
-	log("   "..k)
+	table.insert(rawTypeList,k)
 end
+log("keys in `data.raw."..rawType.."`\n"..table.concat(rawTypeList, ", "))
+log(compactLog("keys in `data.raw."..rawType.."`",rawTypeList,7))
 
-log(sb( data.raw['assembling-machine']['assembling-machine-1'] ))
+
+
+local recipeCategoryMap = {}
+for k, v in pairs(data.raw.recipe) do
+	local category = v.category
+	if category then
+		if not recipeCategoryMap[category] then
+			recipeCategoryMap[category] = {}
+		end
+		table.insert(recipeCategoryMap[category],k)
+	end
+end
+--log(sb( recipeCategoryMap ))
 
