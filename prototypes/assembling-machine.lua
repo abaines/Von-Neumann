@@ -21,7 +21,7 @@ assembling_machine.name = "damaged-assembling-machine"
 assembling_machine.order = "a[assembling-machine-1]"
 assembling_machine.subgroup = "production-machine"
 assembling_machine.minable.result = "damaged-assembling-machine"
-assembling_machine.next_upgrade = "assembling-machine-1"
+assembling_machine.next_upgrade = nil
 
 assembling_machine.crafting_speed = 0.25
 assembling_machine.energy_source.emissions_per_minute = 5
@@ -39,6 +39,8 @@ local layer1 = assembling_machine.animation.layers[1]
 layer1.filename = pathReplace(layer1.filename)
 layer1.hr_version.filename = pathReplace(layer1.hr_version.filename)
 
+assembling_machine.collision_box = {{-1.7,-1.7},{1.7,1.7}}
+assembling_machine.selection_box = {{-2,-2},{2,2}}
 
 data:extend{assembling_machine}
 
