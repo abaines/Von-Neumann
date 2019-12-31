@@ -27,7 +27,7 @@ assembling_machine.crafting_speed = 0.25
 assembling_machine.energy_source.emissions_per_minute = 5
 assembling_machine.energy_usage = "150kW"
 assembling_machine.max_health = 250
-assembling_machine.ingredient_count = 4
+assembling_machine.ingredient_count = 3
 
 assembling_machine.crafting_categories = {
 	"basic-crafting",
@@ -35,9 +35,15 @@ assembling_machine.crafting_categories = {
 }
 
 -- graphics
-local layer1 = assembling_machine.animation.layers[1]
+local layers = assembling_machine.animation.layers
+local layer1 = layers[1]
 layer1.filename = pathReplace(layer1.filename)
 layer1.hr_version.filename = pathReplace(layer1.hr_version.filename)
+
+for _,layer in pairs(layers) do
+	layer.scale = 4/3 * (layer.scale or 1)
+	layer.hr_version.scale = 4/3 * (layer.hr_version.scale or 1)
+end
 
 assembling_machine.collision_box = {{-1.7,-1.7},{1.7,1.7}}
 assembling_machine.selection_box = {{-2,-2},{2,2}}
