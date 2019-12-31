@@ -12,6 +12,7 @@ end
 local item = table.deepcopy( data.raw.item["assembling-machine-1"] )
 item.name = "damaged-assembling-machine"
 item.place_result = "damaged-assembling-machine"
+item.order = "a[assembling-machine--0]"
 item.icon = pathReplace(item.icon)
 data:extend{item}
 
@@ -19,7 +20,7 @@ data:extend{item}
 
 local assembling_machine = table.deepcopy( data.raw["assembling-machine"]["assembling-machine-1"] )
 assembling_machine.name = "damaged-assembling-machine"
-assembling_machine.order = "a[assembling-machine-1]"
+assembling_machine.order = "a[assembling-machine--0]"
 assembling_machine.subgroup = "production-machine"
 assembling_machine.minable.result = "damaged-assembling-machine"
 assembling_machine.next_upgrade = nil
@@ -67,6 +68,7 @@ log(sb( debugObj ))
 local recipe = table.deepcopy(data.raw.recipe["assembling-machine-1"])
 recipe.name = "damaged-assembling-machine"
 recipe.result = "damaged-assembling-machine"
+recipe.order = "a[assembling-machine--0]"
 
 recipe.ingredients = {
 	{"iron-plate", 9},
