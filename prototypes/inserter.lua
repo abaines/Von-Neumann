@@ -1,12 +1,5 @@
 -- Kizrak
 
-if false then
-	log("keys in data.raw[inserter]")
-	for k, v in pairs( data.raw["inserter"] ) do
-		log("   " .. k)
-	end
-end
-
 
 data.raw.inserter["burner-inserter"].allow_burner_leech = true
 
@@ -14,6 +7,7 @@ data.raw.inserter["burner-inserter"].allow_burner_leech = true
 local new_item = table.deepcopy( data.raw.item["inserter"] )
 new_item.name = "vn-inserter"
 new_item.place_result = "vn-inserter"
+new_item.order = "Z[inserter]"
 
 data:extend{ new_item }
 
