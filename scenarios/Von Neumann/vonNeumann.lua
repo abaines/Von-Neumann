@@ -87,18 +87,18 @@ function vonn.spillItemsRandomly(surface)
 	local items = {
 		coal=5,
 		['burner-mining-drill']=4,
-		["vn-electric-mining-drill"]=5,
+		["vn-electric-mining-drill"]=7,
 		['stone-furnace']=8,
 
 		['burner-inserter']=20,
 		['vn-inserter']=30,
-		['vn-transport-belt']=400,
+		['vn-transport-belt']=100,
 
-		['firearm-magazine']=25,
+		['firearm-magazine']=39,
 		['gun-turret']=3,
 		['laser-turret']=2,
 
-		['assembling-machine-1']=8,
+		['damaged-assembling-machine']=24,
 		['big-electric-pole']=12,
 
 		['electronic-circuit']=15,
@@ -186,16 +186,34 @@ function vonn.spawnCrashSite()
 
 	local chest1items = {
 		['burner-mining-drill']=1,
-		["vn-electric-mining-drill"]=3,
 		['stone-furnace']=1,
 		['burner-inserter']=1,
-		['vn-inserter']=1,
 		['inserter']=1,
-		['vn-transport-belt']=300,
-		['assembling-machine-1']=1,
 		['big-electric-pole']=1,
 		roboport=1,
+
+		['damaged-assembling-machine']=1,
+		["vn-electric-mining-drill"]=1,
+		['vn-inserter']=1,
+		['vn-transport-belt']=600,
 		['vn-logistic-chest-requester']=1,
+
+		['construction-robot']=1,
+		['logistic-robot']=1,
+
+		['electronic-circuit']=1,
+
+		['firearm-magazine']=1,
+		['laser-turret']=1,
+		['gun-turret']=1,
+
+		['copper-cable']=1,
+		['green-wire']=1,
+		['red-wire']=1,
+
+		['accumulator']=1,
+		['solar-panel']=1,
+		['radar']=1,
 	}
 
 	-- logistic-chest-storage
@@ -204,16 +222,25 @@ function vonn.spawnCrashSite()
 
 	local chest3 = vonn.createSiteChest({name="logistic-chest-buffer",position={1,0}},{
 		['rail']=10,
+		['train-stop']=1,
+		['rail-chain-signal']=1,
+		['rail-signal']=1,
+
 		['big-electric-pole']=1,
+		['roboport']=1,
+		['vn-inserter']=1,
+		['inserter']=1,
+		['logistic-chest-storage']=1,
 	})
 	chest3.set_request_slot({name="rail", count=100},1)
 	chest3.set_request_slot({name="train-stop", count=1},2)
 	chest3.set_request_slot({name="rail-chain-signal", count=1},3)
 	chest3.set_request_slot({name="rail-signal", count=1},4)
+
 	chest3.set_request_slot({name="big-electric-pole", count=1},7)
 	chest3.set_request_slot({name="roboport", count=1},8)
-	chest3.set_request_slot({name="inserter", count=1},9)
-	chest3.set_request_slot({name="vn-inserter", count=1},10)
+	chest3.set_request_slot({name="vn-inserter", count=1},9)
+	chest3.set_request_slot({name="inserter", count=1},10)
 	chest3.set_request_slot({name="logistic-chest-storage", count=1},11)
 
 	local chest4 = vonn.createSiteChest({name="vn-logistic-chest-storage",position={1,-1}},{
