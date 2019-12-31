@@ -62,13 +62,11 @@ log(compactLog("keys in `data.raw."..rawType.."`:",rawTypeList,6))
 
 local recipeCategoryMap = {}
 for k, v in pairs(data.raw.recipe) do
-	local category = v.category
-	if category then
-		if not recipeCategoryMap[category] then
-			recipeCategoryMap[category] = {}
-		end
-		table.insert(recipeCategoryMap[category],k)
+	local category = v.category or "NIL"
+	if not recipeCategoryMap[category] then
+		recipeCategoryMap[category] = {}
 	end
+	table.insert(recipeCategoryMap[category],k)
 end
 log(sb( recipeCategoryMap ))
 
