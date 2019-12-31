@@ -12,6 +12,7 @@ end
 local item = table.deepcopy( data.raw.item["assembling-machine-1"] )
 item.name = "damaged-assembling-machine"
 item.place_result = "damaged-assembling-machine"
+item.icon = pathReplace(item.icon)
 data:extend{item}
 
 
@@ -47,6 +48,8 @@ end
 
 assembling_machine.collision_box = {{-1.7,-1.7},{1.7,1.7}}
 assembling_machine.selection_box = {{-2,-2},{2,2}}
+
+assembling_machine.icon = pathReplace(assembling_machine.icon)
 
 data:extend{assembling_machine}
 
