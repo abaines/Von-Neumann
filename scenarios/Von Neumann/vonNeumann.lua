@@ -19,6 +19,7 @@ function vonn.kprint(msg)
 end
 
 
+local sb = serpent.block
 
 
 local default_accumulator_buffer = 5000000 -- accumulator is 5 MJ
@@ -155,6 +156,8 @@ function vonn.clearStartingAreaPosition(surface,position,size)
 end
 
 function vonn.spawnCrashSite()
+	log(string.rep("^",80))
+
 	if global.donecrashsite then
 		return
 	end
