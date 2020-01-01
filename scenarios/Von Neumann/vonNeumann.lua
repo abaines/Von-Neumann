@@ -428,44 +428,6 @@ function vonn.setupQuickBar(player)
 	player.set_quick_bar_slot( 8,"damaged-assembling-machine")
 	player.set_quick_bar_slot( 9,"big-electric-pole")
 	player.set_quick_bar_slot(10,"roboport")
-
-	log(string.rep("=",80))
-
-	-- /c testing shows defines.inventory.character_main is correct
-	local inventory = player.get_inventory(defines.inventory.character_main)
-
-	log(inventory.can_insert({name="green-wire",count=1}))
-	log(inventory.insert({name="green-wire",count=1}))
-	log(inventory.insert({name="deconstruction-planner",count=1}))
-
-	local cursor = player.cursor_stack
-
-	log(sb( cursor ))
-
-	local dp = {name="green-wire",count=1}
-
-	--player.cursor_stack.name = "green-wire"
-	log( cursor.can_set_stack(dp) )
-	log( cursor.set_stack(dp) )
-
-	local blueprintText = "0eNplkN1qwzAMhd9F1zY0DbQsr1KGCbGamTlSZykjIfjd56Z/a3snjr7Dkc4CHjsm0TR2GpjcKbZEmKBZQFA1UC/nGUmDzu4YomJyA3uEZmOe5QIeFqB2KLvrxvZfLAoGAnmciiWbOxEUB8tk+8Qj+QdTvTIJf0YUtafE0/zgtv84DRFfs+r8aUAToriWvEvcfYtjijM0xzYKmtX19tIqCka89HHVs1lvKVHPfdlbXwZ+SwNFgWZfb6qP3baq97uc/wB3fnxj"
-
-	--local r = cursor.import_stack(blueprintText)
-	--log("import_stack: "..r)
-	log(sb( cursor ))
-	--log(sb( cursor.export_stack() ))
-
-	inventory.insert(cursor)
-
-
-	player.cursor_ghost = "green-wire"
-	player.cursor_stack.count = 0
-
-	for i in pairs(inventory.get_contents()) do
-		log(i)
-	end
-
-	log(string.rep("-",80))
 end
 
 
