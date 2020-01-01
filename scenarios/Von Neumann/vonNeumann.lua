@@ -428,6 +428,20 @@ function vonn.setupQuickBar(player)
 	player.set_quick_bar_slot( 8,"damaged-assembling-machine")
 	player.set_quick_bar_slot( 9,"big-electric-pole")
 	player.set_quick_bar_slot(10,"roboport")
+
+
+	log(string.rep("=",80))
+
+	-- /c testing shows defines.inventory.character_main is correct
+	local inventory = player.get_inventory(defines.inventory.character_main)
+	local cursor = player.cursor_stack
+	local dp = {name="green-wire",count=1}
+	local blueprintText = "0eNplkN1qwzAMhd9F1zY0DbQsr1KGCbGamTlSZykjIfjd56Z/a3snjr7Dkc4CHjsm0TR2GpjcKbZEmKBZQFA1UC/nGUmDzu4YomJyA3uEZmOe5QIeFqB2KLvrxvZfLAoGAnmciiWbOxEUB8tk+8Qj+QdTvTIJf0YUtafE0/zgtv84DRFfs+r8aUAToriWvEvcfYtjijM0xzYKmtX19tIqCka89HHVs1lvKVHPfdlbXwZ+SwNFgWZfb6qP3baq97uc/wB3fnxj"
+
+	local r = cursor.import_stack(blueprintText)
+	player.clean_cursor()
+
+	log(string.rep("-",80))
 end
 
 
