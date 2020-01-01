@@ -480,7 +480,8 @@ end
 function vonn.newPlayer(event)
 	local player_index=event.player_index
 	local player=game.players[player_index]
-	vonn.kprint("newPlayer: ".. player.name,{r=255,g=255})
+	local eventName = vonn.eventNameMapping[event.name]
+	vonn.kprint("newPlayer: ".. player.name .. "   " .. eventName,{r=255,g=255})
 
 	for i, player in pairs(game.players) do
 		if player.connected and player.character then
@@ -494,15 +495,13 @@ function vonn.newPlayer(event)
 		end
 	end
 
-	vonn.setupQuickBar(player)
-
 	local numberPlayers = #game.players
 	local msg = "newPlayer complete: " .. numberPlayers
 	vonn.kprint(msg)
 end
 
 script.on_event({
-defines.events.on_player_joined_game,
+--defines.events.on_player_joined_game,
 defines.events.on_player_created,
 defines.events.on_player_respawned,
 },vonn.newPlayer)
@@ -613,6 +612,8 @@ function vonn.updatePlayerZoom(player)
 			global.playersNeedZoom[player] = nil
 			--vonn.kprint("hiya! ".. player.name .. " " .. game.tick)
 			player.zoom = 0.276
+
+			vonn.setupQuickBar(player)
 		end
 	end
 end
@@ -726,6 +727,7 @@ function vonn.removeBadItemsFromPlayer(player)
 	local itemsRemoved = {}
 
 	for item,count in pairs(badItems) do
+		log("vonn.getBadItemsForPlayer: "..item)
 		local removedCount = player.remove_item({name=item, count=count})
 		if not itemsRemoved[item] then
 			itemsRemoved[item] = 0
