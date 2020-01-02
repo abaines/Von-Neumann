@@ -418,30 +418,39 @@ function vonn.setupQuickBar(player)
 		end
 	end
 
-	player.set_quick_bar_slot( 1,"vn-transport-belt")
-	player.set_quick_bar_slot( 2,"vn-inserter")
-	player.set_quick_bar_slot( 3,"burner-inserter")
-	player.set_quick_bar_slot( 4,"burner-mining-drill")
-	player.set_quick_bar_slot( 5,"vn-electric-mining-drill")
-	player.set_quick_bar_slot( 6,"stone-furnace")
-	player.set_quick_bar_slot( 7,"radar")
-	player.set_quick_bar_slot( 8,"damaged-assembling-machine")
-	player.set_quick_bar_slot( 9,"big-electric-pole")
-	player.set_quick_bar_slot(10,"roboport")
+	player.set_quick_bar_slot(1,"vn-transport-belt")
+	player.set_quick_bar_slot(2,"vn-inserter")
+	player.set_quick_bar_slot(3,"burner-inserter")
+	player.set_quick_bar_slot(4,"burner-mining-drill")
+	player.set_quick_bar_slot(5,"vn-electric-mining-drill")
+	player.set_quick_bar_slot(6,"stone-furnace")
+	player.set_quick_bar_slot(7,"damaged-assembling-machine")
+	player.set_quick_bar_slot(8,"big-electric-pole")
+	player.set_quick_bar_slot(9,"roboport")
 
+	-- deconstruction-planner
+	if player.cursor_ghost~=nil then
+		-- skip if ghost on cursor
+		return
+	end
 
-	log(string.rep("=",80))
-
-	-- /c testing shows defines.inventory.character_main is correct
-	local inventory = player.get_inventory(defines.inventory.character_main)
 	local cursor = player.cursor_stack
-	local dp = {name="green-wire",count=1}
-	local blueprintText = "0eNplkN1qwzAMhd9F1zY0DbQsr1KGCbGamTlSZykjIfjd56Z/a3snjr7Dkc4CHjsm0TR2GpjcKbZEmKBZQFA1UC/nGUmDzu4YomJyA3uEZmOe5QIeFqB2KLvrxvZfLAoGAnmciiWbOxEUB8tk+8Qj+QdTvTIJf0YUtafE0/zgtv84DRFfs+r8aUAToriWvEvcfYtjijM0xzYKmtX19tIqCka89HHVs1lvKVHPfdlbXwZ+SwNFgWZfb6qP3baq97uc/wB3fnxj"
 
-	local r = cursor.import_stack(blueprintText)
+	if not cursor.valid then
+		return
+	elseif cursor.valid_for_read then
+		return
+	end
+
+	local deconstruction_planner_text = "0eNplkN1qwzAMhd9F1zY0DbQsr1KGCbGamTlSZykjIfjd56Z/a3snjr7Dkc4CHjsm0TR2GpjcKbZEmKBZQFA1UC/nGUmDzu4YomJyA3uEZmOe5QIeFqB2KLvrxvZfLAoGAnmciiWbOxEUB8tk+8Qj+QdTvTIJf0YUtafE0/zgtv84DRFfs+r8aUAToriWvEvcfYtjijM0xzYKmtX19tIqCka89HHVs1lvKVHPfdlbXwZ+SwNFgWZfb6qP3baq97uc/wB3fnxj"
+
+	local r = cursor.import_stack(deconstruction_planner_text)
+	if r~=0 then
+		log("cursor.import_stack: "..r)
+	end
+
+	player.set_quick_bar_slot(10,player.cursor_stack)
 	player.clean_cursor()
-
-	log(string.rep("-",80))
 end
 
 
