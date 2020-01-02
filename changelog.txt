@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.5.27
+Date: 2020.1.2
+  Changes:
+    - Add starting quickbar items
+    - Fix starting area resource cleanup for new building positions
+    - Update dependency
+    - Update description
+    - Cleanup logging
+---------------------------------------------------------------------------------------------------
 Version: 0.4.26
 Date: 2019.12.31
   Changes:
