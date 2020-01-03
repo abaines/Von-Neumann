@@ -164,7 +164,7 @@ function vonn.spawnCrashSite()
 	--log(serpent.block( game.surfaces["nauvis"].map_gen_settings ))
 	log("map_gen_settings.seed: " .. game.surfaces["nauvis"].map_gen_settings.seed)
 
-	vonn.clearStartingArea(game.surfaces["nauvis"],{{-9, -9}, {9, 9}})
+	vonn.clearStartingAreaPosition(game.surfaces["nauvis"],{0,0},9)
 
 	local electricEnergyInterface = vonn.createCrashSiteGenerator({0,0})
 	vonn.createEntity{name="vn-substation",position={-16,-16}}
@@ -601,7 +601,7 @@ function vonn.updatePlayerZoom(player)
 	end
 end
 
-function vonn.onUpdate(event)
+function vonn.on_tick(event)
 	for i, player in pairs(game.players) do
 		if player.connected then
 			vonn.disableMining(player)
@@ -610,7 +610,7 @@ function vonn.onUpdate(event)
 	end
 end
 
-script.on_event(defines.events.on_tick,vonn.onUpdate)
+script.on_event(defines.events.on_tick,vonn.on_tick)
 
 
 function vonn.stopBuilding(event)
