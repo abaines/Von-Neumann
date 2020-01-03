@@ -1,6 +1,8 @@
 -- Kizrak
 
 
+local sb = serpent.block
+
 local mapGenPresetsDefault = data.raw["map-gen-presets"].default
 
 local rail_world_autoplace_controls = table.deepcopy( mapGenPresetsDefault["rail-world"].basic_settings.autoplace_controls )
@@ -18,7 +20,7 @@ local vonnMapPreset = {
 		water = 1.5, -- like rail-world
 		autoplace_controls = rail_world_autoplace_controls, -- like rail-world
 	},
-	order = 'v',
+	order = 'VONN',
 	advanced_settings = {
 		difficulty_settings  = { research_queue_setting  = "always" },
 		enemy_evolution = {
@@ -34,5 +36,9 @@ local vonnMapPreset = {
 }
 
 mapGenPresetsDefault["Vonn"] = vonnMapPreset
---log(serpent.block( mapGenPresetsDefault["Vonn"] ))
+--log(sb( mapGenPresetsDefault ))
+
+
+-- you are using mods, and you are an AI robot, you should be able to handle a research queue!
+data.raw["map-settings"]["map-settings"]["difficulty_settings"].research_queue_setting = "always"
 
