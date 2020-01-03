@@ -156,8 +156,6 @@ function vonn.clearStartingAreaPosition(surface,position,size)
 end
 
 function vonn.spawnCrashSite()
-	log(string.rep("^",80))
-
 	if global.donecrashsite then
 		return
 	end
