@@ -35,6 +35,13 @@ local vonnMapPreset = {
 	seed = 1687102566, -- https://wiki.factorio.com/Types/MapGenPreset#seed
 }
 
+
+ -- like rail-world
+local autoplace_control  = {
+	frequency = 0.333333333333,
+	size = 3,
+}
+
 mapGenPresetsDefault["Vonn"] = vonnMapPreset
 --log(sb( mapGenPresetsDefault ))
 
