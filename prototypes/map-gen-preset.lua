@@ -46,9 +46,9 @@ for name,value in pairs(data.raw["autoplace-control"]) do
 		--log(sb(value))
 
 		local autoplace_control  = {
-			frequency = 1/4,
-			size = 1,
-			richness = 1,
+			frequency = 1/4,  -- railworld: 1/3
+			size = 3/2,       -- railworld: 3
+			richness = 1,     -- railworld: 1
 		}
 
 		if resource[name] and resource[name].category == "basic-fluid" then
