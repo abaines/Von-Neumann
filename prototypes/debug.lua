@@ -51,12 +51,21 @@ log(compactLog("types in `data.raw`:",dataRawTypeList,6))
 
 
 
-local rawType = "assembling-machine"
-local rawTypeList = {}
-for k, v in pairs(data.raw[rawType]) do
-	table.insert(rawTypeList,k)
+local function logDataRawType(rawType)
+	local rawTypeList = {}
+	for k, v in pairs(data.raw[rawType]) do
+		table.insert(rawTypeList,k)
+	end
+	log(compactLog("keys in `data.raw."..rawType.."`:",rawTypeList,6))
 end
-log(compactLog("keys in `data.raw."..rawType.."`:",rawTypeList,6))
+
+logDataRawType("resource")
+logDataRawType("autoplace-control")
+logDataRawType("map-settings")
+logDataRawType("map-gen-presets")
+
+log(sb( data.raw["map-settings"] ))
+log(sb( data.raw["autoplace-control"] ))
 
 
 
