@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.5.29
+Date: 2020.1.3
+  Changes:
+    - Heavily adjust map settings
+    - Also has some support for modded resources (like infinite resources)
+---------------------------------------------------------------------------------------------------
 Version: 0.5.28
 Date: 2020.1.3
   Changes:
