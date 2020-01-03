@@ -274,6 +274,8 @@ function vonn.spawnCrashSite()
 	for r=0,20 do
 		surface.request_to_generate_chunks({0,0},r)
 	end
+
+	global.clearSpawnResources = true
 end
 
 script.on_init(vonn.spawnCrashSite)
@@ -607,6 +609,19 @@ function vonn.on_tick(event)
 			vonn.disableMining(player)
 			vonn.updatePlayerZoom(player)
 		end
+	end
+
+	if global.clearSpawnResources and game.tick>1 then
+		local roboRadius = 25
+		local clearSize = 3.0
+		local surface = game.surfaces["nauvis"]
+		vonn.clearStartingAreaPosition(surface,{-1*roboRadius,-1*roboRadius},clearSize)
+		vonn.clearStartingAreaPosition(surface,{roboRadius   ,-1*roboRadius},clearSize)
+		vonn.clearStartingAreaPosition(surface,{-1*roboRadius,roboRadius   },clearSize)
+		vonn.clearStartingAreaPosition(surface,{roboRadius   ,roboRadius   },clearSize)
+		vonn.clearStartingAreaPosition(surface,{0,0},9)
+
+		global.clearSpawnResources = false
 	end
 end
 
