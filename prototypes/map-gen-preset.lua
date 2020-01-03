@@ -36,16 +36,41 @@ local vonnMapPreset = {
 }
 
 
- -- like rail-world
-local autoplace_control  = {
-	frequency = 0.333333333333,
-	size = 3,
-}
+
+local resource = data.raw["resource"]
+
+for name,value in pairs(data.raw["autoplace-control"]) do
+	local category = value.category
+	if category == "resource" then
+		--log(name .. "   " .. tostring(resource[name].category))
+		--log(sb(value))
+
+		local autoplace_control  = {
+			frequency = 1/4,
+			size = 1,
+			richness = 1,
+		}
+
+		if resource[name] and resource[name].category == "basic-fluid" then
+			-- use above
+
+		elseif resource[name] and resource[name].infinite then
+			autoplace_control.frequency = 1/6
+			autoplace_control.size = 1/2
+			autoplace_control.richness = 1/2
+
+		end
+
+		vonnMapPreset.basic_settings.autoplace_controls[name] = autoplace_control
+	end
+end
+
 
 mapGenPresetsDefault["Vonn"] = vonnMapPreset
---log(sb( mapGenPresetsDefault ))
+--log(sb( vonnMapPreset.basic_settings.autoplace_controls ))
 
 
 -- you are using mods, and you are an AI robot, you should be able to handle a research queue!
 data.raw["map-settings"]["map-settings"]["difficulty_settings"].research_queue_setting = "always"
+--log(sb( data.raw["map-settings"]["map-settings"] ))
 
