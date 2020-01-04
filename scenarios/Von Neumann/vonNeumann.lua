@@ -769,7 +769,13 @@ function vonn.restoreRemovedItemsToOpenEntity(player,itemsRemoved)
 end
 
 function vonn.spillPlayerItems(player,surface,uninsertableItems)
-	local position = player.opened.position
+	local position = player.position
+	if player.opened then
+		position = player.opened.position
+	end
+	if player.selected then
+		position = player.selected.position
+	end
 	local surface = game.surfaces[surface]
 	local sum = 0
 
@@ -810,16 +816,18 @@ function vonn.on_player_inventory_changed(event)
 			vonn.kprint("spilled items: " .. sum)
 		end
 
-	elseif table_size(itemsRemoved) == 1 then
-		-- assume player cheat_mode crafted an item, so ghost it
-		for item,count in pairs(itemsRemoved) do
-			player.cursor_ghost = item
+	else
+		if table_size(itemsRemoved) == 1 then
+			-- assume player cheat_mode crafted an item, so ghost it
+			for item,count in pairs(itemsRemoved) do
+				player.cursor_ghost = item
+			end
 		end
 
-	elseif table_size(itemsRemoved) > 0 then
-		-- not sure this should happen (except picking items off ground), and if so, probably exploit
-		-- vonn.spillPlayerItemsAtPlayer(player,itemsRemoved)
-		log("table_size(itemsRemoved) > 0" .. serpent.block(itemsRemoved))
+		if table_size(itemsRemoved) > 0 then
+			local sum = vonn.spillPlayerItems(player,player.surface.name,itemsRemoved)
+			game.print("spilled items: " .. sum)
+		end
 	end
 
 
