@@ -553,7 +553,7 @@ function vonn.on_player_crafted_item(event)
 	if banned[name] then
 		-- TODO: remove items on the next tick
 		player.remove_item({name=name, count=2000})
-		global.players[event.palyer_index].crafted = {name = name, count = item_stack.count}
+		global.players[player_index].crafted = {name = name, count = item_stack.count}
 	end
 end
 
