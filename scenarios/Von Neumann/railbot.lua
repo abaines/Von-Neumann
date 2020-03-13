@@ -2,7 +2,7 @@
 
 
 
-railbot = {}
+local railbot = {}
 
 
 railbot.allowedGhostNames = {
