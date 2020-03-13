@@ -3,7 +3,7 @@
 --- needs "hijack"
 
 
-vonn = {}
+local vonn = {}
 
 vonn.eventNameMapping = {}
 for eventName,eventId in pairs(defines.events) do
