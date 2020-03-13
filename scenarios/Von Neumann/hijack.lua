@@ -11,7 +11,7 @@ local table_event = {}
 local on_event_history = {}
 
 local function doAllEvents(event)
-	name = event.name
+	local name = event.name
 
 	for index,value in ipairs(table_event[name]) do
 		value(event)
@@ -19,7 +19,7 @@ local function doAllEvents(event)
 end
 
 script.on_event = function(event_ids, _function)
-	event_ids = (type(event_ids) == "table" and event_ids) or {event_ids}
+	local event_ids = (type(event_ids) == "table" and event_ids) or {event_ids}
 
 	for _, event_id in pairs(event_ids) do
 		if not table_event[event_id] then
