@@ -480,6 +480,15 @@ function vonn.newPlayer(event)
 		end
 	end
 
+	--store player in global storage
+	if not global.players then
+		global.players = {}
+	end
+
+	global.players[event.player_index] = {
+		crafted = {}
+	}
+
 	local numberPlayers = #game.players
 	local msg = "newPlayer complete: " .. numberPlayers
 	vonn.kprint(msg)
@@ -544,6 +553,7 @@ function vonn.on_player_crafted_item(event)
 	if banned[name] then
 		-- TODO: remove items on the next tick
 		player.remove_item({name=name, count=2000})
+		global.players[player_index].crafted = {name = name, count = item_stack.count}
 	end
 end
 
@@ -779,9 +789,13 @@ function vonn.spillPlayerItems(player,surface,uninsertableItems)
 	local surface = game.surfaces[surface]
 	local sum = 0
 
+	local globalCraftedItem = global.players[player.index].crafted
+
 	for item,count in pairs(uninsertableItems) do
-		surface.spill_item_stack(position,{name=item, count=count},false,player.force,false)
-		sum = count + sum
+		if not item.name == globalCraftedItem.name then
+			surface.spill_item_stack(position,{name=item, count=count},false,player.force,false)
+			sum = count + sum
+		end
 	end
 
 	return sum
@@ -821,6 +835,8 @@ function vonn.on_player_inventory_changed(event)
 			-- assume player cheat_mode crafted an item, so ghost it
 			for item,count in pairs(itemsRemoved) do
 				player.cursor_ghost = item
+				player.remove_item(item)
+				global.players[event.player_index].crafted = {}
 			end
 		end
 
