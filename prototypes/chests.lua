@@ -4,17 +4,17 @@
 
 if false then
 	log("keys in data.raw")
-	for k, v in pairs(data.raw) do
+	for k, _ in pairs(data.raw) do
 		log(k)
 	end
 
 	log("keys in data.raw.container")
-	for k, v in pairs(data.raw.container) do
+	for k, _ in pairs(data.raw.container) do
 		log(k)
 	end
 
 	log("keys in data.raw.logistic-container")
-	for k, v in pairs(data.raw["logistic-container"]) do
+	for k, _ in pairs(data.raw["logistic-container"]) do
 		log(k)
 	end
 end

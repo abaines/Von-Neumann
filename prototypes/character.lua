@@ -47,8 +47,8 @@ animations[1].mining_with_tool = defender.idle
 -- running animations
 animations[1].running = table.deepcopy(defender.in_motion)
 for _,layer in pairs(animations[1].running.layers) do
-	layer.animation_speed = animation_speed
-	layer.hr_version.animation_speed = animation_speed
+	--layer.animation_speed = animation_speed
+	--layer.hr_version.animation_speed = animation_speed
 end
 
 
@@ -62,7 +62,7 @@ for _,layer in pairs(layers) do
 	layer.y = nil
 	layer.line_length = nil
 	layer.scale = 0.5
-	layer.animation_speed = animation_speed
+	--layer.animation_speed = animation_speed
 	layer.frame_count = 4
 
 	local filename = tostring(layer.filename)
