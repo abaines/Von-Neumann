@@ -1,11 +1,15 @@
 {
-    "name": "vonNeumann",
-    "version": "0.6.32",
-    "title": "Von Neumann",
-    "author": "Kizrak",
-    "contact": "",
-    "homepage": "https://github.com/abaines/Von-Neumann",
-    "factorio_version": "0.17",
-    "dependencies": ["base >= 0.17.79", "? lightArtillery", "? resourceMarker"],
-    "description": "Von Neumann Mod! Who wants to be a sack of blood and bones when you can be an hyper-intelligent self-replicating robot!\n\nThis is a scenario!\nPlay -> Scenarios -> Von Neumann/Freeplay -> Play\n#god-controller #robots #scenario #logistics #RTS"
+	"name": "vonNeumann",
+	"version": "0.6.32",
+	"title": "Von Neumann",
+	"author": "Kizrak",
+	"contact": "",
+	"homepage": "https://github.com/abaines/Von-Neumann",
+	"factorio_version": "0.18",
+	"dependencies": [
+		"base >= 0.18.18",
+		"? lightArtillery",
+		"? resourceMarker"
+	],
+	"description": "Von Neumann Mod! Who wants to be a sack of blood and bones when you can be an hyper-intelligent self-replicating robot!\n\nThis is a scenario!\nPlay -> Scenarios -> Von Neumann/Freeplay -> Play\n#god-controller #robots #scenario #logistics #RTS"
 }
