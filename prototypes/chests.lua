@@ -3,7 +3,7 @@
 -- log(serpent.block( data.raw ))
 
 if false then
-	log("keys in data.raw")
+	log("keys in data.raw") -- luacheck: ignore
 	for k, _ in pairs(data.raw) do
 		log(k)
 	end

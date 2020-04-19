@@ -1,8 +1,8 @@
 -- Kizrak
 
 if false then
-	log("keys in data.raw[mining-drill]")
-	for k, v in pairs( data.raw["mining-drill"] ) do
+	log("keys in data.raw[mining-drill]") -- luacheck: ignore
+	for k, _ in pairs( data.raw["mining-drill"] ) do
 		log("   " .. k)
 	end
 end
