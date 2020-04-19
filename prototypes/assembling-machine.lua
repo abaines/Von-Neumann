@@ -1,7 +1,7 @@
 -- Kizrak
 
 
-local sb = serpent.block
+local sb = serpent.block -- luacheck: ignore
 
 -- replace __base__ path with __vonNeumann__
 local function pathReplace(base)
