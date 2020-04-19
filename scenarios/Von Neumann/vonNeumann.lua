@@ -882,6 +882,7 @@ script.on_event({
 },vonn.on_player_pipette)
 
 
+return vonn
 
 -- Lua API TODOs
 

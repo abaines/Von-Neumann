@@ -60,9 +60,13 @@ function disableGodResearches()
 		["weapon-shooting-speed-6"] = true,
 	}
 
-	for research,visible_when_disabled in pairs(researchesToDisable) do
-		playerForce.technologies[research].enabled = false
-		playerForce.technologies[research].visible_when_disabled = false
+	for research, visible_when_disabled in pairs(researchesToDisable) do
+		if playerForce.technologies[research] then
+			playerForce.technologies[research].enabled = false
+			playerForce.technologies[research].visible_when_disabled = false
+		else
+			log(research)
+		end
 	end
 
 	local researchedToEnable = {
