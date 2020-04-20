@@ -177,6 +177,7 @@ script.on_event({
 
 local function apply_bonuses()
 	if false then
+		-- luacheck: ignore 511
 		game.forces.player.character_build_distance_bonus = 125
 		game.forces.player.character_reach_distance_bonus = 125
 		game.forces.player.character_resource_reach_distance_bonus = 7

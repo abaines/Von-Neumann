@@ -51,7 +51,7 @@ railbot.getBuffers = function(surface)
 end
 
 railbot.removeFromBuffers = function(surface,item,count)
-	local count = count or 1
+	count = count or 1
 	local buffers = railbot.getBuffers(surface)
 
 	vonn.kprint(item.." " .. #buffers.." " .. count)
@@ -69,7 +69,7 @@ end
 
 
 
-railbot.ghostBehavior = function(event)
+railbot.ghostBehavior = function(_)
 	local ghosts, railbotUnit = railbot.searchGhost()
 
 	if ghosts and #ghosts>0 and railbotUnit and railbotUnit.valid then
@@ -103,6 +103,7 @@ railbot.ghostBehavior = function(event)
 				return
 
 			else
+				-- luacheck: ignore W542
 				--vonn.kprint(game.tick .. " " .. ghost_name)
 
 			end
@@ -132,7 +133,7 @@ railbot.bufferChestAvailableItems = function(surface)
 end
 
 railbot.on_tick = function(event)
-	local eventName = vonn.eventNameMapping[event.name]
+	--local eventName = vonn.eventNameMapping[event.name]
 
 	railbot.ghostBehavior(event)
 end
@@ -188,7 +189,7 @@ railbot.burnTrees = function(railbotUnit)
 	end
 end
 
-railbot.burnTreeBehavior = function(event)
+railbot.burnTreeBehavior = function(_)
 	local railbotUnit = railbot.findRailbot()
 	if not ( railbotUnit and railbotUnit.valid ) then return end
 
@@ -302,6 +303,7 @@ railbot.addGui = function(player)
 
 	local railbot_gui = gui.add{type="frame", name="railbot_gui", caption="Railbot"}
 
+	-- luacheck: ignore W211
 	local railbot_gui_follow = railbot_gui.add{type="button",name="railbot_gui_follow",caption="Follow"}
 	local railbot_gui_stay = railbot_gui.add{type="button",name="railbot_gui_stay",caption="Stay"}
 	local railbot_gui_home = railbot_gui.add{type="button",name="railbot_gui_home",caption="Home"}
@@ -376,8 +378,8 @@ script.on_event({
 railbot.commandLine = function(param)
 	local player_index=param.player_index
 	local player=game.players[player_index]
-	local name = param.name
-	local tick = param.tick
+	--local name = param.name
+	--local tick = param.tick
 	local parameter  = param.parameter
 
 	railbot.addGui(player)

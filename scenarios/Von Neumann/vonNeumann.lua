@@ -19,7 +19,7 @@ function vonn.kprint(msg)
 end
 
 
-local sb = serpent.block
+local sb = serpent.block -- luacheck: ignore W211
 
 
 local default_accumulator_buffer = 5000000 -- accumulator is 5 MJ
