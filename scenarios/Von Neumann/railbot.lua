@@ -102,8 +102,7 @@ railbot.ghostBehavior = function(_)
 				}
 				return
 
-			else
-				-- luacheck: ignore 542
+			else -- luacheck: ignore 542
 				--vonn.kprint(game.tick .. " " .. ghost_name)
 
 			end

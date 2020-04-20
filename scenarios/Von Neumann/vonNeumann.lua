@@ -174,11 +174,11 @@ function vonn.spawnCrashSite()
 
 	local crashSiteLab = vonn.createEntity{name="crash-site-lab-repaired",position={0,5}}
 
-	local crashSiteAssemblingMachine1 = vonn.createEntity{name="crash-site-assembling-machine-1-repaired",position={4,-6}}
-	local crashSiteAssemblingMachine2 = vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={-4,-6}}
+	vonn.createEntity{name="crash-site-assembling-machine-1-repaired",position={4,-6}}
+	vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={-4,-6}}
 
-	local crashSiteChest1 = vonn.createSiteChest({name="crash-site-chest-1",position={-7,0}},{['flying-robot-frame']=250})
-	local crashSiteChest2 = vonn.createSiteChest({name="crash-site-chest-2",position={7,-1}},{['compilatron-chest']=1})
+	vonn.createSiteChest({name="crash-site-chest-1",position={-7,0}},{['flying-robot-frame']=250})
+	vonn.createSiteChest({name="crash-site-chest-2",position={7,-1}},{['compilatron-chest']=1})
 
 	local chest1items = {
 		['burner-mining-drill']=1,
@@ -213,8 +213,8 @@ function vonn.spawnCrashSite()
 	}
 
 	-- logistic-chest-storage
-	local chest1 = vonn.createSiteChest({name="vn-logistic-chest-storage",position={-2,-1}},chest1items)
-	local chest2 = vonn.createSiteChest({name="logistic-chest-active-provider",position={-2,0}},{})
+	vonn.createSiteChest({name="vn-logistic-chest-storage",position={-2,-1}},chest1items)
+	vonn.createSiteChest({name="logistic-chest-active-provider",position={-2,0}},{})
 
 	local chest3 = vonn.createSiteChest({name="logistic-chest-buffer",position={1,0}},{
 		['rail']=10,
@@ -239,7 +239,7 @@ function vonn.spawnCrashSite()
 	chest3.set_request_slot({name="inserter", count=1},10)
 	chest3.set_request_slot({name="logistic-chest-storage", count=1},11)
 
-	local chest4 = vonn.createSiteChest({name="vn-logistic-chest-storage",position={1,-1}},{
+	vonn.createSiteChest({name="vn-logistic-chest-storage",position={1,-1}},{
 		['coal']=1,
 		['stone']=1,
 		['wood']=1,
@@ -355,6 +355,7 @@ function vonn.displayStoryText(player)
 	text_box.style.vertically_squashable = true
 
 	if false then
+		-- luacheck: ignore 511
 		local sprite = frame.add{type='sprite',name='vonn_story_sprite',sprite="file/daddy.png"}
 		sprite.style.horizontally_stretchable = true
 	end
@@ -399,8 +400,7 @@ function vonn.on_gui_click(event)
 		elseif text_box.text == vonn.storyText5 then
 			event.element.parent.destroy()
 		end
-	else
-		--vonn.kprint(elementName)
+
 	end
 end
 
@@ -509,8 +509,6 @@ function vonn.craftEvent(event)
 	local player=game.players[player_index]
 	vonn.kprint("Player tried to craft: " .. player.name)
 
-	local player=game.players[player_index]
-
 	local lastItem = nil
 	while player.crafting_queue do
 		lastItem = player.crafting_queue[1]
@@ -528,11 +526,10 @@ script.on_event({
 function vonn.on_player_crafted_item(event)
 	local player_index = event.player_index
 	local player=game.players[player_index]
-	local recipe = event.recipe
+	--local recipe = event.recipe
 	local items = event.items
-	local eventName = vonn.eventNameMapping[event.name]
+	--local eventName = vonn.eventNameMapping[event.name]
 	local item_stack = event.item_stack
-	local recipe = event.recipe
 
 	local name = item_stack.name
 	vonn.kprint("Player crafted: " .. player.name .. "   `" .. name .. "`   " .. item_stack.count)
@@ -613,7 +610,7 @@ function vonn.updatePlayerZoom(player)
 	end
 end
 
-function vonn.on_tick(event)
+function vonn.on_tick(_)
 	for i, player in pairs(game.players) do
 		if player.connected then
 			vonn.disableMining(player)
@@ -691,7 +688,7 @@ vonn.acceptable_inventory = {
 
 function vonn.countContentForBadItems(badItems,contents)
 	for item, count in pairs (contents) do
-		if vonn.acceptable_inventory[item] then
+		if vonn.acceptable_inventory[item] then -- luacheck: ignore 542
 			-- ignore acceptable inventory item
 		else
 			if not badItems[item] then
@@ -786,7 +783,7 @@ function vonn.spillPlayerItems(player,surface,uninsertableItems)
 	if player.selected then
 		position = player.selected.position
 	end
-	local surface = game.surfaces[surface]
+	surface = game.surfaces[surface]
 	local sum = 0
 
 	local globalCraftedItem = global.players[player.index].crafted
@@ -810,12 +807,12 @@ end
 function vonn.on_player_inventory_changed(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
-	local eventName = vonn.eventNameMapping[event.name]
+	--local eventName = vonn.eventNameMapping[event.name]
 
 	local itemsRemoved = vonn.removeBadItemsFromPlayer(player)
 
 	if table_size(itemsRemoved) == 1 then
-		for item,count in pairs(itemsRemoved) do
+		for item,_ in pairs(itemsRemoved) do
 			vonn.kprint(player.name .. " tried to pick up " .. item .. "!")
 		end
 	elseif table_size(itemsRemoved) > 0 then
@@ -833,7 +830,7 @@ function vonn.on_player_inventory_changed(event)
 	else
 		if table_size(itemsRemoved) == 1 then
 			-- assume player cheat_mode crafted an item, so ghost it
-			for item,count in pairs(itemsRemoved) do
+			for item,_ in pairs(itemsRemoved) do
 				player.cursor_ghost = item
 				player.remove_item(item)
 				global.players[event.player_index].crafted = {}
@@ -867,9 +864,9 @@ defines.events.on_player_cursor_stack_changed,
 function vonn.on_player_pipette(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
-	local eventName = vonn.eventNameMapping[event.name]
-	local item  = event.item
-	local used_cheat_mode  = event.used_cheat_mode
+	--local eventName = vonn.eventNameMapping[event.name]
+	--local item  = event.item
+	--local used_cheat_mode  = event.used_cheat_mode
 
 	--vonn.kprint(item.name .. "  " .. tostring(used_cheat_mode))
 	--vonn.kprint(player.cursor_stack.name .. "   " .. player.cursor_stack.count)
