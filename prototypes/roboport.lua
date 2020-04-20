@@ -5,12 +5,12 @@
 if false then
 	-- luacheck: ignore 511
 	log("keys in data.raw")
-	for k, v in pairs(data.raw) do
+	for k, _ in pairs(data.raw) do
 		log(k)
 	end
 
 	log("keys in data.raw.roboport")
-	for k, v in pairs(data.raw["roboport"]) do
+	for k, _ in pairs(data.raw["roboport"]) do
 		log(k)
 	end
 end

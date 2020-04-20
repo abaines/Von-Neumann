@@ -4,7 +4,7 @@
 
 
 
-function disableGodResearches()
+local function disableGodResearches()
 	local playerForce = game.forces["player"]
 
 	local researchesToDisable = {
@@ -60,7 +60,7 @@ function disableGodResearches()
 		["weapon-shooting-speed-6"] = true,
 	}
 
-	for research, visible_when_disabled in pairs(researchesToDisable) do
+	for research, _ in pairs(researchesToDisable) do
 		if playerForce.technologies[research] then
 			playerForce.technologies[research].enabled = false
 			playerForce.technologies[research].visible_when_disabled = false
@@ -77,7 +77,7 @@ function disableGodResearches()
 		["tanks"] = true,
 	}
 
-	for research,visible_when_disabled in pairs(researchedToEnable) do
+	for research,_ in pairs(researchedToEnable) do
 		playerForce.technologies[research].enabled = true
 		playerForce.technologies[research].researched = true
 		playerForce.technologies[research].visible_when_disabled = false
@@ -175,7 +175,7 @@ script.on_event({
 },disableGodResearches)
 
 
-function apply_bonuses()
+local function apply_bonuses()
 	if false then
 		game.forces.player.character_build_distance_bonus = 125
 		game.forces.player.character_reach_distance_bonus = 125
