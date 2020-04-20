@@ -1,7 +1,7 @@
 -- Kizrak
 
 if false then
-	log("keys in data.raw[mining-drill]") -- luacheck: ignore
+	log("keys in data.raw[mining-drill]") -- luacheck: ignore 511
 	for k, _ in pairs( data.raw["mining-drill"] ) do
 		log("   " .. k)
 	end

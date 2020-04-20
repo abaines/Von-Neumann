@@ -10,7 +10,7 @@
 ---------------------------------------------------------------------------------------------------
 
 if false then
-	require("prototypes.debug") -- luacheck: ignore
+	require("prototypes.debug") -- luacheck: ignore 511
 end
 
 require("prototypes.character")
