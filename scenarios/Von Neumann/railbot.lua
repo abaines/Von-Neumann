@@ -171,7 +171,8 @@ railbot.burnTrees = function(railbotUnit)
 
 	local trees = railbot.findTreesMarkedForDecon(railbotUnit)
 
-	for index,tree in pairs(trees) do
+	-- we only want to burn the first tree we find
+	for index,tree in pairs(trees) do -- luacheck: ignore 512
 		railbotUnit.surface.create_entity{
 			name="fire-flame",
 			position=tree.position,
@@ -184,8 +185,8 @@ railbot.burnTrees = function(railbotUnit)
 			position={0,0},duration=20
 		}
 		tree.damage(5,railbotUnit.force,"explosion")
-		-- we only want to burn the first tree we find
-		return -- luacheck: ignore 512
+
+		return
 	end
 end
 
