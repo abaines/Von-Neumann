@@ -103,7 +103,7 @@ railbot.ghostBehavior = function(_)
 				return
 
 			else
-				-- luacheck: ignore W542
+				-- luacheck: ignore 542
 				--vonn.kprint(game.tick .. " " .. ghost_name)
 
 			end
@@ -158,7 +158,7 @@ railbot.findTreesMarkedForDecon = function(railbotUnit)
 		end
 	end
 
-	function sortTrees(a,b)
+	local function sortTrees(a,b)
 		return railbot.manhattanDistanceEntities(railbotUnit,a)<railbot.manhattanDistanceEntities(railbotUnit,b)
 	end
 
@@ -303,7 +303,7 @@ railbot.addGui = function(player)
 
 	local railbot_gui = gui.add{type="frame", name="railbot_gui", caption="Railbot"}
 
-	-- luacheck: ignore W211
+	-- luacheck: ignore 211
 	local railbot_gui_follow = railbot_gui.add{type="button",name="railbot_gui_follow",caption="Follow"}
 	local railbot_gui_stay = railbot_gui.add{type="button",name="railbot_gui_stay",caption="Stay"}
 	local railbot_gui_home = railbot_gui.add{type="button",name="railbot_gui_home",caption="Home"}
