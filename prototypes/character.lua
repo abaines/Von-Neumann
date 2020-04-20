@@ -46,10 +46,10 @@ animations[1].mining_with_tool = defender.idle
 
 -- running animations
 animations[1].running = table.deepcopy(defender.in_motion)
-for _,layer in pairs(animations[1].running.layers) do
+--for _,layer in pairs(animations[1].running.layers) do
 	--layer.animation_speed = animation_speed
 	--layer.hr_version.animation_speed = animation_speed
-end
+--end
 
 
 -- running_with_gun animations

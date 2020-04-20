@@ -52,6 +52,7 @@ for name,value in pairs(data.raw["autoplace-control"]) do
 		}
 
 		if resource[name] and resource[name].category == "basic-fluid" then
+			-- luacheck: ignore 542
 			-- use above
 
 		elseif resource[name] and resource[name].infinite then
