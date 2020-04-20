@@ -18,8 +18,8 @@ local function doAllEvents(event)
 	end
 end
 
-script.on_event = function(event_ids, _function)
-	local event_ids = (type(event_ids) == "table" and event_ids) or {event_ids}
+script.on_event = function(event_ids, _function) -- luacheck: ignore 123
+	event_ids = (type(event_ids) == "table" and event_ids) or {event_ids}
 
 	for _, event_id in pairs(event_ids) do
 		if not table_event[event_id] then
@@ -36,7 +36,7 @@ end
 
 -- script.on_init -- script.on_init -- script.on_init -- script.on_init
 
-local old_script_on_init = script.on_init
+--local old_script_on_init = script.on_init
 
 local table_init = {}
 
@@ -48,7 +48,7 @@ end
 
 script.on_init(doAllInits)
 
-script.on_init = function(_function)
+script.on_init = function(_function) -- luacheck: ignore 123
 	table.insert(table_init,_function)
 end
 

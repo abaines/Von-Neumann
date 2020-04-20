@@ -184,7 +184,8 @@ railbot.burnTrees = function(railbotUnit)
 			position={0,0},duration=20
 		}
 		tree.damage(5,railbotUnit.force,"explosion")
-		return
+		-- we only want to burn the first tree we find
+		return -- luacheck: ignore 512
 	end
 end
 
