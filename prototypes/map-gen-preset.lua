@@ -1,7 +1,7 @@
 -- Kizrak
 
 
-local sb = serpent.block -- luacheck: ignore
+local sb = serpent.block -- luacheck: ignore 311
 
 local mapGenPresetsDefault = data.raw["map-gen-presets"].default
 
