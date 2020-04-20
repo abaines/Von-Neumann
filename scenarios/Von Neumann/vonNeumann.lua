@@ -172,7 +172,7 @@ function vonn.spawnCrashSite()
 	vonn.createEntity{name="vn-substation",position={-16,16}}
 	vonn.createEntity{name="vn-substation",position={16,-16}}
 
-	local crashSiteLab = vonn.createEntity{name="crash-site-lab-repaired",position={0,5}}
+	vonn.createEntity{name="crash-site-lab-repaired",position={0,5}}
 
 	vonn.createEntity{name="crash-site-assembling-machine-1-repaired",position={4,-6}}
 	vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={-4,-6}}
@@ -468,16 +468,14 @@ function vonn.newPlayer(event)
 	local eventName = vonn.eventNameMapping[event.name]
 	vonn.kprint("newPlayer: ".. player.name .. "   " .. eventName,{r=255,g=255})
 
-	for i, player in pairs(game.players) do
-		if player.connected and player.character then
-			local vonnCharacter = player.surface.create_entity{name="vonn",position=player.character.position,force=player.force}
-			vonnCharacter.destructible = false
-			player.character.destroy()
-			player.character = vonnCharacter
-			player.spectator = true
-			vonn.displayStoryText(player)
-			vonn.addPlayerNeedsZoom(player)
-		end
+	if player.connected and player.character then
+		local vonnCharacter = player.surface.create_entity{name="vonn",position=player.character.position,force=player.force}
+		vonnCharacter.destructible = false
+		player.character.destroy()
+		player.character = vonnCharacter
+		player.spectator = true
+		vonn.displayStoryText(player)
+		vonn.addPlayerNeedsZoom(player)
 	end
 
 	--store player in global storage
@@ -503,8 +501,8 @@ defines.events.on_player_respawned,
 
 function vonn.craftEvent(event)
 	local player_index = event.player_index
-	local recipe = event.recipe
-	local items = event.items
+	--local recipe = event.recipe
+	--local items = event.items
 
 	local player=game.players[player_index]
 	vonn.kprint("Player tried to craft: " .. player.name)
@@ -527,7 +525,7 @@ function vonn.on_player_crafted_item(event)
 	local player_index = event.player_index
 	local player=game.players[player_index]
 	--local recipe = event.recipe
-	local items = event.items
+	--local items = event.items
 	--local eventName = vonn.eventNameMapping[event.name]
 	local item_stack = event.item_stack
 
@@ -592,7 +590,7 @@ function vonn.disableMining(player)
 	end
 end
 
-function vonn.updatePlayerZoom(player)
+function vonn.updatePlayerZoom()
 	if global.playersNeedZoom then
 		local toFix = {}
 		for player,tick in pairs(global.playersNeedZoom) do
@@ -614,9 +612,10 @@ function vonn.on_tick(_)
 	for i, player in pairs(game.players) do
 		if player.connected then
 			vonn.disableMining(player)
-			vonn.updatePlayerZoom(player)
 		end
 	end
+
+	vonn.updatePlayerZoom()
 
 	if global.clearSpawnResources and game.tick>1 then
 		local roboRadius = 25
@@ -638,7 +637,7 @@ script.on_event(defines.events.on_tick,vonn.on_tick)
 function vonn.stopBuilding(event)
 	local created_entity = event.created_entity
 	local player_index = event.player_index
-	local stack = event.stack
+	--local stack = event.stack
 	local item = event.item
 
 	local player=game.players[player_index]
@@ -845,10 +844,10 @@ function vonn.on_player_inventory_changed(event)
 
 
 
-	local existing_entities = game.surfaces["nauvis"].find_entities({{-1, -1}, {1, 1}})
-	for i, entity in pairs(existing_entities) do
+	--local existing_entities = game.surfaces["nauvis"].find_entities({{-1, -1}, {1, 1}})
+	--for i, entity in pairs(existing_entities) do
 		--TODO: drain power for each bad item &| transport items to crash-site
-	end
+	--end
 end
 
 script.on_event({
