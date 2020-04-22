@@ -401,7 +401,7 @@ function vonn.on_gui_click(event)
 			event.element.parent.destroy()
 		end
 
-		log("on_gui_click.vonn_story_button: "..player)
+		log("on_gui_click.vonn_story_button: " .. player.name)
 	end
 end
 
