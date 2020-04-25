@@ -59,9 +59,6 @@ local compilatron_chest = {
 			}
 		}
 	},
-	circuit_wire_connection_point = circuit_connector_definitions["chest"].points,
-	circuit_connector_sprites = circuit_connector_definitions["chest"].sprites,
-	circuit_wire_max_distance = default_circuit_wire_max_distance
 }
 
 data:extend{compilatron_chest}
