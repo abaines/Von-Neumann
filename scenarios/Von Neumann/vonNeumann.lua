@@ -178,7 +178,7 @@ function vonn.spawnCrashSite()
 	vonn.createEntity{name="crash-site-assembling-machine-2-repaired",position={-4,-6}}
 
 	vonn.createSiteChest({name="crash-site-chest-1",position={-7,0}},{['flying-robot-frame']=250})
-	vonn.createSiteChest({name="crash-site-chest-2",position={7,-1}},{['compilatron-chest']=1})
+	vonn.createSiteChest({name="crash-site-chest-2",position={7,-1}},{})
 
 	local chest1items = {
 		['burner-mining-drill']=1,
