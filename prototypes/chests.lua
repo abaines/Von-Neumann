@@ -35,7 +35,6 @@ data:extend{logistic_chest_storage}
 local logistic_chest_requester = table.deepcopy(data.raw["logistic-container"]["logistic-chest-requester"])
 logistic_chest_requester.name = "vn-logistic-chest-requester"
 logistic_chest_requester.inventory_size = 4
-logistic_chest_requester.order = "b[storage]-e[logistic-chest-requester]"
 logistic_chest_requester.subgroup = "logistic-network"
 logistic_chest_requester.logistic_slots_count = 1
 logistic_chest_requester.circuit_wire_max_distance = 0
@@ -49,6 +48,7 @@ data:extend{logistic_chest_requester}
 local logistic_chest_requester_item = table.deepcopy(data.raw.item["logistic-chest-requester"])
 logistic_chest_requester_item.name = "vn-logistic-chest-requester"
 logistic_chest_requester_item.place_result = "vn-logistic-chest-requester"
+logistic_chest_requester_item.order = "zk-b[storage]-e[logistic-chest-requester]"
 
 data:extend{logistic_chest_requester_item}
 --log(serpent.block( logistic_chest_requester_item ))
