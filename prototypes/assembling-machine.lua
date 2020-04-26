@@ -14,7 +14,6 @@ item.name = "damaged-assembling-machine"
 item.place_result = "damaged-assembling-machine"
 item.order = "a[assembling-machine--0]"
 item.icon = pathReplace(item.icon)
-item.icon_size = 32
 data:extend{item}
 
 
@@ -52,7 +51,6 @@ assembling_machine.collision_box = {{-1.7,-1.7},{1.7,1.7}}
 assembling_machine.selection_box = {{-2,-2},{2,2}}
 
 assembling_machine.icon = pathReplace(assembling_machine.icon)
-assembling_machine.icon_size = 32
 
 data:extend{assembling_machine}
 
