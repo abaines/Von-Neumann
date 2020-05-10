@@ -422,7 +422,7 @@ script.on_event({
 commands.add_command("railbot", "railbot", railbot.commandLine)
 
 
-railbot.events = script.k_lib_events
+script.register_object(railbot)
 
 
 return railbot

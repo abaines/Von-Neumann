@@ -874,7 +874,7 @@ script.on_event({
 },vonn.on_player_pipette)
 
 
-vonn.events = script.k_lib_events
+script.register_object(vonn)
 
 
 return vonn

@@ -13,20 +13,36 @@ end
 local function createScript()
 	local script = {}
 
-	script.k_lib_events = {}
+
+	local k_lib_events = {}
 
 	script.on_event = function(events,action)
 		for _,eventID in pairs(events) do
-			script.k_lib_events[eventID] = action
+			k_lib_events[eventID] = action
 		end
 	end
 
+
+	local k_lib_nth_tick = {}
+
 	script.on_nth_tick = function(n,action)
-		log("TODO script.on_nth_tick")
+		k_lib_nth_tick[n] = action
 	end
 
+
+	local k_lib_on_init = nil
+
 	script.on_init = function(action)
-		log("TODO script.on_init")
+		k_lib_on_init = action
+	end
+
+
+	script.register_object = function(object)
+		object.events = k_lib_events
+		object.on_init = k_lib_on_init
+		object.on_nth_tick = k_lib_nth_tick
+
+		return object
 	end
 
 	return script

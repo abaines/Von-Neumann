@@ -228,7 +228,7 @@ commands.add_command("bonus", "bonus", apply_bonuses)
 
 local playerBonuses = {}
 
-playerBonuses.events = script.k_lib_events
+script.register_object(playerBonuses)
 
 return playerBonuses
 
