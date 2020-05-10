@@ -1,7 +1,7 @@
 -- Kizrak
 
 
-local vonn = require("vonNeumann")
+local script,kprint = require('k-lib')()
 
 local railbot = {}
 
@@ -54,7 +54,7 @@ railbot.removeFromBuffers = function(surface,item,count)
 	count = count or 1
 	local buffers = railbot.getBuffers(surface)
 
-	vonn.kprint(item.." " .. #buffers.." " .. count)
+	kprint(item.." " .. #buffers.." " .. count)
 	for index,buffer in pairs(buffers) do
 		local inventory = buffer.get_inventory(defines.inventory.chest)
 		local removed = inventory.remove({name=item, count=count})
@@ -230,10 +230,10 @@ railbot.spawnRailbot = function(player)
 
 	local crashSiteGenerators = surface.find_entities_filtered{name="crash-site-generator"}
 	local neededEnergy = 5000000*600*0.999
-	vonn.kprint("#crashSiteGenerators "..#crashSiteGenerators)
+	kprint("#crashSiteGenerators "..#crashSiteGenerators)
 	for _,crashSiteGenerator in pairs(crashSiteGenerators) do
 		local energy = crashSiteGenerator.energy
-		vonn.kprint(energy)
+		kprint(energy)
 
 		if energy<neededEnergy then
 			local ratio = energy/neededEnergy*100
@@ -405,7 +405,7 @@ railbot.on_entity_died = function(event)
 		cause.die()
 
 		local crashSiteGenerators = surface.find_entities_filtered{name="crash-site-generator"}
-		vonn.kprint(#crashSiteGenerators)
+		kprint(#crashSiteGenerators)
 		for index,crashSiteGenerator in pairs(crashSiteGenerators) do
 			crashSiteGenerator.energy=0
 		end
@@ -420,4 +420,10 @@ script.on_event({
 
 
 commands.add_command("railbot", "railbot", railbot.commandLine)
+
+
+railbot.events = script.k_lib_events
+
+
+return railbot
 

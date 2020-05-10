@@ -1,7 +1,10 @@
 -- Kizrak
 
---- needs "hijack"
 
+local script,kprint = require('k-lib')()
+
+
+local log_spam_guard = {}
 
 
 local function disableGodResearches()
@@ -64,8 +67,9 @@ local function disableGodResearches()
 		if playerForce.technologies[research] then
 			playerForce.technologies[research].enabled = false
 			playerForce.technologies[research].visible_when_disabled = false
-		else
+		elseif not log_spam_guard[research] then
 			log(research)
+			log_spam_guard[research] = true
 		end
 	end
 
@@ -214,11 +218,17 @@ local function apply_bonuses()
 	end
 end
 
-script.on_init(apply_bonuses)
 
 script.on_event({
 defines.events.on_player_created,
 },apply_bonuses)
 
 commands.add_command("bonus", "bonus", apply_bonuses)
+
+
+local playerBonuses = {}
+
+playerBonuses.events = script.k_lib_events
+
+return playerBonuses
 

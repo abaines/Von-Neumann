@@ -1,21 +1,16 @@
 -- Kizrak
 
---- needs "hijack"
+
+local script,kprint = require('k-lib')()
 
 
 local vonn = {}
 
+vonn.kprint = kprint
+
 vonn.eventNameMapping = {}
 for eventName,eventId in pairs(defines.events) do
 	vonn.eventNameMapping[eventId] = eventName
-end
-
-function vonn.kprint(msg)
-	print(msg)
-	log(msg)
-	if not game.is_multiplayer() then
-		game.print(msg,{r=255,g=255})
-	end
 end
 
 
@@ -632,7 +627,7 @@ function vonn.on_tick(_)
 	end
 end
 
-script.on_event(defines.events.on_tick,vonn.on_tick)
+script.on_event({defines.events.on_tick},vonn.on_tick)
 
 
 function vonn.stopBuilding(event)
@@ -660,7 +655,7 @@ function vonn.stopBuilding(event)
 	end
 end
 
-script.on_event(defines.events.on_built_entity,vonn.stopBuilding)
+script.on_event({defines.events.on_built_entity},vonn.stopBuilding)
 
 
 vonn.acceptable_inventory = {
@@ -877,6 +872,9 @@ end
 script.on_event({
 	defines.events.on_player_pipette
 },vonn.on_player_pipette)
+
+
+vonn.events = script.k_lib_events
 
 
 return vonn
