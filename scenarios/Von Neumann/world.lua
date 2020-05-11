@@ -1,9 +1,7 @@
 -- Kizrak
 
 
--- TODO: add resource 'items' to resource 'ores'
-
-local script,kprint = require('k-lib')()
+local script,kprint = require('k-lib')() -- luacheck: ignore 211
 
 
 local vn_world = {}

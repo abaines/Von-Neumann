@@ -1,7 +1,7 @@
 -- Kizrak
 
 
-local script,kprint = require('k-lib')()
+local script,kprint = require('k-lib')() -- luacheck: ignore 211
 
 
 local log_spam_guard = {}
