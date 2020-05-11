@@ -68,7 +68,6 @@ railbot.removeFromBuffers = function(surface,item,count)
 end
 
 
-
 railbot.ghostBehavior = function(_)
 	local ghosts, railbotUnit = railbot.searchGhost()
 
@@ -103,7 +102,7 @@ railbot.ghostBehavior = function(_)
 				return
 
 			else -- luacheck: ignore 542
-				--vonn.kprint(game.tick .. " " .. ghost_name)
+				--kprint(game.tick .. " " .. ghost_name)
 
 			end
 		end
@@ -115,11 +114,11 @@ railbot.bufferChestAvailableItems = function(surface)
 
 	local dictionary = {}
 
-	--vonn.kprint(#buffers)
+	--kprint(#buffers)
 	for index,buffer in pairs(buffers) do
 		local inventory = buffer.get_inventory(defines.inventory.chest)
 		local contents = inventory.get_contents()
-		--vonn.kprint(serpent.block(inventory.get_contents()))
+		--kprint(serpent.block(inventory.get_contents()))
 		for item,count in pairs(contents) do
 			if not dictionary[item] then
 				dictionary[item] = 0
@@ -355,7 +354,7 @@ railbot.on_gui_click = function(event)
 
 	local elementName = event.element.name
 
-	--vonn.kprint(elementName)
+	--kprint(elementName)
 	if elementName == "railbot_gui_follow" then
 		railbot.command(player,"follow")
 
