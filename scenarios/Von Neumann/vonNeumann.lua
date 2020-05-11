@@ -29,6 +29,7 @@ function vonn.newPlayer(event)
 		player.character.destroy()
 		player.character = vonnCharacter
 		player.spectator = true
+		player.cheat_mode = true
 	end
 
 	--store player in global storage

@@ -199,8 +199,6 @@ local function apply_bonuses()
 		player.force.technologies['logistic-robotics'].researched=true
 		player.force.technologies['construction-robotics'].researched=true
 
-		player.cheat_mode = true
-
 		player.force.zoom_to_world_ghost_building_enabled = true
 		player.force.zoom_to_world_blueprint_enabled = true
 		player.force.zoom_to_world_deconstruction_planner_enabled = true
