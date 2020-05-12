@@ -10,6 +10,17 @@ local function kprint(msg)
 end
 
 
+local eventNameMapping = {}
+for eventName,eventId in pairs(defines.events) do
+	eventNameMapping[eventId] = eventName
+end
+
+
+local function reverseEventLookup(eventId)
+	return eventNameMapping[eventId]
+end
+
+
 local function createScript()
 	local script = {}
 
@@ -50,6 +61,6 @@ end
 
 
 return function()
-	return createScript(), kprint
+	return createScript(), kprint, reverseEventLookup
 end
 

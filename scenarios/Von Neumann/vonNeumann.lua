@@ -1,17 +1,13 @@
 -- Kizrak
 
 
-local script,kprint = require('k-lib')()
+local script,kprint,reverseEventLookup = require('k-lib')()
 
 
 local vonn = {}
 
 vonn.kprint = kprint
 
-vonn.eventNameMapping = {}
-for eventName,eventId in pairs(defines.events) do
-	vonn.eventNameMapping[eventId] = eventName
-end
 
 
 local sb = serpent.block -- luacheck: ignore 211
@@ -20,7 +16,7 @@ local sb = serpent.block -- luacheck: ignore 211
 function vonn.newPlayer(event)
 	local player_index=event.player_index
 	local player=game.players[player_index]
-	local eventName = vonn.eventNameMapping[event.name]
+	local eventName = reverseEventLookup(event.name)
 	vonn.kprint("newPlayer: ".. player.name .. "   " .. eventName,{r=255,g=255})
 
 	if player.connected and player.character then
@@ -47,7 +43,6 @@ function vonn.newPlayer(event)
 end
 
 script.on_event({
---defines.events.on_player_joined_game,
 defines.events.on_player_created,
 defines.events.on_player_respawned,
 },vonn.newPlayer)
@@ -80,7 +75,7 @@ function vonn.on_player_crafted_item(event)
 	local player=game.players[player_index]
 	--local recipe = event.recipe
 	--local items = event.items
-	--local eventName = vonn.eventNameMapping[event.name]
+	--local eventName = eventNameMapping(event.name)
 	local item_stack = event.item_stack
 
 	local name = item_stack.name
@@ -328,7 +323,7 @@ end
 function vonn.on_player_inventory_changed(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
-	--local eventName = vonn.eventNameMapping[event.name]
+	--local eventName = eventNameMapping(event.name)
 
 	local itemsRemoved = vonn.removeBadItemsFromPlayer(player)
 
@@ -384,7 +379,7 @@ defines.events.on_player_cursor_stack_changed,
 function vonn.on_player_pipette(event)
 	local player_index = event.player_index
 	local player = game.players[player_index]
-	--local eventName = vonn.eventNameMapping[event.name]
+	--local eventName = eventNameMapping(event.name)
 	--local item  = event.item
 	--local used_cheat_mode  = event.used_cheat_mode
 

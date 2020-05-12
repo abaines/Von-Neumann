@@ -1,9 +1,7 @@
 -- Kizrak
 
-local script,kprint = require('k-lib')()
+local script,kprint,reverseEventLookup = require('k-lib')()
 
-
-local vonn = require("vonNeumann")
 
 local vn_story = {}
 
@@ -166,7 +164,7 @@ end
 function vn_story.on_player_created(event)
 	local player_index=event.player_index
 	local player=game.players[player_index]
-	local eventName = vonn.eventNameMapping[event.name]
+	local eventName = reverseEventLookup(event.name)
 	kprint("newPlayer: ".. player.name .. "   " .. eventName,{r=255,g=255})
 
 	if player.connected and player.character then
