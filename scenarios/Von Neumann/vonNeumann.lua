@@ -6,11 +6,17 @@ local script,kprint,reverseEventLookup = require('k-lib')()
 
 local vonn = {}
 
-vonn.kprint = kprint
-
-
 
 local sb = serpent.block -- luacheck: ignore 211
+
+
+
+--  ██████  ███████  █████  ██████       ██████  ██████  ██████  ███████               ██████  ███████ ██       ██████  ██     ██
+--  ██   ██ ██      ██   ██ ██   ██     ██      ██    ██ ██   ██ ██                    ██   ██ ██      ██      ██    ██ ██     ██
+--  ██   ██ █████   ███████ ██   ██     ██      ██    ██ ██   ██ █████       █████     ██████  █████   ██      ██    ██ ██  █  ██
+--  ██   ██ ██      ██   ██ ██   ██     ██      ██    ██ ██   ██ ██                    ██   ██ ██      ██      ██    ██ ██ ███ ██
+--  ██████  ███████ ██   ██ ██████       ██████  ██████  ██████  ███████               ██████  ███████ ███████  ██████   ███ ███
+
 
 
 function vonn.newPlayer(event)
@@ -42,11 +48,6 @@ function vonn.newPlayer(event)
 	vonn.kprint(msg)
 end
 
-script.on_event({
-defines.events.on_player_created,
-defines.events.on_player_respawned,
-},vonn.newPlayer)
-
 
 function vonn.craftEvent(event)
 	local player_index = event.player_index
@@ -64,10 +65,6 @@ function vonn.craftEvent(event)
 
 	player.cursor_ghost = lastItem.item
 end
-
-script.on_event({
-	defines.events.on_pre_player_crafted_item,
-},vonn.craftEvent)
 
 
 function vonn.on_player_crafted_item(event)
@@ -101,10 +98,6 @@ function vonn.on_player_crafted_item(event)
 	end
 end
 
-script.on_event({
-	defines.events.on_player_crafted_item,
-},vonn.on_player_crafted_item)
-
 
 function vonn.on_picked_up_item(event)
 	local player_index = event.player_index
@@ -117,10 +110,6 @@ function vonn.on_picked_up_item(event)
 	--vonn.kprint(game.tick .. " on_picked_up_item " .. name .. " " .. count)
 	vonn.spillPlayerItemsAtPlayer(player, {[name]=count} )
 end
-
-script.on_event({
-	defines.events.on_picked_up_item,
-},vonn.on_picked_up_item)
 
 
 function vonn.disableMining(player)
@@ -148,8 +137,6 @@ function vonn.on_tick(_)
 	end
 end
 
-script.on_event({defines.events.on_tick},vonn.on_tick)
-
 
 function vonn.stopBuilding(event)
 	local created_entity = event.created_entity
@@ -175,8 +162,6 @@ function vonn.stopBuilding(event)
 		log(player.name .. " does not want to build (item=nil)")
 	end
 end
-
-script.on_event({defines.events.on_built_entity},vonn.stopBuilding)
 
 
 vonn.acceptable_inventory = {
@@ -366,15 +351,6 @@ function vonn.on_player_inventory_changed(event)
 	--end
 end
 
-script.on_event({
-defines.events.on_player_ammo_inventory_changed,
-defines.events.on_player_armor_inventory_changed,
-defines.events.on_player_gun_inventory_changed,
-defines.events.on_player_main_inventory_changed,
-defines.events.on_player_trash_inventory_changed,
-defines.events.on_player_cursor_stack_changed,
-},vonn.on_player_inventory_changed)
-
 
 function vonn.on_player_pipette(event)
 	local player_index = event.player_index
@@ -389,9 +365,14 @@ function vonn.on_player_pipette(event)
 	player.cursor_stack.count = 0
 end
 
-script.on_event({
-	defines.events.on_player_pipette
-},vonn.on_player_pipette)
+
+
+--  ██████  ███████  █████  ██████       ██████  ██████  ██████  ███████                █████  ██████   ██████  ██    ██ ███████
+--  ██   ██ ██      ██   ██ ██   ██     ██      ██    ██ ██   ██ ██                    ██   ██ ██   ██ ██    ██ ██    ██ ██
+--  ██   ██ █████   ███████ ██   ██     ██      ██    ██ ██   ██ █████       █████     ███████ ██████  ██    ██ ██    ██ █████
+--  ██   ██ ██      ██   ██ ██   ██     ██      ██    ██ ██   ██ ██                    ██   ██ ██   ██ ██    ██  ██  ██  ██
+--  ██████  ███████ ██   ██ ██████       ██████  ██████  ██████  ███████               ██   ██ ██████   ██████    ████   ███████
+
 
 
 script.register_object(vonn)
