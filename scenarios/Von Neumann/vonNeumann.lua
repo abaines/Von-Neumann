@@ -10,6 +10,56 @@ local vonn = {}
 local sb = serpent.block -- luacheck: ignore 211
 
 
+local msgCount = 0
+
+
+function vonn.setupPlayer(player)
+
+	local vonnCharacter = player.surface.create_entity{name="vonn",position=player.character.position,force=player.force}
+	vonnCharacter.destructible = false
+	player.character.destroy()
+	player.character = vonnCharacter
+
+	-- player.character_running_speed_modifier = 7
+
+	local numberOfPlayers = #game.players
+	local msg = "numberOfPlayers: " .. numberOfPlayers
+	kprint(msg)
+end
+
+
+function vonn.on_player_created(event)
+	local player_index=event.player_index
+	local player=game.players[player_index]
+	local eventName = reverseEventLookup(event.name)
+
+	vonn.setupPlayer(player)
+
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	msgCount = 1 + msgCount
+end
+
+script.on_event({
+defines.events.on_player_created,
+},vonn.on_player_created)
+
+
+function vonn.on_player_respawned(event)
+	local player_index=event.player_index
+	local player=game.players[player_index]
+	local eventName = reverseEventLookup(event.name)
+
+	vonn.setupPlayer(player)
+
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	msgCount = 1 + msgCount
+end
+
+script.on_event({
+defines.events.on_player_respawned,
+},vonn.on_player_respawned)
+
+
 
 --  ██████  ███████  █████  ██████       ██████  ██████  ██████  ███████               ██████  ███████ ██       ██████  ██     ██
 --  ██   ██ ██      ██   ██ ██   ██     ██      ██    ██ ██   ██ ██                    ██   ██ ██      ██      ██    ██ ██     ██
