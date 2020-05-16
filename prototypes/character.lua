@@ -13,16 +13,13 @@ character.selection_box = {{-0.4, -0.4}, {0.4, 0.2}}
 character.mining_categories = nil
 character.crafting_categories = nil
 character.build_distance = 125
-character.item_pickup_distance = 0
 character.reach_distance = 200000000
-character.loot_pickup_distance = 0
-character.reach_resource_distance = 0
 character.damage_hit_tint = {r = 1, g = 1, b = 1, a = 0}
-character.mining_speed = 0.000001
+character.mining_speed = 0.0
 character.icon = "__base__/graphics/icons/defender.png"
 character.running_speed = 0.7
 character.distance_per_frame = 0.7
-character.tool_attack_result = {type="direct"}
+character.tool_attack_result = nil
 character.character_corpse = "vonn-corpse"
 
 
