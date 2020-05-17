@@ -26,6 +26,8 @@ character.damage_hit_tint = {r = 1, g = 1, b = 1, a = 0}
 character.character_corpse = "vonn-corpse"
 character.icon = "__base__/graphics/icons/defender.png"
 
+character.footprint_particles = nil
+
 
 -- flying (no collision box)
 character.collision_box = { { 0, 0 }, { 0, 0 } }
