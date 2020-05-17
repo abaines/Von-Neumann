@@ -89,7 +89,7 @@ defines.events.on_picked_up_item,
 },vonn.on_picked_up_item)
 
 
-function vonn.on_player_inventory_changed(event)
+function vonn.on_player_main_inventory_changed(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
 	kprint(game.tick.." "..eventName.." "..msgCount)
@@ -99,9 +99,20 @@ end
 
 script.on_event({
 	defines.events.on_player_main_inventory_changed,
-	defines.events.on_player_trash_inventory_changed,
+},vonn.on_player_main_inventory_changed)
+
+
+function vonn.on_player_cursor_stack_changed(event)
+	-- TODO ----------------------------------------------------------------------------------------
+	local eventName = reverseEventLookup(event.name)
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	kprint( sb( event ):gsub("%s+", " "))
+	msgCount = 1 + msgCount
+end
+
+script.on_event({
 	defines.events.on_player_cursor_stack_changed,
-},vonn.on_player_inventory_changed)
+},vonn.on_player_cursor_stack_changed)
 
 
 function vonn.on_player_fast_transferred(event)
@@ -162,6 +173,7 @@ script.on_event({
 	defines.events.on_player_ammo_inventory_changed,
 	defines.events.on_player_armor_inventory_changed,
 	defines.events.on_player_gun_inventory_changed,
+	defines.events.on_player_trash_inventory_changed,
 	defines.events.on_player_pipette,
 	defines.events.on_player_dropped_item,
 	defines.events.on_pre_player_mined_item,
