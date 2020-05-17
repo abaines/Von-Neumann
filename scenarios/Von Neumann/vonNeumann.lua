@@ -13,12 +13,14 @@ local sb = serpent.block -- luacheck: ignore 211
 local msgCount = 0
 
 
+--- spawning new player
 function vonn.setupPlayer(player)
 
 	local vonnCharacter = player.surface.create_entity{name="vonn",position=player.character.position,force=player.force}
 	vonnCharacter.destructible = false
 	player.character.destroy()
 	player.character = vonnCharacter
+	player.spectator = true
 
 	-- player.character_running_speed_modifier = 7
 
@@ -58,6 +60,33 @@ end
 script.on_event({
 defines.events.on_player_respawned,
 },vonn.on_player_respawned)
+
+
+--- drop items on ground at player, and remove them from player
+function vonn.spillPlayerItemsAtPlayer(player,item_stack)
+
+	player.remove_item(item_stack)
+
+	player.surface.spill_item_stack(
+		player.position, -- position
+		item_stack, -- items to spill
+		false, -- enable_looted
+		player.force -- marked for deconstruction by this force
+	)
+
+end
+
+function vonn.on_picked_up_item(event)
+	local player_index = event.player_index
+	local player=game.players[player_index]
+	local item_stack  = event.item_stack
+
+	vonn.spillPlayerItemsAtPlayer(player, item_stack)
+end
+
+script.on_event({
+defines.events.on_picked_up_item,
+},vonn.on_picked_up_item)
 
 
 
@@ -146,19 +175,6 @@ function vonn.on_player_crafted_item(event)
 		player.remove_item({name=name, count=2000})
 		global.players[player_index].crafted = {name = name, count = item_stack.count}
 	end
-end
-
-
-function vonn.on_picked_up_item(event)
-	local player_index = event.player_index
-	local player=game.players[player_index]
-	local item_stack  = event.item_stack
-
-	local name = item_stack.name
-	local count = item_stack.count
-
-	--vonn.kprint(game.tick .. " on_picked_up_item " .. name .. " " .. count)
-	vonn.spillPlayerItemsAtPlayer(player, {[name]=count} )
 end
 
 
@@ -349,11 +365,6 @@ function vonn.spillPlayerItems(player,surface,uninsertableItems)
 	return sum
 end
 
-function vonn.spillPlayerItemsAtPlayer(player,itemsRemoved)
-	for item,count in pairs(itemsRemoved) do
-		player.surface.spill_item_stack(player.position,{name=item, count=count},false,player.force,false)
-	end
-end
 
 function vonn.on_player_inventory_changed(event)
 	local player_index = event.player_index
