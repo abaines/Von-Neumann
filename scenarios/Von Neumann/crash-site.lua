@@ -142,8 +142,8 @@ function crash_site.spawnCrashSite()
 
 	crash_site.createEntity{name="crash-site-lab-repaired",position={0,5}}
 
-	crash_site.createEntity{name="crash-site-assembling-machine-1-repaired",position={4,-6}}
-	crash_site.createEntity{name="crash-site-assembling-machine-2-repaired",position={-4,-6}}
+	crash_site.createEntity{name="crash-site-assembling-machine-1-repaired",position={4,-6}}.set_recipe("iron-gear-wheel")
+	crash_site.createEntity{name="crash-site-assembling-machine-2-repaired",position={-4,-6}}.set_recipe("automation-science-pack")
 
 	crash_site.createSiteChest({name="crash-site-chest-1",position={-7,0}},{['flying-robot-frame']=250})
 	crash_site.createSiteChest({name="crash-site-chest-2",position={7,-1}},{})
