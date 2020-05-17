@@ -95,6 +95,12 @@ defines.events.on_picked_up_item,
 },vonn.on_picked_up_item)
 
 
+
+-- https://lua-api.factorio.com/latest/defines.html#defines.input_action
+-- https://lua-api.factorio.com/latest/LuaPermissionGroup.html#LuaPermissionGroup.set_allows_action
+
+
+
 function vonn.on_player_cursor_stack_changed(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
