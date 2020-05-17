@@ -7,6 +7,7 @@ local handler = require("event_handler")
 handler.add_lib(require("silo-script"))
 
 handler.add_lib(require("crash-site"))
+handler.add_lib(require("permissions"))
 handler.add_lib(require("playerBonuses"))
 handler.add_lib(require("railbot"))
 handler.add_lib(require("story"))
