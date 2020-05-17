@@ -10,6 +10,12 @@ local vonn = {}
 local sb = serpent.block -- luacheck: ignore 211
 
 
+local function sbs(obj)
+	local s = sb( obj ):gsub("%s+", " ")
+	return s
+end
+
+
 local msgCount = 0
 
 
@@ -89,24 +95,11 @@ defines.events.on_picked_up_item,
 },vonn.on_picked_up_item)
 
 
-function vonn.on_player_main_inventory_changed(event)
-	-- TODO ----------------------------------------------------------------------------------------
-	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount)
-	kprint( sb( event ):gsub("%s+", " "))
-	msgCount = 1 + msgCount
-end
-
-script.on_event({
-	defines.events.on_player_main_inventory_changed,
-},vonn.on_player_main_inventory_changed)
-
-
 function vonn.on_player_cursor_stack_changed(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount)
-	kprint( sb( event ):gsub("%s+", " "))
+	kprint(game.tick.." "..eventName.." "..msgCount, {g=255})
+	kprint(sbs( event ), {g=255})
 	msgCount = 1 + msgCount
 end
 
@@ -115,11 +108,37 @@ script.on_event({
 },vonn.on_player_cursor_stack_changed)
 
 
+function vonn.on_player_main_inventory_changed(event)
+	local player_index = event.player_index
+	local player=game.players[player_index]
+
+	local selected = player.selected
+	local opened = player.opened
+
+	if (selected or opened) then
+		-- Yay!
+	else
+		kprint("Problem: no selected or opened", {r=255})
+		-- TODO ----------------------------------------------------------------------------------------
+		local eventName = reverseEventLookup(event.name)
+		kprint(game.tick.." "..eventName.." "..msgCount)
+		kprint(sbs( event ))
+		msgCount = 1 + msgCount
+	end
+end
+
+script.on_event({
+	defines.events.on_player_main_inventory_changed,
+},vonn.on_player_main_inventory_changed)
+
+
+--- global.lastInteractionEntity[player_index]
+
 function vonn.on_player_fast_transferred(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount)
-	kprint( sb( event ):gsub("%s+", " "))
+	kprint(game.tick.." "..eventName.." "..msgCount, {r=255,g=255,b=255})
+	kprint(sbs( event ), {r=255,g=255,b=255})
 	msgCount = 1 + msgCount
 end
 
@@ -128,24 +147,11 @@ script.on_event({
 },vonn.on_player_fast_transferred)
 
 
-function vonn.on_pre_entity_settings_pasted(event)
-	-- TODO ----------------------------------------------------------------------------------------
-	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount)
-	kprint( sb( event ):gsub("%s+", " "))
-	msgCount = 1 + msgCount
-end
-
-script.on_event({
-	defines.events.on_pre_entity_settings_pasted,
-},vonn.on_pre_entity_settings_pasted)
-
-
 function vonn.on_entity_settings_pasted(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount)
-	kprint( sb( event ):gsub("%s+", " "))
+	kprint(game.tick.." "..eventName.." "..msgCount, {r=255,g=255,b=255})
+	kprint(sbs( event ), {r=255,g=255,b=255})
 	msgCount = 1 + msgCount
 end
 
@@ -161,8 +167,8 @@ script.on_event({
 
 function vonn.reportBug(event)
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount)
-	kprint( sb( event ):gsub("%s+", " "))
+	kprint(game.tick.." "..eventName.." "..msgCount, {r=255})
+	kprint(sbs( event ), {r=255})
 	msgCount = 1 + msgCount
 end
 
