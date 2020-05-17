@@ -1,11 +1,12 @@
 -- Kizrak
 
 
-local function kprint(msg)
+local function kprint(msg,color)
+	color = color or {r=255,g=255}
 	print(msg)
 	log(msg)
 	if game and not game.is_multiplayer() then
-		game.print(msg,{r=255,g=255})
+		game.print(msg,color)
 	end
 end
 
