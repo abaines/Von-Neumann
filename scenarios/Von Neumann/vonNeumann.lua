@@ -89,6 +89,17 @@ defines.events.on_picked_up_item,
 },vonn.on_picked_up_item)
 
 
+function vonn.on_player_inventory_changed(event)
+
+end
+
+script.on_event({
+	defines.events.on_player_main_inventory_changed,
+	defines.events.on_player_trash_inventory_changed,
+	defines.events.on_player_cursor_stack_changed,
+},vonn.on_player_inventory_changed)
+
+
 -- disable building?
 -- disable mining tiles?
 -- mining attempt = deconstruct?
@@ -108,10 +119,8 @@ script.on_event({
 	defines.events.on_player_ammo_inventory_changed,
 	defines.events.on_player_armor_inventory_changed,
 	defines.events.on_player_gun_inventory_changed,
-	-- defines.events.on_player_main_inventory_changed,
-	defines.events.on_player_trash_inventory_changed,
-	-- defines.events.on_player_cursor_stack_changed,
-	-- defines.events.on_player_pipette,
+	defines.events.on_player_pipette,
+	defines.events.on_player_dropped_item,
 },vonn.reportBug)
 
 
