@@ -149,8 +149,12 @@ local function disableGodResearches()
 	local recipesWaitingForLogisticSciencePack = {
 		["logistic-robot"] = true,
 		["construction-robot"] = true,
-		["wooden-chest"] = true,
-		["iron-chest"] = true,
+		["logistic-chest-active-provider"] = true,
+		["logistic-chest-passive-provider"] = true,
+		["logistic-chest-storage"] = true,
+		["logistic-chest-buffer"] = true,
+		["logistic-chest-requester"] = true,
+		["roboport"] = true,
 		["pipe"] = true,
 		["pipe-to-ground"] = true,
 		["stone-brick"] = true,
@@ -158,7 +162,7 @@ local function disableGodResearches()
 		["boiler"] = true,
 		["steam-engine"] = true,
 		["offshore-pump"] = true,
-		["lab"] = true,
+		["firearm-magazine"] = true,
 		["radar"] = true,
 	}
 
