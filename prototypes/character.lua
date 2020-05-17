@@ -1,26 +1,30 @@
 -- Kizrak
 
 
+local sb = serpent.block -- luacheck: ignore 211
+
+
 -- raw data copies
 local character = table.deepcopy(data.raw["character"]["character"])
 character.name = "vonn"
 
--- combat-robot defender copy reference
-local defender = table.deepcopy(data.raw["combat-robot"]["defender"])
 
 -- character adjustments
-character.selection_box = {{-0.4, -0.4}, {0.4, 0.2}}
 character.mining_categories = nil
 character.crafting_categories = nil
 character.build_distance = 125
 character.reach_distance = 200000000
-character.damage_hit_tint = {r = 1, g = 1, b = 1, a = 0}
 character.mining_speed = 0.0
-character.icon = "__base__/graphics/icons/defender.png"
 character.running_speed = 0.7
 character.distance_per_frame = 0.7
 character.tool_attack_result = nil
+
+
+-- character visuals
+character.selection_box = {{-0.5, -0.5}, {0.5, 0.4}}
+character.damage_hit_tint = {r = 1, g = 1, b = 1, a = 0}
 character.character_corpse = "vonn-corpse"
+character.icon = "__base__/graphics/icons/defender.png"
 
 
 -- flying (no collision box)
@@ -35,6 +39,10 @@ character.running_sound_animation_positions = {0}
 local animations = {{}}
 character.animations = animations
 
+-- combat-robot defender copy reference
+local defender = table.deepcopy(data.raw["combat-robot"]["defender"])
+
+
 -- defender idle behavior
 animations[1].idle = defender.idle
 animations[1].idle_with_gun = defender.idle
@@ -43,11 +51,6 @@ animations[1].mining_with_tool = defender.idle
 
 -- running animations
 animations[1].running = table.deepcopy(defender.in_motion)
---for _,layer in pairs(animations[1].running.layers) do
-	--layer.animation_speed = animation_speed
-	--layer.hr_version.animation_speed = animation_speed
---end
-
 
 -- running_with_gun animations
 animations[1].running_with_gun = table.deepcopy(defender.in_motion)
@@ -85,32 +88,6 @@ end
 ---------------------------------------------------------------------------------------------------
 
 
---log(serpent.block(character.light))
-
-for _,light in pairs(character.light) do
-	light.intensity = 1-((1 - light.intensity)/2)
-	light.minimum_darkness = 0.0
-	light.size = 2 * light.size
-end
-
-character.light = {
-	{
-		intensity = 1,
-		size = 5,
-		picture = {
-			filename = "__core__/graphics/light-cone.png",
-			flags = { "light" },
-			height = 200,
-			priority = "extra-high",
-			scale = 2,
-			width = 200
-		},
-		type = "oriented",
-		minimum_darkness = 0.0,
-		shift = { 0, -30 },
-	}
-}
-
 character.light = {
 	intensity = 1,
 	size = 300,
@@ -121,6 +98,7 @@ character.light = {
 
 ---------------------------------------------------------------------------------------------------
 
+log(sb(character))
 
 --[[
 	3 north
