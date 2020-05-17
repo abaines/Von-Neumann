@@ -89,6 +89,32 @@ defines.events.on_picked_up_item,
 },vonn.on_picked_up_item)
 
 
+-- disable building?
+-- disable mining tiles?
+-- mining attempt = deconstruct?
+
+
+function vonn.reportBug(event)
+	local eventName = reverseEventLookup(event.name)
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	kprint( sb( event ):gsub("%s+", " "))
+	msgCount = 1 + msgCount
+end
+
+script.on_event({
+	-- defines.events.on_built_entity,
+	defines.events.on_pre_player_crafted_item,
+	defines.events.on_player_crafted_item,
+	defines.events.on_player_ammo_inventory_changed,
+	defines.events.on_player_armor_inventory_changed,
+	defines.events.on_player_gun_inventory_changed,
+	-- defines.events.on_player_main_inventory_changed,
+	defines.events.on_player_trash_inventory_changed,
+	-- defines.events.on_player_cursor_stack_changed,
+	-- defines.events.on_player_pipette,
+},vonn.reportBug)
+
+
 
 --  ██████  ███████  █████  ██████       ██████  ██████  ██████  ███████               ██████  ███████ ██       ██████  ██     ██
 --  ██   ██ ██      ██   ██ ██   ██     ██      ██    ██ ██   ██ ██                    ██   ██ ██      ██      ██    ██ ██     ██
@@ -200,32 +226,6 @@ function vonn.on_tick(_)
 		if player.connected then
 			vonn.disableMining(player)
 		end
-	end
-end
-
-
-function vonn.stopBuilding(event)
-	local created_entity = event.created_entity
-	local player_index = event.player_index
-	--local stack = event.stack
-	local item = event.item
-
-	local player=game.players[player_index]
-
-	if item then
-		if created_entity.type == "entity-ghost" then
-			-- allow ghosts
-			log(player.name .. " tried to build "..item.name .. "   " ..created_entity.type)
-		else
-			vonn.kprint(player.name .. " tried to build "..item.name .. "   " ..created_entity.type)
-			-- return item
-			-- TODO: iterate over all 8 inventories
-			local inventory = player.get_inventory(defines.inventory.character_main)
-			inventory.insert({name=item.name})
-			created_entity.destroy()
-		end
-	else
-		log(player.name .. " does not want to build (item=nil)")
 	end
 end
 
