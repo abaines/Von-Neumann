@@ -90,7 +90,11 @@ defines.events.on_picked_up_item,
 
 
 function vonn.on_player_inventory_changed(event)
-
+	-- TODO ----------------------------------------------------------------------------------------
+	local eventName = reverseEventLookup(event.name)
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	kprint( sb( event ):gsub("%s+", " "))
+	msgCount = 1 + msgCount
 end
 
 script.on_event({
@@ -98,6 +102,45 @@ script.on_event({
 	defines.events.on_player_trash_inventory_changed,
 	defines.events.on_player_cursor_stack_changed,
 },vonn.on_player_inventory_changed)
+
+
+function vonn.on_player_fast_transferred(event)
+	-- TODO ----------------------------------------------------------------------------------------
+	local eventName = reverseEventLookup(event.name)
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	kprint( sb( event ):gsub("%s+", " "))
+	msgCount = 1 + msgCount
+end
+
+script.on_event({
+	defines.events.on_player_fast_transferred,
+},vonn.on_player_fast_transferred)
+
+
+function vonn.on_pre_entity_settings_pasted(event)
+	-- TODO ----------------------------------------------------------------------------------------
+	local eventName = reverseEventLookup(event.name)
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	kprint( sb( event ):gsub("%s+", " "))
+	msgCount = 1 + msgCount
+end
+
+script.on_event({
+	defines.events.on_pre_entity_settings_pasted,
+},vonn.on_pre_entity_settings_pasted)
+
+
+function vonn.on_entity_settings_pasted(event)
+	-- TODO ----------------------------------------------------------------------------------------
+	local eventName = reverseEventLookup(event.name)
+	kprint(game.tick.." "..eventName.." "..msgCount)
+	kprint( sb( event ):gsub("%s+", " "))
+	msgCount = 1 + msgCount
+end
+
+script.on_event({
+	defines.events.on_entity_settings_pasted,
+},vonn.on_entity_settings_pasted)
 
 
 -- disable building?
@@ -121,6 +164,8 @@ script.on_event({
 	defines.events.on_player_gun_inventory_changed,
 	defines.events.on_player_pipette,
 	defines.events.on_player_dropped_item,
+	defines.events.on_pre_player_mined_item,
+	-- defines.events.on_put_item,
 },vonn.reportBug)
 
 
