@@ -32,6 +32,19 @@ log("new code goes here")
 -- 1136.481 Info GameActionHandler.cpp:301: Action performed [131382 0 FastEntityTransfer]
 -- 1523.457 Info GameActionHandler.cpp:301: Action performed [154588 0 PasteEntitySettings]
 
+local function on_gui_closed(event)
+	local gui_type = event.gui_type
+	local name = event.name
+	local player_index = event.player_index
+	local tick = event.tick
+	log(sb( event ))
+end
+
+script.on_event({
+	defines.events.on_gui_closed,
+},on_gui_closed)
+
+
 
 
 script.register_object(permissions)
