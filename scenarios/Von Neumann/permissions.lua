@@ -52,6 +52,7 @@ permissionsToKeepDisabled[defines.input_action.stack_transfer] = true
 permissionsToKeepDisabled[defines.input_action.stack_split] = true
 permissionsToKeepDisabled[defines.input_action.cursor_split] = true
 permissionsToKeepDisabled[defines.input_action.inventory_split] = true
+permissionsToKeepDisabled[defines.input_action.craft] = true
 
 
 local function fixPermission(permissionGroup, input_action)
