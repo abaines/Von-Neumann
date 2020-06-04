@@ -32,7 +32,7 @@ local vonnMapPreset = {
 			max_expansion_cooldown = 40 * 3600, -- 60*3600
 		}
 	},
-	seed = 1687102566, -- https://wiki.factorio.com/Types/MapGenPreset#seed
+	--seed = 1687102566, -- https://wiki.factorio.com/Types/MapGenPreset#seed
 }
 
 
