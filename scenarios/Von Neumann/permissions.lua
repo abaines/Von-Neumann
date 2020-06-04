@@ -32,12 +32,19 @@ log("new code goes here")
 -- 1136.481 Info GameActionHandler.cpp:301: Action performed [131382 0 FastEntityTransfer]
 -- 1523.457 Info GameActionHandler.cpp:301: Action performed [154588 0 PasteEntitySettings]
 
+local function resetPermissions()
+	log("resetPermissions()")
+end
+
 local function on_gui_closed(event)
 	local gui_type = event.gui_type
 	local name = event.name
 	local player_index = event.player_index
 	local tick = event.tick
-	log(sb( event ))
+
+	if gui_type == defines.gui_type.permissions then
+		resetPermissions()
+	end
 end
 
 script.on_event({
