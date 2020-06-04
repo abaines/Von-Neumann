@@ -33,6 +33,13 @@ log("new code goes here")
 -- 1523.457 Info GameActionHandler.cpp:301: Action performed [154588 0 PasteEntitySettings]
 
 
+local input_actionNameMapping = {}
+for input_actionName,input_actionId in pairs(defines.input_action) do
+	input_actionNameMapping[input_actionId] = input_actionName
+end
+log(sb( input_actionNameMapping ))
+
+
 local permissionsToKeepDisabled = {}
 permissionsToKeepDisabled[defines.input_action.begin_mining] = true -- 2
 permissionsToKeepDisabled[defines.input_action.change_picking_state] = true -- 180
@@ -43,8 +50,13 @@ permissionsToKeepDisabled[defines.input_action.paste_entity_settings] = true -- 
 permissionsToKeepDisabled[defines.input_action.reset_assembling_machine] = true -- 12
 
 
-local function fixPermission(input_action)
-	log(input_action)
+local function fixPermission(permissionGroup, input_action)
+	local allows_action = permissionGroup.allows_action(input_action)
+
+	if allows_action then
+		local reverseInput_actionLookup = input_actionNameMapping[input_action]
+		log(input_action .. "  " ..  tostring(allows_action) .. "  " ..  reverseInput_actionLookup)
+	end
 end
 
 local function resetPermissions()
@@ -53,10 +65,9 @@ local function resetPermissions()
 	for _,permissionGroup in pairs(groups) do
 		log(permissionGroup.group_id .. "  " .. permissionGroup.name)
 		for input_action in pairs(permissionsToKeepDisabled) do
-			fixPermission(input_action)
+			fixPermission(permissionGroup,input_action)
 		end
 	end
-	log(sb( permissionsToKeepDisabled ))
 end
 
 local function on_gui_closed(event)
