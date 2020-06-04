@@ -1,12 +1,12 @@
 -- Kizrak
 
 
-local script,kprint,reverseEventLookup = require('k-lib')()
+local script,kprint,reverseEventLookup = require('k-lib')() -- luacheck: ignore 211
 
 
 local sb = serpent.block -- luacheck: ignore 211
 
-local function sbs(obj)
+local function sbs(obj)  -- luacheck: ignore 211
 	local s = sb( obj ):gsub("%s+", " ")
 	return s
 end
@@ -77,9 +77,6 @@ end
 
 local function on_gui_closed(event)
 	local gui_type = event.gui_type
-	local name = event.name
-	local player_index = event.player_index
-	local tick = event.tick
 
 	if gui_type == defines.gui_type.permissions then
 		resetPermissions()
@@ -91,7 +88,7 @@ script.on_event({
 },on_gui_closed)
 
 
-local function on_player_joined_game(event)
+local function on_player_joined_game()
 	resetPermissions()
 end
 
