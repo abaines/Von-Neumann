@@ -48,6 +48,8 @@ permissionsToKeepDisabled[defines.input_action.fast_entity_transfer] = true -- 1
 permissionsToKeepDisabled[defines.input_action.inventory_transfer] = true -- 65
 permissionsToKeepDisabled[defines.input_action.paste_entity_settings] = true -- 21
 permissionsToKeepDisabled[defines.input_action.reset_assembling_machine] = true -- 12
+permissionsToKeepDisabled[defines.input_action.stack_transfer] = true
+permissionsToKeepDisabled[defines.input_action.stack_split] = true
 
 
 local function fixPermission(permissionGroup, input_action)
