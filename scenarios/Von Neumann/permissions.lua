@@ -50,6 +50,8 @@ permissionsToKeepDisabled[defines.input_action.paste_entity_settings] = true -- 
 permissionsToKeepDisabled[defines.input_action.reset_assembling_machine] = true -- 12
 permissionsToKeepDisabled[defines.input_action.stack_transfer] = true
 permissionsToKeepDisabled[defines.input_action.stack_split] = true
+permissionsToKeepDisabled[defines.input_action.cursor_split] = true
+permissionsToKeepDisabled[defines.input_action.inventory_split] = true
 
 
 local function fixPermission(permissionGroup, input_action)
@@ -57,7 +59,7 @@ local function fixPermission(permissionGroup, input_action)
 
 	if allows_action then
 		local reverseInput_actionLookup = input_actionNameMapping[input_action]
-		log(input_action .. "  " ..  tostring(allows_action) .. "  " ..  reverseInput_actionLookup)
+		log(permissionGroup.group_id .. "  " .. permissionGroup.name .. "  " .. input_action .. "  " .. reverseInput_actionLookup  .. " (" .. input_action .. ")")
 		permissionGroup.set_allows_action(input_action,false)
 	end
 end
@@ -66,7 +68,6 @@ local function resetPermissions()
 	log("resetPermissions()")
 	local groups = game.permissions.groups
 	for _,permissionGroup in pairs(groups) do
-		log(permissionGroup.group_id .. "  " .. permissionGroup.name)
 		for input_action in pairs(permissionsToKeepDisabled) do
 			fixPermission(permissionGroup,input_action)
 		end
