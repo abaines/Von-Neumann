@@ -121,7 +121,7 @@ function vonn.on_player_main_inventory_changed(event)
 	local selected = player.selected
 	local opened = player.opened
 
-	if (selected or opened) then
+	if (selected or opened) then -- luacheck: ignore 542
 		-- Yay!
 	else
 		kprint("Problem: no selected or opened", {r=255})
