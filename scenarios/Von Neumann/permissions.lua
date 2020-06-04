@@ -15,6 +15,7 @@ end
 local permissions = {}
 
 
+-- /toggle-action-logging
 
 -- https://lua-api.factorio.com/latest/defines.html#defines.input_action
 -- https://lua-api.factorio.com/latest/LuaPermissionGroup.html#LuaPermissionGroup.set_allows_action
@@ -37,7 +38,6 @@ local input_actionNameMapping = {}
 for input_actionName,input_actionId in pairs(defines.input_action) do
 	input_actionNameMapping[input_actionId] = input_actionName
 end
-log(sb( input_actionNameMapping ))
 
 
 local permissionsToKeepDisabled = {}
@@ -56,6 +56,7 @@ local function fixPermission(permissionGroup, input_action)
 	if allows_action then
 		local reverseInput_actionLookup = input_actionNameMapping[input_action]
 		log(input_action .. "  " ..  tostring(allows_action) .. "  " ..  reverseInput_actionLookup)
+		permissionGroup.set_allows_action(input_action,false)
 	end
 end
 
