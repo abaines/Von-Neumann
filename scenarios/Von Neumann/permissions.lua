@@ -32,8 +32,31 @@ log("new code goes here")
 -- 1136.481 Info GameActionHandler.cpp:301: Action performed [131382 0 FastEntityTransfer]
 -- 1523.457 Info GameActionHandler.cpp:301: Action performed [154588 0 PasteEntitySettings]
 
+
+local permissionsToKeepDisabled = {}
+permissionsToKeepDisabled[defines.input_action.begin_mining] = true -- 2
+permissionsToKeepDisabled[defines.input_action.change_picking_state] = true -- 180
+permissionsToKeepDisabled[defines.input_action.cursor_transfer] = true -- 62
+permissionsToKeepDisabled[defines.input_action.fast_entity_transfer] = true -- 192
+permissionsToKeepDisabled[defines.input_action.inventory_transfer] = true -- 65
+permissionsToKeepDisabled[defines.input_action.paste_entity_settings] = true -- 21
+permissionsToKeepDisabled[defines.input_action.reset_assembling_machine] = true -- 12
+
+
+local function fixPermission(input_action)
+	log(input_action)
+end
+
 local function resetPermissions()
 	log("resetPermissions()")
+	local groups = game.permissions.groups
+	for _,permissionGroup in pairs(groups) do
+		log(permissionGroup.group_id .. "  " .. permissionGroup.name)
+		for input_action in pairs(permissionsToKeepDisabled) do
+			fixPermission(input_action)
+		end
+	end
+	log(sb( permissionsToKeepDisabled ))
 end
 
 local function on_gui_closed(event)
@@ -50,6 +73,15 @@ end
 script.on_event({
 	defines.events.on_gui_closed,
 },on_gui_closed)
+
+
+local function on_player_joined_game(event)
+	resetPermissions()
+end
+
+script.on_event({
+	defines.events.on_player_joined_game,
+},on_player_joined_game)
 
 
 
