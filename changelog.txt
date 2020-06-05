@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.8.37
+Date: 2020.6.5
+  Changes:
+    - Do not migrate!!  Not backwards compatible with previous 0.7.* saves!!
+    - Entire re-write of limiting actions via permissions !!
+---------------------------------------------------------------------------------------------------
 Version: 0.7.35
 Date: 2020.4.26
   Changes:
