@@ -138,8 +138,6 @@ script.on_event({
 },vonn.on_player_main_inventory_changed)
 
 
---- global.lastInteractionEntity[player_index]
-
 function vonn.on_player_fast_transferred(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
