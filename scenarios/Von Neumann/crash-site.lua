@@ -238,6 +238,15 @@ function crash_site.spawnCrashSite()
 		surface.request_to_generate_chunks({0,0},r)
 	end
 
+	-- chart the spawn point for player force
+	local force = game.forces["player"]
+	for r=0,32*6,32 do
+		force.chart(surface, {
+			{-1*r, -1*r},
+			{r, r}
+		})
+	end
+
 	global.clearSpawnResources = true
 end
 
