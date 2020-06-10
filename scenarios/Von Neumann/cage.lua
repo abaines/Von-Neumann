@@ -42,8 +42,6 @@ end
 
 local function on_player_changed_position(event)
 	local player = game.players[event.player_index]
-	log(sb( event ))
-	log(sb( player.name ))
 
 	if not validPosition(player) then
 		player.teleport( getGlobalPlayerPreviousPosition(player) )
