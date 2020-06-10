@@ -88,7 +88,7 @@ function crash_site.spillItemsRandomly(surface)
 		['big-electric-pole']=12,
 
 		['electronic-circuit']=15,
-		['radar']=1,
+		['radar']=2,
 
 		roboport=10,
 		['construction-robot']=100,
