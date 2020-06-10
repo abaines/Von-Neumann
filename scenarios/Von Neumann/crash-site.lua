@@ -242,8 +242,8 @@ function crash_site.spawnCrashSite()
 	local force = game.forces["player"]
 	for r=0,32*6,32 do
 		force.chart(surface, {
-			{-1*r, -1*r},
-			{r, r}
+			{-1*r+1, -1*r+1},
+			{r-1, r-1}
 		})
 	end
 
