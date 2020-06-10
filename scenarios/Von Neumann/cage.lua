@@ -28,10 +28,15 @@ local function validPosition(player)
 	return true
 end
 
+
 local function updateGlobalPlayerPreviousPosition(player)
 	global.previousPositions = global.previousPositions or {}
 
 	global.previousPositions[player.index] = player.position
+end
+
+local function getGlobalPlayerPreviousPosition(player)
+	return global.previousPositions[player.index]
 end
 
 
@@ -39,6 +44,12 @@ local function on_player_changed_position(event)
 	local player = game.players[event.player_index]
 	log(sb( event ))
 	log(sb( player.name ))
+
+	if not validPosition(player) then
+		player.teleport( getGlobalPlayerPreviousPosition(player) )
+	end
+
+	updateGlobalPlayerPreviousPosition(player)
 end
 
 script.on_event({
