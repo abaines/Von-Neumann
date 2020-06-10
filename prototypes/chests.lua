@@ -36,7 +36,7 @@ local logistic_chest_requester = table.deepcopy(data.raw["logistic-container"]["
 logistic_chest_requester.name = "vn-logistic-chest-requester"
 logistic_chest_requester.inventory_size = 4
 logistic_chest_requester.subgroup = "logistic-network"
-logistic_chest_requester.logistic_slots_count = 1
+logistic_chest_requester.logistic_slots_count = 2
 logistic_chest_requester.circuit_wire_max_distance = 0
 logistic_chest_requester.minable.result = "vn-logistic-chest-requester"
 
