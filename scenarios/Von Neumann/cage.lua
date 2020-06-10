@@ -28,6 +28,12 @@ local function validPosition(player)
 	return true
 end
 
+local function updateGlobalPlayerPreviousPosition(player)
+	global.previousPositions = global.previousPositions or {}
+
+	global.previousPositions[player.index] = player.position
+end
+
 
 local function on_player_changed_position(event)
 	local player = game.players[event.player_index]
