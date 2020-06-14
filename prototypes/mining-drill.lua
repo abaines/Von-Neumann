@@ -21,7 +21,7 @@ mining_drill_item.place_result = "vn-electric-mining-drill"
 mining_drill_item.order = "a[items]-Z[burner-mining-drill]"
 
 data:extend{ mining_drill_item }
-log(sb( mining_drill_item ))
+--log(sb( mining_drill_item ))
 
 
 
@@ -59,5 +59,5 @@ mining_drill.next_upgrade = "electric-mining-drill"
 
 
 data:extend{ mining_drill }
-log(sb( mining_drill ))
+--log(sb( mining_drill ))
 
