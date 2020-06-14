@@ -1,5 +1,9 @@
 -- Kizrak
 
+
+local sb = serpent.block -- luacheck: ignore 211
+
+
 if false then
 	log("keys in data.raw[mining-drill]") -- luacheck: ignore 511
 	for k, _ in pairs( data.raw["mining-drill"] ) do
@@ -8,7 +12,7 @@ if false then
 end
 
 
---log(serpent.block( data.raw["mining-drill"]["burner-mining-drill"] ))
+--log(sb( data.raw["mining-drill"]["burner-mining-drill"] ))
 
 
 local mining_drill_item = table.deepcopy( data.raw.item["electric-mining-drill"] )
@@ -17,7 +21,7 @@ mining_drill_item.place_result = "vn-electric-mining-drill"
 mining_drill_item.order = "a[items]-Z[burner-mining-drill]"
 
 data:extend{ mining_drill_item }
---log(serpent.block( mining_drill_item ))
+log(sb( mining_drill_item ))
 
 
 
@@ -51,7 +55,9 @@ mining_drill.energy_usage = "180kW"
 mining_drill.mining_speed = 0.5 / 2
 mining_drill.module_specification = nil
 
+mining_drill.next_upgrade = "electric-mining-drill"
+
 
 data:extend{ mining_drill }
---log(serpent.block( mining_drill ))
+log(sb( mining_drill ))
 
