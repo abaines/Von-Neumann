@@ -1,6 +1,15 @@
 -- Kizrak
 
 
+local sb = serpent.block -- luacheck: ignore 211
+
+
+-- replace __base__ path with __vonNeumann__
+local function pathReplace(base)
+	return string.gsub(base,"__base__","__vonNeumann__")
+end
+
+
 data.raw.inserter["burner-inserter"].allow_burner_leech = true
 
 
@@ -9,7 +18,10 @@ new_item.name = "vn-inserter"
 new_item.place_result = "vn-inserter"
 new_item.order = "Z[inserter]"
 
+new_item.icon = pathReplace(new_item.icon)
+
 data:extend{ new_item }
+log(sb( new_item ))
 
 
 local inserter = table.deepcopy( data.raw["inserter"]["inserter"] )
@@ -34,5 +46,5 @@ inserter.rotation_speed = 0.014/2
 inserter.max_health = 100
 
 data:extend{ inserter }
---log(serpent.block( inserter ))
+log(sb( inserter ))
 
