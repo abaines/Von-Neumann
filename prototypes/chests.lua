@@ -28,7 +28,7 @@ local function pathReplaceRecursively(object)
 		if isTable(v) then
 			pathReplaceRecursively(v)
 
-		elseif isString(v) and ends_with(v,".png") and not string.find(v, "shadow") then
+		elseif isString(v) and ends_with(v,".png") and not string.find(v, "shadow") and not string.find(v, "circuit%-connector/hr%-ccm%-universal%-04.*sequence%.png") then
 			log(v)
 			object[k] = pathReplace(v)
 
