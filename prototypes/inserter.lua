@@ -10,6 +10,34 @@ local function pathReplace(base)
 end
 
 
+local function isTable(t)
+	return type(t) == 'table'
+end
+
+local function isString(t)
+	return type(t) == 'string'
+end
+
+local function ends_with(str, ending)
+	return ending == "" or str:sub(-#ending) == ending
+end
+
+local function pathReplaceRecursively(object)
+	for k,v in pairs(object) do
+
+		if isTable(v) then
+			pathReplaceRecursively(v)
+
+		elseif isString(v) and ends_with(v,".png") and not string.find(v, "shadow") then
+			log(v)
+			object[k] = pathReplace(v)
+
+		end
+
+	end
+end
+
+
 data.raw.inserter["burner-inserter"].allow_burner_leech = true
 
 
