@@ -49,7 +49,6 @@ new_item.order = "Z[inserter]"
 new_item.icon = pathReplace(new_item.icon)
 
 data:extend{ new_item }
-log(sb( new_item ))
 
 
 local inserter = table.deepcopy( data.raw["inserter"]["inserter"] )
@@ -73,6 +72,7 @@ inserter.rotation_speed = 0.014/2
 
 inserter.max_health = 100
 
+pathReplaceRecursively(inserter)
+
 data:extend{ inserter }
-log(sb( inserter ))
 
