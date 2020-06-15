@@ -88,6 +88,8 @@ logistic_chest_requester_item.name = "vn-logistic-chest-requester"
 logistic_chest_requester_item.place_result = "vn-logistic-chest-requester"
 logistic_chest_requester_item.order = "zk-b[storage]-e[logistic-chest-requester]"
 
+pathReplaceRecursively(logistic_chest_requester_item)
+
 data:extend{logistic_chest_requester_item}
 --log(sb( logistic_chest_requester_item ))
 
