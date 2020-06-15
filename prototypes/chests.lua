@@ -1,6 +1,42 @@
 -- Kizrak
 
--- log(serpent.block( data.raw ))
+
+local sb = serpent.block -- luacheck: ignore 211
+
+
+-- replace __base__ path with __vonNeumann__
+local function pathReplace(base)
+	return string.gsub(base,"__base__","__vonNeumann__")
+end
+
+
+local function isTable(t)
+	return type(t) == 'table'
+end
+
+local function isString(t)
+	return type(t) == 'string'
+end
+
+local function ends_with(str, ending)
+	return ending == "" or str:sub(-#ending) == ending
+end
+
+local function pathReplaceRecursively(object)
+	for k,v in pairs(object) do
+
+		if isTable(v) then
+			pathReplaceRecursively(v)
+
+		elseif isString(v) and ends_with(v,".png") and not string.find(v, "shadow") then
+			log(v)
+			object[k] = pathReplace(v)
+
+		end
+
+	end
+end
+
 
 if false then
 	log("keys in data.raw") -- luacheck: ignore 511
@@ -28,7 +64,7 @@ logistic_chest_storage.order = "b[storage]-c[logistic-chest-storage]"
 logistic_chest_storage.subgroup = "logistic-network"
 
 data:extend{logistic_chest_storage}
---log(serpent.block( logistic_chest_storage ))
+--log(sb( logistic_chest_storage ))
 
 
 
@@ -41,7 +77,7 @@ logistic_chest_requester.circuit_wire_max_distance = 0
 logistic_chest_requester.minable.result = "vn-logistic-chest-requester"
 
 data:extend{logistic_chest_requester}
---log(serpent.block( logistic_chest_requester ))
+--log(sb( logistic_chest_requester ))
 
 
 
@@ -51,5 +87,5 @@ logistic_chest_requester_item.place_result = "vn-logistic-chest-requester"
 logistic_chest_requester_item.order = "zk-b[storage]-e[logistic-chest-requester]"
 
 data:extend{logistic_chest_requester_item}
---log(serpent.block( logistic_chest_requester_item ))
+--log(sb( logistic_chest_requester_item ))
 
