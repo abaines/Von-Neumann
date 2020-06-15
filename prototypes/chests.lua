@@ -76,6 +76,8 @@ logistic_chest_requester.logistic_slots_count = 2
 logistic_chest_requester.circuit_wire_max_distance = 0
 logistic_chest_requester.minable.result = "vn-logistic-chest-requester"
 
+pathReplaceRecursively(logistic_chest_requester)
+
 data:extend{logistic_chest_requester}
 --log(sb( logistic_chest_requester ))
 
