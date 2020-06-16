@@ -13,13 +13,13 @@ if false then
 	require("prototypes.debug") -- luacheck: ignore 511
 end
 
-require("prototypes.character")
-require("prototypes.railbot")
-require("prototypes.belt")
-require("prototypes.chests")
-require("prototypes.substation")
-require("prototypes.roboport")
-require("prototypes.mining-drill")
-require("prototypes.inserter")
 require("prototypes.assembling-machine")
+require("prototypes.belt")
+require("prototypes.character")
+require("prototypes.chests")
+require("prototypes.inserter")
+require("prototypes.mining-drill")
+require("prototypes.railbot")
+require("prototypes.roboport")
+require("prototypes.substation")
 
