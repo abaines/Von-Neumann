@@ -45,6 +45,7 @@ local function on_player_changed_position(event)
 
 	if not validPosition(player) then
 		player.teleport( getGlobalPlayerPreviousPosition(player) )
+		player.play_sound({path="cage-sound"})
 	end
 
 	updateGlobalPlayerPreviousPosition(player)
