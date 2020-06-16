@@ -15,6 +15,7 @@ end
 
 require("prototypes.assembling-machine")
 require("prototypes.belt")
+require("prototypes.cage-sound")
 require("prototypes.character")
 require("prototypes.chests")
 require("prototypes.inserter")
