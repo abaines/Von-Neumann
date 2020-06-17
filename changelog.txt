@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.8.39
+Date: 2020.6.16
+  Changes:
+    - Add cage sound
+    - Add new saturation color for damaged inserters
+    - Add new saturation color for damaged requester chests
+    - Add new description for damaged requester chests
+    - Add Wire Shortcuts as optional recommended mod
+    - Make damaged mining drill auto-next-upgrade to electric mining drill
+---------------------------------------------------------------------------------------------------
 Version: 0.8.38
 Date: 2020.6.10
   Changes:
