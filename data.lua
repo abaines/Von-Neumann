@@ -24,3 +24,6 @@ require("prototypes.railbot")
 require("prototypes.roboport")
 require("prototypes.substation")
 
+
+data.raw["utility-constants"]["default"].main_menu_background_image_location = "__vonNeumann__/graphics/backgrounds/background0.png"
+
