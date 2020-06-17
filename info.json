@@ -1,13 +1,13 @@
 {
 	"name": "vonNeumann",
-	"version": "0.8.39",
+	"version": "0.8.40",
 	"title": "Von Neumann",
 	"author": "Kizrak",
 	"contact": "",
 	"homepage": "https://github.com/abaines/Von-Neumann",
 	"factorio_version": "0.18",
 	"dependencies": [
-		"base >= 0.18.30",
+		"base >= 0.18.32",
 		"? WireShortcuts",
 		"? lightArtillery",
 		"? resourceMarker"
