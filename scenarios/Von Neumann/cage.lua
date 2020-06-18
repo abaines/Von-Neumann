@@ -40,6 +40,31 @@ local function getGlobalPlayerPreviousPosition(player)
 end
 
 
+local function checkAndDelaySoundForPlayer(player)
+	local index = "" .. player.index
+	local tick = game.tick
+
+	global.cage_sound = global.cage_sound or {}
+
+	if not global.cage_sound[index] then
+		global.cage_sound[index] = -1
+	end
+
+	log("---")
+	log( index )
+	log( global.cage_sound[index] )
+	log( tick )
+	log(sb( global.cage_sound ))
+
+	if global.cage_sound[index] < tick then
+		player.play_sound({path="cage-sound"})
+		global.cage_sound[index] = tick + 180
+	end
+
+	log(sb( global.cage_sound ))
+end
+
+
 local function on_player_changed_position(event)
 	local player = game.players[event.player_index]
 
