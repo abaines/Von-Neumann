@@ -50,18 +50,10 @@ local function checkAndDelaySoundForPlayer(player)
 		global.cage_sound[index] = -1
 	end
 
-	log("---")
-	log( index )
-	log( global.cage_sound[index] )
-	log( tick )
-	log(sb( global.cage_sound ))
-
 	if global.cage_sound[index] < tick then
-		player.play_sound({path="cage-sound"})
-		global.cage_sound[index] = tick + 180
+		player.play_sound({path="cage-sound",volume_modifier=0.5})
+		global.cage_sound[index] = tick + 90
 	end
-
-	log(sb( global.cage_sound ))
 end
 
 
@@ -70,7 +62,7 @@ local function on_player_changed_position(event)
 
 	if not validPosition(player) then
 		player.teleport( getGlobalPlayerPreviousPosition(player) )
-		player.play_sound({path="cage-sound"})
+		checkAndDelaySoundForPlayer(player)
 	end
 
 	updateGlobalPlayerPreviousPosition(player)
