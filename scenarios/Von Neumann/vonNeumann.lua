@@ -130,14 +130,51 @@ script.on_event({
 },vonn.on_player_cursor_stack_changed)
 
 
+function checkIfPrototypeBad(item_prototype)
+	log(sb( item_prototype.name ))
+
+	if item_prototype.module_effects then
+		return false
+	end
+
+	if item_prototype.entity_filter_slots then
+		return false
+	end
+
+	if item_prototype.mapper_count then
+		return false
+	end
+
+	local itemType = item_prototype.type
+
+	if itemType == "blueprint" then
+		return false
+	end
+
+	log("type: " .. sb( item_prototype.type ))
+
+	return true
+end
+
+
 function checkForBadItems(player)
+	local badItems = {}
 	for i=0,8 do
 		local inventory = player.get_inventory(i)
 		if inventory and inventory.valid then
 			local contents = inventory.get_contents()
-			kprint(i .. "  " .. sb( contents ))
+			for itemName,itemCount in pairs(contents) do
+				local item_prototype = game.item_prototypes[itemName]
+				if checkIfPrototypeBad(item_prototype) then
+					if not badItems[itemName] then
+						badItems[itemName] = 0
+					end
+					badItems[itemName] = itemCount + badItems[itemName]
+				end
+			end
 		end
 	end
+	return badItems
 end
 
 function vonn.on_player_main_inventory_changed(event)
@@ -150,14 +187,17 @@ function vonn.on_player_main_inventory_changed(event)
 	if (selected or opened) then -- luacheck: ignore 542
 		-- Yay!
 	else
-		-- TODO ----------------------------------------------------------------------------------------
-		local eventName = reverseEventLookup(event.name)
-		kprint("===== " .. msgCount .. " =====", {r=255,g=102})
-		kprint("Problem: no selected or opened", {r=255,g=102})
-		event.event = eventName
-		kprint(sbs( event ), {r=255,g=102})
-		checkForBadItems(player)
-		msgCount = 1 + msgCount
+		local badItems = checkForBadItems(player)
+		if table_size(badItems)>0 then
+			-- TODO ----------------------------------------------------------------------------------------
+			local eventName = reverseEventLookup(event.name)
+			kprint("===== " .. msgCount .. " =====", {r=255,g=102})
+			kprint("Problem: no selected or opened", {r=255,g=102})
+			event.event = eventName
+			kprint(sbs( event ), {r=255,g=102})
+			kprint(sbs( badItems ))
+			msgCount = 1 + msgCount
+		end
 	end
 end
 
