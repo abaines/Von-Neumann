@@ -114,7 +114,7 @@ function vonn.on_player_cursor_stack_changed(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
 
-	local badItems = checkForBadItems(player)
+	local badItems = vonn.checkForBadItems(player)
 	if table_size(badItems)>0 then
 		log("===== " .. msgCount .. " =====")
 		event.event = eventName
@@ -135,7 +135,7 @@ script.on_event({
 },vonn.on_player_cursor_stack_changed)
 
 
-function checkIfPrototypeBad(item_prototype)
+function vonn.checkIfPrototypeBad(item_prototype)
 	log(sb( item_prototype.name ))
 
 	if item_prototype.module_effects then
@@ -166,7 +166,7 @@ function checkIfPrototypeBad(item_prototype)
 end
 
 
-function checkForBadItems(player)
+function vonn.checkForBadItems(player)
 	local badItems = {}
 	for i=0,8 do
 		local inventory = player.get_inventory(i)
@@ -174,7 +174,7 @@ function checkForBadItems(player)
 			local contents = inventory.get_contents()
 			for itemName,itemCount in pairs(contents) do
 				local item_prototype = game.item_prototypes[itemName]
-				if checkIfPrototypeBad(item_prototype) then
+				if vonn.checkIfPrototypeBad(item_prototype) then
 					if not badItems[itemName] then
 						badItems[itemName] = 0
 					end
@@ -196,7 +196,7 @@ function vonn.on_player_main_inventory_changed(event)
 	if (selected or opened) then -- luacheck: ignore 542
 		-- Yay!
 	else
-		local badItems = checkForBadItems(player)
+		local badItems = vonn.checkForBadItems(player)
 		if table_size(badItems)>0 then
 			-- TODO ----------------------------------------------------------------------------------------
 			local eventName = reverseEventLookup(event.name)
