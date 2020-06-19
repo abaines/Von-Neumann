@@ -113,16 +113,21 @@ function vonn.on_player_cursor_stack_changed(event)
 	local player=game.players[event.player_index]
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
-	kprint("===== " .. msgCount .. " =====", {g=255,r=128})
-	event.event = eventName
-	kprint(sbs( event ), {g=255,r=128})
-	if player.cursor_stack.valid_for_read then
-		kprint(sbs( player.cursor_stack.name ), {g=255,r=128})
+
+	local badItems = checkForBadItems(player)
+	if table_size(badItems)>0 then
+		log("===== " .. msgCount .. " =====")
+		event.event = eventName
+		log(sbs( event ))
+		if player.cursor_stack.valid_for_read then
+			log(sbs( player.cursor_stack.name ))
+		end
+		if player.cursor_ghost then
+			log(sbs( player.cursor_ghost.name ))
+		end
+		msgCount = 1 + msgCount
 	end
-	if player.cursor_ghost then
-		kprint(sbs( player.cursor_ghost.name ), {g=255,r=128})
-	end
-	msgCount = 1 + msgCount
+
 end
 
 script.on_event({
