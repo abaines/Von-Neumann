@@ -28,11 +28,11 @@ function vonn.setupPlayer(player)
 	player.character = vonnCharacter
 	player.spectator = true
 
-	-- player.character_running_speed_modifier = 7
+	player.force.manual_mining_speed_modifier = -0.9999999
 
 	local numberOfPlayers = #game.players
-	local msg = "numberOfPlayers: " .. numberOfPlayers
-	kprint(msg)
+	local msg = "vonn.setupPlayer " .. player.name .. " (" .. numberOfPlayers .. ")"
+	log(msg)
 end
 
 
@@ -43,8 +43,15 @@ function vonn.on_player_created(event)
 
 	vonn.setupPlayer(player)
 
-	kprint(game.tick.." "..eventName.." "..msgCount)
-	msgCount = 1 + msgCount
+	global.created_players = global.created_players or {}
+
+	if global.created_players[player.name] then
+		kprint("===== " .. msgCount .. " =====")
+		kprint(game.tick.." "..eventName)
+		msgCount = 1 + msgCount
+	end
+
+	global.created_players[player.name] = true
 end
 
 script.on_event({
@@ -59,7 +66,8 @@ function vonn.on_player_respawned(event)
 
 	vonn.setupPlayer(player)
 
-	kprint(game.tick.." "..eventName.." "..msgCount)
+	kprint("===== " .. msgCount .. " =====")
+	kprint(game.tick.." "..eventName)
 	msgCount = 1 + msgCount
 end
 
@@ -102,10 +110,18 @@ defines.events.on_picked_up_item,
 
 
 function vonn.on_player_cursor_stack_changed(event)
+	local player=game.players[event.player_index]
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount, {g=255})
-	kprint(sbs( event ), {g=255})
+	kprint("===== " .. msgCount .. " =====", {g=255,r=128})
+	event.event = eventName
+	kprint(sbs( event ), {g=255,r=128})
+	if player.cursor_stack.valid_for_read then
+		kprint(sbs( player.cursor_stack.name ), {g=255,r=128})
+	end
+	if player.cursor_ghost then
+		kprint(sbs( player.cursor_ghost.name ), {g=255,r=128})
+	end
 	msgCount = 1 + msgCount
 end
 
@@ -113,6 +129,16 @@ script.on_event({
 	defines.events.on_player_cursor_stack_changed,
 },vonn.on_player_cursor_stack_changed)
 
+
+function checkForBadItems(player)
+	for i=0,8 do
+		local inventory = player.get_inventory(i)
+		if inventory and inventory.valid then
+			local contents = inventory.get_contents()
+			kprint(i .. "  " .. sb( contents ))
+		end
+	end
+end
 
 function vonn.on_player_main_inventory_changed(event)
 	local player_index = event.player_index
@@ -124,11 +150,13 @@ function vonn.on_player_main_inventory_changed(event)
 	if (selected or opened) then -- luacheck: ignore 542
 		-- Yay!
 	else
-		kprint("Problem: no selected or opened", {r=255})
 		-- TODO ----------------------------------------------------------------------------------------
 		local eventName = reverseEventLookup(event.name)
-		kprint(game.tick.." "..eventName.." "..msgCount)
-		kprint(sbs( event ))
+		kprint("===== " .. msgCount .. " =====", {r=255,g=102})
+		kprint("Problem: no selected or opened", {r=255,g=102})
+		event.event = eventName
+		kprint(sbs( event ), {r=255,g=102})
+		checkForBadItems(player)
 		msgCount = 1 + msgCount
 	end
 end
@@ -141,7 +169,8 @@ script.on_event({
 function vonn.on_player_fast_transferred(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount, {r=255,g=255,b=255})
+	kprint("===== " .. msgCount .. " =====")
+	kprint(game.tick.." "..eventName, {r=255,g=255,b=255})
 	kprint(sbs( event ), {r=255,g=255,b=255})
 	msgCount = 1 + msgCount
 end
@@ -154,7 +183,8 @@ script.on_event({
 function vonn.on_entity_settings_pasted(event)
 	-- TODO ----------------------------------------------------------------------------------------
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount, {r=255,g=255,b=255})
+	kprint("===== " .. msgCount .. " =====")
+	kprint(game.tick.." "..eventName, {r=255,g=255,b=255})
 	kprint(sbs( event ), {r=255,g=255,b=255})
 	msgCount = 1 + msgCount
 end
@@ -171,7 +201,8 @@ script.on_event({
 
 function vonn.reportBug(event)
 	local eventName = reverseEventLookup(event.name)
-	kprint(game.tick.." "..eventName.." "..msgCount, {r=255})
+	kprint("===== " .. msgCount .. " =====")
+	kprint(game.tick.." "..eventName, {r=255})
 	kprint(sbs( event ), {r=255})
 	msgCount = 1 + msgCount
 end
