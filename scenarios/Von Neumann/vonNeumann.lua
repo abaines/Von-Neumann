@@ -150,9 +150,13 @@ function checkIfPrototypeBad(item_prototype)
 		return false
 	end
 
+	if item_prototype.wire_count then
+		return false
+	end
+
 	local itemType = item_prototype.type
 
-	if itemType == "blueprint" then
+	if itemType == "blueprint" or itemType == "blueprint-book" then
 		return false
 	end
 
