@@ -163,7 +163,7 @@ end
 function vn_story.on_player_created(event)
 	local player_index=event.player_index
 	local player=game.players[player_index]
-	local eventName = reverseEventLookup(event.name)
+
 	log("story.on_player_created: ".. player.name)
 
 	if player.connected and player.character then
