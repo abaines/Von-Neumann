@@ -164,7 +164,7 @@ function vn_story.on_player_created(event)
 	local player_index=event.player_index
 	local player=game.players[player_index]
 	local eventName = reverseEventLookup(event.name)
-	kprint("newPlayer: ".. player.name .. "   " .. eventName,{r=255,g=255})
+	log("story.on_player_created: ".. player.name)
 
 	if player.connected and player.character then
 		vn_story.displayStoryText(player)

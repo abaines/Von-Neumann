@@ -183,7 +183,7 @@ script.on_event({
 },disableGodResearches)
 
 
-local function apply_bonuses()
+local function apply_bonuses(event)
 	if false then
 		-- luacheck: ignore 511
 		game.forces.player.character_build_distance_bonus = 125
@@ -211,13 +211,11 @@ local function apply_bonuses()
 
 	disableGodResearches()
 
+	local player = game.players[event.player_index]
+
 	local numberPlayers = #game.players
-	local msg = "apply_bonuses complete: " .. numberPlayers
-	print(msg)
+	local msg = "Bonuses applied to " ..player.name .. "     (" .. numberPlayers .. ")"
 	log(msg)
-	if not game.is_multiplayer() then
-		game.print(msg,{r=255,g=255})
-	end
 end
 
 
