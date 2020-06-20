@@ -22,6 +22,21 @@ local function reverseEventLookup(eventId)
 end
 
 
+local function profile_method(name,method,...)
+	local args = {...}
+	local p = game.create_profiler()
+	local returnValue = method(unpack(args))
+	log{"",name," ",p}
+	return returnValue
+end
+
+local function profile_eventHandler(name,eventHandler)
+	return function(event)
+		return profile_method(name,eventHandler)
+	end
+end
+
+
 local function createScript()
 	local script = {}
 
@@ -62,6 +77,6 @@ end
 
 
 return function()
-	return createScript(), kprint, reverseEventLookup
+	return createScript(), kprint, reverseEventLookup, profile_method, profile_eventHandler
 end
 

@@ -1,6 +1,6 @@
 -- Kizrak
 
-local script,kprint,reverseEventLookup = require('k-lib')() -- luacheck: ignore 211
+local script,kprint,reverseEventLookup,profile_method,profile_eventHandler = require('k-lib')() -- luacheck: ignore 211
 
 
 local vn_story = {}

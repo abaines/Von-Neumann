@@ -1,7 +1,7 @@
 -- Kizrak
 
 
-local script,kprint = require('k-lib')()
+local script,kprint,reverseEventLookup,profile_method,profile_eventHandler = require('k-lib')() -- luacheck: ignore 211
 
 local railbot = {}
 
