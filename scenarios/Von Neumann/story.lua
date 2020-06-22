@@ -33,14 +33,15 @@ vn_story.storyButton5 = "Huh. Righty-o. Time to roll."
 function vn_story.displayStoryText(player)
 	local width = 550
 	local height = 350
-	player.gui.center.clear()
-	local frame = player.gui.center.add{type='frame',name='vonn_story_frame',caption="Von Neumann Story",direction="vertical"}
+
+	local frame = player.gui.screen.add{type='frame',name='vonn_story_frame',caption="Von Neumann Story",direction="vertical"}
 	frame.style.width=width
 	frame.style.height=height
 	frame.style.vertically_stretchable = true
 	frame.style.horizontally_stretchable = true
 	frame.style.horizontally_squashable = true
 	frame.style.vertically_squashable = true
+	frame.force_auto_center()
 
 	local text_box = frame.add{type='text-box',name='vonn_story_label',text = vn_story.storyText1}
 	text_box.style.width=width-20
