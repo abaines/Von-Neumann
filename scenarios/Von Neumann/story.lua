@@ -3,6 +3,9 @@
 local script,kprint,reverseEventLookup,profile_method,profile_eventHandler = require('k-lib')() -- luacheck: ignore 211
 
 
+local sb = serpent.block -- luacheck: ignore 211
+
+
 local vn_story = {}
 
 
