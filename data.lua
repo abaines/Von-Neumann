@@ -13,16 +13,16 @@ if false then
 	require("prototypes.debug") -- luacheck: ignore 511
 end
 
-require("prototypes.assembling-machine")
-require("prototypes.belt")
 require("prototypes.cage-sound")
-require("prototypes.character")
-require("prototypes.chests")
-require("prototypes.inserter")
-require("prototypes.mining-drill")
-require("prototypes.railbot")
-require("prototypes.roboport")
-require("prototypes.substation")
+require("prototypes.entity.assembling-machine")
+require("prototypes.entity.belt")
+require("prototypes.entity.character")
+require("prototypes.entity.chests")
+require("prototypes.entity.inserter")
+require("prototypes.entity.mining-drill")
+require("prototypes.entity.railbot")
+require("prototypes.entity.roboport")
+require("prototypes.entity.substation")
 
 
 data.raw["utility-constants"]["default"].main_menu_background_image_location = "__vonNeumann__/graphics/backgrounds/background0.png"
