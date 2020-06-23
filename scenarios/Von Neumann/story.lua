@@ -37,7 +37,7 @@ function vn_story.displayStoryText(player)
 	local width = 550
 	local height = 350
 
-	local frame = player.gui.screen.add{type='frame',name='vonn_story_frame',caption="Von Neumann Story",direction="vertical"}
+	local frame = player.gui.screen.add{type='frame',name='vonn_story_frame',caption="Von Neumann Story",direction="vertical",style="vn-frame"}
 	frame.style.width=width
 	frame.style.height=height
 	frame.style.vertically_stretchable = true
