@@ -193,7 +193,7 @@ railbot.burnTrees = function(railbotUnit)
 	end
 end
 
-railbot.burnTreeBehavior = function(_)
+railbot.burnTreeBehavior = function()
 	local railbotUnit = railbot.findRailbot()
 	if not ( railbotUnit and railbotUnit.valid ) then return end
 
@@ -221,6 +221,33 @@ railbot.spawnBeam = function(surface,target_position,railbotUnit)
 		position={0,0},duration=60*4.5
 	}
 end
+
+
+function railbot.getGlobalForRailbot(surface,force)
+	local surface_index = surface.index
+	local force_index = force.index
+
+	global.savedRailbots = global.savedRailbots or {}
+	global.savedRailbots[surface_index] = global.savedRailbots[surface_index] or {}
+	local stored = global.savedRailbots[surface_index][force_index]
+
+	if stored and stored.valid then
+		return stored
+	elseif stored and not stored.valid then
+		log("railbot.getGlobalForRailbot:  Cache was not valid. Clearing cache.")
+		global.savedRailbots[surface_index][force_index] = nil
+	end
+end
+
+function railbot.setGlobalForRailbot(surface,force,unit)
+	local surface_index = surface.index
+	local force_index = force.index
+
+	global.savedRailbots = global.savedRailbots or {}
+	global.savedRailbots[surface_index] = global.savedRailbots[surface_index] or {}
+	global.savedRailbots[surface_index][force_index] = unit
+end
+
 
 railbot.spawnRailbot = function(player)
 	-- TODO: consume energy/science? to make railbot
