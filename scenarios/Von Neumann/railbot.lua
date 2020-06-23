@@ -324,7 +324,7 @@ function railbot.findRailbot(player)
 		log("railbot.spawnRailbot("..player.name..")")
 		return railbot.spawnRailbot(player)
 
-	else
+	else -- luacheck: ignore 542
 		--log("railbot.findRailbot no cache and player not valid !!!")
 
 	end
