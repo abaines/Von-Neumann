@@ -40,6 +40,7 @@ function vn_world.on_tick(_)
 	end
 end
 
+--script.on_event({defines.events.on_tick},profile_eventHandler("vn_world.on_tick",vn_world.on_tick))
 script.on_event({defines.events.on_tick},vn_world.on_tick)
 
 

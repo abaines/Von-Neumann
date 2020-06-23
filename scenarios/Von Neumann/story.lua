@@ -205,6 +205,7 @@ function vn_story.on_tick(_)
 	vn_story.updatePlayerZoom()
 end
 
+--script.on_event({defines.events.on_tick},profile_eventHandler("vn_story.on_tick",vn_story.on_tick))
 script.on_event({defines.events.on_tick},vn_story.on_tick)
 
 
