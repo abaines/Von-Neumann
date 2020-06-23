@@ -140,7 +140,8 @@ railbot.on_tick = function(event)
 	railbot.ghostBehavior(event)
 end
 
-script.on_nth_tick(11,profile_eventHandler("railbot.on_tick",railbot.on_tick))
+--script.on_nth_tick(11,profile_eventHandler("railbot.on_tick",railbot.on_tick))
+script.on_nth_tick(11,railbot.on_tick)
 
 
 railbot.findTreesMarkedForDecon = function(railbotUnit)
@@ -210,7 +211,8 @@ railbot.burnTreeBehavior = function()
 	railbot.burnTrees(railbotUnit)
 end
 
-script.on_nth_tick(23,profile_eventHandler("railbot.burnTreeBehavior",railbot.burnTreeBehavior))
+--script.on_nth_tick(23,profile_eventHandler("railbot.burnTreeBehavior",railbot.burnTreeBehavior))
+script.on_nth_tick(23,railbot.burnTreeBehavior)
 
 
 railbot.spawnBeam = function(surface,target_position,railbotUnit)
