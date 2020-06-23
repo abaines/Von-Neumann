@@ -45,7 +45,7 @@ for k,v in pairs(gui_style_default) do
 		local vtype = v.type
 		if string.find(vtype,"frame") then
 			log(k .. '   [' .. vtype .. ']')
-			for k2,v2 in pairs(v) do
+			for k2,_ in pairs(v) do
 				if not (k2=='type') and false then
 					log("   " .. k2)
 				end

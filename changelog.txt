@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.8.42
+Date: 2020.6.22
+  Changes:
+    - Fix VN Story dialog interaction with other mods
+    - Make VN Story dialog draggable
+    - Make VN Story dialog transparent
+---------------------------------------------------------------------------------------------------
 Version: 0.8.41
 Date: 2020.6.19
   Changes:

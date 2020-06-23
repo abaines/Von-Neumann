@@ -32,7 +32,7 @@ end
 
 local function profile_eventHandler(name,eventHandler)
 	return function(event)
-		return profile_method(name,eventHandler)
+		return profile_method(name,eventHandler,event)
 	end
 end
 
