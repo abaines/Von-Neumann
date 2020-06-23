@@ -301,7 +301,7 @@ railbot.addGui = function(player)
 		end
 	end
 
-	local railbot_gui = gui.add{type="frame", name="railbot_gui", caption="Railbot"}
+	local railbot_gui = gui.add{type="frame", name="railbot_gui", caption="Railbot", style="vn-frame"}
 
 	-- luacheck: ignore 211
 	local railbot_gui_follow = railbot_gui.add{type="button",name="railbot_gui_follow",caption="Follow"}
