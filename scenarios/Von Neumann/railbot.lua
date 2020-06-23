@@ -3,6 +3,10 @@
 
 local script,kprint,reverseEventLookup,profile_method,profile_eventHandler = require('k-lib')() -- luacheck: ignore 211
 
+
+local sb = serpent.block -- luacheck: ignore 211
+
+
 local railbot = {}
 
 
@@ -310,8 +314,19 @@ railbot.addGui = function(player)
 end
 
 railbot.command = function(player,command)
+	log("railbot.command: " .. player.name .. " " .. command)
+
 	local railbotUnit = railbot.findRailbot(player)
-	if not ( railbotUnit and railbotUnit.valid ) then return end
+
+	if not railbotUnit then
+		log("railbot.command: findRailbot: nil")
+		return
+	elseif not (railbotUnit.valid) then
+		log("railbot.command: findRailbot: invalid")
+		return
+	end
+
+	log("railbot.command: found railbot  " .. railbotUnit.name)
 
 	if command==nil then
 		player.print("need a command: follow, home, stay")
