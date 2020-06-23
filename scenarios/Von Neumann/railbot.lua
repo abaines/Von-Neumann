@@ -306,8 +306,6 @@ railbot.spawnRailbot = function(player)
 end
 
 function railbot.findRailbot(player)
-	return profile_method("railbot.findRailbot",function()
-
 	local surface = game.surfaces["nauvis"]
 	local force = game.forces["player"]
 
@@ -319,7 +317,7 @@ function railbot.findRailbot(player)
 	local cache = railbot.getGlobalForRailbot(surface,force)
 
 	if cache and cache.valid then
-		log("railbot.findRailbot cache hit  " .. sb( cache.name ))
+		--log("railbot.findRailbot cache hit  " .. sb( cache.name ))
 		return cache
 
 	elseif player and player.valid then
@@ -327,11 +325,9 @@ function railbot.findRailbot(player)
 		return railbot.spawnRailbot(player)
 
 	else
-		log("railbot.findRailbot no cache and player not valid !!!")
+		--log("railbot.findRailbot no cache and player not valid !!!")
 
 	end
-
-	end)
 end
 
 
