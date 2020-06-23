@@ -26,7 +26,7 @@ local function profile_method(name,method,...)
 	local args = {...}
 	local p = game.create_profiler()
 	local returnValue = method(unpack(args))
-	log{"",name," ",p}
+	log{"",p," ",name}
 	return returnValue
 end
 
