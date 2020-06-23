@@ -140,7 +140,7 @@ railbot.on_tick = function(event)
 	railbot.ghostBehavior(event)
 end
 
-script.on_nth_tick(8,railbot.on_tick)
+script.on_nth_tick(8,profile_eventHandler("railbot.on_tick",railbot.on_tick))
 
 
 railbot.findTreesMarkedForDecon = function(railbotUnit)
@@ -210,7 +210,7 @@ railbot.burnTreeBehavior = function()
 	railbot.burnTrees(railbotUnit)
 end
 
-script.on_nth_tick(20,railbot.burnTreeBehavior)
+script.on_nth_tick(20,profile_eventHandler("railbot.burnTreeBehavior",railbot.burnTreeBehavior))
 
 
 railbot.spawnBeam = function(surface,target_position,railbotUnit)
@@ -274,6 +274,8 @@ railbot.spawnRailbot = function(player)
 
 	local railbotUnit = surface.create_entity{name="railbot",position={0,1.1},force=force}
 
+	railbot.setGlobalForRailbot(surface,force,railbotUnit)
+
 	rendering.draw_light{
 		sprite="utility/light_medium",
 		target=railbotUnit,
@@ -303,24 +305,33 @@ railbot.spawnRailbot = function(player)
 	return railbotUnit
 end
 
-railbot.findRailbot = function(player)
+function railbot.findRailbot(player)
+	return profile_method("railbot.findRailbot",function()
+
 	local surface = game.surfaces["nauvis"]
+	local force = game.forces["player"]
+
 	if player and player.valid then
 		surface = player.surface
+		force = player.force
 	end
-	local railbotUnits = surface.find_entities_filtered({force = "player", name="railbot"})
 
-	--log("#railbotUnits" .. #railbotUnits)
+	local cache = railbot.getGlobalForRailbot(surface,force)
 
-	if #railbotUnits>=1 then
-		-- TODO deal with bonus railbotUnits?
-		return railbotUnits[1]
+	if cache and cache.valid then
+		log("railbot.findRailbot cache hit  " .. sb( cache.name ))
+		return cache
 
-	elseif #railbotUnits<1 and player and player.valid then
+	elseif player and player.valid then
+		log("railbot.spawnRailbot("..player.name..")")
 		return railbot.spawnRailbot(player)
 
+	else
+		log("railbot.findRailbot no cache and player not valid !!!")
+
 	end
 
+	end)
 end
 
 
