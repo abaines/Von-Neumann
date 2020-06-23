@@ -12,13 +12,13 @@ end
 local gui_style_default = data.raw['gui-style'].default
 
 
-local default_frame = table.deepcopy(gui_style_default.frame)
+local vn_frame = table.deepcopy(gui_style_default.blurry_frame)
 
-default_frame.graphical_set.opacity = 0.15
+vn_frame.graphical_set.base.opacity = 0.15
 
-log(sb( default_frame ))
+log(sb( vn_frame ))
 
-gui_style_default['vn-frame'] = default_frame
+gui_style_default['vn-frame'] = vn_frame
 
 log(string.rep("+",80))
 
