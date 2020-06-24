@@ -19,6 +19,9 @@ character.running_speed = 0.7
 character.distance_per_frame = 0.7
 character.tool_attack_result = nil
 
+-- WOOT 0.18.33 !
+character.has_belt_immunity = true
+
 
 -- character visuals
 character.selection_box = {{-0.5, -0.5}, {0.5, 0.4}}
