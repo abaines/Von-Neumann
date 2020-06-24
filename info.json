@@ -7,7 +7,7 @@
 	"homepage": "https://github.com/abaines/Von-Neumann",
 	"factorio_version": "0.18",
 	"dependencies": [
-		"base >= 0.18.32",
+		"base >= 0.18.33",
 		"? WireShortcuts",
 		"? lightArtillery",
 		"? resourceMarker"
