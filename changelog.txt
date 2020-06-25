@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.8.43
+Date: 2020.6.24
+  Changes:
+    - 0.18.33 !
+    - Character no longer affected by belts
+    - Use "always_show" flag for a lot of starting items
+    - Major performance increase for Railbot
+---------------------------------------------------------------------------------------------------
 Version: 0.8.42
 Date: 2020.6.22
   Changes:
