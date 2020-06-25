@@ -23,6 +23,7 @@ require("prototypes.entity.mining-drill")
 require("prototypes.entity.railbot")
 require("prototypes.entity.roboport")
 require("prototypes.entity.substation")
+require("prototypes.item.items")
 require("prototypes.vn-style")
 
 

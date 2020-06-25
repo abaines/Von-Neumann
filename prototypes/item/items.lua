@@ -29,23 +29,3 @@ add_always_show_flag("accumulator")
 add_always_show_flag("solar-panel")
 add_always_show_flag("firearm-magazine")
 
---[[
-	["logistic-robot"] = true,
-	["construction-robot"] = true,
-	["logistic-chest-active-provider"] = true,
-	["logistic-chest-passive-provider"] = true,
-	["logistic-chest-storage"] = true,
-	["logistic-chest-buffer"] = true,
-	["logistic-chest-requester"] = true,
-	["roboport"] = true,
-	["pipe"] = true,
-	["pipe-to-ground"] = true,
-	["stone-brick"] = true,
-	["repair-pack"] = true,
-	["boiler"] = true,
-	["steam-engine"] = true,
-	["offshore-pump"] = true,
-	["firearm-magazine"] = true,
-	["radar"] = true,
-]]--
-
