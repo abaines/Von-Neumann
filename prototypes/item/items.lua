@@ -4,21 +4,48 @@
 local sb = serpent.block -- luacheck: ignore 211
 
 
-local item = data.raw["item"]
+local function add_always_show_flag(item_prototype_name)
+	local item = data.raw.item[item_prototype_name] or data.raw.ammo[item_prototype_name]
 
-local chest = item["logistic-chest-storage"]
+	if not item then
+		log(item_prototype_name)
+	end
 
-chest.flags = chest.flags or {}
+	item.flags = item.flags or {}
 
-log(sb( chest ))
+	local flags = item.flags
 
-local flags = chest.flags
+	table.insert(flags,"always_show")
+end
 
-log(sb( flags ))
 
-table.insert(flags,"always_show")
+add_always_show_flag("logistic-chest-storage")
+add_always_show_flag("big-electric-pole")
+add_always_show_flag("roboport")
+add_always_show_flag("gun-turret")
+add_always_show_flag("laser-turret")
+add_always_show_flag("radar")
+add_always_show_flag("accumulator")
+add_always_show_flag("solar-panel")
+add_always_show_flag("firearm-magazine")
 
-log(sb( chest ))
-
-log(sb( flags ))
+--[[
+	["logistic-robot"] = true,
+	["construction-robot"] = true,
+	["logistic-chest-active-provider"] = true,
+	["logistic-chest-passive-provider"] = true,
+	["logistic-chest-storage"] = true,
+	["logistic-chest-buffer"] = true,
+	["logistic-chest-requester"] = true,
+	["roboport"] = true,
+	["pipe"] = true,
+	["pipe-to-ground"] = true,
+	["stone-brick"] = true,
+	["repair-pack"] = true,
+	["boiler"] = true,
+	["steam-engine"] = true,
+	["offshore-pump"] = true,
+	["firearm-magazine"] = true,
+	["radar"] = true,
+]]--
 
