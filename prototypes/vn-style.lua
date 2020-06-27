@@ -4,7 +4,7 @@
 local sb = serpent.block -- luacheck: ignore 211
 
 
-local function isTable(t)
+local function isTable(t) -- luacheck: ignore 211
 	return type(t) == 'table'
 end
 
