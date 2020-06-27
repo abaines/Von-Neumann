@@ -19,6 +19,7 @@ local vonnMapPreset = {
 		terrain_segmentation = 0.5, -- like rail-world
 		water = 1.5, -- like rail-world
 		autoplace_controls = rail_world_autoplace_controls, -- like rail-world
+		starting_area = 1.5, -- ribbon-world is the only base map gen over 100% (at 300%)
 	},
 	order = 'VONN',
 	advanced_settings = {
