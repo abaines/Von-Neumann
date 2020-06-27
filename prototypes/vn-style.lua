@@ -35,6 +35,7 @@ vn_space.graphical_set.base.opacity = 0.15
 gui_style_default['vn-draggable_space'] = vn_space
 
 
+--[[
 log(string.rep("+",80))
 
 local extras = {}
@@ -71,4 +72,5 @@ log(string.rep("=",80))
 log(sb( gui_style_default["vn-frame"] ))
 log(sb( gui_style_default["vn-draggable_space_header"] ))
 log(sb( gui_style_default["vn-draggable_space"] ))
+]]--
 

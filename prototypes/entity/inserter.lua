@@ -29,7 +29,7 @@ local function pathReplaceRecursively(object)
 			pathReplaceRecursively(v)
 
 		elseif isString(v) and ends_with(v,".png") and not string.find(v, "shadow") then
-			log(v)
+			--log(v)
 			object[k] = pathReplace(v)
 
 		end
