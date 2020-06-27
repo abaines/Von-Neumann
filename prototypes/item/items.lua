@@ -15,7 +15,7 @@ local function add_always_show_flag(item_prototype_name)
 
 	local flags = item.flags
 
-	table.insert(flags,"always_show")
+	table.insert(flags,"always-show")
 end
 
 
