@@ -258,16 +258,16 @@ end
 
 script.on_event({
 	-- defines.events.on_built_entity,
-	defines.events.on_pre_player_crafted_item,
-	defines.events.on_player_crafted_item,
+	-- defines.events.on_put_item,
+	--defines.events.on_player_pipette,
 	defines.events.on_player_ammo_inventory_changed,
 	defines.events.on_player_armor_inventory_changed,
+	defines.events.on_player_crafted_item,
+	defines.events.on_player_dropped_item,
 	defines.events.on_player_gun_inventory_changed,
 	defines.events.on_player_trash_inventory_changed,
-	--defines.events.on_player_pipette,
-	defines.events.on_player_dropped_item,
+	defines.events.on_pre_player_crafted_item,
 	defines.events.on_pre_player_mined_item,
-	-- defines.events.on_put_item,
 },vonn.reportBug)
 
 
