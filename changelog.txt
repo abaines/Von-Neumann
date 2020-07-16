@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.8.46
+Date: 2020-07-15
+  Changes:
+    - Remove free technologies
+    - Un-disable several recipes (including explosive-cannon-shell)
+    - Improve date format in change log
+---------------------------------------------------------------------------------------------------
 Version: 0.8.45
 Date: 2020-06-29
   Changes:
