@@ -9,6 +9,7 @@
 	"dependencies": [
 		"base >= 0.18.47",
 		"? WireShortcuts",
+		"? ModuleInserter",
 		"? lightArtillery",
 		"? resourceMarker"
 	],
