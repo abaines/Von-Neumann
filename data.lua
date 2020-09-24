@@ -14,10 +14,12 @@ if false then
 end
 
 require("prototypes.cage-sound")
+require("prototypes.entity.accumulator")
 require("prototypes.entity.assembling-machine")
 require("prototypes.entity.belt")
 require("prototypes.entity.character")
 require("prototypes.entity.chests")
+require("prototypes.entity.energy-source")
 require("prototypes.entity.inserter")
 require("prototypes.entity.mining-drill")
 require("prototypes.entity.railbot")
