@@ -13,7 +13,7 @@ local generator = table.deepcopy( data.raw['electric-energy-interface']['crash-s
 generator.name = "vn-crash-site-generator"
 generator.gui_mode = "none"
 
-generator.energy_production = "160MW"
+generator.energy_production = "160001kW"
 
 generator.energy_source = {
 	buffer_capacity = "160MW",
@@ -22,6 +22,8 @@ generator.energy_source = {
 }
 
 generator.max_health = 2000
+
+log(sb(generator))
 
 data:extend{generator}
 
