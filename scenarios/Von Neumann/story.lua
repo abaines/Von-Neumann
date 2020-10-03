@@ -125,7 +125,7 @@ function vn_story.playerCursorImportQuickBarSlot(player, quick_bar_slot, import_
 	log("cursor_stack.import_stack: " .. import_stack)
 
 	player.set_quick_bar_slot(quick_bar_slot, player.cursor_stack)
-	player.clean_cursor()
+	player.cursor_stack.clear()
 end
 
 
@@ -147,11 +147,14 @@ function vn_story.setupQuickBar(player)
 	player.set_quick_bar_slot(8,"big-electric-pole")
 	player.set_quick_bar_slot(9,"roboport")
 
+	-- deconstruction planner
+	--[[
 	vn_story.playerCursorImportQuickBarSlot(
 		player,
 		10,
 		"0eNplkN1qwzAMhd9F1zY0DbQsr1KGCbGamTlSZykjIfjd56Z/a3snjr7Dkc4CHjsm0TR2GpjcKbZEmKBZQFA1UC/nGUmDzu4YomJyA3uEZmOe5QIeFqB2KLvrxvZfLAoGAnmciiWbOxEUB8tk+8Qj+QdTvTIJf0YUtafE0/zgtv84DRFfs+r8aUAToriWvEvcfYtjijM0xzYKmtX19tIqCka89HHVs1lvKVHPfdlbXwZ+SwNFgWZfb6qP3baq97uc/wB3fnxj"
 	)
+	]]--
 end
 
 
