@@ -51,8 +51,8 @@ local function fixPermission(permissionGroup, input_action)
 	end
 end
 
-local function resetPermissions()
-	log("resetPermissions()")
+local function resetPermissions(reason)
+	log("resetPermissions("..reason..")")
 	local groups = game.permissions.groups
 	for _,permissionGroup in pairs(groups) do
 		for input_action in pairs(permissionsToKeepDisabled) do
@@ -61,26 +61,23 @@ local function resetPermissions()
 	end
 end
 
-local function on_gui_closed(event)
-	local gui_type = event.gui_type
-
-	if gui_type == defines.gui_type.permissions then
-		resetPermissions()
-	end
-end
 
 script.on_event({
-	defines.events.on_gui_closed,
-},on_gui_closed)
+	defines.events.on_permission_group_edited,
+},function(event) resetPermissions("on_permission_group_edited") end)
 
+script.on_event({
+	defines.events.on_permission_group_added,
+},function(event) resetPermissions("on_permission_group_added") end)
 
-local function on_player_joined_game()
-	resetPermissions()
-end
+script.on_event({
+	defines.events.on_permission_string_imported,
+},function(event) resetPermissions("on_permission_string_imported") end)
 
 script.on_event({
 	defines.events.on_player_joined_game,
-},on_player_joined_game)
+},function(event) resetPermissions("on_player_joined_game") end)
+
 
 
 script.register_object(permissions)
