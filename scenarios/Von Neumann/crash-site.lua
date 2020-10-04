@@ -135,10 +135,11 @@ function crash_site.spawnCrashSite()
 	log("map_gen_settings.seed: " .. game.surfaces["nauvis"].map_gen_settings.seed)
 
 	local electricEnergyInterface = crash_site.createCrashSiteGenerator({0,0})
-	crash_site.createEntity{name="vn-substation",position={-16,-16}}
-	crash_site.createEntity{name="vn-substation",position={16,16}}
-	crash_site.createEntity{name="vn-substation",position={-16,16}}
-	crash_site.createEntity{name="vn-substation",position={16,-16}}
+	local substationDistance = 23
+	crash_site.createEntity{name="vn-substation",position={-1*substationDistance,-1*substationDistance}}
+	crash_site.createEntity{name="vn-substation",position={ 1*substationDistance, 1*substationDistance}}
+	crash_site.createEntity{name="vn-substation",position={-1*substationDistance, 1*substationDistance}}
+	crash_site.createEntity{name="vn-substation",position={ 1*substationDistance,-1*substationDistance}}
 
 	crash_site.createEntity{name="crash-site-lab-repaired",position={0,5}}
 
