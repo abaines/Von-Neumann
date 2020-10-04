@@ -63,15 +63,15 @@ end
 
 
 script.on_event({
-	defines.events.on_permission_group_edited,
+	defines.events.on_permission_group_edited, -- luacheck: ignore 143
 },function() resetPermissions("on_permission_group_edited") end)
 
 script.on_event({
-	defines.events.on_permission_group_added,
+	defines.events.on_permission_group_added, -- luacheck: ignore 143
 },function() resetPermissions("on_permission_group_added") end)
 
 script.on_event({
-	defines.events.on_permission_string_imported,
+	defines.events.on_permission_string_imported, -- luacheck: ignore 143
 },function() resetPermissions("on_permission_string_imported") end)
 
 script.on_event({
