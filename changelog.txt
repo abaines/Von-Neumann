@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.9.49
+Date: 2020-10-04
+  Changes:
+    - Split core electric energy into two entities; one for storage and one for generation
+    - Remove vampiric drain from repaired assemblers
+    - Spread out core substations and increase their range
+    - Use new permission events
+    - Remove unusable deconstruction planner
+---------------------------------------------------------------------------------------------------
 Version: 0.9.48
 Date: 2020-09-14
   Changes:
