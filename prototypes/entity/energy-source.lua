@@ -13,6 +13,7 @@ local generator = table.deepcopy( data.raw['electric-energy-interface']['crash-s
 generator.name = "vn-crash-site-generator"
 generator.gui_mode = "none"
 
+-- NOTE: if this is updated, remember to update locale\en\locale.cfg [entity-description] vn-crash-site-generator
 local kWproduction = 3*900
 
 generator.energy_production = ""..(kWproduction+1).."kW"
