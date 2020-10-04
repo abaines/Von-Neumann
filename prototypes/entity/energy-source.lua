@@ -26,5 +26,8 @@ generator.energy_source = {
 
 generator.max_health = 2000
 
+generator.selection_box={{-0.9,-0.9},{0.9,0.9}}
+generator.collision_box={{-0.9,-0.9},{0.9,0.9}}
+
 data:extend{generator}
 
