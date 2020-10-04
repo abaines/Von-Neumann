@@ -64,19 +64,19 @@ end
 
 script.on_event({
 	defines.events.on_permission_group_edited,
-},function(event) resetPermissions("on_permission_group_edited") end)
+},function() resetPermissions("on_permission_group_edited") end)
 
 script.on_event({
 	defines.events.on_permission_group_added,
-},function(event) resetPermissions("on_permission_group_added") end)
+},function() resetPermissions("on_permission_group_added") end)
 
 script.on_event({
 	defines.events.on_permission_string_imported,
-},function(event) resetPermissions("on_permission_string_imported") end)
+},function() resetPermissions("on_permission_string_imported") end)
 
 script.on_event({
 	defines.events.on_player_joined_game,
-},function(event) resetPermissions("on_player_joined_game") end)
+},function() resetPermissions("on_player_joined_game") end)
 
 
 
