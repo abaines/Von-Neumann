@@ -7,16 +7,13 @@ local script,kprint = require('k-lib')() -- luacheck: ignore 211
 local crash_site = {}
 
 
-local default_accumulator_buffer = 5000000 -- accumulator is 5 MJ
 function crash_site.createCrashSiteGenerator(position)
-	local electricEnergyInterface = crash_site.createEntity{name="crash-site-generator",position=position}
-	local energy = default_accumulator_buffer*600 -- 3 GJ
+	local electricGenerator = crash_site.createEntity{name="vn-crash-site-generator",position=position}
 
-	electricEnergyInterface.power_production = 3*15000 -- 3*900kW
-	electricEnergyInterface.electric_buffer_size  = energy
-	electricEnergyInterface.energy  = energy
+	local accumulator = crash_site.createEntity{name="vn-accumulator",position=position}
+	accumulator.energy = accumulator.electric_buffer_size
 
-	return electricEnergyInterface
+	return electricGenerator
 end
 
 

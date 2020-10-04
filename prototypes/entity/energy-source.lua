@@ -13,10 +13,12 @@ local generator = table.deepcopy( data.raw['electric-energy-interface']['crash-s
 generator.name = "vn-crash-site-generator"
 generator.gui_mode = "none"
 
-generator.energy_production = "160001kW"
+local kWproduction = 2700
+
+generator.energy_production = ""..(kWproduction+1).."kW"
 
 generator.energy_source = {
-	buffer_capacity = "160MW",
+	buffer_capacity = ""..(kWproduction).."kW",
 	type = "electric",
 	usage_priority = "primary-output",
 }
