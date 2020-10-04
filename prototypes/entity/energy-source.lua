@@ -26,7 +26,5 @@ generator.energy_source = {
 
 generator.max_health = 2000
 
-log(sb(generator))
-
 data:extend{generator}
 
