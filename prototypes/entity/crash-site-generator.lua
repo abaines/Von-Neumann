@@ -10,12 +10,12 @@ data:extend{
     layers = {
       {
         animation_speed = 0.3333333333333333,
-        filename = "__base__/graphics/entity/crash-site-generator/crash-site-generator.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator.png",
         frame_count = 5,
         height = 128,
         hr_version = {
           animation_speed = 0.3333333333333333,
-          filename = "__base__/graphics/entity/crash-site-generator/hr-crash-site-generator.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator.png",
           frame_count = 5,
           height = 252,
           line_length = 5,
@@ -39,12 +39,12 @@ data:extend{
       },
       {
         animation_speed = 0.3333333333333333,
-        filename = "__base__/graphics/entity/crash-site-generator/crash-site-generator-beams.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator-beams.png",
         frame_count = 16,
         height = 116,
         hr_version = {
           animation_speed = 0.3333333333333333,
-          filename = "__base__/graphics/entity/crash-site-generator/hr-crash-site-generator-beams.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator-beams.png",
           frame_count = 16,
           height = 232,
           line_length = 4,
@@ -69,13 +69,13 @@ data:extend{
       {
         animation_speed = 0.3333333333333333,
         draw_as_shadow = true,
-        filename = "__base__/graphics/entity/crash-site-generator/crash-site-generator-shadow.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator-shadow.png",
         frame_count = 1,
         height = 78,
         hr_version = {
           animation_speed = 0.3333333333333333,
           draw_as_shadow = true,
-          filename = "__base__/graphics/entity/crash-site-generator/hr-crash-site-generator-shadow.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator-shadow.png",
           frame_count = 1,
           height = 152,
           line_length = 1,
@@ -127,15 +127,15 @@ data:extend{
     "hidden",
     "not-rotatable"
   },
-  icon = "__base__/graphics/icons/crash-site-generator.png",
+  icon = "__vonNeumann__/graphics/icons/crash-site-generator.png",
   icon_mipmaps = 4,
   icon_size = 64,
   integration_patch = {
-    filename = "__base__/graphics/entity/crash-site-generator/crash-site-generator-ground.png",
+    filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator-ground.png",
     frame_count = 1,
     height = 180,
     hr_version = {
-      filename = "__base__/graphics/entity/crash-site-generator/hr-crash-site-generator-ground.png",
+      filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator-ground.png",
       frame_count = 1,
       height = 360,
       line_length = 1,

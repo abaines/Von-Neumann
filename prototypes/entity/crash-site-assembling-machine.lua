@@ -13,12 +13,12 @@ data:extend{
     layers = {
       {
         animation_speed = 2,
-        filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-repaired.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-repaired.png",
         frame_count = 20,
         height = 92,
         hr_version = {
           animation_speed = 2,
-          filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-repaired.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-repaired.png",
           frame_count = 20,
           height = 182,
           line_length = 5,
@@ -41,13 +41,13 @@ data:extend{
       {
         animation_speed = 2,
         draw_as_shadow = true,
-        filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-repaired-shadow.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-repaired-shadow.png",
         frame_count = 20,
         height = 84,
         hr_version = {
           animation_speed = 2,
           draw_as_shadow = true,
-          filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-repaired-shadow.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-repaired-shadow.png",
           frame_count = 20,
           height = 168,
           line_length = 5,
@@ -104,16 +104,16 @@ data:extend{
     "hidden",
     "not-rotatable"
   },
-  icon = "__base__/graphics/icons/crash-site-assembling-machine-1-repaired.png",
+  icon = "__vonNeumann__/graphics/icons/crash-site-assembling-machine-1-repaired.png",
   icon_mipmaps = 4,
   icon_size = 64,
   ingredient_count = 2,
   integration_patch = {
-    filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-ground.png",
+    filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-ground.png",
     frame_count = 1,
     height = 116,
     hr_version = {
-      filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-ground.png",
+      filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-ground.png",
       frame_count = 1,
       height = 234,
       line_length = 1,
@@ -200,13 +200,13 @@ data:extend{
       animation = {
         animation_speed = 2,
         blend_mode = "additive",
-        filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-repaired-light.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-1-repaired-light.png",
         frame_count = 20,
         height = 64,
         hr_version = {
           animation_speed = 2,
           blend_mode = "additive",
-          filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-repaired-light.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-1-repaired-light.png",
           frame_count = 20,
           height = 120,
           line_length = 5,
@@ -242,12 +242,12 @@ data:extend{
     layers = {
       {
         animation_speed = 0.66666666666666661,
-        filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-repaired.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-repaired.png",
         frame_count = 20,
         height = 98,
         hr_version = {
           animation_speed = 0.66666666666666661,
-          filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-repaired.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-repaired.png",
           frame_count = 20,
           height = 200,
           line_length = 5,
@@ -270,13 +270,13 @@ data:extend{
       {
         animation_speed = 0.66666666666666661,
         draw_as_shadow = true,
-        filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-repaired-shadow.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-repaired-shadow.png",
         frame_count = 20,
         height = 86,
         hr_version = {
           animation_speed = 0.66666666666666661,
           draw_as_shadow = true,
-          filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-repaired-shadow.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-repaired-shadow.png",
           frame_count = 20,
           height = 174,
           line_length = 5,
@@ -333,16 +333,16 @@ data:extend{
     "hidden",
     "not-rotatable"
   },
-  icon = "__base__/graphics/icons/crash-site-assembling-machine-2-repaired.png",
+  icon = "__vonNeumann__/graphics/icons/crash-site-assembling-machine-2-repaired.png",
   icon_mipmaps = 4,
   icon_size = 64,
   ingredient_count = 2,
   integration_patch = {
-    filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-ground.png",
+    filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-ground.png",
     frame_count = 1,
     height = 106,
     hr_version = {
-      filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-ground.png",
+      filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-ground.png",
       frame_count = 1,
       height = 238,
       line_length = 1,
@@ -431,13 +431,13 @@ data:extend{
       animation = {
         animation_speed = 0.66666666666666661,
         blend_mode = "additive",
-        filename = "__base__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-repaired-light.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/crash-site-assembling-machine-2-repaired-light.png",
         frame_count = 20,
         height = 62,
         hr_version = {
           animation_speed = 0.66666666666666661,
           blend_mode = "additive",
-          filename = "__base__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-repaired-light.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-assembling-machine/hr-crash-site-assembling-machine-2-repaired-light.png",
           frame_count = 20,
           height = 124,
           line_length = 5,
