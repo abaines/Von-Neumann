@@ -80,7 +80,3 @@ recipe.energy_required = 5.5
 
 data:extend{recipe}
 
-
-data.raw["assembling-machine"]["crash-site-assembling-machine-1-repaired"].energy_source.drain="0kW"
-data.raw["assembling-machine"]["crash-site-assembling-machine-2-repaired"].energy_source.drain="0kW"
-
