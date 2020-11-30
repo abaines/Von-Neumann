@@ -464,10 +464,10 @@ data:extend{
 
 
 for k,v in pairs(data.raw["assembling-machine"]) do
-	log(sb(k))
+	--log(sb(k))
 end
-log("crash-site-assembling-machine-1-repaired:\n"..sb(data.raw["assembling-machine"]["crash-site-assembling-machine-1-repaired"]))
-log("crash-site-assembling-machine-2-repaired:\n"..sb(data.raw["assembling-machine"]["crash-site-assembling-machine-2-repaired"]))
+--log("crash-site-assembling-machine-1-repaired:\n"..sb(data.raw["assembling-machine"]["crash-site-assembling-machine-1-repaired"]))
+--log("crash-site-assembling-machine-2-repaired:\n"..sb(data.raw["assembling-machine"]["crash-site-assembling-machine-2-repaired"]))
 
 data.raw["assembling-machine"]["crash-site-assembling-machine-1-repaired"].energy_source.drain="0kW"
 data.raw["assembling-machine"]["crash-site-assembling-machine-2-repaired"].energy_source.drain="0kW"

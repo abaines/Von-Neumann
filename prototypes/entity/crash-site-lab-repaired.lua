@@ -303,8 +303,8 @@ data:extend{
 
 
 for k,v in pairs( data.raw['lab'] ) do
-	log(sb(k))
+	--log(sb(k))
 end
 
-log("crash-site-lab-repaired:\n"..sb( data.raw['lab']['crash-site-lab-repaired'] ))
+--log("crash-site-lab-repaired:\n"..sb( data.raw['lab']['crash-site-lab-repaired'] ))
 
