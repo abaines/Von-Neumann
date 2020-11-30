@@ -39,18 +39,18 @@ data:extend{
     "player-creation",
     "hidden"
   },
-  icon = "__base__/graphics/icons/crash-site-lab-repaired.png",
+  icon = "__vonNeumann__/graphics/icons/crash-site-lab-repaired.png",
   icon_mipmaps = 4,
   icon_size = 64,
   inputs = {
     "automation-science-pack"
   },
   integration_patch = {
-    filename = "__base__/graphics/entity/crash-site-lab/crash-site-lab-ground.png",
+    filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-ground.png",
     frame_count = 1,
     height = 170,
     hr_version = {
-      filename = "__base__/graphics/entity/crash-site-lab/hr-crash-site-lab-ground.png",
+      filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-ground.png",
       frame_count = 1,
       height = 344,
       line_length = 1,
@@ -96,12 +96,12 @@ data:extend{
     layers = {
       {
         animation_speed = 0.3333333333333333,
-        filename = "__base__/graphics/entity/crash-site-lab/crash-site-lab-repaired.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired.png",
         frame_count = 1,
         height = 126,
         hr_version = {
           animation_speed = 0.3333333333333333,
-          filename = "__base__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired.png",
           frame_count = 1,
           height = 252,
           line_length = 1,
@@ -126,13 +126,13 @@ data:extend{
       {
         animation_speed = 0.3333333333333333,
         draw_as_shadow = true,
-        filename = "__base__/graphics/entity/crash-site-lab/crash-site-lab-repaired-shadow.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired-shadow.png",
         frame_count = 1,
         height = 148,
         hr_version = {
           animation_speed = 0.3333333333333333,
           draw_as_shadow = true,
-          filename = "__base__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-shadow.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-shadow.png",
           frame_count = 1,
           height = 302,
           line_length = 1,
@@ -160,12 +160,12 @@ data:extend{
     layers = {
       {
         animation_speed = 0.3333333333333333,
-        filename = "__base__/graphics/entity/crash-site-lab/crash-site-lab-repaired.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired.png",
         frame_count = 1,
         height = 126,
         hr_version = {
           animation_speed = 0.3333333333333333,
-          filename = "__base__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired.png",
           frame_count = 1,
           height = 252,
           line_length = 1,
@@ -190,13 +190,13 @@ data:extend{
       {
         animation_speed = 0.3333333333333333,
         blend_mode = "additive",
-        filename = "__base__/graphics/entity/crash-site-lab/crash-site-lab-repaired-beams.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired-beams.png",
         frame_count = 24,
         height = 50,
         hr_version = {
           animation_speed = 0.3333333333333333,
           blend_mode = "additive",
-          filename = "__base__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-beams.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-beams.png",
           frame_count = 24,
           height = 100,
           line_length = 6,
@@ -219,13 +219,13 @@ data:extend{
       {
         animation_speed = 0.3333333333333333,
         draw_as_shadow = true,
-        filename = "__base__/graphics/entity/crash-site-lab/crash-site-lab-repaired-shadow.png",
+        filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired-shadow.png",
         frame_count = 1,
         height = 148,
         hr_version = {
           animation_speed = 0.3333333333333333,
           draw_as_shadow = true,
-          filename = "__base__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-shadow.png",
+          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-shadow.png",
           frame_count = 1,
           height = 302,
           line_length = 1,
