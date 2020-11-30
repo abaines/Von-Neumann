@@ -27,9 +27,17 @@ local function disableGodResearches()
 		["character-logistic-trash-slots-3"] = true,
 		["character-logistic-trash-slots-4"] = true,
 		["character-logistic-trash-slots-5"] = true,
+
+		-- Factorio 1.1
 		["defender"] = true,
 		["distractor"] = true,
 		["destroyer"] = true,
+
+		-- Factorio 1.0
+		["combat-robotics"] = true,
+		["combat-robotics-2"] = true,
+		["combat-robotics-3"] = true,
+
 		["discharge-defense-equipment"] = true,
 		["energy-shield-equipment"] = true,
 		["energy-shield-mk2-equipment"] = true,
