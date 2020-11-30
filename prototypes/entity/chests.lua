@@ -62,6 +62,7 @@ logistic_chest_storage.name = "vn-logistic-chest-storage"
 logistic_chest_storage.inventory_size = 8000
 logistic_chest_storage.order = "b[storage]-c[logistic-chest-storage]"
 logistic_chest_storage.subgroup = "logistic-network"
+logistic_chest_storage.max_logistic_slots = 0
 
 data:extend{logistic_chest_storage}
 --log(sb( logistic_chest_storage ))
@@ -73,6 +74,7 @@ logistic_chest_requester.name = "vn-logistic-chest-requester"
 logistic_chest_requester.inventory_size = 4
 logistic_chest_requester.subgroup = "logistic-network"
 logistic_chest_requester.logistic_slots_count = 2
+logistic_chest_requester.max_logistic_slots = 2
 logistic_chest_requester.circuit_wire_max_distance = 0
 logistic_chest_requester.minable.result = "vn-logistic-chest-requester"
 
