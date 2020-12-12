@@ -1,11 +1,11 @@
 {
 	"name": "vonNeumann",
-	"version": "0.9.51",
+	"version": "0.9.52",
 	"title": "Von Neumann",
 	"author": "Kizrak",
 	"contact": "",
 	"homepage": "https://github.com/abaines/Von-Neumann",
-	"factorio_version": "1.0",
+	"factorio_version": "1.1",
 	"dependencies": [
 		"base >= 1.0.0",
 		"? WireShortcuts",
