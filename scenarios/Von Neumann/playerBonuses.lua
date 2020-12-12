@@ -10,6 +10,7 @@ local log_spam_guard = {}
 local function disableGodResearches()
 	local playerForce = game.forces["player"]
 
+--[[ TODO: use prototypes to fix everything below
 	local researchesToDisable = {
 		["atomic-bomb"] = true,
 		["auto-character-logistic-trash-slots"] = true,
@@ -80,7 +81,9 @@ local function disableGodResearches()
 			log_spam_guard[research] = true
 		end
 	end
+]]--
 
+--[[
 	local recipesToDisable = {
 		["car"] = true,
 		["tank"] = true,
@@ -95,7 +98,7 @@ local function disableGodResearches()
 		local recipe = playerForce.recipes[recipe_name]
 		recipe.enabled  = false
 	end
-
+]]--
 
 	-- "steel-processing"
 	local recipesBasedOnSteel = {
@@ -136,6 +139,7 @@ local function disableGodResearches()
 
 	-- "logistic-science-pack"
 	local recipesWaitingForLogisticSciencePack = {
+		-- logistics
 		["logistic-robot"] = true,
 		["construction-robot"] = true,
 		["logistic-chest-active-provider"] = true,
@@ -144,15 +148,23 @@ local function disableGodResearches()
 		["logistic-chest-buffer"] = true,
 		["logistic-chest-requester"] = true,
 		["roboport"] = true,
+
+		-- basic power
 		["pipe"] = true,
 		["pipe-to-ground"] = true,
 		["stone-brick"] = true,
-		["repair-pack"] = true,
 		["boiler"] = true,
 		["steam-engine"] = true,
 		["offshore-pump"] = true,
+
+		-- other
+		["repair-pack"] = true,
 		["firearm-magazine"] = true,
 		["radar"] = true,
+
+		-- equipment
+		["light-armor"] = true,
+		["pistol"] = true,
 	}
 
 	local logisticSciencePackResearched = playerForce.technologies["logistic-science-pack"].researched
