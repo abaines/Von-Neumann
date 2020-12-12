@@ -4,7 +4,7 @@
 local script,kprint = require('k-lib')() -- luacheck: ignore 211
 
 
-local log_spam_guard = {}
+-- local log_spam_guard = {}
 
 
 local function disableGodResearches()
