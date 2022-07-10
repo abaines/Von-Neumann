@@ -101,7 +101,7 @@ function crash_site.spillItemsRandomly(surface)
 		["solar-panel"] = 2,
 	}
 
-	local logisticsAssemblerReboot_enabled = game.active_mods["LogisticAssemblingMachine-rebooted"] and true or false
+	local logisticsAssemblerReboot_enabled = game.active_mods["LogisticAssemblingMachine-rebooted"]
 	if (logisticsAssemblerReboot_enabled) then
 		items["logistic-assembling-machine"]=4
 	end
