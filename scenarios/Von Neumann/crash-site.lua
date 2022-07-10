@@ -101,6 +101,11 @@ function crash_site.spillItemsRandomly(surface)
 		["solar-panel"] = 2,
 	}
 
+	local logisticsAssemblerReboot_enabled = game.active_mods["LogisticAssemblingMachine-rebooted"]
+	if (logisticsAssemblerReboot_enabled) then
+		items["logistic-assembling-machine"]=4
+	end
+
 	while table_size(items)>0 do
 		local item = crash_site.randomTableElement(items)
 		items[item] = items[item] - 1
