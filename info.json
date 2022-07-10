@@ -1,6 +1,6 @@
 {
 	"name": "vonNeumann",
-	"version": "0.9.53",
+	"version": "0.9.54",
 	"title": "Von Neumann",
 	"author": "Kizrak",
 	"contact": "",
@@ -11,7 +11,8 @@
 		"? WireShortcuts",
 		"? ModuleInserter",
 		"? lightArtillery",
-		"? resourceMarker"
+		"? resourceMarker",
+		"? LogisticAssemblingMachine-rebooted > 1.0.0"
 	],
 	"description": "Von Neumann Mod! Who wants to be a sack of blood and bones when you can be an hyper-intelligent self-replicating robot!\n\nThis is a scenario!\nPlay -> Scenarios -> Von Neumann/Freeplay -> Play\n#god-controller #robots #scenario #logistics #RTS"
 }
