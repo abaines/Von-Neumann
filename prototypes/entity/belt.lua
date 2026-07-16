@@ -36,7 +36,6 @@ grey_belt_entity.circuit_wire_max_distance = nil
 grey_belt_entity.icon = pathReplace(grey_belt_entity.icon)
 local animation_set = grey_belt_entity.belt_animation_set.animation_set
 animation_set.filename = pathReplace(animation_set.filename)
-animation_set.hr_version.filename = pathReplace(animation_set.hr_version.filename)
 
 -- TODO: corpse
 
