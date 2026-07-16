@@ -52,6 +52,30 @@ function crash_site.createSiteChest(options,itemsTable)
 	return entity
 end
 
+function crash_site.setLogisticRequestSlot(entity, slotIndex, itemName, itemCount)
+	local logisticSections = entity.get_logistic_sections()
+	if logisticSections == nil then
+		error("⨀ entity has no logistic sections: " .. entity.name)
+	end
+
+	local section = logisticSections.get_section(1)
+	if section == nil then
+		section = logisticSections.add_section()
+	end
+	if section == nil then
+		error("⨀ failed to get logistic section for entity: " .. entity.name)
+	end
+
+	section.set_slot(slotIndex, {
+		value = {
+			type = "item",
+			name = itemName,
+			quality = "normal"
+		},
+		min = itemCount
+	})
+end
+
 function crash_site.randomTableElement(someTable)
 	local keys = {}
 	for key in pairs(someTable) do
@@ -202,16 +226,16 @@ function crash_site.spawnCrashSite()
 		['inserter']=1,
 		['storage-chest']=1,
 	})
-	chest3.set_request_slot({name = "rail", count = 100}, 1)
-	chest3.set_request_slot({name = "train-stop", count = 1}, 2)
-	chest3.set_request_slot({name = "rail-chain-signal", count = 1}, 3)
-	chest3.set_request_slot({name = "rail-signal", count = 1}, 4)
+	crash_site.setLogisticRequestSlot(chest3, 1, "rail", 100)
+	crash_site.setLogisticRequestSlot(chest3, 2, "train-stop", 1)
+	crash_site.setLogisticRequestSlot(chest3, 3, "rail-chain-signal", 1)
+	crash_site.setLogisticRequestSlot(chest3, 4, "rail-signal", 1)
 
-	chest3.set_request_slot({name = "big-electric-pole", count = 1}, 7)
-	chest3.set_request_slot({name = "roboport", count = 1}, 8)
-	chest3.set_request_slot({name = "vn-inserter", count = 1}, 9)
-	chest3.set_request_slot({name = "inserter", count = 1}, 10)
-	chest3.set_request_slot({name = "storage-chest", count = 1}, 11)
+	crash_site.setLogisticRequestSlot(chest3, 7, "big-electric-pole", 1)
+	crash_site.setLogisticRequestSlot(chest3, 8, "roboport", 1)
+	crash_site.setLogisticRequestSlot(chest3, 9, "vn-inserter", 1)
+	crash_site.setLogisticRequestSlot(chest3, 10, "inserter", 1)
+	crash_site.setLogisticRequestSlot(chest3, 11, "storage-chest", 1)
 
 	crash_site.createSiteChest({name="vn-logistic-chest-storage",position={1,-1}},{
 		['coal']=1,
