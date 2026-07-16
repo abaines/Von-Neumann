@@ -59,7 +59,6 @@ data:extend{
   corpse = "big-remnants",
   crafting_categories = {
     "crafting",
-    "basic-crafting",
     "advanced-crafting"
   },
   crafting_speed = 0.3,
@@ -234,7 +233,6 @@ data:extend{
   corpse = "big-remnants",
   crafting_categories = {
     "crafting",
-    "basic-crafting",
     "advanced-crafting"
   },
   crafting_speed = 1,

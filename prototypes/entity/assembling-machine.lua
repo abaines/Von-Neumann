@@ -32,7 +32,6 @@ assembling_machine.max_health = 250
 assembling_machine.ingredient_count = 3
 
 assembling_machine.crafting_categories = {
-	"basic-crafting",
 	"crafting",
 }
 
