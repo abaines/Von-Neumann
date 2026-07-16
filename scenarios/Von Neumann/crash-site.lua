@@ -185,9 +185,9 @@ function crash_site.spawnCrashSite()
 
 	-- logistic-chest-storage
 	crash_site.createSiteChest({name="vn-logistic-chest-storage",position={-2,-1}},chest1items)
-	crash_site.createSiteChest({name="logistic-chest-active-provider",position={-2,0}},{})
+	crash_site.createSiteChest({name="active-provider-chest",position={-2,0}}, {})
 
-	local chest3 = crash_site.createSiteChest({name="logistic-chest-buffer",position={1,0}},{
+	local chest3 = crash_site.createSiteChest({name="buffer-chest",position={1,0}}, {
 		['rail']=10,
 		['train-stop']=1,
 		['rail-chain-signal']=1,
@@ -197,7 +197,7 @@ function crash_site.spawnCrashSite()
 		['roboport']=1,
 		['vn-inserter']=1,
 		['inserter']=1,
-		['logistic-chest-storage']=1,
+		['storage-chest']=1,
 	})
 	chest3.set_request_slot({name="rail", count=100},1)
 	chest3.set_request_slot({name="train-stop", count=1},2)
@@ -208,7 +208,7 @@ function crash_site.spawnCrashSite()
 	chest3.set_request_slot({name="roboport", count=1},8)
 	chest3.set_request_slot({name="vn-inserter", count=1},9)
 	chest3.set_request_slot({name="inserter", count=1},10)
-	chest3.set_request_slot({name="logistic-chest-storage", count=1},11)
+	chest3.set_request_slot({name="storage-chest", count=1},11)
 
 	crash_site.createSiteChest({name="vn-logistic-chest-storage",position={1,-1}},{
 		['coal']=1,
