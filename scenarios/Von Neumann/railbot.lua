@@ -21,7 +21,7 @@ railbot.allowedGhostNames = {
 	"roboport",
 	"inserter",
 	"vn-inserter",
-	"logistic-chest-storage",
+	"storage-chest",
 }
 
 railbot.searchGhost = function()
@@ -49,7 +49,7 @@ railbot.getBuffers = function(surface)
 	local buffers = surface.find_entities_filtered{
 		position={0,0},
 		radius=9,
-		name="logistic-chest-buffer"
+		name="buffer-chest"
 	}
 	return buffers
 end

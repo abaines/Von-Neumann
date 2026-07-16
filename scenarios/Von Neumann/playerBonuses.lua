@@ -10,7 +10,7 @@ local script,kprint = require('k-lib')() -- luacheck: ignore 211
 local function requireForceRecipe(playerForce, recipe_name, context)
 	local recipe = playerForce.recipes[recipe_name]
 	if recipe == nil then
-		error("Missing force recipe in " .. context .. ": " .. recipe_name)
+		error("⨀ Missing force recipe in " .. context .. ": " .. recipe_name)
 	end
 	return recipe
 end
@@ -129,11 +129,11 @@ local function disableGodResearches()
 	--[[
 	local recipesBasedOnAdvancedElectronics = {
 		["logistic-robot"] = true,
-		["logistic-chest-active-provider"] = true,
-		["logistic-chest-buffer"] = true,
-		["logistic-chest-passive-provider"] = true,
-		["logistic-chest-requester"] = true,
-		["logistic-chest-storage"] = true,
+		["active-provider-chest"] = true,
+		["buffer-chest"] = true,
+		["passive-provider-chest"] = true,
+		["requester-chest"] = true,
+		["storage-chest"] = true,
 		["roboport"] = true,
 	}
 
@@ -151,11 +151,11 @@ local function disableGodResearches()
 		-- logistics
 		["logistic-robot"] = true,
 		["construction-robot"] = true,
-		["logistic-chest-active-provider"] = true,
-		["logistic-chest-passive-provider"] = true,
-		["logistic-chest-storage"] = true,
-		["logistic-chest-buffer"] = true,
-		["logistic-chest-requester"] = true,
+		["active-provider-chest"] = true,
+		["passive-provider-chest"] = true,
+		["storage-chest"] = true,
+		["buffer-chest"] = true,
+		["requester-chest"] = true,
 		["roboport"] = true,
 
 		-- basic power
