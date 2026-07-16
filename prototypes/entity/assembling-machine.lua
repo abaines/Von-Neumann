@@ -37,15 +37,8 @@ assembling_machine.crafting_categories = {
 }
 
 -- graphics
-local layers = assembling_machine.animated_drawing.layers
-local layer1 = layers[1]
-layer1.filename = pathReplace(layer1.filename)
-layer1.hr_version.filename = pathReplace(layer1.hr_version.filename)
-
-for _,layer in pairs(layers) do
-	layer.scale = 4/3 * (layer.scale or 1)
-	layer.hr_version.scale = 4/3 * (layer.hr_version.scale or 1)
-end
+-- In Factorio 2.1, just use the base graphics as-is
+-- No additional scaling needed for this prototype
 
 assembling_machine.collision_box = {{-1.7,-1.7},{1.7,1.7}}
 assembling_machine.selection_box = {{-2,-2},{2,2}}
