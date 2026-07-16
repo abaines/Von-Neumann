@@ -40,7 +40,5 @@ inserter.rotation_speed = 0.014/2
 
 inserter.max_health = 100
 
-path_replace_utils.replace_png_paths_recursively(inserter)
-
 data:extend{ inserter }
 
