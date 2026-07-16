@@ -16,11 +16,8 @@ rail_world_autoplace_controls.trees = {
 local vonnMapPreset = {
 	basic_settings = {
 		height = 896, -- like ribbon-world [4 radars tall] [32*7*4]
-		-- TODO FIXME
-		-- terrain_segmentation = 0.5, -- like rail-world
-		-- water = 1.5, -- like rail-world
-		-- terrain_segmentation removed in 2.x
-		-- water removed in 2.x
+		terrain_segmentation = 0.5,
+		water = 1.5,
 		autoplace_controls = rail_world_autoplace_controls, -- like rail-world
 		starting_area = 1.5, -- ribbon-world is the only base map gen over 100% (at 300%)
 	},
