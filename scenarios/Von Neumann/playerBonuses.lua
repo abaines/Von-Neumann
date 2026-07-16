@@ -7,6 +7,15 @@ local script,kprint = require('k-lib')() -- luacheck: ignore 211
 -- local log_spam_guard = {}
 
 
+local function requireForceRecipe(playerForce, recipe_name, context)
+	local recipe = playerForce.recipes[recipe_name]
+	if recipe == nil then
+		error("Missing force recipe in " .. context .. ": " .. recipe_name)
+	end
+	return recipe
+end
+
+
 local function disableGodResearches()
 	local playerForce = game.forces["player"]
 
@@ -112,8 +121,8 @@ local function disableGodResearches()
 	local steelProcessingResearched = playerForce.technologies["steel-processing"].researched
 
 	for recipe_name in pairs(recipesBasedOnSteel) do
-		local recipe = playerForce.recipes[recipe_name]
-		recipe.enabled  = steelProcessingResearched
+		local recipe = requireForceRecipe(playerForce, recipe_name, "recipesBasedOnSteel")
+		recipe.enabled = steelProcessingResearched
 	end
 
 
@@ -174,8 +183,8 @@ local function disableGodResearches()
 	or playerForce.technologies["electronics"].researched
 
 	for recipe_name in pairs(recipesWaitingForLogisticSciencePack) do
-		local recipe = playerForce.recipes[recipe_name]
-		recipe.enabled  = logisticSciencePackResearched
+		local recipe = requireForceRecipe(playerForce, recipe_name, "recipesWaitingForLogisticSciencePack")
+		recipe.enabled = logisticSciencePackResearched
 	end
 end
 
