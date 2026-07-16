@@ -21,7 +21,7 @@ local function replace_png_paths_recursively(object)
 	for k, v in pairs(object) do
 		if isTable(v) then
 			replace_png_paths_recursively(v)
-		elseif isString(v) and ends_with(v, ".png") and not string.find(v, "shadow", 1, true) and not string.find(v, "circuit-connector", 1, true) then
+		elseif isString(v) and ends_with(v, ".png") and not string.find(v, "shadow", 1, true) and not string.find(v, "reflection", 1, true) and not string.find(v, "circuit-connector", 1, true) then
 			object[k] = replace_base_path(v)
 		end
 	end
