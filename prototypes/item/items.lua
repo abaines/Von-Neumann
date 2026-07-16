@@ -18,7 +18,7 @@ local function add_always_show_flag(item_prototype_name)
 end
 
 
-add_always_show_flag("logistic-chest-storage")
+add_always_show_flag("storage-chest")
 add_always_show_flag("big-electric-pole")
 add_always_show_flag("roboport")
 add_always_show_flag("gun-turret")
