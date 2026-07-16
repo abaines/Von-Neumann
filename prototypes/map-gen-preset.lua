@@ -4,6 +4,7 @@
 local sb = serpent.block -- luacheck: ignore 211
 
 local mapGenPresetsDefault = data.raw["map-gen-presets"].default
+local rail_world_basic_settings = table.deepcopy(mapGenPresetsDefault["rail-world"].basic_settings)
 
 local rail_world_autoplace_controls = table.deepcopy( mapGenPresetsDefault["rail-world"].basic_settings.autoplace_controls )
 
@@ -14,13 +15,7 @@ rail_world_autoplace_controls.trees = {
 }
 
 local vonnMapPreset = {
-	basic_settings = {
-		height = 896, -- like ribbon-world [4 radars tall] [32*7*4]
-		terrain_segmentation = 0.5,
-		water = 1.5,
-		autoplace_controls = rail_world_autoplace_controls, -- like rail-world
-		starting_area = 1.5, -- ribbon-world is the only base map gen over 100% (at 300%)
-	},
+	basic_settings = rail_world_basic_settings,
 	order = 'VONN',
 	advanced_settings = {
 		enemy_evolution = {
@@ -34,6 +29,10 @@ local vonnMapPreset = {
 	},
 	--seed = 1687102566, -- https://wiki.factorio.com/Types/MapGenPreset#seed
 }
+
+vonnMapPreset.basic_settings.height = 896  -- like ribbon-world [4 radars tall] [4*32*7]
+vonnMapPreset.basic_settings.autoplace_controls = rail_world_autoplace_controls -- like rail-world
+vonnMapPreset.basic_settings.starting_area = 1.5  -- ribbon-world is the only base map gen over 100% (at 300%)
 
 
 
