@@ -124,28 +124,28 @@ function vn_story.playerCursorImportQuickBarSlot(player, quick_bar_slot, import_
 	local import_stack = player.cursor_stack.import_stack(import_text)
 	log("cursor_stack.import_stack: " .. import_stack)
 
-	player.set_quick_bar_slot(quick_bar_slot, player.cursor_stack)
+	player.set_quick_bar_slot(1, quick_bar_slot, player.cursor_stack)
 	player.cursor_stack.clear()
 end
 
 
 function vn_story.setupQuickBar(player)
 	for index=1,10 do
-		if player.get_quick_bar_slot(index) then
+		if player.get_quick_bar_slot(1, index) then
 			 -- ignore because player already has buttons
 			return
 		end
 	end
 
-	player.set_quick_bar_slot(2,"vn-transport-belt")
-	player.set_quick_bar_slot(3,"vn-inserter")
-	player.set_quick_bar_slot(4,"burner-inserter")
-	player.set_quick_bar_slot(5,"stone-furnace")
+	player.set_quick_bar_slot(1, 2, "vn-transport-belt")
+	player.set_quick_bar_slot(1, 3, "vn-inserter")
+	player.set_quick_bar_slot(1, 4, "burner-inserter")
+	player.set_quick_bar_slot(1, 5, "stone-furnace")
 
-	player.set_quick_bar_slot(6,"vn-electric-mining-drill")
-	player.set_quick_bar_slot(7,"damaged-assembling-machine")
-	player.set_quick_bar_slot(8,"big-electric-pole")
-	player.set_quick_bar_slot(9,"roboport")
+	player.set_quick_bar_slot(1, 6, "vn-electric-mining-drill")
+	player.set_quick_bar_slot(1, 7, "damaged-assembling-machine")
+	player.set_quick_bar_slot(1, 8, "big-electric-pole")
+	player.set_quick_bar_slot(1, 9, "roboport")
 
 	-- deconstruction planner
 	--[[
