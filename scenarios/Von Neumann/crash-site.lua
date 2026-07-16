@@ -30,7 +30,7 @@ function crash_site.createEntity(options)
 		force=options.force or "player"
 	}
 
-	entity.minable = false
+	-- entity.minable = false  -- TODO FIXME
 	entity.destructible = true
 	entity.rotatable = true
 	entity.operable = true
