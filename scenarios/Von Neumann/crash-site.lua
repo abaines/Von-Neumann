@@ -29,6 +29,9 @@ function crash_site.createEntity(options)
 		position=options.position,
 		force=options.force or "player"
 	}
+	if entity == nil then
+		error("⨀ failed to create entity: " .. options.name)
+	end
 
 	-- entity.minable = false  -- TODO FIXME
 	entity.destructible = true
@@ -199,16 +202,16 @@ function crash_site.spawnCrashSite()
 		['inserter']=1,
 		['storage-chest']=1,
 	})
-	chest3.set_request_slot({name="rail", count=100},1)
-	chest3.set_request_slot({name="train-stop", count=1},2)
-	chest3.set_request_slot({name="rail-chain-signal", count=1},3)
-	chest3.set_request_slot({name="rail-signal", count=1},4)
+	chest3.set_request_slot({name = "rail", count = 100}, 1)
+	chest3.set_request_slot({name = "train-stop", count = 1}, 2)
+	chest3.set_request_slot({name = "rail-chain-signal", count = 1}, 3)
+	chest3.set_request_slot({name = "rail-signal", count = 1}, 4)
 
-	chest3.set_request_slot({name="big-electric-pole", count=1},7)
-	chest3.set_request_slot({name="roboport", count=1},8)
-	chest3.set_request_slot({name="vn-inserter", count=1},9)
-	chest3.set_request_slot({name="inserter", count=1},10)
-	chest3.set_request_slot({name="storage-chest", count=1},11)
+	chest3.set_request_slot({name = "big-electric-pole", count = 1}, 7)
+	chest3.set_request_slot({name = "roboport", count = 1}, 8)
+	chest3.set_request_slot({name = "vn-inserter", count = 1}, 9)
+	chest3.set_request_slot({name = "inserter", count = 1}, 10)
+	chest3.set_request_slot({name = "storage-chest", count = 1}, 11)
 
 	crash_site.createSiteChest({name="vn-logistic-chest-storage",position={1,-1}},{
 		['coal']=1,
