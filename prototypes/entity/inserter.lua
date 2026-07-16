@@ -2,40 +2,7 @@
 
 
 local sb = serpent.block -- luacheck: ignore 211
-
-
--- replace __base__ path with __vonNeumann__
-local function pathReplace(base)
-	return string.gsub(base,"__base__","__vonNeumann__")
-end
-
-
-local function isTable(t)
-	return type(t) == 'table'
-end
-
-local function isString(t)
-	return type(t) == 'string'
-end
-
-local function ends_with(str, ending)
-	return ending == "" or str:sub(-#ending) == ending
-end
-
-local function pathReplaceRecursively(object)
-	for k,v in pairs(object) do
-
-		if isTable(v) then
-			pathReplaceRecursively(v)
-
-		elseif isString(v) and ends_with(v,".png") and not string.find(v, "shadow") and not string.find(v, "circuit-connector", 1, true) then
-			--log(v)
-			object[k] = pathReplace(v)
-
-		end
-
-	end
-end
+local path_replace_utils = require("prototypes.entity.path-replace-utils")
 
 
 data.raw.inserter["burner-inserter"].allow_burner_leech = true
@@ -46,7 +13,7 @@ new_item.name = "vn-inserter"
 new_item.place_result = "vn-inserter"
 new_item.order = "Z[inserter]"
 
-new_item.icon = pathReplace(new_item.icon)
+new_item.icon = path_replace_utils.replace_base_path(new_item.icon)
 
 data:extend{ new_item }
 
@@ -73,7 +40,7 @@ inserter.rotation_speed = 0.014/2
 
 inserter.max_health = 100
 
-pathReplaceRecursively(inserter)
+path_replace_utils.replace_png_paths_recursively(inserter)
 
 data:extend{ inserter }
 
