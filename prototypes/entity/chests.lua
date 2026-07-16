@@ -2,7 +2,6 @@
 
 
 local sb = serpent.block -- luacheck: ignore 211
-local path_replace_utils = require("prototypes.entity.path-replace-utils")
 
 
 if false then
@@ -45,7 +44,6 @@ logistic_chest_requester.max_logistic_slots = 2
 logistic_chest_requester.circuit_wire_max_distance = 0
 logistic_chest_requester.minable.result = "vn-logistic-chest-requester"
 
-path_replace_utils.replace_png_paths_recursively(logistic_chest_requester)
 logistic_chest_requester.icon = "__vonNeumann__/graphics/icons/logistic-chest-requester.png"  -- TODO FIXME this seems strange
 
 data:extend{logistic_chest_requester}
@@ -58,7 +56,6 @@ logistic_chest_requester_item.name = "vn-logistic-chest-requester"
 logistic_chest_requester_item.place_result = "vn-logistic-chest-requester"
 logistic_chest_requester_item.order = "zk-b[storage]-e[logistic-chest-requester]"
 
-path_replace_utils.replace_png_paths_recursively(logistic_chest_requester_item)
 logistic_chest_requester_item.icon = "__vonNeumann__/graphics/icons/logistic-chest-requester.png"  -- TODO FIXME this seems strange
 
 data:extend{logistic_chest_requester_item}
