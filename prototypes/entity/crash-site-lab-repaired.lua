@@ -37,8 +37,11 @@ data:extend{
     "not-deconstructable",
     "placeable-player",
     "player-creation",
-    "hidden"
+    "not-in-bonus-gui",
+    "not-in-made-in",
+    "not-in-mined-by"
   },
+  hidden = true,
   icon = "__vonNeumann__/graphics/icons/crash-site-lab-repaired.png",
   icon_mipmaps = 4,
   icon_size = 64,

@@ -78,9 +78,12 @@ data:extend{
     "not-deconstructable",
     "placeable-player",
     "player-creation",
-    "hidden",
-    "not-rotatable"
+    "not-rotatable",
+    "not-in-bonus-gui",
+    "not-in-made-in",
+    "not-in-mined-by"
   },
+  hidden = true,
   icon = "__vonNeumann__/graphics/icons/crash-site-generator.png",
   icon_mipmaps = 4,
   icon_size = 64,
