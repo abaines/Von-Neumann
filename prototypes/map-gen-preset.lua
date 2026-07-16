@@ -26,7 +26,6 @@ local vonnMapPreset = {
 	},
 	order = 'VONN',
 	advanced_settings = {
-		difficulty_settings  = { research_queue_setting  = "always" },
 		enemy_evolution = {
 			time_factor = 0.000002, -- like rail-world
 			pollution_factor = 0.0000012, -- like death-world
