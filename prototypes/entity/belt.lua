@@ -5,16 +5,13 @@
 -- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --- Grey Belt --
 ---------------------------------------------------------------------------------------------------
 
--- replace __base__ path with __vonNeumann__
-local function pathReplace(base)
-	return string.gsub(base,"__base__","__vonNeumann__")
-end
+local path_replace_utils = require("prototypes.entity.path-replace-utils")
 
 
 local grey_belt_item = table.deepcopy(data.raw.item["transport-belt"])
 grey_belt_item.name = "vn-transport-belt"
 grey_belt_item.place_result = "vn-transport-belt"
-grey_belt_item.icon = pathReplace(grey_belt_item.icon)
+grey_belt_item.icon = path_replace_utils.replace_base_path(grey_belt_item.icon)
 grey_belt_item.order = "a[transport-belt]-Z[transport-belt]"
 
 --log( "grey_belt_item" )
@@ -33,9 +30,9 @@ grey_belt_entity.circuit_connector_sprites = nil
 grey_belt_entity.circuit_wire_connection_points = nil
 grey_belt_entity.circuit_wire_max_distance = nil
 
-grey_belt_entity.icon = pathReplace(grey_belt_entity.icon)
+grey_belt_entity.icon = path_replace_utils.replace_base_path(grey_belt_entity.icon)
 local animation_set = grey_belt_entity.belt_animation_set.animation_set
-animation_set.filename = pathReplace(animation_set.filename)
+animation_set.filename = path_replace_utils.replace_base_path(animation_set.filename)
 
 -- TODO: corpse
 

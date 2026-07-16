@@ -2,18 +2,14 @@
 
 
 local sb = serpent.block -- luacheck: ignore 211
-
--- replace __base__ path with __vonNeumann__
-local function pathReplace(base)
-	return string.gsub(base,"__base__","__vonNeumann__")
-end
+local path_replace_utils = require("prototypes.entity.path-replace-utils")
 
 
 local item = table.deepcopy( data.raw.item["assembling-machine-1"] )
 item.name = "damaged-assembling-machine"
 item.place_result = "damaged-assembling-machine"
 item.order = "a[assembling-machine--0]"
-item.icon = pathReplace(item.icon)
+item.icon = path_replace_utils.replace_base_path(item.icon)
 data:extend{item}
 
 
@@ -42,7 +38,7 @@ assembling_machine.crafting_categories = {
 assembling_machine.collision_box = {{-1.7,-1.7},{1.7,1.7}}
 assembling_machine.selection_box = {{-2,-2},{2,2}}
 
-assembling_machine.icon = pathReplace(assembling_machine.icon)
+assembling_machine.icon = path_replace_utils.replace_base_path(assembling_machine.icon)
 
 data:extend{assembling_machine}
 

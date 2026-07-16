@@ -3,11 +3,6 @@
 
 local sb = serpent.block -- luacheck: ignore 211
 
--- replace __base__ path with __vonNeumann__
-local function pathReplace(base) -- luacheck: ignore 211
-	return string.gsub(base,"__base__","__vonNeumann__")
-end
-
 local accumulator = table.deepcopy( data.raw.accumulator.accumulator )
 
 accumulator.name = "vn-accumulator"
