@@ -49,19 +49,6 @@ data:extend{
     filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-ground.png",
     frame_count = 1,
     height = 170,
-    hr_version = {
-      filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-ground.png",
-      frame_count = 1,
-      height = 344,
-      line_length = 1,
-      priority = "very-low",
-      scale = 0.5,
-      shift = {
-        -1.53125,
-        0.34375
-      },
-      width = 700
-    },
     line_length = 1,
     priority = "very-low",
     shift = {
@@ -99,21 +86,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired.png",
         frame_count = 1,
         height = 126,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired.png",
-          frame_count = 1,
-          height = 252,
-          line_length = 1,
-          priority = "very-low",
-          repeat_count = 24,
-          scale = 0.5,
-          shift = {
-            -0.5625,
-            0.4375
-          },
-          width = 488
-        },
         line_length = 1,
         priority = "very-low",
         repeat_count = 24,
@@ -129,22 +101,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired-shadow.png",
         frame_count = 1,
         height = 148,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          draw_as_shadow = true,
-          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-shadow.png",
-          frame_count = 1,
-          height = 302,
-          line_length = 1,
-          priority = "very-low",
-          repeat_count = 24,
-          scale = 0.5,
-          shift = {
-            -0.34375,
-            0.375
-          },
-          width = 696
-        },
         line_length = 1,
         priority = "very-low",
         repeat_count = 24,
@@ -163,21 +119,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired.png",
         frame_count = 1,
         height = 126,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired.png",
-          frame_count = 1,
-          height = 252,
-          line_length = 1,
-          priority = "very-low",
-          repeat_count = 24,
-          scale = 0.5,
-          shift = {
-            -0.5625,
-            0.4375
-          },
-          width = 488
-        },
         line_length = 1,
         priority = "very-low",
         repeat_count = 24,
@@ -193,21 +134,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired-beams.png",
         frame_count = 24,
         height = 50,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          blend_mode = "additive",
-          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-beams.png",
-          frame_count = 24,
-          height = 100,
-          line_length = 6,
-          priority = "very-low",
-          scale = 0.5,
-          shift = {
-            1.15625,
-            -0.625
-          },
-          width = 130
-        },
         line_length = 6,
         priority = "very-low",
         shift = {
@@ -222,22 +148,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-lab/crash-site-lab-repaired-shadow.png",
         frame_count = 1,
         height = 148,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          draw_as_shadow = true,
-          filename = "__vonNeumann__/graphics/entity/crash-site-lab/hr-crash-site-lab-repaired-shadow.png",
-          frame_count = 1,
-          height = 302,
-          line_length = 1,
-          priority = "very-low",
-          repeat_count = 24,
-          scale = 0.5,
-          shift = {
-            -0.34375,
-            0.375
-          },
-          width = 696
-        },
         line_length = 1,
         priority = "very-low",
         repeat_count = 24,

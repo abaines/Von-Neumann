@@ -57,7 +57,7 @@ end
 
 
 
-local logistic_chest_storage = table.deepcopy(data.raw["logistic-container"]["logistic-chest-storage"])
+local logistic_chest_storage = table.deepcopy(data.raw["logistic-container"]["storage-chest"])
 logistic_chest_storage.name = "vn-logistic-chest-storage"
 logistic_chest_storage.inventory_size = 8000
 logistic_chest_storage.order = "b[storage]-c[logistic-chest-storage]"
@@ -69,7 +69,7 @@ data:extend{logistic_chest_storage}
 
 
 
-local logistic_chest_requester = table.deepcopy(data.raw["logistic-container"]["logistic-chest-requester"])
+local logistic_chest_requester = table.deepcopy(data.raw["logistic-container"]["requester-chest"])
 logistic_chest_requester.name = "vn-logistic-chest-requester"
 logistic_chest_requester.inventory_size = 4
 logistic_chest_requester.subgroup = "logistic-network"
@@ -85,7 +85,7 @@ data:extend{logistic_chest_requester}
 
 
 
-local logistic_chest_requester_item = table.deepcopy(data.raw.item["logistic-chest-requester"])
+local logistic_chest_requester_item = table.deepcopy(data.raw.item["requester-chest"])
 logistic_chest_requester_item.name = "vn-logistic-chest-requester"
 logistic_chest_requester_item.place_result = "vn-logistic-chest-requester"
 logistic_chest_requester_item.order = "zk-b[storage]-e[logistic-chest-requester]"

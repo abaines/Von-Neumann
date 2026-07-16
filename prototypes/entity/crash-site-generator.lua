@@ -13,21 +13,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator.png",
         frame_count = 5,
         height = 128,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator.png",
-          frame_count = 5,
-          height = 252,
-          line_length = 5,
-          priority = "very-low",
-          repeat_count = 16,
-          scale = 0.5,
-          shift = {
-            -0.34375,
-            -0.71875
-          },
-          width = 286
-        },
         line_length = 5,
         priority = "very-low",
         repeat_count = 16,
@@ -42,21 +27,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator-beams.png",
         frame_count = 16,
         height = 116,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator-beams.png",
-          frame_count = 16,
-          height = 232,
-          line_length = 4,
-          priority = "very-low",
-          repeat_count = 5,
-          scale = 0.5,
-          shift = {
-            -0.25,
-            -0.9375
-          },
-          width = 224
-        },
         line_length = 4,
         priority = "very-low",
         repeat_count = 5,
@@ -72,22 +42,6 @@ data:extend{
         filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator-shadow.png",
         frame_count = 1,
         height = 78,
-        hr_version = {
-          animation_speed = 0.3333333333333333,
-          draw_as_shadow = true,
-          filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator-shadow.png",
-          frame_count = 1,
-          height = 152,
-          line_length = 1,
-          priority = "very-low",
-          repeat_count = 80,
-          scale = 0.5,
-          shift = {
-            0.78125,
-            0.15625
-          },
-          width = 474
-        },
         line_length = 1,
         priority = "very-low",
         repeat_count = 80,
@@ -134,19 +88,6 @@ data:extend{
     filename = "__vonNeumann__/graphics/entity/crash-site-generator/crash-site-generator-ground.png",
     frame_count = 1,
     height = 180,
-    hr_version = {
-      filename = "__vonNeumann__/graphics/entity/crash-site-generator/hr-crash-site-generator-ground.png",
-      frame_count = 1,
-      height = 360,
-      line_length = 1,
-      priority = "very-low",
-      scale = 0.5,
-      shift = {
-        -0.875,
-        -1.1875
-      },
-      width = 384
-    },
     line_length = 1,
     priority = "very-low",
     shift = {

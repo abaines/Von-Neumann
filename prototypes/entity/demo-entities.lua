@@ -29,15 +29,6 @@ local compilatron_chest = {
 				width = 34,
 				height = 40,
 				shift = util.by_pixel(0, -3),
-				hr_version =
-				{
-					filename = "__vonNeumann__/graphics/entity/compilatron-chest/hr-compilatron-chest.png",
-					priority = "extra-high",
-					width = 68,
-					height = 79,
-					shift = util.by_pixel(0, -3),
-					scale = 0.5
-				}
 			},
 			{
 				filename = "__vonNeumann__/graphics/entity/compilatron-chest/compilatron-chest-shadow.png",
@@ -46,16 +37,6 @@ local compilatron_chest = {
 				height = 21,
 				shift = util.by_pixel(12, 6),
 				draw_as_shadow = true,
-				hr_version =
-				{
-					filename = "__vonNeumann__/graphics/entity/compilatron-chest/hr-compilatron-chest-shadow.png",
-					priority = "extra-high",
-					width = 114,
-					height = 41,
-					shift = util.by_pixel(12, 6),
-					draw_as_shadow = true,
-					scale = 0.5
-				}
 			}
 		}
 	},
