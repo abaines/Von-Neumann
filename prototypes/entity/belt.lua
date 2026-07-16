@@ -32,7 +32,9 @@ grey_belt_entity.circuit_wire_max_distance = nil
 
 grey_belt_entity.icon = path_replace_utils.replace_base_path(grey_belt_entity.icon)
 local animation_set = grey_belt_entity.belt_animation_set.animation_set
-animation_set.filename = path_replace_utils.replace_base_path(animation_set.filename)
+animation_set.filename = "__vonNeumann__/graphics/entity/transport-belt/hr-transport-belt.png"
+animation_set.scale = 0.5
+
 
 -- TODO: corpse
 
