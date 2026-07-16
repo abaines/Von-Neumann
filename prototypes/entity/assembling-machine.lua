@@ -37,7 +37,7 @@ assembling_machine.crafting_categories = {
 }
 
 -- graphics
-local layers = assembling_machine.animation.layers
+local layers = assembling_machine.animated_drawing.layers
 local layer1 = layers[1]
 layer1.filename = pathReplace(layer1.filename)
 layer1.hr_version.filename = pathReplace(layer1.hr_version.filename)
@@ -56,7 +56,7 @@ data:extend{assembling_machine}
 
 
 local debugObj = table.deepcopy( assembling_machine )
-debugObj.animation = nil
+debugObj.animated_drawing = nil
 debugObj.working_sound = nil
 debugObj.vehicle_impact_sound = nil
 debugObj.close_sound = nil
@@ -67,14 +67,14 @@ debugObj.open_sound = nil
 
 local recipe = table.deepcopy(data.raw.recipe["assembling-machine-1"])
 recipe.name = "damaged-assembling-machine"
-recipe.result = "damaged-assembling-machine"
+recipe.results = {{type = "item", name = "damaged-assembling-machine", amount = 1}}
 recipe.order = "a[assembling-machine--0]"
 recipe.enabled = true
 
 recipe.ingredients = {
-	{"iron-plate", 9},
-	{"iron-gear-wheel", 5},
-	{"copper-cable", 8},
+	{type = "item", name = "iron-plate", amount = 9},
+	{type = "item", name = "iron-gear-wheel", amount = 5},
+	{type = "item", name = "copper-cable", amount = 8},
 }
 recipe.energy_required = 5.5
 
