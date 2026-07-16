@@ -5,17 +5,16 @@ local sb = serpent.block -- luacheck: ignore 211
 
 
 local function add_always_show_flag(item_prototype_name)
-	local item = data.raw.item[item_prototype_name] or data.raw.ammo[item_prototype_name]
+	local item = data.raw.item[item_prototype_name]
+		or data.raw.ammo[item_prototype_name]
+		or (data.raw["item-with-entity-data"] and data.raw["item-with-entity-data"][item_prototype_name])
 
 	if not item then
-		log(item_prototype_name)
+		error("vonNeumann requires base prototype: " .. item_prototype_name)
 	end
 
 	item.flags = item.flags or {}
-
-	local flags = item.flags
-
-	table.insert(flags,"always-show")
+	table.insert(item.flags, "always-show")
 end
 
 
