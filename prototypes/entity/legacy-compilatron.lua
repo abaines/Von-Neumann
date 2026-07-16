@@ -12,12 +12,12 @@ local compilatron_animations =
     stripes =
     {
       {
-        filename = "__base__/graphics/entity/compilatron/compilatron-walk-1.png",
+        filename = "__vonNeumann__/graphics/entity/compilatron/hr-compilatron-walk-1.png",
         width_in_frames = 2,
         height_in_frames = 16
       },
       {
-        filename = "__base__/graphics/entity/compilatron/compilatron-walk-1.png",  -- TODO FIXME this seems strange
+        filename = "__vonNeumann__/graphics/entity/compilatron/hr-compilatron-walk-2.png",
         width_in_frames = 2,
         height_in_frames = 16
       }
@@ -34,7 +34,7 @@ local compilatron_animations =
     stripes = util.multiplystripes(2,
     {
       {
-        filename = "__base__/graphics/entity/compilatron/compilatron-walk-shadow.png",
+        filename = "__vonNeumann__/graphics/entity/compilatron/hr-compilatron-walk-shadow.png",
         width_in_frames = 1,
         height_in_frames = 32
       }
@@ -47,7 +47,7 @@ data:extend(
   {
     type = "unit",
     name = "compilatron",
-    icon = "__base__/graphics/icons/compilatron.png",
+    icon = "__vonNeumann__/graphics/icons/compilatron.png",
     icon_size = 64,
     icon_mipmaps = 4,
     flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "not-repairable", "breaths-air"},
@@ -118,7 +118,7 @@ data:extend(
     {
       pictures =
       {
-        filename = "__base__/graphics/entity/compilatron/compilatron-reflection.png",
+        filename = "__vonNeumann__/graphics/entity/compilatron/compilatron-reflection.png",
         priority = "extra-high",
         width = 20,
         height = 20,
