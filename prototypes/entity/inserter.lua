@@ -59,6 +59,7 @@ inserter.next_upgrade = "inserter"
 inserter.circuit_connector_sprites = nil
 inserter.circuit_wire_connection_points = nil
 inserter.circuit_wire_max_distance = nil
+inserter.circuit_connector = nil
 
 inserter.energy_per_movement = "70kJ"
 inserter.energy_per_rotation = "70kJ"
