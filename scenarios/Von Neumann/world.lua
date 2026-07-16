@@ -49,7 +49,13 @@ function vn_world.forResourceOnNewChunk(surface,resource)
 
 	for _,product in pairs(products) do
 		if product.type=="item" then
-			surface.spill_item_stack(resource.position,{name=product.name, count=1},false,nil,false)
+			surface.spill_item_stack{
+				position = resource.position,
+				stack = {name = product.name, count = 1},
+				enable_looted = false,
+				force = nil,
+				allow_belts = false
+			}
 		end
 	end
 end

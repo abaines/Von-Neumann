@@ -81,12 +81,12 @@ function vonn.spillPlayerItemsAtPlayer(player,item_stack)
 
 	player.remove_item(item_stack)
 
-	player.surface.spill_item_stack(
-		player.position, -- position
-		item_stack, -- items to spill
-		false, -- enable_looted
-		player.force -- marked for deconstruction by this force
-	)
+	player.surface.spill_item_stack{
+		position = player.position,
+		stack = item_stack,
+		enable_looted = false,
+		force = player.force
+	}
 
 end
 

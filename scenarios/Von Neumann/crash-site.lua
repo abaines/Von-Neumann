@@ -90,7 +90,13 @@ function crash_site.randomCircleSpill(surface,item)
 	local x = r * math.cos(theta)
 	local y = r * math.sin(theta)
 
-	surface.spill_item_stack({x,y},{name=item, count=1},false,nil,false)
+	surface.spill_item_stack{
+		position = {x, y},
+		stack = {name = item, count = 1},
+		enable_looted = false,
+		force = nil,
+		allow_belts = false
+	}
 end
 
 function crash_site.spillItemsRandomly(surface)
