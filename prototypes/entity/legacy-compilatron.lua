@@ -21,30 +21,6 @@ local compilatron_animations =
         width_in_frames = 2,
         height_in_frames = 16
       }
-    },
-
-    hr_version =
-    {
-      width = 78,
-      height = 104,
-      frame_count = 2,
-      axially_symmetrical = false,
-      direction_count = 32,
-      shift = util.by_pixel(0.0, -14),
-      scale = 0.5,
-      stripes =
-      {
-        {
-          filename = "__base__/graphics/entity/compilatron/hr-compilatron-walk-1.png",
-          width_in_frames = 2,
-          height_in_frames = 16
-        },
-        {
-          filename = "__base__/graphics/entity/compilatron/hr-compilatron-walk-1.png",  -- TODO FIXME this seems strange
-          width_in_frames = 2,
-          height_in_frames = 16
-        }
-      }
     }
   },
   walk_shadow =
@@ -62,26 +38,7 @@ local compilatron_animations =
         width_in_frames = 1,
         height_in_frames = 32
       }
-    }),
-    hr_version =
-    {
-      width = 142,
-      height = 56,
-      frame_count = 2,
-      axially_symmetrical = false,
-      direction_count = 32,
-      shift = util.by_pixel(15.5, -0.5),
-      draw_as_shadow = true,
-      scale = 0.5,
-      stripes = util.multiplystripes(2,
-      {
-        {
-          filename = "__base__/graphics/entity/compilatron/hr-compilatron-walk-shadow.png",
-          width_in_frames = 1,
-          height_in_frames = 32
-        }
-      })
-    }
+    })
   }
 }
 
