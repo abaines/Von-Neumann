@@ -47,7 +47,7 @@ mining_drill.pipe_covers = nil
 
 mining_drill.resource_searching_radius = 1.49
 mining_drill.energy_source = {
-	emissions_per_minute = 10*3,
+	emissions_per_minute = { pollution = 10*3 },
 	type = "electric",
 	usage_priority = "secondary-input"
 }

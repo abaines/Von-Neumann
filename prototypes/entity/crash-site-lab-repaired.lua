@@ -24,7 +24,7 @@ data:extend{
   corpse = "big-remnants",
   dying_explosion = "medium-explosion",
   energy_source = {
-    emissions_per_minute = 4,
+    emissions_per_minute = { pollution = 4 },
     type = "electric",
     usage_priority = "secondary-input"
   },

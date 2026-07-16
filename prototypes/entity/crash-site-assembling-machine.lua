@@ -65,7 +65,7 @@ data:extend{
   crafting_speed = 0.3,
   dying_explosion = "medium-explosion",
   energy_source = {
-    emissions_per_minute = 4,
+    emissions_per_minute = { pollution = 4 },
     type = "electric",
     usage_priority = "secondary-input"
   },
@@ -237,7 +237,7 @@ data:extend{
   crafting_speed = 1,
   dying_explosion = "medium-explosion",
   energy_source = {
-    emissions_per_minute = 4,
+    emissions_per_minute = { pollution = 4 },
     type = "electric",
     usage_priority = "secondary-input"
   },

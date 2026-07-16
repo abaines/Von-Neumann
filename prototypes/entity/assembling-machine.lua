@@ -26,7 +26,7 @@ assembling_machine.minable.result = "damaged-assembling-machine"
 assembling_machine.next_upgrade = nil
 
 assembling_machine.crafting_speed = 0.25
-assembling_machine.energy_source.emissions_per_minute = 5
+assembling_machine.energy_source.emissions_per_minute = { pollution = 5 }
 assembling_machine.energy_usage = "150kW"
 assembling_machine.max_health = 250
 assembling_machine.ingredient_count = 3
