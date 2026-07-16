@@ -17,7 +17,7 @@ local compilatron_animations =
         height_in_frames = 16
       },
       {
-        filename = "__base__/graphics/entity/compilatron/compilatron-walk-2.png",
+        filename = "__base__/graphics/entity/compilatron/compilatron-walk-1.png",  -- TODO FIXME this seems strange
         width_in_frames = 2,
         height_in_frames = 16
       }
@@ -40,7 +40,7 @@ local compilatron_animations =
           height_in_frames = 16
         },
         {
-          filename = "__base__/graphics/entity/compilatron/hr-compilatron-walk-2.png",
+          filename = "__base__/graphics/entity/compilatron/hr-compilatron-walk-1.png",  -- TODO FIXME this seems strange
           width_in_frames = 2,
           height_in_frames = 16
         }
