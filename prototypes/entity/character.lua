@@ -123,7 +123,7 @@ local vonnCorpse = table.deepcopy(data.raw["character-corpse"]["character-corpse
 vonnCorpse.name = "vonn-corpse"
 vonnCorpse.pictures = {
 	{
-		filename = "__base__/graphics/entity/remnants/hr-medium-remnants.png",
+		filename = "__base__/graphics/entity/remnants/medium-remnants.png",
 		width=236,
 		height=246,
 	}
