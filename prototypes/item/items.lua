@@ -10,7 +10,7 @@ local function add_always_show_flag(item_prototype_name)
 		or (data.raw["item-with-entity-data"] and data.raw["item-with-entity-data"][item_prototype_name])
 
 	if not item then
-		error("vonNeumann requires base prototype: " .. item_prototype_name)
+		error("⨀ vonNeumann requires base prototype: " .. item_prototype_name)
 	end
 
 	item.flags = item.flags or {}
