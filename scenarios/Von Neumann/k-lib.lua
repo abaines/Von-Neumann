@@ -1,6 +1,8 @@
 -- Kizrak
 
 
+global = storage  -- TODO FIXME
+
 local function kprint(msg,color)
 	color = color or {r=255,g=255}
 	print(msg)
