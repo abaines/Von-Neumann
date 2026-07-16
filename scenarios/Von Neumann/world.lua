@@ -45,7 +45,7 @@ script.on_event({defines.events.on_tick},vn_world.on_tick)
 
 
 function vn_world.forResourceOnNewChunk(surface,resource)
-	local products = game.entity_prototypes[resource.name].mineable_properties.products
+	local products = resource.prototype.mineable_properties.products
 
 	for _,product in pairs(products) do
 		if product.type=="item" then

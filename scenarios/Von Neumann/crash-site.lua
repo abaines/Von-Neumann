@@ -149,7 +149,7 @@ function crash_site.spawnRobo(position)
 		['logistic-robot']=50,
 		['repair-pack']=50,
 	})
-	robo.energy = game.entity_prototypes["vn-roboport"].electric_energy_source_prototype.buffer_capacity
+	robo.energy = robo.prototype.electric_energy_source_prototype.buffer_capacity
 	return robo
 end
 
