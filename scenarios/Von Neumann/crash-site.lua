@@ -19,9 +19,9 @@ end
 
 function crash_site.createEntity(options)
 	if type(options.name)~="string" then
-		error("no name: "..type(options.name))
+		error("⨀ no name: "..type(options.name))
 	elseif type(options.position)~="table" then
-		error("no position: "..type(options.position))
+		error("⨀ no position: "..type(options.position))
 	end
 
 	local entity = game.surfaces[options.surface or "nauvis"].create_entity{

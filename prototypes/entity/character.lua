@@ -83,8 +83,8 @@ for _,layer in pairs(layers) do
 		layer.width = 28
 
 	else
-		log(filename)
-		error(filename)
+		log("⨀ filename " .. filename)
+		error("⨀ filename " .. filename)
 
 	end
 end
